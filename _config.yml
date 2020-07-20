@@ -1,0 +1,26 @@
+# Book settings
+title: Climate and Geophysical Data Analysis
+author: Karen Smith
+description: >-
+  Interactive courseware on climate and geophysical data analysis
+logo: gistemp.png
+################################################################################
+# Information about where the book exists on the web
+repository:
+  url                       : https://github.com/kls2177/Climate-and-Geophysical-Data-Analysis  # Online location of your book
+  path_to_book              : path/to/book  # Optional path to your book, relative to the repository root
+  branch                    : master  # Which branch of the repository should be used when creating links (optional)
+
+# Interactive
+launch_buttons:
+  binderhub_url: "https://mybinder.org"  # The URL for your BinderHub (e.g., https://mybinder.org)
+
+  colab_url: "https://colab.research.google.com"
+
+  thebe                  : true
+
+################################################################################
+
+latex:
+  latex_documents:
+    targetname: book.tex

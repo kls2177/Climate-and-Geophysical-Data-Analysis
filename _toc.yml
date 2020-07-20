@@ -1,0 +1,27 @@
+- file: chapters/index
+- file: chapters/introduction/intro
+  sections:
+    - file: chapters/introduction/aboutthisbook
+    - file: chapters/introduction/howtousethisbook
+- file: chapters/Week1a/whatarestatsgoodfor
+  sections:
+    - file: chapters/Week1a/goodpractice
+    - file: chapters/Week1a/pitfalls
+- file: chapters/Week1b/descriptivestats
+  sections:
+    - file: chapters/Week1b/summarystats
+    - file: chapters/Week1b/Variance_Example
+    - file: chapters/Week1b/what_is_pdf
+    - file: chapters/Week1b/summarystats2
+- file: chapters/Week2a/normaldist
+  sections:
+    - file: chapters/Week2a/probability
+    - file: chapters/Week2a/exercises_prob
+- file: chapters/Week2b/signal2noise
+  sections:
+    - file: chapters/Week2b/zstat
+    - file: chapters/Week2b/central_limit_theorem
+    - file: chapters/Week2b/exercises_zstat
+    - file: chapters/Week2b/tstat
+    - file: chapters/Week2b/z_t_pdfs
+    - file: chapters/Week2b/exercises_tstat

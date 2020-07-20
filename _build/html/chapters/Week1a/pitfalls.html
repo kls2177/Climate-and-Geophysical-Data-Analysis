@@ -1,0 +1,307 @@
+
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>Lies, damned lies and statistics… &#8212; Climate and Geophysical Data Analysis</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" integrity="sha384-KA6wR/X5RY4zFAHpv/CnoG2UW1uogYfdnP67Uv7eULvTveboZJg0qUpmJZb5VqzN" crossorigin="anonymous">
+    <link href="../../_static/css/index.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../_static/sphinx-book-theme.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/jupyter-sphinx.css" />
+    <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/sphinx-book-theme.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/language_data.js"></script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script src="../../_static/mystnb.js"></script>
+    <script src="../../_static/sphinx-book-theme.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.18.0/dist/embed-amd.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Descriptive statistics" href="../Week1b/descriptivestats.html" />
+    <link rel="prev" title="Statistics is the grammar of science…" href="goodpractice.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="docsearch:language" content="en">
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="../../index.html">
+  
+  <img src="../../_static/gistemp.png" class="logo" alt="logo">
+  
+  
+  <h1 class="site-logo" id="site-title">Climate and Geophysical Data Analysis</h1>
+  
+</a>
+</div>
+
+<form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  
+  <ul class="nav sidenav_l1">
+  <li class="">
+    <a href="../index.html">Climate and Geophysical Data Analysis</a>
+  </li>
+  <li class="">
+    <a href="../introduction/intro.html">Introduction</a>
+  </li>
+  <li class="active">
+    <a href="whatarestatsgoodfor.html">What are statistics good for?</a>
+  <ul class="nav sidenav_l2">
+    <li class="">
+      <a href="goodpractice.html">Statistics is the grammar of science…</a>
+    </li>
+    <li class="active">
+      <a href="">Lies, damned lies and statistics…</a>
+    </li>
+  </ul>
+  </li>
+  <li class="">
+    <a href="../Week1b/descriptivestats.html">Descriptive statistics</a>
+  </li>
+</ul>
+</nav>
+
+ <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="row topbar fixed-top container-xl">
+    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+    </div>
+    <div class="col pl-2 topbar-main">
+        
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        
+        <div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../../_sources/chapters/Week1a/pitfalls.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.md</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+    
+</div>
+        <!-- Source interaction buttons -->
+
+
+        <!-- Full screen (wrap in <a> to have style consistency -->
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                data-placement="bottom" onclick="toggleFullScreen()" title="Fullscreen mode"><i
+                    class="fas fa-expand"></i></button></a>
+
+        <!-- Launch buttons -->
+
+    </div>
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+<div class="tocsection onthispage pt-5 pb-3">
+    <i class="fas fa-list"></i> On this page
+</div>
+
+<nav id="bd-toc-nav">
+    <ul class="nav section-nav flex-column">
+    
+        <li class="nav-item toc-entry toc-h2">
+            <a href="#a-few-common-pitfalls" class="nav-link">A Few Common Pitfalls</a><ul class="nav section-nav flex-column">
+                
+        <li class="nav-item toc-entry toc-h3">
+            <a href="#meaningless-statistics" class="nav-link">Meaningless statistics</a>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h3">
+            <a href="#small-sample-sizes" class="nav-link">Small sample sizes</a>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h3">
+            <a href="#biased-data" class="nav-link">Biased data</a>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h3">
+            <a href="#data-mining" class="nav-link">Data mining</a>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h3">
+            <a href="#spurious-correlation" class="nav-link">Spurious correlation</a>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h3">
+            <a href="#plots-that-mislead" class="nav-link">Plots that mislead</a>
+        </li>
+    
+            </ul>
+        </li>
+    
+    </ul>
+</nav>
+
+
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="lies-damned-lies-and-statistics">
+<h1>Lies, damned lies and statistics…<a class="headerlink" href="#lies-damned-lies-and-statistics" title="Permalink to this headline">¶</a></h1>
+<p><em>-<a class="reference external" href="https://en.wikipedia.org/wiki/Lies,_damned_lies,_and_statistics">unknown</a></em></p>
+<p>As we have seen, statistics are an invaluable way to support hypotheses, inform scientific experimental design and extract signal from noisy data. Yet, statistics can often be misused. Here is what statistics are not good for:</p>
+<ul class="simple">
+<li><p>Replacing good scientific thinking</p>
+<ul>
+<li><p>statistics cannot “prove” anything and all statistical tests have a chance of being wrong.</p></li>
+</ul>
+</li>
+<li><p>Being blindly applied</p>
+<ul>
+<li><p>performing statistical analysis means carefully considering the right tools to use for each unique situation.</p></li>
+</ul>
+</li>
+<li><p>Making-up for a lack of data</p>
+<ul>
+<li><p>statistical analysis cannot replace sufficient, high quality data.</p></li>
+</ul>
+</li>
+</ul>
+<div class="section" id="a-few-common-pitfalls">
+<h2>A Few Common Pitfalls<a class="headerlink" href="#a-few-common-pitfalls" title="Permalink to this headline">¶</a></h2>
+<p>Here are a few common analysis errors to watch out for (in your own work as well as the work of others):</p>
+<div class="section" id="meaningless-statistics">
+<h3>Meaningless statistics<a class="headerlink" href="#meaningless-statistics" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>e.g. daily rainfall or earthquake magnitude data is much more appropriately described using the median rather than the mean, but if you don’t look at your data and you are not familiar with the nature of your data, you mind find yourself computing inappropriate statistics.</p></li>
+</ul>
+<div class="figure align-default" id="rainfall">
+<a class="reference internal image-reference" href="../../_images/Histograms_UTSC_rainfall.png"><img alt="../../_images/Histograms_UTSC_rainfall.png" src="../../_images/Histograms_UTSC_rainfall.png" style="width: 453.6px; height: 324.0px;" /></a>
+<p class="caption"><span class="caption-number">Fig. 1 </span><span class="caption-text">Non-zero Hourly Rainfall at [UTSC Weather Station][utsc_stn]</span><a class="headerlink" href="#rainfall" title="Permalink to this image">¶</a></p>
+</div>
+</div>
+<div class="section" id="small-sample-sizes">
+<h3>Small sample sizes<a class="headerlink" href="#small-sample-sizes" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>sometimes you simply do not have enough data to perform any analysis</p></li>
+</ul>
+</div>
+<div class="section" id="biased-data">
+<h3>Biased data<a class="headerlink" href="#biased-data" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>sometimes you do have enough data, but the data is biased. Explore potential biases, acknowledge these biases and avoid generalizing your results if you know your data is biased.</p></li>
+</ul>
+</div>
+<div class="section" id="data-mining">
+<h3>Data mining<a class="headerlink" href="#data-mining" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>a large data set might show that there is a statistically significant probability that X is related to Y if you look long enough.</p></li>
+</ul>
+<div class="figure align-default" id="xckd-green">
+<a class="reference internal image-reference" href="../../_images/green_jelly_beans.png"><img alt="../../_images/green_jelly_beans.png" src="../../_images/green_jelly_beans.png" style="width: 405.0px; height: 1123.5px;" /></a>
+<p class="caption"><span class="caption-number">Fig. 2 </span><span class="caption-text"><a class="reference external" href="https://xkcd.com/882/">Green jelly beans linked to acne!</a></span><a class="headerlink" href="#xckd-green" title="Permalink to this image">¶</a></p>
+</div>
+</div>
+<div class="section" id="spurious-correlation">
+<h3>Spurious correlation<a class="headerlink" href="#spurious-correlation" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>correlation does not imply causation. Interpretation must always be grounded in theory (<a class="reference internal" href="#pirates"><span class="std std-numref">Fig. 3</span></a>).</p></li>
+</ul>
+<div class="figure align-default" id="pirates">
+<a class="reference internal image-reference" href="../../_images/PiratesVsTemp.png"><img alt="../../_images/PiratesVsTemp.png" src="../../_images/PiratesVsTemp.png" style="width: 512.0px; height: 322.40000000000003px;" /></a>
+<p class="caption"><span class="caption-number">Fig. 3 </span><span class="caption-text">Stop global warming, become a pirate! <a class="reference external" href="https://commons.wikimedia.org/wiki/File:PiratesVsTemp(en).svg">image source here</a></span><a class="headerlink" href="#pirates" title="Permalink to this image">¶</a></p>
+</div>
+</div>
+<div class="section" id="plots-that-mislead">
+<h3>Plots that mislead<a class="headerlink" href="#plots-that-mislead" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>be mindful that humans makes quantitative assumptions based on how data is presented. Be objective in your data presentation. <a class="reference external" href="https://www.climate-lab-book.ac.uk/2014/end-of-the-rainbow/">Read more about how the choice of colour is so important, especially for those with red-green colour-blindness</a></p></li>
+</ul>
+</div>
+</div>
+</div>
+
+
+              </div>
+              
+        </div>
+    </div>
+    
+    
+    <div class='prev-next-bottom'>
+        
+    <a class='left-prev' id="prev-link" href="goodpractice.html" title="previous page">Statistics is the grammar of science…</a>
+    <a class='right-next' id="next-link" href="../Week1b/descriptivestats.html" title="next page">Descriptive statistics</a>
+
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Karen Smith<br/>
+        
+            &copy; Copyright 2020.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    <script src="../../_static/js/index.js"></script>
+    
+  </body>
+</html>
