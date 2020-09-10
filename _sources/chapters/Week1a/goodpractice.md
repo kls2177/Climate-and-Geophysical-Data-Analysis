@@ -22,7 +22,7 @@ Even though statistics are all around us, an appreciation of statistics arises b
 Before we jump in, here are a few best practices to keep in mind:
 
 - Visualize your data
-  - **always** look at your data before, during and after your analysis
+  - **ALWAYS** look at your data before, during and after your analysis
 
 - Hypothesize first, test second
   - statistics can support, but not replace, sound scientific hypotheses

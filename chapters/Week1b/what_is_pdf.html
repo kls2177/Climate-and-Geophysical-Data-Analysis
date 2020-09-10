@@ -1,19 +1,39 @@
 
-
 <!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta charset="utf-8" />
     <title>What is a distribution? &#8212; Climate and Geophysical Data Analysis</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" integrity="sha384-KA6wR/X5RY4zFAHpv/CnoG2UW1uogYfdnP67Uv7eULvTveboZJg0qUpmJZb5VqzN" crossorigin="anonymous">
-    <link href="../../_static/css/index.css" rel="stylesheet">
+    
+  <link rel="stylesheet" href="../../_static/css/index.d431a4ee1c1efae0e38bdfebc22debff.css">
+
+    
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+  <link rel="stylesheet"
+    href="../../_static/vendor/open-sans_all/1.44.1/index.css">
+  <link rel="stylesheet"
+    href="../../_static/vendor/lato_latin-ext/1.44.1/index.css">
+
+    
     <link rel="stylesheet" href="../../_static/sphinx-book-theme.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/jupyter-sphinx.css" />
+    
+  <link rel="preload" as="script" href="../../_static/js/index.30270b6e4c972e43c488.js">
+
     <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
     <script src="../../_static/sphinx-book-theme.js"></script>
     <script src="../../_static/jquery.js"></script>
@@ -29,14 +49,21 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.18.0/dist/embed-amd.js"></script>
     <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe,.cell"
+        const thebe_selector_input = "pre,.cell_input div.highlight"
+        const thebe_selector_output = ".output,.cell_output"
+    </script>
+    <script async="async" src="../../_static/sphinx-thebe.js"></script>
     <link rel="canonical" href="https://kls2177.github.io/Climate-and-Geophysical-Data-Analysis/chapters/index.html/chapters/Week1b/what_is_pdf.html" />
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="Summary Statistics: Part II" href="summarystats2.html" />
     <link rel="prev" title="Example: Sensitivity of Standard Deviation to Sampling" href="Variance_Example.html" />
 
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="docsearch:language" content="en">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
 
 
 <!-- Opengraph tags -->
@@ -46,7 +73,7 @@
 <meta property="og:description" content="What is a distribution?  You have probably heard of data being described by its distribution, but what is a distribution?  The distribution of a variable, X, is" />
 <meta property="og:image"       content="https://kls2177.github.io/Climate-and-Geophysical-Data-Analysis/chapters/index.html/_static/gistemp.png" />
 
-<meta name="twitter:card" content="summary">
+<meta name="twitter:card" content="summary" />
 
 
   </head>
@@ -75,41 +102,58 @@
 </form>
 
 <nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
-  
   <ul class="nav sidenav_l1">
-  <li class="">
-    <a href="../index.html">Climate and Geophysical Data Analysis</a>
-  </li>
-  <li class="">
-    <a href="../introduction/intro.html">Introduction</a>
-  </li>
-  <li class="">
-    <a href="../Week1a/whatarestatsgoodfor.html">What are statistics good for?</a>
-  </li>
-  <li class="active">
-    <a href="descriptivestats.html">Descriptive statistics</a>
-  <ul class="nav sidenav_l2">
-    <li class="">
-      <a href="summarystats.html">Summary Statistics: Part I</a>
-    </li>
-    <li class="">
-      <a href="Variance_Example.html">Example: Sensitivity of Standard Deviation to Sampling</a>
-    </li>
-    <li class="active">
-      <a href="">What is a distribution?</a>
-    </li>
-    <li class="">
-      <a href="summarystats2.html">Summary Statistics: Part II</a>
-    </li>
-  </ul>
-  </li>
-  <li class="">
-    <a href="../Week2a/normaldist.html">Descriptive statistics</a>
-  </li>
-  <li class="">
-    <a href="../Week2b/signal2noise.html">Descriptive statistics</a>
-  </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../index.html">
+   Climate and Geophysical Data Analysis
+  </a>
+ </li>
 </ul>
+<ul class="current nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../introduction/intro.html">
+   Introduction
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Week1a/whatarestatsgoodfor.html">
+   What are statistics good for?
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="reference internal" href="descriptivestats.html">
+   Descriptive Statistics
+  </a>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="summarystats.html">
+     Summary Statistics: Part I
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="Variance_Example.html">
+     Example: Sensitivity of Standard Deviation to Sampling
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     What is a distribution?
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="summarystats2.html">
+     Summary Statistics: Part II
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Week2/hypothesis_testing.html">
+   Statistical Hypothesis Testing
+  </a>
+ </li>
+</ul>
+
 </nav>
 
  <!-- To handle the deprecated key -->
@@ -182,27 +226,30 @@
         
         
         
+        <button type="button" class="btn btn-secondary topbarbtn"
+            onclick="initThebeSBT()" title="Launch Thebe" data-toggle="tooltip" data-placement="left"><i
+                class="fas fa-play"></i><span style="margin-left: .4em;">Live Code</span></button>
         
     </div>
 </div>
 
     </div>
+
+    <!-- Table of contents -->
     <div class="d-none d-md-block col-md-2 bd-toc show">
-<div class="tocsection onthispage pt-5 pb-3">
-    <i class="fas fa-list"></i> On this page
-</div>
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i> On this page
+        </div>
+        <nav id="bd-toc-nav">
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#the-histogram">
+   The Histogram
+  </a>
+ </li>
+</ul>
 
-<nav id="bd-toc-nav">
-    <ul class="nav section-nav flex-column">
-    
-        <li class="nav-item toc-entry toc-h2">
-            <a href="#the-histogram" class="nav-link">The Histogram</a>
-        </li>
-    
-    </ul>
-</nav>
-
-
+        </nav>
     </div>
 </div>
     <div id="main-content" class="row">
@@ -243,8 +290,8 @@
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># draw random values from X</span>
 
-<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="n">size</span> <span class="o">=</span> <span class="p">(</span><span class="mi">25</span><span class="p">,))</span> <span class="c1"># sample size of 25</span>
-<span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="n">size</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1000</span><span class="p">,))</span> <span class="c1"># sample size of 1000</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="n">size</span> <span class="o">=</span> <span class="mi">25</span><span class="p">)</span> <span class="c1"># sample size of 25</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="n">size</span> <span class="o">=</span> <span class="mi">1000</span><span class="p">)</span> <span class="c1"># sample size of 1000</span>
 </pre></div>
 </div>
 </div>
@@ -271,9 +318,9 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>[15.09  23.36   9.14  16.71   7.19   0.631  0.958 13.46  22.1   14.4
- 14.33  21.65   3.215 28.8   -3.696  1.871 17.95  23.88  14.68  11.43
- 17.18  24.1   -0.287  3.828 17.05 ]
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>[ 2.343 25.25  -5.965 23.98  24.78  11.3    2.603 -9.03  23.44   2.428
+ -0.042 16.77   3.219 -6.307 20.86  21.07   2.762  1.577 -2.688 20.48
+ 20.83  11.04  -2.236 -2.705 -9.61 ]
 </pre></div>
 </div>
 </div>
@@ -339,7 +386,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>(array([0, 0, 0, 0, 2, 5, 2, 5, 5, 5, 1, 0]), array([-25, -20, -15, -10,  -5,   0,   5,  10,  15,  20,  25,  30,  35]))
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>(array([0, 0, 0, 4, 4, 6, 0, 2, 1, 7, 1, 0]), array([-25, -20, -15, -10,  -5,   0,   5,  10,  15,  20,  25,  30,  35]))
 </pre></div>
 </div>
 </div>
@@ -423,7 +470,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>[   0   10   37   93  224  398  528  645  820  948  995 1000]
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>[   5   10   44  111  228  370  512  637  786  943  996 1000]
 </pre></div>
 </div>
 </div>
@@ -469,6 +516,25 @@
 </div>
 </div>
 
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "kls2177/Climate-and-Geophysical-Data-Analysis",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./chapters/Week1b"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
 
               </div>
               
@@ -498,7 +564,10 @@
       </div>
     </div>
 
-    <script src="../../_static/js/index.js"></script>
+    
+  <script src="../../_static/js/index.30270b6e4c972e43c488.js"></script>
+
+
     
   </body>
 </html>

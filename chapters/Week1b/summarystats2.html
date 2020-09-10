@@ -1,19 +1,39 @@
 
-
 <!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta charset="utf-8" />
     <title>Summary Statistics: Part II &#8212; Climate and Geophysical Data Analysis</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" integrity="sha384-KA6wR/X5RY4zFAHpv/CnoG2UW1uogYfdnP67Uv7eULvTveboZJg0qUpmJZb5VqzN" crossorigin="anonymous">
-    <link href="../../_static/css/index.css" rel="stylesheet">
+    
+  <link rel="stylesheet" href="../../_static/css/index.d431a4ee1c1efae0e38bdfebc22debff.css">
+
+    
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+  <link rel="stylesheet"
+    href="../../_static/vendor/open-sans_all/1.44.1/index.css">
+  <link rel="stylesheet"
+    href="../../_static/vendor/lato_latin-ext/1.44.1/index.css">
+
+    
     <link rel="stylesheet" href="../../_static/sphinx-book-theme.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/jupyter-sphinx.css" />
+    
+  <link rel="preload" as="script" href="../../_static/js/index.30270b6e4c972e43c488.js">
+
     <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
     <script src="../../_static/sphinx-book-theme.js"></script>
     <script src="../../_static/jquery.js"></script>
@@ -29,14 +49,21 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.18.0/dist/embed-amd.js"></script>
     <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe,.cell"
+        const thebe_selector_input = "pre,.cell_input div.highlight"
+        const thebe_selector_output = ".output,.cell_output"
+    </script>
+    <script async="async" src="../../_static/sphinx-thebe.js"></script>
     <link rel="canonical" href="https://kls2177.github.io/Climate-and-Geophysical-Data-Analysis/chapters/index.html/chapters/Week1b/summarystats2.html" />
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="Descriptive statistics" href="../Week2a/normaldist.html" />
+    <link rel="next" title="Statistical Hypothesis Testing" href="../Week2/hypothesis_testing.html" />
     <link rel="prev" title="What is a distribution?" href="what_is_pdf.html" />
 
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="docsearch:language" content="en">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
 
 
 <!-- Opengraph tags -->
@@ -46,7 +73,7 @@
 <meta property="og:description" content="Summary Statistics: Part II  3. Higher Moments  In general, all statistical moments are defined as:     \overline{x^{\prime r}} = \frac{1}{N}\sum_{i=1}^{N}(x_i " />
 <meta property="og:image"       content="https://kls2177.github.io/Climate-and-Geophysical-Data-Analysis/chapters/index.html/_static/gistemp.png" />
 
-<meta name="twitter:card" content="summary">
+<meta name="twitter:card" content="summary" />
 
 
   </head>
@@ -75,41 +102,58 @@
 </form>
 
 <nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
-  
   <ul class="nav sidenav_l1">
-  <li class="">
-    <a href="../index.html">Climate and Geophysical Data Analysis</a>
-  </li>
-  <li class="">
-    <a href="../introduction/intro.html">Introduction</a>
-  </li>
-  <li class="">
-    <a href="../Week1a/whatarestatsgoodfor.html">What are statistics good for?</a>
-  </li>
-  <li class="active">
-    <a href="descriptivestats.html">Descriptive statistics</a>
-  <ul class="nav sidenav_l2">
-    <li class="">
-      <a href="summarystats.html">Summary Statistics: Part I</a>
-    </li>
-    <li class="">
-      <a href="Variance_Example.html">Example: Sensitivity of Standard Deviation to Sampling</a>
-    </li>
-    <li class="">
-      <a href="what_is_pdf.html">What is a distribution?</a>
-    </li>
-    <li class="active">
-      <a href="">Summary Statistics: Part II</a>
-    </li>
-  </ul>
-  </li>
-  <li class="">
-    <a href="../Week2a/normaldist.html">Descriptive statistics</a>
-  </li>
-  <li class="">
-    <a href="../Week2b/signal2noise.html">Descriptive statistics</a>
-  </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../index.html">
+   Climate and Geophysical Data Analysis
+  </a>
+ </li>
 </ul>
+<ul class="current nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../introduction/intro.html">
+   Introduction
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Week1a/whatarestatsgoodfor.html">
+   What are statistics good for?
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="reference internal" href="descriptivestats.html">
+   Descriptive Statistics
+  </a>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="summarystats.html">
+     Summary Statistics: Part I
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="Variance_Example.html">
+     Example: Sensitivity of Standard Deviation to Sampling
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="what_is_pdf.html">
+     What is a distribution?
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     Summary Statistics: Part II
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Week2/hypothesis_testing.html">
+   Statistical Hypothesis Testing
+  </a>
+ </li>
+</ul>
+
 </nav>
 
  <!-- To handle the deprecated key -->
@@ -182,37 +226,42 @@
         
         
         
+        <button type="button" class="btn btn-secondary topbarbtn"
+            onclick="initThebeSBT()" title="Launch Thebe" data-toggle="tooltip" data-placement="left"><i
+                class="fas fa-play"></i><span style="margin-left: .4em;">Live Code</span></button>
         
     </div>
 </div>
 
     </div>
+
+    <!-- Table of contents -->
     <div class="d-none d-md-block col-md-2 bd-toc show">
-<div class="tocsection onthispage pt-5 pb-3">
-    <i class="fas fa-list"></i> On this page
-</div>
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i> On this page
+        </div>
+        <nav id="bd-toc-nav">
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#higher-moments">
+   3. Higher Moments
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#skewness">
+     3.1 Skewness
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#kurtosis">
+     3.2 Kurtosis
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
 
-<nav id="bd-toc-nav">
-    <ul class="nav section-nav flex-column">
-    
-        <li class="nav-item toc-entry toc-h2">
-            <a href="#higher-moments" class="nav-link">3. Higher Moments</a><ul class="nav section-nav flex-column">
-                
-        <li class="nav-item toc-entry toc-h3">
-            <a href="#skewness" class="nav-link">3.1 Skewness</a>
-        </li>
-    
-        <li class="nav-item toc-entry toc-h3">
-            <a href="#kurtosis" class="nav-link">3.2 Kurtosis</a>
-        </li>
-    
-            </ul>
-        </li>
-    
-    </ul>
-</nav>
-
-
+        </nav>
     </div>
 </div>
     <div id="main-content" class="row">
@@ -245,13 +294,32 @@
 <p>The <strong>kurtosis</strong> describes the shape of a distribution’s tails relative to the rest of the distribution. A normal distribution has <span class="math notranslate nohighlight">\(\alpha_4\)</span> = 3. <span class="math notranslate nohighlight">\(\alpha_4\)</span> &gt; 3 indicates a more peaked distribution compared to normal (<em>leptokurtic</em>) and <span class="math notranslate nohighlight">\(\alpha_4\)</span> &lt; 3 indicates a flatter distribution (<em>platykurtic</em>).</p>
 <div class="figure align-default" id="skewkurt">
 <a class="reference internal image-reference" href="../../_images/skew_kurt.png"><img alt="../../_images/skew_kurt.png" src="../../_images/skew_kurt.png" style="width: 799.5px; height: 323.7px;" /></a>
-<p class="caption"><span class="caption-number">Fig. 4 </span><span class="caption-text">Negatively and positively skewed and leptokurtic and platykurtic distributions. The normal distribution is shown in red.</span><a class="headerlink" href="#skewkurt" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 5 </span><span class="caption-text">Negatively and positively skewed and leptokurtic and platykurtic distributions. The normal distribution is shown in red.</span><a class="headerlink" href="#skewkurt" title="Permalink to this image">¶</a></p>
 </div>
 <p><a class="reference internal" href="#skewkurt"><span class="std std-ref">Figure 4</span></a> contrasts the normal distribution (red) against negatively and positively skewed distributions and leptokurtic and platykurtic distributions.</p>
 </div>
 </div>
 </div>
 
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "kls2177/Climate-and-Geophysical-Data-Analysis",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./chapters/Week1b"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
 
               </div>
               
@@ -262,7 +330,7 @@
     <div class='prev-next-bottom'>
         
     <a class='left-prev' id="prev-link" href="what_is_pdf.html" title="previous page">What is a distribution?</a>
-    <a class='right-next' id="next-link" href="../Week2a/normaldist.html" title="next page">Descriptive statistics</a>
+    <a class='right-next' id="next-link" href="../Week2/hypothesis_testing.html" title="next page">Statistical Hypothesis Testing</a>
 
     </div>
     <footer class="footer mt-5 mt-md-0">
@@ -281,7 +349,10 @@
       </div>
     </div>
 
-    <script src="../../_static/js/index.js"></script>
+    
+  <script src="../../_static/js/index.30270b6e4c972e43c488.js"></script>
+
+
     
   </body>
 </html>

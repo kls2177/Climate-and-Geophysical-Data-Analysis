@@ -1,0 +1,613 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>The t-Statistic &#8212; Climate and Geophysical Data Analysis</title>
+    
+  <link rel="stylesheet" href="../../_static/css/index.d431a4ee1c1efae0e38bdfebc22debff.css">
+
+    
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+  <link rel="stylesheet"
+    href="../../_static/vendor/open-sans_all/1.44.1/index.css">
+  <link rel="stylesheet"
+    href="../../_static/vendor/lato_latin-ext/1.44.1/index.css">
+
+    
+    <link rel="stylesheet" href="../../_static/sphinx-book-theme.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/jupyter-sphinx.css" />
+    
+  <link rel="preload" as="script" href="../../_static/js/index.30270b6e4c972e43c488.js">
+
+    <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/sphinx-book-theme.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/language_data.js"></script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script src="../../_static/mystnb.js"></script>
+    <script src="../../_static/sphinx-book-theme.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.18.0/dist/embed-amd.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe,.cell"
+        const thebe_selector_input = "pre,.cell_input div.highlight"
+        const thebe_selector_output = ".output,.cell_output"
+    </script>
+    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <link rel="canonical" href="https://kls2177.github.io/Climate-and-Geophysical-Data-Analysis/chapters/index.html/chapters/Week2/tstat.html" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Resampling Techniques" href="resampling.html" />
+    <link rel="prev" title="Estimating Statistical Significance with a z-test" href="statistical_significance.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+
+
+<!-- Opengraph tags -->
+<meta property="og:url"         content="https://kls2177.github.io/Climate-and-Geophysical-Data-Analysis/chapters/index.html/chapters/Week2/tstat.html" />
+<meta property="og:type"        content="article" />
+<meta property="og:title"       content="The t-Statistic" />
+<meta property="og:description" content="The t-Statistic  When the Sample Size is Small  Think back to the Central Limit Theorem (CLT) that we discussed previously. What was the one caveat to that theo" />
+<meta property="og:image"       content="https://kls2177.github.io/Climate-and-Geophysical-Data-Analysis/chapters/index.html/_static/gistemp.png" />
+
+<meta name="twitter:card" content="summary" />
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="../../index.html">
+  
+  <img src="../../_static/gistemp.png" class="logo" alt="logo">
+  
+  
+  <h1 class="site-logo" id="site-title">Climate and Geophysical Data Analysis</h1>
+  
+</a>
+</div>
+
+<form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../index.html">
+   Climate and Geophysical Data Analysis
+  </a>
+ </li>
+</ul>
+<ul class="current nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../introduction/intro.html">
+   Introduction
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Week1a/whatarestatsgoodfor.html">
+   What are statistics good for?
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Week1b/descriptivestats.html">
+   Descriptive Statistics
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="reference internal" href="hypothesis_testing.html">
+   Statistical Hypothesis Testing
+  </a>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="probability.html">
+     Basic Probability
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="normdist.html">
+     The Standard Normal Distribution
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="zstat.html">
+     The
+     <em>
+      z
+     </em>
+     -Statistic
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="signal2noise.html">
+     Signal-to-Noise
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="central_limit_theorem.html">
+     The Central Limit Theorem
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="statistical_significance.html">
+     Estimating Statistical Significance with a
+     <em>
+      z
+     </em>
+     -test
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     The
+     <em>
+      t
+     </em>
+     -Statistic
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="resampling.html">
+     Resampling Techniques
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+</nav>
+
+ <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="row topbar fixed-top container-xl">
+    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+    </div>
+    <div class="col pl-2 topbar-main">
+        
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        
+        <div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../../_sources/chapters/Week2/tstat.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+    
+</div>
+        <!-- Source interaction buttons -->
+
+
+        <!-- Full screen (wrap in <a> to have style consistency -->
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                data-placement="bottom" onclick="toggleFullScreen()" title="Fullscreen mode"><i
+                    class="fas fa-expand"></i></button></a>
+
+        <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/kls2177/Climate-and-Geophysical-Data-Analysis/master?urlpath=tree/chapters/Week2/tstat.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        <button type="button" class="btn btn-secondary topbarbtn"
+            onclick="initThebeSBT()" title="Launch Thebe" data-toggle="tooltip" data-placement="left"><i
+                class="fas fa-play"></i><span style="margin-left: .4em;">Live Code</span></button>
+        
+    </div>
+</div>
+
+    </div>
+
+    <!-- Table of contents -->
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i> On this page
+        </div>
+        <nav id="bd-toc-nav">
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#when-the-sample-size-is-small">
+   When the Sample Size is Small
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#definition-of-the-t-statistic">
+   Definition of the
+   <em>
+    t
+   </em>
+   -Statistic
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#confidence-intervals">
+     Confidence Intervals
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#t-test-key-assumption">
+   <em>
+    t
+   </em>
+   -Test: Key Assumption
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#comparison-of-the-z-and-t-statistic">
+   Comparison of the
+   <em>
+    z
+   </em>
+   - and
+   <em>
+    t
+   </em>
+   -Statistic
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#hypothesis-testing-and-the-t-statistic">
+   Hypothesis Testing and the
+   <em>
+    t
+   </em>
+   -Statistic
+  </a>
+ </li>
+</ul>
+
+        </nav>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="the-t-statistic">
+<h1>The <em>t</em>-Statistic<a class="headerlink" href="#the-t-statistic" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="when-the-sample-size-is-small">
+<h2>When the Sample Size is Small<a class="headerlink" href="#when-the-sample-size-is-small" title="Permalink to this headline">¶</a></h2>
+<p>Think back to the <em>Central Limit Theorem</em> (CLT) that we discussed previously. What was the one caveat to that theorem (I kind of gave it away in the title to this section)?</p>
+<p>Right, the CLT only applies when the sample size <span class="math notranslate nohighlight">\(N\)</span> is sufficiently large and by “sufficiently large”, we mean approximately <span class="math notranslate nohighlight">\(N\)</span> <span class="math notranslate nohighlight">\(\geq\)</span> 30.</p>
+<p>But, why is this a caveat of the CLT?</p>
+<p>Recall, the equation for the <span class="math notranslate nohighlight">\(z\)</span>-statistic,</p>
+<div class="math notranslate nohighlight">
+\[
+\begin{align}
+z &amp;= \frac{\overline{x} - \mu}{\frac{\sigma}{\sqrt{N}}}
+\end{align}
+\]</div>
+<p>To use this equation, we need to know the population standard deviation, <span class="math notranslate nohighlight">\(\sigma\)</span>, i.e. the standard deviation from the underlying distribution from which the sample is drawn. But often, we don’t know what the underlying distribution. If we have a large enough sample, the sample standard deviation <span class="math notranslate nohighlight">\(s\)</span> is a good approximation of the true population <span class="math notranslate nohighlight">\(\sigma\)</span>.</p>
+<p>However, if <span class="math notranslate nohighlight">\(N\)</span> &lt; 30, this is not the case, and the <span class="math notranslate nohighlight">\(z\)</span>-statistic does not apply!</p>
+<p>In this case, one must use the <strong>Student’s <span class="math notranslate nohighlight">\(t\)</span>-statistic.</strong></p>
+<p>The <span class="math notranslate nohighlight">\(t\)</span>-statistic is analogous to the <span class="math notranslate nohighlight">\(z\)</span>-statistic, except that the probabilities are associated with the <span class="math notranslate nohighlight">\(t\)</span>-distribution rather than the standard normal distribution. The shape of the <span class="math notranslate nohighlight">\(t\)</span>-distribution depends on the <a class="reference external" href="https://blog.minitab.com/blog/statistics-and-quality-data-analysis/what-are-degrees-of-freedom-in-statistics">degrees of freedom</a>.</p>
+<p>In the simplest terms, the <strong>degrees of freedom</strong> (<span class="math notranslate nohighlight">\(\nu\)</span>) correspond to the sample size <span class="math notranslate nohighlight">\(N\)</span>. Given that we have used one degree of freedom to estimate the population mean using the sample mean, we are only left with <span class="math notranslate nohighlight">\(N\)</span>-1 degrees of freedom to estimate the population variance using the sample variance. For large sample sizes, the difference between <span class="math notranslate nohighlight">\(N\)</span> and <span class="math notranslate nohighlight">\(N\)</span>-1 is very small and the CLT applies, but for small sample sizes, the degrees of freedom can substantially affect the shape of the <span class="math notranslate nohighlight">\(t\)</span>-distribution.</p>
+<p>Let’s compare the <span class="math notranslate nohighlight">\(z\)</span>- and <span class="math notranslate nohighlight">\(t\)</span>-distributions for different sample sizes.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Load packages</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">scipy.stats</span> <span class="k">as</span> <span class="nn">st</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Click on the “Run Live Code” button at the top of the page and try running this code with different values for the degrees of freedom (dof). Try the following: dof = 50, 30, 20, 10, 5, 2</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plot z and t distributions</span>
+
+<span class="n">dof</span> <span class="o">=</span> <span class="mi">50</span> <span class="c1">#degrees of freedom (N-1)</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="mi">6</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="o">.</span><span class="mi">01</span><span class="p">)</span>
+
+<span class="c1"># Get distributions of z and t</span>
+<span class="n">z</span> <span class="o">=</span> <span class="n">st</span><span class="o">.</span><span class="n">norm</span><span class="o">.</span><span class="n">pdf</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">t</span> <span class="o">=</span> <span class="n">st</span><span class="o">.</span><span class="n">t</span><span class="o">.</span><span class="n">pdf</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">dof</span><span class="p">)</span>
+
+<span class="c1"># Compute the 95% confidence intervals</span>
+<span class="n">z95_neg</span> <span class="o">=</span> <span class="n">st</span><span class="o">.</span><span class="n">norm</span><span class="o">.</span><span class="n">ppf</span><span class="p">(</span><span class="mf">0.025</span><span class="p">)</span>
+<span class="n">t95_neg</span> <span class="o">=</span> <span class="n">st</span><span class="o">.</span><span class="n">t</span><span class="o">.</span><span class="n">ppf</span><span class="p">(</span><span class="mf">0.025</span><span class="p">,</span><span class="n">dof</span><span class="p">)</span>
+<span class="n">z95_pos</span> <span class="o">=</span> <span class="n">st</span><span class="o">.</span><span class="n">norm</span><span class="o">.</span><span class="n">ppf</span><span class="p">(</span><span class="mf">0.975</span><span class="p">)</span>
+<span class="n">t95_pos</span> <span class="o">=</span> <span class="n">st</span><span class="o">.</span><span class="n">t</span><span class="o">.</span><span class="n">ppf</span><span class="p">(</span><span class="mf">0.975</span><span class="p">,</span><span class="n">dof</span><span class="p">)</span>
+
+<span class="c1"># Plot z and t</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">6</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">z</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;z&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">t</span><span class="p">,</span><span class="n">linestyle</span> <span class="o">=</span> <span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;t ($\nu$ =&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">dof</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;)&quot;</span><span class="p">)</span>
+
+<span class="c1"># Plot 95% confidence intervals</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">z95_neg</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">t95_neg</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">z95_pos</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">t95_pos</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">)</span>
+
+<span class="c1">#  Make the plot look nice!</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;z and Students-t Probability Density Functions&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;f(z)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">frameon</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span><span class="n">fontsize</span> <span class="o">=</span> <span class="mi">16</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="o">.</span><span class="mi">45</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="o">.</span><span class="mi">5</span><span class="p">,</span><span class="o">.</span><span class="mi">1</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.lines.Line2D at 0x7feb06909390&gt;
+</pre></div>
+</div>
+<img alt="../../_images/tstat_3_1.png" src="../../_images/tstat_3_1.png" />
+</div>
+</div>
+<p>What happens as you change the dof?</p>
+<ul class="simple">
+<li><p>smaller values of <span class="math notranslate nohighlight">\(N\)</span> lead to longer tails for the <span class="math notranslate nohighlight">\(t\)</span>-distribution</p></li>
+<li><p>as <span class="math notranslate nohighlight">\(N\)</span> increases, the <span class="math notranslate nohighlight">\(t\)</span>-distribution approaches the <span class="math notranslate nohighlight">\(z\)</span>-distribution</p></li>
+</ul>
+<p>So, as <span class="math notranslate nohighlight">\(N\)</span> get smaller then <span class="math notranslate nohighlight">\(t\)</span>-statistic gives more conservative probabilities (notice how the confidence intervals about the mean get larger as <span class="math notranslate nohighlight">\(N\)</span> get smaller. In other words, we are less and less confident in our estimate of the true population mean).</p>
+</div>
+<div class="section" id="definition-of-the-t-statistic">
+<h2>Definition of the <em>t</em>-Statistic<a class="headerlink" href="#definition-of-the-t-statistic" title="Permalink to this headline">¶</a></h2>
+<p>The <span class="math notranslate nohighlight">\(t\)</span>-statistic is defined as</p>
+<div class="math notranslate nohighlight">
+\[
+\begin{align}
+t &amp;= \frac{\overline{x} - \mu}{\frac{s}{\sqrt{N-1}}}
+\end{align}
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(s\)</span> is the sample standard deviation.</p>
+<p>Recall from the CLT example that when <span class="math notranslate nohighlight">\(N\)</span> <span class="math notranslate nohighlight">\(\geq\)</span> 30, the true standard deviation of the distribution of sample means is well-approximated by <span class="math notranslate nohighlight">\(\sigma/\sqrt{N}\)</span>, where <span class="math notranslate nohighlight">\(\sigma\)</span> in the population standard deviation. Thus, in the definition of the <span class="math notranslate nohighlight">\(z\)</span>-statistic. However, in the case of the <span class="math notranslate nohighlight">\(t\)</span>-statistic, we write <span class="math notranslate nohighlight">\(s\)</span> since the true <span class="math notranslate nohighlight">\(\sigma\)</span> is unknown.</p>
+<p>Note the similarities between the <span class="math notranslate nohighlight">\(z\)</span>-statistic and the <span class="math notranslate nohighlight">\(t\)</span>-statistic. The main differences are the use of <span class="math notranslate nohighlight">\(s\)</span> versus <span class="math notranslate nohighlight">\(sigma\)</span> and dividing this by <span class="math notranslate nohighlight">\(\sqrt{N-1}\)</span> rather that <span class="math notranslate nohighlight">\(\sqrt{N}\)</span> to account for the loss of a degree of freedom.</p>
+<p>As before, we can manipulate the above equation to compute the <span class="math notranslate nohighlight">\(t\)</span>-statistic for the difference of means. It is very similar to that for the <span class="math notranslate nohighlight">\(z\)</span>-statistic, but with slight modifications. Assume two samples <span class="math notranslate nohighlight">\(N_1\)</span> and <span class="math notranslate nohighlight">\(N_2\)</span> are drawn from an normal distributions whose standard deviations are equal (<span class="math notranslate nohighlight">\(s_1\)</span> = <span class="math notranslate nohighlight">\(s_2\)</span>).</p>
+<div class="math notranslate nohighlight">
+\[
+t = \frac{(\overline{x_1} - \overline{x_2}) - \Delta_{1,2}}{\hat{s}\sqrt{\frac{1}{N_1 - 1} + \frac{1}{N_2 - 1}}}
+\]</div>
+<p>where</p>
+<div class="math notranslate nohighlight">
+\[
+\hat{s} = \sqrt{\frac{N_1s_1^2 + N_2s_2^2}{N_1 + N_2 - 2}}
+\]</div>
+<p>is the pooled standard deviation, the square-root of the weighted average of the sample variances.</p>
+<p>The degrees of freedom are <span class="math notranslate nohighlight">\(\nu = N_1 + N_2 - 2\)</span> and <span class="math notranslate nohighlight">\(\Delta_{1,2}\)</span> is the null hypothesized difference between the two means, which is typically zero in practice.</p>
+<div class="section" id="confidence-intervals">
+<h3>Confidence Intervals<a class="headerlink" href="#confidence-intervals" title="Permalink to this headline">¶</a></h3>
+<p>Just as we did for the <span class="math notranslate nohighlight">\(z\)</span>-statistic, we can determine confidence intervals on the true population mean, <span class="math notranslate nohighlight">\(\mu\)</span>, using the <span class="math notranslate nohighlight">\(t\)</span>-statistic. Let’s revisit our previous example but change the sample size:</p>
+<div class="tip admonition">
+<p class="admonition-title">Question #5</p>
+<p>Say we have surface air temperatures for 10 winters with a mean of 10°C and a standard deviation of 5°C. What is the 95% confidence interval on the true population mean? You may assume that the temperatures are normally distributed.</p>
+</div>
+<p>In this question, we are told to estmiate the 95% confidence intervals. This means we should consider the 95% confidence level, i.e. the 5% significance level.</p>
+<p>To estimate the 95% confidence intervals on <span class="math notranslate nohighlight">\(\mu\)</span>, we can simply rearrange the equation for <span class="math notranslate nohighlight">\(z\)</span> as follows,</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align}
+t &amp;= \frac{\overline{x} - \mu}{\frac{s}{\sqrt{N-1}}} \\
+\mu &amp; = \overline{x} - t\frac{s}{\sqrt{N-1}}
+\end{align}
+\end{split}\]</div>
+<p>Since we are interested in the 95% confidence intervals centred on <span class="math notranslate nohighlight">\(\mu\)</span>, and since the normal distribution is symmetric about the <span class="math notranslate nohighlight">\(\mu\)</span>, this can be rewritten as,</p>
+<div class="math notranslate nohighlight">
+\[
+\begin{align}
+\mu &amp; = \overline{x} \pm t_{\alpha/2}\frac{s}{\sqrt{N-1}}
+\end{align}
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(t_{\alpha/2}\)</span> is the value for <span class="math notranslate nohighlight">\(t\)</span> for a two-sided 95% confidence level (5% significance level). We can use python get find this value:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Question #5</span>
+<span class="c1"># find t values for a two-sided 95% confidence level</span>
+<span class="n">N</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="n">dof</span> <span class="o">=</span> <span class="n">N</span> <span class="o">-</span> <span class="mi">1</span>
+<span class="n">tneg</span> <span class="o">=</span> <span class="n">st</span><span class="o">.</span><span class="n">t</span><span class="o">.</span><span class="n">ppf</span><span class="p">(</span><span class="mf">0.025</span><span class="p">,</span><span class="n">dof</span><span class="p">)</span> <span class="c1"># negative side of distribution</span>
+<span class="n">tpos</span> <span class="o">=</span> <span class="n">st</span><span class="o">.</span><span class="n">t</span><span class="o">.</span><span class="n">ppf</span><span class="p">(</span><span class="mf">0.975</span><span class="p">,</span><span class="n">dof</span><span class="p">)</span> <span class="c1"># positive side of distribution</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="n">tneg</span><span class="p">,</span><span class="mi">2</span><span class="p">),</span><span class="nb">round</span><span class="p">(</span><span class="n">tpos</span><span class="p">,</span><span class="mi">2</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>-2.26 2.26
+</pre></div>
+</div>
+</div>
+</div>
+<p>Plugging this all in, we get</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align}
+\mu &amp; = 10 \pm 2.26\frac{5}{\sqrt{9}}\\
+&amp; = 10 \pm 1.7
+\end{align}
+\end{split}\]</div>
+<p>Thus, the 95% confidence intervals on the true population mean, <span class="math notranslate nohighlight">\(\mu\)</span> are,</p>
+<div class="math notranslate nohighlight">
+\[
+6.23^{\circ}C \leq \mu \leq 13.77^{\circ}C
+\]</div>
+<p>So, we can see that when we have a smaller sample size, we become less confident in our estimate of the true population mean.</p>
+</div>
+</div>
+<div class="section" id="t-test-key-assumption">
+<h2><em>t</em>-Test: Key Assumption<a class="headerlink" href="#t-test-key-assumption" title="Permalink to this headline">¶</a></h2>
+<p>The <em>t</em>-test is ubiquitous in scientific literature and it often gets misused. One of the ways that it gets misused is that an important underlying assumption is often overlooked.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>In order to use the <span class="math notranslate nohighlight">\(t\)</span>-statistic, the underlying distribution is assumed to be <strong>normal</strong>.</p>
+</div>
+<p>The moral of the story is: <strong>always look at your data first!</strong> Remember to:</p>
+<ul class="simple">
+<li><p>Plot your data</p></li>
+<li><p>Examine the skewness, kurtosis, etc.</p></li>
+</ul>
+<p>If your data is not normally distributed, but your sample size is large (<span class="math notranslate nohighlight">\(N \geq\)</span> 30), then the CLT applies and you can use a <span class="math notranslate nohighlight">\(z\)</span>-test. But, in practice, scientists tend to always use the <span class="math notranslate nohighlight">\(t\)</span>-test for large <span class="math notranslate nohighlight">\(N\)</span> anyway, as the <span class="math notranslate nohighlight">\(t\)</span>- and <span class="math notranslate nohighlight">\(z\)</span>-distributions converge for large <span class="math notranslate nohighlight">\(N\)</span>.</p>
+</div>
+<div class="section" id="comparison-of-the-z-and-t-statistic">
+<h2>Comparison of the <em>z</em>- and <em>t</em>-Statistic<a class="headerlink" href="#comparison-of-the-z-and-t-statistic" title="Permalink to this headline">¶</a></h2>
+<p>Let’s take a look at an example and compare the results we get if we use the <span class="math notranslate nohighlight">\(z\)</span>- versus <span class="math notranslate nohighlight">\(t\)</span>-statistic.</p>
+<div class="tip admonition">
+<p class="admonition-title">Question #6</p>
+<p>You have 5 years of monthly-mean temperature data derived from the MSU4 satellite (upper stratosphere). The mean temperature along 60°N during January is -60°C and the standard deviation is 8°C. What are the 95% confidence limits on the true population mean?</p>
+</div>
+<p><strong>The z-Statistic:</strong></p>
+<p>The critical value <span class="math notranslate nohighlight">\(z_c\)</span> = $\pm$1.96 for 95% confidence. Thus, the population mean <span class="math notranslate nohighlight">\(\mu\)</span> is expected to lie within:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align}
+\mu &amp;= -60 \pm 1.96\frac{8}{\sqrt{5}}\\
+&amp;= -60 \pm 7
+\end{align}
+\end{split}\]</div>
+<div class="math notranslate nohighlight">
+\[
+-67.0^{\circ}C \leq \mu \leq -53^{\circ}C
+\]</div>
+<p><strong>The t-Statistic:</strong></p>
+<p>Assuming that the data is normally distributed, the critical value <span class="math notranslate nohighlight">\(t_c\)</span> = 2.78 for <span class="math notranslate nohighlight">\(\nu\)</span> = 5 - 1 = 4. Thus, the population mean <span class="math notranslate nohighlight">\(\mu\)</span> is expected to lie within:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align}
+\mu &amp;= -60 \pm 2.78\frac{8}{\sqrt{4}}\\
+&amp;= -60 \pm 11.1
+\end{align}
+\end{split}\]</div>
+<div class="math notranslate nohighlight">
+\[
+-71.1^{\circ}C \leq \mu \leq -48.9^{\circ}C
+\]</div>
+<p>We can see that we get a more conservative estimate of the confidence intervals using the <span class="math notranslate nohighlight">\(t\)</span>-statistic, which reasonably reflects the fact that we have a very small sample size.</p>
+</div>
+<div class="section" id="hypothesis-testing-and-the-t-statistic">
+<h2>Hypothesis Testing and the <em>t</em>-Statistic<a class="headerlink" href="#hypothesis-testing-and-the-t-statistic" title="Permalink to this headline">¶</a></h2>
+<p>Everything that we previously discussed about hypothesis testing and the <span class="math notranslate nohighlight">\(z\)</span>-statistic applies to the <span class="math notranslate nohighlight">\(t\)</span>-statistic. With respect to terminology, we simply swap the critical <span class="math notranslate nohighlight">\(z\)</span>-value, <span class="math notranslate nohighlight">\(z_c\)</span> for the critical <span class="math notranslate nohighlight">\(t\)</span>-value, <span class="math notranslate nohighlight">\(t_c\)</span>. Then, you can proceed with the Five Simple Steps, just as before.</p>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "kls2177/Climate-and-Geophysical-Data-Analysis",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./chapters/Week2"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        </div>
+    </div>
+    
+    
+    <div class='prev-next-bottom'>
+        
+    <a class='left-prev' id="prev-link" href="statistical_significance.html" title="previous page">Estimating Statistical Significance with a <em>z</em>-test</a>
+    <a class='right-next' id="next-link" href="resampling.html" title="next page">Resampling Techniques</a>
+
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Karen Smith<br/>
+        
+            &copy; Copyright 2020.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    
+  <script src="../../_static/js/index.30270b6e4c972e43c488.js"></script>
+
+
+    
+  </body>
+</html>

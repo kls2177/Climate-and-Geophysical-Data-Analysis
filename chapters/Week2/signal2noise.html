@@ -1,0 +1,380 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>Signal-to-Noise &#8212; Climate and Geophysical Data Analysis</title>
+    
+  <link rel="stylesheet" href="../../_static/css/index.d431a4ee1c1efae0e38bdfebc22debff.css">
+
+    
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+  <link rel="stylesheet"
+    href="../../_static/vendor/open-sans_all/1.44.1/index.css">
+  <link rel="stylesheet"
+    href="../../_static/vendor/lato_latin-ext/1.44.1/index.css">
+
+    
+    <link rel="stylesheet" href="../../_static/sphinx-book-theme.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/jupyter-sphinx.css" />
+    
+  <link rel="preload" as="script" href="../../_static/js/index.30270b6e4c972e43c488.js">
+
+    <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/sphinx-book-theme.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/language_data.js"></script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script src="../../_static/mystnb.js"></script>
+    <script src="../../_static/sphinx-book-theme.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.18.0/dist/embed-amd.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe,.cell"
+        const thebe_selector_input = "pre,.cell_input div.highlight"
+        const thebe_selector_output = ".output,.cell_output"
+    </script>
+    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <link rel="canonical" href="https://kls2177.github.io/Climate-and-Geophysical-Data-Analysis/chapters/index.html/chapters/Week2/signal2noise.html" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="The Central Limit Theorem" href="central_limit_theorem.html" />
+    <link rel="prev" title="The z-Statistic" href="zstat.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+
+
+<!-- Opengraph tags -->
+<meta property="og:url"         content="https://kls2177.github.io/Climate-and-Geophysical-Data-Analysis/chapters/index.html/chapters/Week2/signal2noise.html" />
+<meta property="og:type"        content="article" />
+<meta property="og:title"       content="Signal-to-Noise" />
+<meta property="og:description" content="Signal-to-Noise  You are probably wondering how the z-score applies to statistical hypothesis testing. So, let’s first take a look at what we mean by hypothesis" />
+<meta property="og:image"       content="https://kls2177.github.io/Climate-and-Geophysical-Data-Analysis/chapters/index.html/_static/gistemp.png" />
+
+<meta name="twitter:card" content="summary" />
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="../../index.html">
+  
+  <img src="../../_static/gistemp.png" class="logo" alt="logo">
+  
+  
+  <h1 class="site-logo" id="site-title">Climate and Geophysical Data Analysis</h1>
+  
+</a>
+</div>
+
+<form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../index.html">
+   Climate and Geophysical Data Analysis
+  </a>
+ </li>
+</ul>
+<ul class="current nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../introduction/intro.html">
+   Introduction
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Week1a/whatarestatsgoodfor.html">
+   What are statistics good for?
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Week1b/descriptivestats.html">
+   Descriptive Statistics
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="reference internal" href="hypothesis_testing.html">
+   Statistical Hypothesis Testing
+  </a>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="probability.html">
+     Basic Probability
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="normdist.html">
+     The Standard Normal Distribution
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="zstat.html">
+     The
+     <em>
+      z
+     </em>
+     -Statistic
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     Signal-to-Noise
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="central_limit_theorem.html">
+     The Central Limit Theorem
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="statistical_significance.html">
+     Estimating Statistical Significance with a
+     <em>
+      z
+     </em>
+     -test
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="tstat.html">
+     The
+     <em>
+      t
+     </em>
+     -Statistic
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="resampling.html">
+     Resampling Techniques
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+</nav>
+
+ <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="row topbar fixed-top container-xl">
+    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+    </div>
+    <div class="col pl-2 topbar-main">
+        
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        
+        <div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../../_sources/chapters/Week2/signal2noise.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.md</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+    
+</div>
+        <!-- Source interaction buttons -->
+
+
+        <!-- Full screen (wrap in <a> to have style consistency -->
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                data-placement="bottom" onclick="toggleFullScreen()" title="Fullscreen mode"><i
+                    class="fas fa-expand"></i></button></a>
+
+        <!-- Launch buttons -->
+
+    </div>
+
+    <!-- Table of contents -->
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i> On this page
+        </div>
+        <nav id="bd-toc-nav">
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#hypothesis-testing">
+   Hypothesis Testing
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#the-null-hypothesis">
+     The Null Hypothesis
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+        </nav>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="signal-to-noise">
+<h1>Signal-to-Noise<a class="headerlink" href="#signal-to-noise" title="Permalink to this headline">¶</a></h1>
+<p>You are probably wondering how the <span class="math notranslate nohighlight">\(z\)</span>-score applies to statistical hypothesis testing. So, let’s first take a look at what we mean by <em>hypothesis testing</em>.</p>
+<div class="section" id="hypothesis-testing">
+<h2>Hypothesis Testing<a class="headerlink" href="#hypothesis-testing" title="Permalink to this headline">¶</a></h2>
+<p>Thus far, we have covered how to determine the probability of getting a value <span class="math notranslate nohighlight">\(x_i\)</span> within a range [<span class="math notranslate nohighlight">\(a\)</span>, <span class="math notranslate nohighlight">\(b\)</span>].</p>
+<p>For instance, using the ENSO example, we have looked at how we use the <span class="math notranslate nohighlight">\(z\)</span>-score to address questions like,</p>
+<blockquote>
+<div><p>“What is the probability that the ENSO index in the winter of 1997-1998 was its value or greater?”</p>
+</div></blockquote>
+<p>However, in climate and geophysical sciences (and most other fields of science for that matter), we tend to be more interested in establishing the probability of the difference between a sample mean and an underlying population or the difference between two samples. In other words, we are interested in finding a signal in our data that is different from the noise.</p>
+<p>More generally, the <a class="reference external" href="https://365datascience.com/bayesian-vs-frequentist-approach/"><em>frequentist</em></a> approach to hypothesis testing involves testing a <em>null</em> hypothesis by comparing the sample data you observe in your laboratory experiment, field measurements, computer simulation, etc. with the predictions of a null hypothesis. You estimate what the probability would be of obtaining the observed results, or something more extreme, if the null hypothesis were true. If this estimated probability (the <span class="math notranslate nohighlight">\(p\)</span>-value) is small enough (below the significance value), then you conclude that it is unlikely that the null hypothesis is true; you <em>reject</em> the null hypothesis and <em>accept</em> an alternative hypothesis.</p>
+<p>Returning to our ENSO example, we instead might ask,</p>
+<blockquote>
+<div><p>“Was the ENSO index from 2003-2013 consistent with climatological behaviour?”</p>
+</div></blockquote>
+<p>The framing of the above question implies that the null hypothesis is:</p>
+<ul class="simple">
+<li><p>the ENSO index from 2003-2013 (the sample mean) is consistent with “climatological behaviour” (the population mean).</p></li>
+</ul>
+<p>The alternative hypothesis is thus:</p>
+<ul class="simple">
+<li><p>the ENSO index from 2003-2013 (the sample mean) is not consistent with “climatolgoical behaviour” (the population mean).</p></li>
+</ul>
+<div class="section" id="the-null-hypothesis">
+<h3>The Null Hypothesis<a class="headerlink" href="#the-null-hypothesis" title="Permalink to this headline">¶</a></h3>
+<p>Proper construction of the null hypothesis and its alternative is critical to the meaning of statistical hypothesis testing.</p>
+<p>The null hypothesis is a statement of the conventional wisdom or the “status quo”, i.e. the null hypothesis is that things are the same as each other, or the same as a theoretical expectation. Its alternative is an interesting conclusion that follows directly from the rejection of the null hypothesis. The alternative hypothesis is that things are different from each other, or different from a theoretical expectation.</p>
+<p>Simply put, the null hypothesis states that there is no signal in the sample data, just noise, while the alternative hypothesis is that there is a signal.</p>
+<p>Here are some examples of null (<span class="math notranslate nohighlight">\(H_0\)</span>) and alternative (<span class="math notranslate nohighlight">\(H_1\)</span>) hypotheses:</p>
+<blockquote>
+<div><p><span class="math notranslate nohighlight">\(H_0\)</span>: The means of two samples are equal.
+<span class="math notranslate nohighlight">\(H_1\)</span>: The means of two samples are not equal.</p>
+</div></blockquote>
+<blockquote>
+<div><p><span class="math notranslate nohighlight">\(H_0\)</span>: The anomaly is zero.
+<span class="math notranslate nohighlight">\(H_1\)</span>: The anomaly is not zero.</p>
+</div></blockquote>
+<blockquote>
+<div><p><span class="math notranslate nohighlight">\(H_0\)</span>: The correlation coefficient is zero.
+<span class="math notranslate nohighlight">\(H_1\)</span>: The correlation coefficient is not zero.</p>
+</div></blockquote>
+<p>Now, that we are familiar with the concept of hypothesis testing, we can now examine how we use the <span class="math notranslate nohighlight">\(z\)</span>-score to reject or accept a null hypothesis.</p>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "kls2177/Climate-and-Geophysical-Data-Analysis",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./chapters/Week2"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        </div>
+    </div>
+    
+    
+    <div class='prev-next-bottom'>
+        
+    <a class='left-prev' id="prev-link" href="zstat.html" title="previous page">The <em>z</em>-Statistic</a>
+    <a class='right-next' id="next-link" href="central_limit_theorem.html" title="next page">The Central Limit Theorem</a>
+
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Karen Smith<br/>
+        
+            &copy; Copyright 2020.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    
+  <script src="../../_static/js/index.30270b6e4c972e43c488.js"></script>
+
+
+    
+  </body>
+</html>

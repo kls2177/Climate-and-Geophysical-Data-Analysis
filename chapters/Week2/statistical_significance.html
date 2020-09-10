@@ -1,0 +1,602 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>Estimating Statistical Significance with a z-test &#8212; Climate and Geophysical Data Analysis</title>
+    
+  <link rel="stylesheet" href="../../_static/css/index.d431a4ee1c1efae0e38bdfebc22debff.css">
+
+    
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+  <link rel="stylesheet"
+    href="../../_static/vendor/open-sans_all/1.44.1/index.css">
+  <link rel="stylesheet"
+    href="../../_static/vendor/lato_latin-ext/1.44.1/index.css">
+
+    
+    <link rel="stylesheet" href="../../_static/sphinx-book-theme.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/jupyter-sphinx.css" />
+    
+  <link rel="preload" as="script" href="../../_static/js/index.30270b6e4c972e43c488.js">
+
+    <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/sphinx-book-theme.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/language_data.js"></script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script src="../../_static/mystnb.js"></script>
+    <script src="../../_static/sphinx-book-theme.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.18.0/dist/embed-amd.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe,.cell"
+        const thebe_selector_input = "pre,.cell_input div.highlight"
+        const thebe_selector_output = ".output,.cell_output"
+    </script>
+    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <link rel="canonical" href="https://kls2177.github.io/Climate-and-Geophysical-Data-Analysis/chapters/index.html/chapters/Week2/statistical_significance.html" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="The t-Statistic" href="tstat.html" />
+    <link rel="prev" title="The Central Limit Theorem" href="central_limit_theorem.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+
+
+<!-- Opengraph tags -->
+<meta property="og:url"         content="https://kls2177.github.io/Climate-and-Geophysical-Data-Analysis/chapters/index.html/chapters/Week2/statistical_significance.html" />
+<meta property="og:type"        content="article" />
+<meta property="og:title"       content="Estimating Statistical Significance with a z-test" />
+<meta property="og:description" content="Estimating Statistical Significance with a z-test  So, how do we test whether the mean of the sample is different from the mean of the population? We can use th" />
+<meta property="og:image"       content="https://kls2177.github.io/Climate-and-Geophysical-Data-Analysis/chapters/index.html/_static/gistemp.png" />
+
+<meta name="twitter:card" content="summary" />
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="../../index.html">
+  
+  <img src="../../_static/gistemp.png" class="logo" alt="logo">
+  
+  
+  <h1 class="site-logo" id="site-title">Climate and Geophysical Data Analysis</h1>
+  
+</a>
+</div>
+
+<form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../index.html">
+   Climate and Geophysical Data Analysis
+  </a>
+ </li>
+</ul>
+<ul class="current nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../introduction/intro.html">
+   Introduction
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Week1a/whatarestatsgoodfor.html">
+   What are statistics good for?
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Week1b/descriptivestats.html">
+   Descriptive Statistics
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="reference internal" href="hypothesis_testing.html">
+   Statistical Hypothesis Testing
+  </a>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="probability.html">
+     Basic Probability
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="normdist.html">
+     The Standard Normal Distribution
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="zstat.html">
+     The
+     <em>
+      z
+     </em>
+     -Statistic
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="signal2noise.html">
+     Signal-to-Noise
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="central_limit_theorem.html">
+     The Central Limit Theorem
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     Estimating Statistical Significance with a
+     <em>
+      z
+     </em>
+     -test
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="tstat.html">
+     The
+     <em>
+      t
+     </em>
+     -Statistic
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="resampling.html">
+     Resampling Techniques
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+</nav>
+
+ <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="row topbar fixed-top container-xl">
+    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+    </div>
+    <div class="col pl-2 topbar-main">
+        
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        
+        <div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../../_sources/chapters/Week2/statistical_significance.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+    
+</div>
+        <!-- Source interaction buttons -->
+
+
+        <!-- Full screen (wrap in <a> to have style consistency -->
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                data-placement="bottom" onclick="toggleFullScreen()" title="Fullscreen mode"><i
+                    class="fas fa-expand"></i></button></a>
+
+        <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/kls2177/Climate-and-Geophysical-Data-Analysis/master?urlpath=tree/chapters/Week2/statistical_significance.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        <button type="button" class="btn btn-secondary topbarbtn"
+            onclick="initThebeSBT()" title="Launch Thebe" data-toggle="tooltip" data-placement="left"><i
+                class="fas fa-play"></i><span style="margin-left: .4em;">Live Code</span></button>
+        
+    </div>
+</div>
+
+    </div>
+
+    <!-- Table of contents -->
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i> On this page
+        </div>
+        <nav id="bd-toc-nav">
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#hypothesis-testing-revisited">
+   Hypothesis Testing Revisited
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#terminology">
+     Terminology
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#five-simple-steps">
+     Five Simple Steps
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#errors-in-hypothesis-testing">
+     Errors in Hypothesis Testing
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#confidence-intervals">
+   Confidence Intervals
+  </a>
+ </li>
+</ul>
+
+        </nav>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="estimating-statistical-significance-with-a-z-test">
+<h1>Estimating Statistical Significance with a <em>z</em>-test<a class="headerlink" href="#estimating-statistical-significance-with-a-z-test" title="Permalink to this headline">¶</a></h1>
+<p>So, how do we test whether the mean of the sample is different from the mean of the population? We can use the z-statistic!</p>
+<p>Again, recall that the <span class="math notranslate nohighlight">\(z\)</span>-statistic is defined as,</p>
+<div class="math notranslate nohighlight">
+\[
+z = \frac{x - \mu}{\sigma}
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(\mu\)</span> is the population mean and <span class="math notranslate nohighlight">\(\sigma\)</span> is the population standard deviation and <span class="math notranslate nohighlight">\(x\)</span> is normally distributed.</p>
+<p>Now, we want to assess the probability of <span class="math notranslate nohighlight">\(\overline{x}\)</span>, not <span class="math notranslate nohighlight">\(x\)</span>. So, we replace <span class="math notranslate nohighlight">\(\mu\)</span> with the population mean of the <span class="math notranslate nohighlight">\(\overline{x}\)</span> and <span class="math notranslate nohighlight">\(\sigma\)</span> with the population standard deviation of <span class="math notranslate nohighlight">\(\overline{x}\)</span>.</p>
+<p>Note that,</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align}
+\mu_{\overline{x}} &amp;= \mu\\
+\sigma_{\overline{x}} &amp;= \frac{\sigma}{\sqrt{N}}
+\end{align}
+\end{split}\]</div>
+<p>Plugging these in leads to,</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align}
+z &amp;= \frac{\overline{x} - \mu}{\sigma_{\overline{x}}}\\
+&amp;= \frac{\overline{x} - \mu}{\frac{\sigma}{\sqrt{N}}}
+\end{align}
+\end{split}\]</div>
+<p>The z-statistic is now the number of standard errors that the sample mean deviates from the population mean.</p>
+<p>We can easily manipulate the above equation for the <span class="math notranslate nohighlight">\(z\)</span>-statistic to obtain an equation for the difference of two means, <span class="math notranslate nohighlight">\(x_1\)</span> and <span class="math notranslate nohighlight">\(x_2\)</span> (as opposed to the difference between a sample mean and the population), where <span class="math notranslate nohighlight">\(\sigma_1\)</span> can be different from <span class="math notranslate nohighlight">\(\sigma_2\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[
+z = \frac{(\overline{x_1} - \overline{x_2}) - \Delta_{1,2}}{\sqrt{\frac{\sigma_1^2}{N_1} + \frac{\sigma_2^2}{N_2}}}
+\]</div>
+<p><span class="math notranslate nohighlight">\(\Delta_{1,2}\)</span> is the null hypothesized difference between the two means, which is typically zero in practice.</p>
+<p>Let’s revisit our ENSO example to apply the above to real data. First, we will look at an example using the <span class="math notranslate nohighlight">\(z\)</span>-statistic for a single value of our ENSO index and then we will look at an example using the <span class="math notranslate nohighlight">\(z\)</span>-statistic for a sample of our ENSO index.</p>
+<div class="tip admonition">
+<p class="admonition-title">Question #1</p>
+<p>What is the probability that December 2013 had an ENSO index of -0.50 or less? Assume that the ENSO index is standard normal.</p>
+</div>
+<p>To answer this, we will simply use our <span class="math notranslate nohighlight">\(z\)</span>-table as we did two sections ago.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">scipy.stats</span> <span class="k">as</span> <span class="nn">st</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="c1">#Question #1</span>
+<span class="n">p</span> <span class="o">=</span> <span class="n">st</span><span class="o">.</span><span class="n">norm</span><span class="o">.</span><span class="n">cdf</span><span class="p">(</span><span class="o">-</span><span class="mf">0.5</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="n">p</span><span class="p">,</span><span class="mi">4</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>0.3085
+</pre></div>
+</div>
+</div>
+</div>
+<p>Thus, there is a ~31% likelihood that the December 2013 ENSO index could have a value of -0.5 or less.</p>
+<div class="tip admonition">
+<p class="admonition-title">Question #2</p>
+<p>What is the probability that the average 2003-2013 monthly ENSO index was -0.50 or less (assuming that ENSO dynamics have not changed)? Assume that the ENSO index is standard normal.</p>
+</div>
+<p>Before we answer this, let’s reframe the question in terms of a null and alternative hypothesis. What is our null hypothesis? In this case our null hypothesis would be that the sample mean ENSO index of -0.5 is the same as the population mean, which is zero in the case (ENSO is standard normal). The alternative hypothesis is that the sample mean and population mean are different.</p>
+<p>We will use the <span class="math notranslate nohighlight">\(z\)</span>-statistic to answer this question, in other words, we will perform a <strong>z-test</strong>.</p>
+<p>First, how big is our sample? We have a sample of ENSO indices which is 10 years x 12 months per year in size, giving <span class="math notranslate nohighlight">\(N\)</span> = 120.</p>
+<p>Next, let’s write down what we know:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align}
+\overline{x} &amp;= -0.5\\
+N &amp;= 120\\
+\mu &amp; = 0\\
+\sigma &amp; = 1
+\end{align}
+\end{split}\]</div>
+<p>Plugging these into our <span class="math notranslate nohighlight">\(z\)</span>-statistic equation, we get</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align}
+z &amp;= \frac{\overline{x} - \mu}{\frac{\sigma}{\sqrt{N}}}\\
+&amp; = \frac{-0.5 - 0}{\frac{1}{\sqrt{120}}}\\
+&amp; = -5.48
+\end{align}
+\end{split}\]</div>
+<p>We can now look up this value for <span class="math notranslate nohighlight">\(z\)</span> in our <span class="math notranslate nohighlight">\(z\)</span>-table.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">#Question #2</span>
+<span class="n">p</span> <span class="o">=</span> <span class="n">st</span><span class="o">.</span><span class="n">norm</span><span class="o">.</span><span class="n">cdf</span><span class="p">(</span><span class="o">-</span><span class="mf">5.48</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>2.126629179795902e-08
+</pre></div>
+</div>
+</div>
+</div>
+<p>This is a <em>very</em> small value, indicating that this is a very rare event. We can conclude that the sample mean ENSO index for 2003-2013 is different from the population mean.</p>
+<p>In statistical hypothesis testing, we typically use a threshold probability for which we reject the null hypothesis. The threshold is often 5%, e.g. if there is less than a 5% chance that the sample mean and the population mean are the same, then we reject the null hypothesis and we say “the sample mean is <em>significantly</em> different from the population mean”</p>
+<div class="section" id="hypothesis-testing-revisited">
+<h2>Hypothesis Testing Revisited<a class="headerlink" href="#hypothesis-testing-revisited" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="terminology">
+<h3>Terminology<a class="headerlink" href="#terminology" title="Permalink to this headline">¶</a></h3>
+<p>Let’s formalize the steps we went through above to perform a <span class="math notranslate nohighlight">\(z\)</span>-test with some terminology:</p>
+<ul class="simple">
+<li><p><strong>significance/confidence level</strong>: the significance level, <span class="math notranslate nohighlight">\(\alpha\)</span>, is the threshold and is typically 5% (0.05). This is often reported as the confidence level, 1 - <span class="math notranslate nohighlight">\(\alpha\)</span>, e.g. “the 95% confidence level”.</p></li>
+<li><p><strong>critical value</strong>: <span class="math notranslate nohighlight">\(z_c\)</span>, the value of <span class="math notranslate nohighlight">\(z\)</span> that must be exceeded to reject the null hypothesis. The value of <span class="math notranslate nohighlight">\(z_c\)</span> depends on the formulation of your alternative hypothesis, i.e. is a one-sided <span class="math notranslate nohighlight">\(z_{\alpha}\)</span>, two-sided <span class="math notranslate nohighlight">\(z_{\alpha/2}\)</span> test appropriate (more on this below).</p></li>
+<li><p><strong>p-value</strong>: the probability of observing a signal given that the null hypothesis is true (probability of your <span class="math notranslate nohighlight">\(z\)</span>-statistic).</p></li>
+</ul>
+<div class="figure align-default" id="onetwoside">
+<a class="reference internal image-reference" href="../../_images/onetwoside.png"><img alt="../../_images/onetwoside.png" src="../../_images/onetwoside.png" style="width: 523.9px; height: 490.1px;" /></a>
+<p class="caption"><span class="caption-number">Fig. 9 </span><span class="caption-text">The area under the curve for a (a) one-sided and (b) two-sided <span class="math notranslate nohighlight">\(z\)</span>-test.</span><a class="headerlink" href="#onetwoside" title="Permalink to this image">¶</a></p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><a class="reference internal" href="#onetwoside"><span class="std std-ref">Figure 8</span></a> depicts the critical value, <span class="math notranslate nohighlight">\(z_c\)</span> and the significance level, <span class="math notranslate nohighlight">\(\alpha\)</span>, for a one-sided and two-sided <span class="math notranslate nohighlight">\(z\)</span>-test. In practice, you will almost always perform a two-sided test. This means that we are testing whether there is a signal but we do not know the sign of the signal, e.g. the alternative hypothesis is that the sample mean is different from the population mean, but we don’t know whether it’s greater than or less than the population mean. This is a more conservative test. In specific cases, a one-sided test may be appropriate (follow this <a class="reference external" href="https://stats.idre.ucla.edu/other/mult-pkg/faq/general/faq-what-are-the-differences-between-one-tailed-and-two-tailed-tests/">link</a> to learn more).</p>
+</div>
+</div>
+<div class="section" id="five-simple-steps">
+<h3>Five Simple Steps<a class="headerlink" href="#five-simple-steps" title="Permalink to this headline">¶</a></h3>
+<p>In using statistical significance tests, there are 5 simple steps that should be followed, <em>in order</em>.</p>
+<ul class="simple">
+<li><p>State the significance level (<span class="math notranslate nohighlight">\(\alpha\)</span>)</p></li>
+<li><p>State the null hypothesis <span class="math notranslate nohighlight">\(H_0\)</span> and the alternative <span class="math notranslate nohighlight">\(H_1\)</span></p></li>
+<li><p>State the statistic to be used<span class="math notranslate nohighlight">\(^*\)</span>, and the assumptions required to use it</p></li>
+<li><p>State the critical region (one-sided or two-sided test)</p></li>
+<li><p>Evaluate the statistic and state the conclusion</p></li>
+</ul>
+<p><span class="math notranslate nohighlight">\(^*\)</span>for now we are just using the <span class="math notranslate nohighlight">\(z\)</span>-statistic.</p>
+<p>Let’s go through an example following these 5 steps.</p>
+<div class="tip admonition">
+<p class="admonition-title">Question #3</p>
+<p>Sam is a ski instructor and went skiing 60 times at Mont Tremblant this winter. The average temperature on these 60 days was -7°C, and the standard deviation of 60 daily temperatures is 6°C. Sam knows that the climatological mean winter temperature for Mont Tremblant is -10°C. Is this a sign of climate change?</p>
+</div>
+<p>Try to go through the steps on your own before you take a look at the answers.</p>
+<div class="toggle docutils container">
+<p>Step 1. let’s use the 95% significance level (<span class="math notranslate nohighlight">\(\alpha\)</span> = 0.05)</p>
+</div>
+<div class="toggle docutils container">
+<p>Step 2. <span class="math notranslate nohighlight">\(H_0\)</span>: <span class="math notranslate nohighlight">\(\mu\)</span> = -10°C and <span class="math notranslate nohighlight">\(H_1\)</span>: <span class="math notranslate nohighlight">\(\mu\)</span> <span class="math notranslate nohighlight">\(\neq\)</span> -10°C</p>
+</div>
+<div class="toggle docutils container">
+<p>Step 3. Since we have <span class="math notranslate nohighlight">\(N\)</span> = 60 samples to estimate the true standard deviation (<span class="math notranslate nohighlight">\(\sigma\)</span>) from the sample standard deviation (<span class="math notranslate nohighlight">\(s\)</span>), we can use a <span class="math notranslate nohighlight">\(z\)</span>-test (<span class="math notranslate nohighlight">\(N\)</span> is sufficiently large).</p>
+</div>
+<div class="toggle docutils container">
+<p>Step 4. We will use a two-sided <span class="math notranslate nohighlight">\(z\)</span>-test (before he went skiing, Sam didn’t know what to expect from the temperatures). Thus, to reject the null hypothesis we must have <span class="math notranslate nohighlight">\(z\)</span> &gt; <span class="math notranslate nohighlight">\(z_{0.025}\)</span> = 1.96.</p>
+</div>
+<div class="toggle docutils container">
+<p>Step 5. (see code below). Since <span class="math notranslate nohighlight">\(z\)</span> is greater than 1.96, we can reject the null hypothesis and accept the alternative hypothesis that the sample is significantly different from climatology for the days Sam went skiing. Further analysis needs to be done to <em>attribute</em> this to climate change.</p>
+</div>
+<div class="cell tag_hide-input tag_hide-output docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># 5. Now, we compute the z-statistic</span>
+
+<span class="n">z</span> <span class="o">=</span> <span class="p">(</span><span class="o">-</span><span class="mi">7</span> <span class="o">+</span> <span class="mi">10</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="mi">6</span><span class="o">/</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">60</span><span class="p">)))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">z</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>3.8729833462074166
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="errors-in-hypothesis-testing">
+<h3>Errors in Hypothesis Testing<a class="headerlink" href="#errors-in-hypothesis-testing" title="Permalink to this headline">¶</a></h3>
+<p>You may be familiar with the terms “false positive” and “false negative”, but you may not realize that these are statistical terms and are used to categorize possible errors in statistical tests.</p>
+<p>For example, when you reject a null hypothesis, there is a chance that you are making a mistake. The null hypothesis might in fact be true, and it may be that your data deviate from the null hypothesis purely by chance. This is an exmple of a <em>false positive</em>. A <em>false positive</em> (also called a Type I error) occurs when the null hypothesis <span class="math notranslate nohighlight">\(H_0\)</span> is in fact true, but we reject it based on our data. A <em>false negative</em> (also called a Type II error) occurs when the null hypothesis <span class="math notranslate nohighlight">\(H_0\)</span> is in fact false, but we do not reject it based on our test.</p>
+<p><a class="reference internal" href="#errors"><span class="std std-ref">Figure 9</span></a> illustrates the matrix of possible outcomes of statistical tests. Although it is not possible to know if, for example, your rejection of your null hypothesis is in error, it is important to keep this matrix in mind. This matrix also illustrates why we can never say that a statistical test “proves” our hypothesis; there’s always a small chance that our data are anomalous and differ from the null hypothesis purely by chance.</p>
+<div class="figure align-default" id="errors">
+<a class="reference internal image-reference" href="../../_images/errors.png"><img alt="../../_images/errors.png" src="../../_images/errors.png" style="width: 544.0px; height: 308.0px;" /></a>
+<p class="caption"><span class="caption-number">Fig. 10 </span><span class="caption-text">Matrix of possible outcomes of statistical tests. The rows indicate the outcome of the test and the columns indicate the truth.</span><a class="headerlink" href="#errors" title="Permalink to this image">¶</a></p>
+</div>
+</div>
+</div>
+<div class="section" id="confidence-intervals">
+<h2>Confidence Intervals<a class="headerlink" href="#confidence-intervals" title="Permalink to this headline">¶</a></h2>
+<p>We can also use the <span class="math notranslate nohighlight">\(z\)</span>-statistic to determine confidence intervals on the true population mean, <span class="math notranslate nohighlight">\(\mu\)</span>. Here is an example:</p>
+<div class="tip admonition">
+<p class="admonition-title">Question #4</p>
+<p>Say we have surface air temperatures for 30 winters with a mean of 10°C and a standard deviation of 5°C. What is the 95% confidence interval on the true population mean? You may assume that the temperatures are normally distributed.</p>
+</div>
+<p>In this question, we are told to estmiate the 95% confidence intervals. This means we should consider the 95% confidence level, i.e. the 5% significance level.</p>
+<p>To estimate the 95% confidence intervals on <span class="math notranslate nohighlight">\(\mu\)</span>, we can simply rearrange the equation for <span class="math notranslate nohighlight">\(z\)</span> as follows,</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align}
+z &amp;= \frac{\overline{x} - \mu}{\frac{\sigma}{\sqrt{N}}} \\
+\mu &amp; = \overline{x} - z\frac{\sigma}{\sqrt{N}}
+\end{align}
+\end{split}\]</div>
+<p>Since we are interested in the 95% confidence intervals centred on <span class="math notranslate nohighlight">\(\mu\)</span>, and since the normal distribution is symmetric about the <span class="math notranslate nohighlight">\(\mu\)</span>, this can be rewritten as,</p>
+<div class="math notranslate nohighlight">
+\[
+\begin{align}
+\mu &amp; = \overline{x} \pm z_{\alpha/2}\frac{\sigma}{\sqrt{N}}
+\end{align}
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(z_{\alpha/2}\)</span> is the value for <span class="math notranslate nohighlight">\(z\)</span> for a two-sided 95% confidence level (5% significance level). We can use python get find this value:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Question #4</span>
+<span class="c1"># find z values for a two-sided 95% confidence level</span>
+<span class="n">zneg</span> <span class="o">=</span> <span class="n">st</span><span class="o">.</span><span class="n">norm</span><span class="o">.</span><span class="n">ppf</span><span class="p">(</span><span class="mf">0.025</span><span class="p">)</span> <span class="c1"># negative side of distribution</span>
+<span class="n">zpos</span> <span class="o">=</span> <span class="n">st</span><span class="o">.</span><span class="n">norm</span><span class="o">.</span><span class="n">ppf</span><span class="p">(</span><span class="mf">0.975</span><span class="p">)</span> <span class="c1"># positive side of distribution</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="n">zneg</span><span class="p">,</span><span class="mi">2</span><span class="p">),</span><span class="nb">round</span><span class="p">(</span><span class="n">zpos</span><span class="p">,</span><span class="mi">2</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>-1.96 1.96
+</pre></div>
+</div>
+</div>
+</div>
+<p>Plugging this all in, we get</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align}
+\mu &amp; = 10 \pm 1.96\frac{5}{\sqrt{30}}\\
+&amp; = 10 \pm 1.7
+\end{align}
+\end{split}\]</div>
+<p>Thus, the 95% confidence intervals on the true population mean, <span class="math notranslate nohighlight">\(\mu\)</span> are,</p>
+<div class="math notranslate nohighlight">
+\[
+8.2^{\circ}C \leq \mu \leq 11.8^{\circ}C
+\]</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "kls2177/Climate-and-Geophysical-Data-Analysis",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./chapters/Week2"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        </div>
+    </div>
+    
+    
+    <div class='prev-next-bottom'>
+        
+    <a class='left-prev' id="prev-link" href="central_limit_theorem.html" title="previous page">The Central Limit Theorem</a>
+    <a class='right-next' id="next-link" href="tstat.html" title="next page">The <em>t</em>-Statistic</a>
+
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Karen Smith<br/>
+        
+            &copy; Copyright 2020.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    
+  <script src="../../_static/js/index.30270b6e4c972e43c488.js"></script>
+
+
+    
+  </body>
+</html>

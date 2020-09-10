@@ -1,19 +1,39 @@
 
-
 <!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta charset="utf-8" />
     <title>Lies, damned lies and statistics… &#8212; Climate and Geophysical Data Analysis</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" integrity="sha384-KA6wR/X5RY4zFAHpv/CnoG2UW1uogYfdnP67Uv7eULvTveboZJg0qUpmJZb5VqzN" crossorigin="anonymous">
-    <link href="../../_static/css/index.css" rel="stylesheet">
+    
+  <link rel="stylesheet" href="../../_static/css/index.d431a4ee1c1efae0e38bdfebc22debff.css">
+
+    
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+  <link rel="stylesheet"
+    href="../../_static/vendor/open-sans_all/1.44.1/index.css">
+  <link rel="stylesheet"
+    href="../../_static/vendor/lato_latin-ext/1.44.1/index.css">
+
+    
     <link rel="stylesheet" href="../../_static/sphinx-book-theme.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/jupyter-sphinx.css" />
+    
+  <link rel="preload" as="script" href="../../_static/js/index.30270b6e4c972e43c488.js">
+
     <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
     <script src="../../_static/sphinx-book-theme.js"></script>
     <script src="../../_static/jquery.js"></script>
@@ -29,14 +49,21 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.18.0/dist/embed-amd.js"></script>
     <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe,.cell"
+        const thebe_selector_input = "pre,.cell_input div.highlight"
+        const thebe_selector_output = ".output,.cell_output"
+    </script>
+    <script async="async" src="../../_static/sphinx-thebe.js"></script>
     <link rel="canonical" href="https://kls2177.github.io/Climate-and-Geophysical-Data-Analysis/chapters/index.html/chapters/Week1a/pitfalls.html" />
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="Descriptive statistics" href="../Week1b/descriptivestats.html" />
+    <link rel="next" title="Descriptive Statistics" href="../Week1b/descriptivestats.html" />
     <link rel="prev" title="Statistics is the grammar of science…" href="goodpractice.html" />
 
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="docsearch:language" content="en">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
 
 
 <!-- Opengraph tags -->
@@ -46,7 +73,7 @@
 <meta property="og:description" content="Lies, damned lies and statistics…  -unknown  As we have seen, statistics are an invaluable way to support hypotheses, inform scientific experimental design and " />
 <meta property="og:image"       content="https://kls2177.github.io/Climate-and-Geophysical-Data-Analysis/chapters/index.html/_static/gistemp.png" />
 
-<meta name="twitter:card" content="summary">
+<meta name="twitter:card" content="summary" />
 
 
   </head>
@@ -75,35 +102,48 @@
 </form>
 
 <nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
-  
   <ul class="nav sidenav_l1">
-  <li class="">
-    <a href="../index.html">Climate and Geophysical Data Analysis</a>
-  </li>
-  <li class="">
-    <a href="../introduction/intro.html">Introduction</a>
-  </li>
-  <li class="active">
-    <a href="whatarestatsgoodfor.html">What are statistics good for?</a>
-  <ul class="nav sidenav_l2">
-    <li class="">
-      <a href="goodpractice.html">Statistics is the grammar of science…</a>
-    </li>
-    <li class="active">
-      <a href="">Lies, damned lies and statistics…</a>
-    </li>
-  </ul>
-  </li>
-  <li class="">
-    <a href="../Week1b/descriptivestats.html">Descriptive statistics</a>
-  </li>
-  <li class="">
-    <a href="../Week2a/normaldist.html">Descriptive statistics</a>
-  </li>
-  <li class="">
-    <a href="../Week2b/signal2noise.html">Descriptive statistics</a>
-  </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../index.html">
+   Climate and Geophysical Data Analysis
+  </a>
+ </li>
 </ul>
+<ul class="current nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../introduction/intro.html">
+   Introduction
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="reference internal" href="whatarestatsgoodfor.html">
+   What are statistics good for?
+  </a>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="goodpractice.html">
+     Statistics is the grammar of science…
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     Lies, damned lies and statistics…
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Week1b/descriptivestats.html">
+   Descriptive Statistics
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Week2/hypothesis_testing.html">
+   Statistical Hypothesis Testing
+  </a>
+ </li>
+</ul>
+
 </nav>
 
  <!-- To handle the deprecated key -->
@@ -164,48 +204,54 @@
         <!-- Launch buttons -->
 
     </div>
+
+    <!-- Table of contents -->
     <div class="d-none d-md-block col-md-2 bd-toc show">
-<div class="tocsection onthispage pt-5 pb-3">
-    <i class="fas fa-list"></i> On this page
-</div>
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i> On this page
+        </div>
+        <nav id="bd-toc-nav">
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#a-few-common-pitfalls">
+   A Few Common Pitfalls
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#meaningless-statistics">
+     Meaningless statistics
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#small-sample-sizes">
+     Small sample sizes
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#biased-data">
+     Biased data
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#data-mining">
+     Data mining
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#spurious-correlation">
+     Spurious correlation
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#plots-that-mislead">
+     Plots that mislead
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
 
-<nav id="bd-toc-nav">
-    <ul class="nav section-nav flex-column">
-    
-        <li class="nav-item toc-entry toc-h2">
-            <a href="#a-few-common-pitfalls" class="nav-link">A Few Common Pitfalls</a><ul class="nav section-nav flex-column">
-                
-        <li class="nav-item toc-entry toc-h3">
-            <a href="#meaningless-statistics" class="nav-link">Meaningless statistics</a>
-        </li>
-    
-        <li class="nav-item toc-entry toc-h3">
-            <a href="#small-sample-sizes" class="nav-link">Small sample sizes</a>
-        </li>
-    
-        <li class="nav-item toc-entry toc-h3">
-            <a href="#biased-data" class="nav-link">Biased data</a>
-        </li>
-    
-        <li class="nav-item toc-entry toc-h3">
-            <a href="#data-mining" class="nav-link">Data mining</a>
-        </li>
-    
-        <li class="nav-item toc-entry toc-h3">
-            <a href="#spurious-correlation" class="nav-link">Spurious correlation</a>
-        </li>
-    
-        <li class="nav-item toc-entry toc-h3">
-            <a href="#plots-that-mislead" class="nav-link">Plots that mislead</a>
-        </li>
-    
-            </ul>
-        </li>
-    
-    </ul>
-</nav>
-
-
+        </nav>
     </div>
 </div>
     <div id="main-content" class="row">
@@ -244,7 +290,7 @@
 </ul>
 <div class="figure align-default" id="rainfall">
 <a class="reference internal image-reference" href="../../_images/Histograms_UTSC_rainfall.png"><img alt="../../_images/Histograms_UTSC_rainfall.png" src="../../_images/Histograms_UTSC_rainfall.png" style="width: 453.6px; height: 324.0px;" /></a>
-<p class="caption"><span class="caption-number">Fig. 1 </span><span class="caption-text">Non-zero Hourly Rainfall at [UTSC Weather Station][utsc_stn]</span><a class="headerlink" href="#rainfall" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 2 </span><span class="caption-text">Non-zero Hourly Rainfall at [UTSC Weather Station][utsc_stn]</span><a class="headerlink" href="#rainfall" title="Permalink to this image">¶</a></p>
 </div>
 </div>
 <div class="section" id="small-sample-sizes">
@@ -266,17 +312,17 @@
 </ul>
 <div class="figure align-default" id="xckd-green">
 <a class="reference internal image-reference" href="../../_images/green_jelly_beans.png"><img alt="../../_images/green_jelly_beans.png" src="../../_images/green_jelly_beans.png" style="width: 405.0px; height: 1123.5px;" /></a>
-<p class="caption"><span class="caption-number">Fig. 2 </span><span class="caption-text"><a class="reference external" href="https://xkcd.com/882/">Green jelly beans linked to acne!</a></span><a class="headerlink" href="#xckd-green" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 3 </span><span class="caption-text"><a class="reference external" href="https://xkcd.com/882/">Green jelly beans linked to acne!</a></span><a class="headerlink" href="#xckd-green" title="Permalink to this image">¶</a></p>
 </div>
 </div>
 <div class="section" id="spurious-correlation">
 <h3>Spurious correlation<a class="headerlink" href="#spurious-correlation" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
-<li><p>correlation does not imply causation. Interpretation must always be grounded in theory (<a class="reference internal" href="#pirates"><span class="std std-numref">Fig. 3</span></a>).</p></li>
+<li><p>correlation does not imply causation. Interpretation must always be grounded in theory (<a class="reference internal" href="#pirates"><span class="std std-numref">Fig. 4</span></a>).</p></li>
 </ul>
 <div class="figure align-default" id="pirates">
 <a class="reference internal image-reference" href="../../_images/PiratesVsTemp.png"><img alt="../../_images/PiratesVsTemp.png" src="../../_images/PiratesVsTemp.png" style="width: 512.0px; height: 322.40000000000003px;" /></a>
-<p class="caption"><span class="caption-number">Fig. 3 </span><span class="caption-text">Stop global warming, become a pirate! <a class="reference external" href="https://commons.wikimedia.org/wiki/File:PiratesVsTemp(en).svg">image source here</a></span><a class="headerlink" href="#pirates" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 4 </span><span class="caption-text">Stop global warming, become a pirate! <a class="reference external" href="https://commons.wikimedia.org/wiki/File:PiratesVsTemp(en).svg">image source here</a></span><a class="headerlink" href="#pirates" title="Permalink to this image">¶</a></p>
 </div>
 </div>
 <div class="section" id="plots-that-mislead">
@@ -288,6 +334,25 @@
 </div>
 </div>
 
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "kls2177/Climate-and-Geophysical-Data-Analysis",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./chapters/Week1a"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
 
               </div>
               
@@ -298,7 +363,7 @@
     <div class='prev-next-bottom'>
         
     <a class='left-prev' id="prev-link" href="goodpractice.html" title="previous page">Statistics is the grammar of science…</a>
-    <a class='right-next' id="next-link" href="../Week1b/descriptivestats.html" title="next page">Descriptive statistics</a>
+    <a class='right-next' id="next-link" href="../Week1b/descriptivestats.html" title="next page">Descriptive Statistics</a>
 
     </div>
     <footer class="footer mt-5 mt-md-0">
@@ -317,7 +382,10 @@
       </div>
     </div>
 
-    <script src="../../_static/js/index.js"></script>
+    
+  <script src="../../_static/js/index.30270b6e4c972e43c488.js"></script>
+
+
     
   </body>
 </html>
