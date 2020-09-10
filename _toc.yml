@@ -13,15 +13,13 @@
     - file: chapters/Week1b/Variance_Example
     - file: chapters/Week1b/what_is_pdf
     - file: chapters/Week1b/summarystats2
-- file: chapters/Week2a/normaldist
+- file: chapters/Week2/hypothesis_testing
   sections:
-    - file: chapters/Week2a/probability
-    - file: chapters/Week2a/exercises_prob
-- file: chapters/Week2b/signal2noise
-  sections:
-    - file: chapters/Week2b/zstat
-    - file: chapters/Week2b/central_limit_theorem
-    - file: chapters/Week2b/exercises_zstat
-    - file: chapters/Week2b/tstat
-    - file: chapters/Week2b/z_t_pdfs
-    - file: chapters/Week2b/exercises_tstat
+    - file: chapters/Week2/probability
+    - file: chapters/Week2/normdist
+    - file: chapters/Week2/zstat
+    - file: chapters/Week2/signal2noise
+    - file: chapters/Week2/central_limit_theorem
+    - file: chapters/Week2/statistical_significance
+    - file: chapters/Week2/tstat
+    - file: chapters/Week2/resampling

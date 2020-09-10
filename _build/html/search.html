@@ -13,6 +13,7 @@
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
     <link rel="stylesheet" type="text/css" href="_static/jupyter-sphinx.css" />
     
     <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
@@ -30,6 +31,13 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.18.0/dist/embed-amd.js"></script>
     <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe,.cell"
+        const thebe_selector_input = "pre,.cell_input div.highlight"
+        const thebe_selector_output = ".output,.cell_output"
+    </script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
     <script src="_static/searchtools.js"></script>
     <link rel="canonical" href="https://kls2177.github.io/Climate-and-Geophysical-Data-Analysis/chapters/index.html/search.html" />
     <link rel="index" title="Index" href="genindex.html" />
@@ -44,11 +52,11 @@
 <!-- Opengraph tags -->
 <meta property="og:url"         content="https://kls2177.github.io/Climate-and-Geophysical-Data-Analysis/chapters/index.html/search.html" />
 <meta property="og:type"        content="article" />
-<meta property="og:title"       content="Search" />
+<meta property="og:title"       content="Climate and Geophysical Data Analysis" />
 <meta property="og:description" content="" />
 <meta property="og:image"       content="https://kls2177.github.io/Climate-and-Geophysical-Data-Analysis/chapters/index.html/_static/gistemp.png" />
 
-<meta name="twitter:card" content="summary">
+<meta name="twitter:card" content="summary" />
 
 
 
@@ -78,27 +86,41 @@
 </form>
 
 <nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
-  
   <ul class="nav sidenav_l1">
-  <li class="">
-    <a href="chapters/index.html">Climate and Geophysical Data Analysis</a>
-  </li>
-  <li class="">
-    <a href="chapters/introduction/intro.html">Introduction</a>
-  </li>
-  <li class="">
-    <a href="chapters/Week1a/whatarestatsgoodfor.html">What are statistics good for?</a>
-  </li>
-  <li class="">
-    <a href="chapters/Week1b/descriptivestats.html">Descriptive statistics</a>
-  </li>
-  <li class="">
-    <a href="chapters/Week2a/normaldist.html">Descriptive statistics</a>
-  </li>
-  <li class="">
-    <a href="chapters/Week2b/signal2noise.html">Descriptive statistics</a>
-  </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chapters/index.html">
+   Climate and Geophysical Data Analysis
+  </a>
+ </li>
 </ul>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="chapters/introduction/intro.html">
+   Introduction
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chapters/Week1a/whatarestatsgoodfor.html">
+   What are statistics good for?
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chapters/Week1b/descriptivestats.html">
+   Descriptive statistics
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chapters/Week2a/normaldist.html">
+   Descriptive statistics
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chapters/Week2b/signal2noise.html">
+   Descriptive statistics
+  </a>
+ </li>
+</ul>
+
 </nav>
 
  <!-- To handle the deprecated key -->
@@ -147,15 +169,12 @@
         <!-- Launch buttons -->
 
     </div>
+
+    <!-- Table of contents -->
     <div class="d-none d-md-block col-md-2 bd-toc show">
-
-<nav id="bd-toc-nav">
-    <ul class="nav section-nav flex-column">
-    
-    </ul>
-</nav>
-
-
+        <nav id="bd-toc-nav">
+            
+        </nav>
     </div>
 </div>
     <div id="main-content" class="row">
