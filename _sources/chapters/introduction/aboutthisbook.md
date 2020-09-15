@@ -2,11 +2,11 @@
 
 This book is powered by [JupyterBook][jupyterbook], and provides:
 - **interactive** and **step-by-step** examples (integration with Binder allows readers to run and modify code examples)
-- **free** and **open** access (permissive license, sources and content available through github)
+- **free** and **open** access (permissive license, sources and content available through GitHub)
 
-The JupyterBook source and all book content (mostly [Jupyter Notebook][notebook] files) are all in [this github repository][repo].
+The JupyterBook source and all book content (mostly [Jupyter Notebook][notebook] files) are in [this GitHub repository][repo].
 
-This book is a ***working document*** and the content will continue to grow, change and evolve over time. Feedback on how to improve the book is welcome via the [github repository][repo]!
+This book is a ***working document*** and the content will continue to grow, change and evolve over time. Feedback on how to improve the book is welcome via the [GitHub repository][repo]!
 
 The material is licensed for permissive re-use under the [Creative Commons Attribution 4.0 International (CC-BY 4.0)][cc] license.
 

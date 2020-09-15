@@ -5,7 +5,7 @@ Statistical hypothesis testing involves estimating the **probability** of obtain
 
 ## Notation
 
-We will define an event as $E$. For example, $E$ could be getting tails when you flip a coin or getting a 2 when you role a die.
+We will define an event as $E$. For example, $E$ could be getting tails when you flip a coin or getting a 2 when you roll a die.
 
 We define the probability of $E$ as $Pr(E)$.
 
@@ -53,7 +53,7 @@ name: venn
 ---
 Venn diagram of an intersection and a union of events $E_1$ and $E_2$.
 ```
-Figure {numref}`venn` shows a venn diagram visualization of the meaning of intersection and union of events $E_1$ and $E_2$. Notice visually how the probability of the union is equal to the sum of the two individual probabilities minus the probability of the intersection - we do not want to double count the region where the two individual probabilities intersect.
+Figure {numref}`venn` shows a Venn diagram visualization of the meaning of intersection and union of events $E_1$ and $E_2$. Notice visually how the probability of the union is equal to the sum of the two individual probabilities minus the probability of the intersection - we do not want to double count the region where the two individual probabilities intersect.
 
 ## Conditional probability
 

@@ -372,7 +372,7 @@ z = \frac{(\overline{x_1} - \overline{x_2}) - \Delta_{1,2}}{\sqrt{\frac{\sigma_1
 <p class="admonition-title">Question #2</p>
 <p>What is the probability that the average 2003-2013 monthly ENSO index was -0.50 or less (assuming that ENSO dynamics have not changed)? Assume that the ENSO index is standard normal.</p>
 </div>
-<p>Before we answer this, let’s reframe the question in terms of a null and alternative hypothesis. What is our null hypothesis? In this case our null hypothesis would be that the sample mean ENSO index of -0.5 is the same as the population mean, which is zero in the case (ENSO is standard normal). The alternative hypothesis is that the sample mean and population mean are different.</p>
+<p>Before we answer this, let’s reframe the question in terms of a null and alternative hypothesis. What is our null hypothesis? In this case our null hypothesis would be that the sample mean ENSO index of -0.5 is the same as the population mean, which is zero in this case (ENSO is standard normal). The alternative hypothesis is that the sample mean and population mean are different.</p>
 <p>We will use the <span class="math notranslate nohighlight">\(z\)</span>-statistic to answer this question, in other words, we will perform a <strong>z-test</strong>.</p>
 <p>First, how big is our sample? We have a sample of ENSO indices which is 10 years x 12 months per year in size, giving <span class="math notranslate nohighlight">\(N\)</span> = 120.</p>
 <p>Next, let’s write down what we know:</p>
@@ -481,7 +481,7 @@ z &amp;= \frac{\overline{x} - \mu}{\frac{\sigma}{\sqrt{N}}}\\
 <div class="section" id="errors-in-hypothesis-testing">
 <h3>Errors in Hypothesis Testing<a class="headerlink" href="#errors-in-hypothesis-testing" title="Permalink to this headline">¶</a></h3>
 <p>You may be familiar with the terms “false positive” and “false negative”, but you may not realize that these are statistical terms and are used to categorize possible errors in statistical tests.</p>
-<p>For example, when you reject a null hypothesis, there is a chance that you are making a mistake. The null hypothesis might in fact be true, and it may be that your data deviate from the null hypothesis purely by chance. This is an exmple of a <em>false positive</em>. A <em>false positive</em> (also called a Type I error) occurs when the null hypothesis <span class="math notranslate nohighlight">\(H_0\)</span> is in fact true, but we reject it based on our data. A <em>false negative</em> (also called a Type II error) occurs when the null hypothesis <span class="math notranslate nohighlight">\(H_0\)</span> is in fact false, but we do not reject it based on our test.</p>
+<p>For example, when you reject a null hypothesis, there is a chance that you are making a mistake. The null hypothesis might in fact be true, and it may be that your data deviate from the null hypothesis purely by chance. This is an example of a <em>false positive</em>. A <em>false positive</em> (also called a Type I error) occurs when the null hypothesis <span class="math notranslate nohighlight">\(H_0\)</span> is in fact true, but we reject it based on our data. A <em>false negative</em> (also called a Type II error) occurs when the null hypothesis <span class="math notranslate nohighlight">\(H_0\)</span> is in fact false, but we do not reject it based on our test.</p>
 <p><a class="reference internal" href="#errors"><span class="std std-ref">Figure 9</span></a> illustrates the matrix of possible outcomes of statistical tests. Although it is not possible to know if, for example, your rejection of your null hypothesis is in error, it is important to keep this matrix in mind. This matrix also illustrates why we can never say that a statistical test “proves” our hypothesis; there’s always a small chance that our data are anomalous and differ from the null hypothesis purely by chance.</p>
 <div class="figure align-default" id="errors">
 <a class="reference internal image-reference" href="../../_images/errors.png"><img alt="../../_images/errors.png" src="../../_images/errors.png" style="width: 544.0px; height: 308.0px;" /></a>
@@ -496,7 +496,7 @@ z &amp;= \frac{\overline{x} - \mu}{\frac{\sigma}{\sqrt{N}}}\\
 <p class="admonition-title">Question #4</p>
 <p>Say we have surface air temperatures for 30 winters with a mean of 10°C and a standard deviation of 5°C. What is the 95% confidence interval on the true population mean? You may assume that the temperatures are normally distributed.</p>
 </div>
-<p>In this question, we are told to estmiate the 95% confidence intervals. This means we should consider the 95% confidence level, i.e. the 5% significance level.</p>
+<p>In this question, we are told to estimate the 95% confidence intervals. This means we should consider the 95% confidence level, i.e. the 5% significance level.</p>
 <p>To estimate the 95% confidence intervals on <span class="math notranslate nohighlight">\(\mu\)</span>, we can simply rearrange the equation for <span class="math notranslate nohighlight">\(z\)</span> as follows,</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}

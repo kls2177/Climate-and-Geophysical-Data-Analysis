@@ -1,8 +1,10 @@
 # How to use this book
 
-This courseware uses [jupyter notebooks][jupyter] to display python code and it uses [binder][https://mybinder.org/] and [Thebe][thebe] to allow users to interact with the code.
+This courseware uses [Jupyter Notebooks][jupyter] to display python code and it uses [binder][https://mybinder.org/] and [Thebe][thebe] to allow users to interact with the code.
 
-There are two approaches to using this courseware. The first and recommended is to install your own copy of python on your laptop or desktop computer and to follow along with the course. You are able to copy and paste the python code into your own jupyter notebook and then interact with it yourself.
+*Note that Google Chrome or Safari are* ***compatible browsers.***
+
+There are two approaches to using this courseware. The first and recommended is to install your own copy of python on your laptop or desktop computer and to follow along with the course. You are able to copy and paste the python code into your own Jupyter Notebook and then interact with it yourself.
 
 I recommend installing python using the [Anaconda distribution][anaconda]. Follow the installation steps [here][install].
 

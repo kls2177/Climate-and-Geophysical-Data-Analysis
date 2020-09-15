@@ -23,7 +23,7 @@ The framing of the above question implies that the null hypothesis is:
 - the ENSO index from 2003-2013 (the sample mean) is consistent with "climatological behaviour" (the population mean).
 
 The alternative hypothesis is thus:
-- the ENSO index from 2003-2013 (the sample mean) is not consistent with "climatolgoical behaviour" (the population mean).
+- the ENSO index from 2003-2013 (the sample mean) is not consistent with "climatological behaviour" (the population mean).
 
 ### The Null Hypothesis
 

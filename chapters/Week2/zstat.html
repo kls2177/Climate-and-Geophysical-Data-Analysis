@@ -304,7 +304,7 @@
 <p>Let’s learn how to read this table using a few examples.</p>
 <div class="section" id="z-statistic-examples">
 <h2><em>z</em>-Statistic Examples<a class="headerlink" href="#z-statistic-examples" title="Permalink to this headline">¶</a></h2>
-<p>Assume the you have 50 years of monthly El-Niño Southern Oscillation (ENSO) indices (<span class="math notranslate nohighlight">\(Z\)</span>), and that the index is well approximated by a standard normal distribution:</p>
+<p>Assume that you have 50 years of monthly El-Niño Southern Oscillation (ENSO) indices (<span class="math notranslate nohighlight">\(Z\)</span>), and that the index is well approximated by a standard normal distribution:</p>
 <div class="tip admonition">
 <p class="admonition-title">Question #1</p>
 <ol class="simple">
@@ -318,8 +318,8 @@
 <li><p>Using the table, what is the probability that a randomly chosen month has an ENSO index of +2.05 or less?</p></li>
 </ol>
 </div>
-<p>Looking at the <span class="math notranslate nohighlight">\(z\)</span>-table in <a class="reference internal" href="#ztab"><span class="std std-ref">Figure 7</span></a>, we go to the left-most column and look for a value of 2.0. We can use the other columns to add the appropriate hundreths to our value of 2.0. We want to add 0.05 to get 2.05, so we look-up the probability under the column labelled 0.05. What do you get?</p>
-<p>You should get a value of 0.9798. This means that there is a 97.98% probability that a randomly chosen month has an ENSO index or +2.05 or less.</p>
+<p>Looking at the <span class="math notranslate nohighlight">\(z\)</span>-table in <a class="reference internal" href="#ztab"><span class="std std-ref">Figure 7</span></a>, we go to the left-most column and look for a value of 2.0. We can use the other columns to add the appropriate hundredths to our value of 2.0. We want to add 0.05 to get 2.05, so we look-up the probability under the column labelled 0.05. What do you get?</p>
+<p>You should get a value of 0.9798. This means that there is a 97.98% probability that a randomly chosen month has an ENSO index of +2.05 or less.</p>
 <p>Let’s try another one.</p>
 <div class="tip admonition">
 <p class="admonition-title">Question #3</p>
@@ -327,7 +327,7 @@
 <li><p>Using the table, what is the probability that a randomly chosen month has an ENSO index of +2.05 or greater?</p></li>
 </ol>
 </div>
-<p>This one is a bit trickier. The <span class="math notranslate nohighlight">\(z\)</span>-table we are using shows us the area under the curve left of <span class="math notranslate nohighlight">\(z\)</span>, but we actually want to know the area right of <span class="math notranslate nohighlight">\(z\)</span>. The key is that we know the total area under this curve is 1. So, the probability that a randomly chosen month has an ENSO index or +2.05 or greater is simply 1 - 0.9798 = 0.0202.</p>
+<p>This one is a bit trickier. The <span class="math notranslate nohighlight">\(z\)</span>-table we are using shows us the area under the curve left of <span class="math notranslate nohighlight">\(z\)</span>, but we actually want to know the area right of <span class="math notranslate nohighlight">\(z\)</span>. The key is that we know the total area under this curve is 1. So, the probability that a randomly chosen month has an ENSO index of +2.05 or greater is simply 1 - 0.9798 = 0.0202.</p>
 <p>Now, let’s try these same two examples with python.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">

@@ -302,7 +302,7 @@
 <h2>Bootstrapping<a class="headerlink" href="#bootstrapping" title="Permalink to this headline">¶</a></h2>
 <p>Let’s start with an example of a resampling technique called <strong>“bootstrap”</strong> resampling. Bootstrap resampling or <em>bootstrapping</em> is one of the most common resampling techniques and involves random resampling with replacement (this means that you can resample the same data more than once). There are many different ways to use bootstrapping, here are a couple:</p>
 <ul class="simple">
-<li><p><em>Bootstrapping for hypothesis testing</em> involves constructing a large number of resamples of the original dataset. These resamples should be of equal size to a specific sample of interest (which is itself drawn from the original dataset) and be drawn by random sampling with replacement from the original dataset. In this way, you can construct a sampling distribution and you never need to assume anything about the underlying distribution of the data as it is already built-in to the original dataset. This approach can be used for small sample sizes and is often done when you have a long observational climatology or climate model control integration to drawn samples from.</p></li>
+<li><p><em>Bootstrapping for hypothesis testing</em> involves constructing a large number of resamples of the original dataset. These resamples should be of equal size to a specific sample of interest (which is itself drawn from the original dataset) and be drawn by random sampling with replacement from the original dataset. In this way, you can construct a sampling distribution and you never need to assume anything about the underlying distribution of the data as it is already built-in to the original dataset. This approach can be used for small sample sizes and is often done when you have a long observational climatology or climate model control integration to draw samples from.</p></li>
 <li><p><em>Bootstrapping for confidence intervals</em> involves resampling your specific sample to create a sampling distribution based on your specific sample data. From this sampling distribution you can compute confidence intervals.</p></li>
 </ul>
 <p>Let’s look at an example. For this example, we are going to examine a large-scale mode of atmospheric variability, the North Atlantic Oscillation (NAO).</p>
@@ -367,7 +367,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.lines.Line2D at 0x7f99ca0e3dd8&gt;
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.lines.Line2D at 0x7f9a981e3e80&gt;
 </pre></div>
 </div>
 <img alt="../../_images/resampling_6_1.png" src="../../_images/resampling_6_1.png" />
@@ -459,12 +459,12 @@ The difference is 1.249
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>1.999999999990898e-05
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>4.999999999999449e-05
 </pre></div>
 </div>
 </div>
 </div>
-<p>Really low! This means that the difference between these two 18-year segments is quite anomalous. Note that here we are assuming that each year in our 18-year segments are independent, but in reality this is often not the case. We will discussing how to deal with this issue later in the course.</p>
+<p>Really low! This means that the difference between these two 18-year segments is quite anomalous. Note that here we are assuming that each year in our 18-year segments is independent, but in reality this is often not the case. We will discuss how to deal with this issue later in the course.</p>
 </div>
 <div class="section" id="jackknifing">
 <h2>Jackknifing<a class="headerlink" href="#jackknifing" title="Permalink to this headline">¶</a></h2>
@@ -491,7 +491,7 @@ The difference is 1.249
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.lines.Line2D at 0x7f99ca8ebf60&gt;
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.lines.Line2D at 0x7f9a989d8a90&gt;
 </pre></div>
 </div>
 <img alt="../../_images/resampling_19_1.png" src="../../_images/resampling_19_1.png" />
@@ -499,7 +499,7 @@ The difference is 1.249
 </div>
 <p><strong>How do we determine the 95% confidence levels on this trend line?</strong></p>
 <p>Next week, we will talk about how to do this using <span class="math notranslate nohighlight">\(z\)</span>- or <span class="math notranslate nohighlight">\(t\)</span>-statistics, but here we will use the jackknife resampling method to get at an estimate.</p>
-<p>Follwing the jackknife method, we will remove one data point from our time series at a time, recalculate the linear fit and repeat. We will get a distribution of possible trends from which we can find the 95% confidence bounds.</p>
+<p>Following the jackknife method, we will remove one data point from our time series at a time, recalculate the linear fit and repeat. We will get a distribution of possible trends from which we can find the 95% confidence bounds.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Initialize an array of size (63,2). The dimension of size 63 reflects the number of iterations</span>
