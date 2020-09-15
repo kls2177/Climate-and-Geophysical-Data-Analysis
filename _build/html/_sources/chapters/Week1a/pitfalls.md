@@ -7,7 +7,7 @@ As we have seen, statistics are an invaluable way to support hypotheses, inform 
 - Being blindly applied
   - performing statistical analysis means carefully considering the right tools to use for each unique situation.
 - Making-up for a lack of data
-  - statistical analysis cannot replace sufficient, high quality data.
+  - statistical analysis cannot replace sufficient, high-quality data.
 
 
 ## A Few Common Pitfalls
@@ -16,7 +16,7 @@ Here are a few common analysis errors to watch out for (in your own work as well
 
 ### Meaningless statistics
 
-- e.g. daily rainfall or earthquake magnitude data is much more appropriately described using the median rather than the mean, but if you don't look at your data and you are not familiar with the nature of your data, you mind find yourself computing inappropriate statistics.
+- e.g. daily rainfall or earthquake magnitude data is much more appropriately described using the median rather than the mean, but if you don't look at your data and you are not familiar with the nature of your data, you might find yourself computing inappropriate statistics.
 ```{figure} Histograms_UTSC_rainfall.png
 ---
 scale: 90%
@@ -51,7 +51,7 @@ Stop global warming, become a pirate! [image source here][pirateurl]
 ```
 
 ### Plots that mislead
-- be mindful that humans makes quantitative assumptions based on how data is presented. Be objective in your data presentation. [Read more about how the choice of colour is so important, especially for those with red-green colour-blindness][jet]
+- be mindful that we humans make quantitative assumptions based on how data is presented. Be objective in your data presentation. [Read more about how the choice of colour is so important, especially for those with red-green colour-blindness][jet]
 
 
 

@@ -1,0 +1,570 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>The z-Statistic &#8212; Climate and Geophysical Data Analysis</title>
+    
+  <link rel="stylesheet" href="../../_static/css/index.d431a4ee1c1efae0e38bdfebc22debff.css">
+
+    
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+  <link rel="stylesheet"
+    href="../../_static/vendor/open-sans_all/1.44.1/index.css">
+  <link rel="stylesheet"
+    href="../../_static/vendor/lato_latin-ext/1.44.1/index.css">
+
+    
+    <link rel="stylesheet" href="../../_static/sphinx-book-theme.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/jupyter-sphinx.css" />
+    
+  <link rel="preload" as="script" href="../../_static/js/index.30270b6e4c972e43c488.js">
+
+    <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/sphinx-book-theme.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/language_data.js"></script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script src="../../_static/mystnb.js"></script>
+    <script src="../../_static/sphinx-book-theme.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.18.0/dist/embed-amd.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe,.cell"
+        const thebe_selector_input = "pre,.cell_input div.highlight"
+        const thebe_selector_output = ".output,.cell_output"
+    </script>
+    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <link rel="canonical" href="https://kls2177.github.io/Climate-and-Geophysical-Data-Analysis/chapters/index.html/chapters/Week2/zstat.html" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Signal-to-Noise" href="signal2noise.html" />
+    <link rel="prev" title="The Standard Normal Distribution" href="normdist.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+
+
+<!-- Opengraph tags -->
+<meta property="og:url"         content="https://kls2177.github.io/Climate-and-Geophysical-Data-Analysis/chapters/index.html/chapters/Week2/zstat.html" />
+<meta property="og:type"        content="article" />
+<meta property="og:title"       content="The z-Statistic" />
+<meta property="og:description" content="The z-Statistic  Rather than referring to diagrams of the standard normal distribution to assess probabilities of z, the typical thing to do in statistics cours" />
+<meta property="og:image"       content="https://kls2177.github.io/Climate-and-Geophysical-Data-Analysis/chapters/index.html/_static/gistemp.png" />
+
+<meta name="twitter:card" content="summary" />
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="../../index.html">
+  
+  <img src="../../_static/gistemp.png" class="logo" alt="logo">
+  
+  
+  <h1 class="site-logo" id="site-title">Climate and Geophysical Data Analysis</h1>
+  
+</a>
+</div>
+
+<form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../index.html">
+   Climate and Geophysical Data Analysis
+  </a>
+ </li>
+</ul>
+<ul class="current nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../introduction/intro.html">
+   Introduction
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Week1a/whatarestatsgoodfor.html">
+   What are statistics good for?
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Week1b/descriptivestats.html">
+   Descriptive Statistics
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="reference internal" href="hypothesis_testing.html">
+   Statistical Hypothesis Testing
+  </a>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="probability.html">
+     Basic Probability
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="normdist.html">
+     The Standard Normal Distribution
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     The
+     <em>
+      z
+     </em>
+     -Statistic
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="signal2noise.html">
+     Signal-to-Noise
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="central_limit_theorem.html">
+     The Central Limit Theorem
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="statistical_significance.html">
+     Estimating Statistical Significance with a
+     <em>
+      z
+     </em>
+     -test
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="tstat.html">
+     The
+     <em>
+      t
+     </em>
+     -Statistic
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="resampling.html">
+     Resampling Techniques
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+</nav>
+
+ <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="row topbar fixed-top container-xl">
+    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+    </div>
+    <div class="col pl-2 topbar-main">
+        
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        
+        <div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../../_sources/chapters/Week2/zstat.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+    
+</div>
+        <!-- Source interaction buttons -->
+
+
+        <!-- Full screen (wrap in <a> to have style consistency -->
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                data-placement="bottom" onclick="toggleFullScreen()" title="Fullscreen mode"><i
+                    class="fas fa-expand"></i></button></a>
+
+        <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/kls2177/Climate-and-Geophysical-Data-Analysis/master?urlpath=tree/chapters/Week2/zstat.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        <button type="button" class="btn btn-secondary topbarbtn"
+            onclick="initThebeSBT()" title="Launch Thebe" data-toggle="tooltip" data-placement="left"><i
+                class="fas fa-play"></i><span style="margin-left: .4em;">Live Code</span></button>
+        
+    </div>
+</div>
+
+    </div>
+
+    <!-- Table of contents -->
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i> On this page
+        </div>
+        <nav id="bd-toc-nav">
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#z-statistic-examples">
+   <em>
+    z
+   </em>
+   -Statistic Examples
+  </a>
+ </li>
+</ul>
+
+        </nav>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="the-z-statistic">
+<h1>The <em>z</em>-Statistic<a class="headerlink" href="#the-z-statistic" title="Permalink to this headline">¶</a></h1>
+<p>Rather than referring to diagrams of the standard normal distribution to assess probabilities of <span class="math notranslate nohighlight">\(z\)</span>, the typical thing to do in statistics courses is to use <span class="math notranslate nohighlight">\(z\)</span>-tables.</p>
+<p>We will take a look at how to use tables, but we will also use python functions.</p>
+<p>The following <span class="xref myst">link</span> contains a <span class="math notranslate nohighlight">\(z\)</span>-table (as well as other tables), and it is also shown in <a class="reference internal" href="#ztab"><span class="std std-ref">Figure 7</span></a>.</p>
+<div class="figure align-default" id="ztab">
+<a class="reference internal image-reference" href="../../_images/ztab.png"><img alt="../../_images/ztab.png" src="../../_images/ztab.png" style="width: 495.3px; height: 516.75px;" /></a>
+<p class="caption"><span class="caption-number">Fig. 8 </span><span class="caption-text"><em>z</em>-Table. Table entries for <span class="math notranslate nohighlight">\(z\)</span> represent the area under the curve to the left of <span class="math notranslate nohighlight">\(z\)</span>. Only positive values for <span class="math notranslate nohighlight">\(z\)</span> are shown. (from C. Dougherty Introduction to Econometrics second edition 2002, Oxford University Press, Oxford.)</span><a class="headerlink" href="#ztab" title="Permalink to this image">¶</a></p>
+</div>
+<p>Let’s learn how to read this table using a few examples.</p>
+<div class="section" id="z-statistic-examples">
+<h2><em>z</em>-Statistic Examples<a class="headerlink" href="#z-statistic-examples" title="Permalink to this headline">¶</a></h2>
+<p>Assume that you have 50 years of monthly El-Niño Southern Oscillation (ENSO) indices (<span class="math notranslate nohighlight">\(Z\)</span>), and that the index is well approximated by a standard normal distribution:</p>
+<div class="tip admonition">
+<p class="admonition-title">Question #1</p>
+<ol class="simple">
+<li><p>Using the table, what is the probability that a randomly chosen month has an ENSO index of exactly +2?</p></li>
+</ol>
+</div>
+<p>Before you go to the table, re-read this question. What are the chances that a continuous variable, like the ENSO index, has a value of <em>exactly</em> +2? This is a trick question. In this case, the probability is zero.</p>
+<div class="tip admonition">
+<p class="admonition-title">Question #2</p>
+<ol class="simple">
+<li><p>Using the table, what is the probability that a randomly chosen month has an ENSO index of +2.05 or less?</p></li>
+</ol>
+</div>
+<p>Looking at the <span class="math notranslate nohighlight">\(z\)</span>-table in <a class="reference internal" href="#ztab"><span class="std std-ref">Figure 7</span></a>, we go to the left-most column and look for a value of 2.0. We can use the other columns to add the appropriate hundredths to our value of 2.0. We want to add 0.05 to get 2.05, so we look-up the probability under the column labelled 0.05. What do you get?</p>
+<p>You should get a value of 0.9798. This means that there is a 97.98% probability that a randomly chosen month has an ENSO index of +2.05 or less.</p>
+<p>Let’s try another one.</p>
+<div class="tip admonition">
+<p class="admonition-title">Question #3</p>
+<ol class="simple">
+<li><p>Using the table, what is the probability that a randomly chosen month has an ENSO index of +2.05 or greater?</p></li>
+</ol>
+</div>
+<p>This one is a bit trickier. The <span class="math notranslate nohighlight">\(z\)</span>-table we are using shows us the area under the curve left of <span class="math notranslate nohighlight">\(z\)</span>, but we actually want to know the area right of <span class="math notranslate nohighlight">\(z\)</span>. The key is that we know the total area under this curve is 1. So, the probability that a randomly chosen month has an ENSO index of +2.05 or greater is simply 1 - 0.9798 = 0.0202.</p>
+<p>Now, let’s try these same two examples with python.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># To look up this the probability of a certain z-score in python, we use the scipy.stats norm.cdf() function</span>
+<span class="kn">import</span> <span class="nn">scipy.stats</span> <span class="k">as</span> <span class="nn">st</span>
+
+<span class="c1">#Example #2</span>
+<span class="n">p</span> <span class="o">=</span> <span class="n">st</span><span class="o">.</span><span class="n">norm</span><span class="o">.</span><span class="n">cdf</span><span class="p">(</span><span class="mf">2.05</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="n">p</span><span class="p">,</span><span class="mi">4</span><span class="p">))</span> <span class="c1"># here, I&#39;m rounding to the same number of decimal places as the table.</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>0.9798
+</pre></div>
+</div>
+</div>
+</div>
+<p>We should get the same answer that we got with the table, and we do.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">#Example #3</span>
+<span class="n">p</span> <span class="o">=</span> <span class="mi">1</span><span class="o">-</span> <span class="n">st</span><span class="o">.</span><span class="n">norm</span><span class="o">.</span><span class="n">cdf</span><span class="p">(</span><span class="mf">2.05</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="n">p</span><span class="p">,</span><span class="mi">4</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>0.0202
+</pre></div>
+</div>
+</div>
+</div>
+<p>Great! Everything checks out.</p>
+<p>Here are a few more for you to try with the table first and then check with python.</p>
+<div class="tip admonition">
+<p class="admonition-title">Question #4</p>
+<ol class="simple">
+<li><p>What is the probability the ENSO index is 1.23 or smaller?</p></li>
+</ol>
+</div>
+<div class="cell tag_hide-output docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">#Example #4</span>
+<span class="n">p</span> <span class="o">=</span> <span class="n">st</span><span class="o">.</span><span class="n">norm</span><span class="o">.</span><span class="n">cdf</span><span class="p">(</span><span class="mf">1.23</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="n">p</span><span class="p">,</span><span class="mi">4</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>0.8907
+</pre></div>
+</div>
+</div>
+</div>
+<div class="tip admonition">
+<p class="admonition-title">Question #5</p>
+<ol class="simple">
+<li><p>What is the probability the ENSO index is 1.23 or greater?</p></li>
+</ol>
+</div>
+<div class="cell tag_hide-output docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">#Example #5</span>
+<span class="n">p</span> <span class="o">=</span> <span class="mi">1</span><span class="o">-</span><span class="n">st</span><span class="o">.</span><span class="n">norm</span><span class="o">.</span><span class="n">cdf</span><span class="p">(</span><span class="mf">1.23</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="n">p</span><span class="p">,</span><span class="mi">4</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>0.1093
+</pre></div>
+</div>
+</div>
+</div>
+<div class="tip admonition">
+<p class="admonition-title">Question #6</p>
+<ol class="simple">
+<li><p>What is the probability the ENSO index is greater than +1 and less than +2?</p></li>
+</ol>
+</div>
+<div class="cell tag_hide-output tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">#Example #6</span>
+<span class="n">p</span> <span class="o">=</span> <span class="n">st</span><span class="o">.</span><span class="n">norm</span><span class="o">.</span><span class="n">cdf</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="o">-</span> <span class="n">st</span><span class="o">.</span><span class="n">norm</span><span class="o">.</span><span class="n">cdf</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="n">p</span><span class="p">,</span><span class="mi">4</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>0.1359
+</pre></div>
+</div>
+</div>
+</div>
+<p>We can also use the <span class="math notranslate nohighlight">\(z\)</span>-table in reverse, i.e., if we know the probability of an event, we can find the <span class="math notranslate nohighlight">\(z\)</span>-score. Using the same ENSO index as above:</p>
+<div class="tip admonition">
+<p class="admonition-title">Question #7</p>
+<ol class="simple">
+<li><p>What ENSO index <span class="math notranslate nohighlight">\(\epsilon\)</span> gives <span class="math notranslate nohighlight">\(Pr\)</span>(<span class="math notranslate nohighlight">\(z\)</span> <span class="math notranslate nohighlight">\(\leq\)</span> <span class="math notranslate nohighlight">\(\epsilon\)</span>) = 0.9?</p></li>
+</ol>
+</div>
+<p>The formulation of this problem corresponds to the structure of our <span class="math notranslate nohighlight">\(z\)</span>-table which shows the area under the curve to the left (<span class="math notranslate nohighlight">\(\leq\)</span>) of <span class="math notranslate nohighlight">\(z\)</span>. Looking at the table, we look for the value 0.9. We don’t see an exact value for 0.9, but we can interpolate. <span class="math notranslate nohighlight">\(\epsilon\)</span> in about 1.282.</p>
+<p>Let’s check this with python.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># To look up this the z-score for a certain probability in python, we use the scipy.stats norm.ppf() function</span>
+
+<span class="c1"># Example #7</span>
+<span class="n">z</span> <span class="o">=</span> <span class="n">st</span><span class="o">.</span><span class="n">norm</span><span class="o">.</span><span class="n">ppf</span><span class="p">(</span><span class="mf">0.9</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="n">z</span><span class="p">,</span><span class="mi">3</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>1.282
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now, you can try the rest on your own. Open up a blank notebook to try it out before you check the answer.</p>
+<div class="tip admonition">
+<p class="admonition-title">Question #8</p>
+<ol class="simple">
+<li><p>What ENSO index <span class="math notranslate nohighlight">\(\epsilon\)</span> gives <span class="math notranslate nohighlight">\(Pr\)</span>(<span class="math notranslate nohighlight">\(z\)</span> <span class="math notranslate nohighlight">\(\geq\)</span> <span class="math notranslate nohighlight">\(\epsilon\)</span>) = 0.1?</p></li>
+</ol>
+</div>
+<div class="cell tag_hide-input tag_hide-output docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Example #2</span>
+<span class="n">z</span> <span class="o">=</span> <span class="o">-</span><span class="n">st</span><span class="o">.</span><span class="n">norm</span><span class="o">.</span><span class="n">ppf</span><span class="p">(</span><span class="mf">0.1</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="n">z</span><span class="p">,</span><span class="mi">3</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>1.282
+</pre></div>
+</div>
+</div>
+</div>
+<div class="tip admonition">
+<p class="admonition-title">Question #9</p>
+<ol class="simple">
+<li><p>What ENSO index <span class="math notranslate nohighlight">\(\epsilon\)</span> gives <span class="math notranslate nohighlight">\(Pr\)</span>(<span class="math notranslate nohighlight">\(z\)</span> <span class="math notranslate nohighlight">\(\leq\)</span> <span class="math notranslate nohighlight">\(\epsilon\)</span>) = 0.1?</p></li>
+</ol>
+</div>
+<div class="cell tag_hide-input tag_hide-output docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Example #3</span>
+<span class="n">z</span> <span class="o">=</span> <span class="n">st</span><span class="o">.</span><span class="n">norm</span><span class="o">.</span><span class="n">ppf</span><span class="p">(</span><span class="mf">0.1</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="n">z</span><span class="p">,</span><span class="mi">3</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>-1.282
+</pre></div>
+</div>
+</div>
+</div>
+<div class="tip admonition">
+<p class="admonition-title">Question #10</p>
+<ol class="simple">
+<li><p>What ENSO index <span class="math notranslate nohighlight">\(\epsilon\)</span> gives <span class="math notranslate nohighlight">\(Pr\)</span>(|<span class="math notranslate nohighlight">\(z\)</span>| <span class="math notranslate nohighlight">\(\geq\)</span> <span class="math notranslate nohighlight">\(\epsilon\)</span>) = 0.1? (Note: |<span class="math notranslate nohighlight">\(z\)</span>| <span class="math notranslate nohighlight">\(\geq\)</span> <span class="math notranslate nohighlight">\(\epsilon\)</span> is the same as <span class="math notranslate nohighlight">\(z\)</span> <span class="math notranslate nohighlight">\(\leq\)</span> -<span class="math notranslate nohighlight">\(\epsilon\)</span> and <span class="math notranslate nohighlight">\(z\)</span> <span class="math notranslate nohighlight">\(\geq\)</span> <span class="math notranslate nohighlight">\(\epsilon\)</span>)</p></li>
+</ol>
+</div>
+<div class="cell tag_hide-input tag_hide-output docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Example #3</span>
+<span class="n">z1</span> <span class="o">=</span> <span class="n">st</span><span class="o">.</span><span class="n">norm</span><span class="o">.</span><span class="n">ppf</span><span class="p">(</span><span class="mf">0.05</span><span class="p">)</span>
+<span class="n">z2</span> <span class="o">=</span> <span class="n">st</span><span class="o">.</span><span class="n">norm</span><span class="o">.</span><span class="n">ppf</span><span class="p">(</span><span class="mf">0.95</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="n">z1</span><span class="p">,</span><span class="mi">3</span><span class="p">),</span><span class="nb">round</span><span class="p">(</span><span class="n">z2</span><span class="p">,</span><span class="mi">3</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>-1.645 1.645
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "kls2177/Climate-and-Geophysical-Data-Analysis",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./chapters/Week2"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        </div>
+    </div>
+    
+    
+    <div class='prev-next-bottom'>
+        
+    <a class='left-prev' id="prev-link" href="normdist.html" title="previous page">The Standard Normal Distribution</a>
+    <a class='right-next' id="next-link" href="signal2noise.html" title="next page">Signal-to-Noise</a>
+
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Karen Smith<br/>
+        
+            &copy; Copyright 2020.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    
+  <script src="../../_static/js/index.30270b6e4c972e43c488.js"></script>
+
+
+    
+  </body>
+</html>

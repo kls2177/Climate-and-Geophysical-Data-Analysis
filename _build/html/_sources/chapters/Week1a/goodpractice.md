@@ -9,7 +9,7 @@ Statistical analysis also serves as a reality check for us. If the data does not
 
 Finally, in this new world of *Big Data*, we are relying more and more on statistical methods to help us extract signal from noise.
 
-## Why is statistics so important?
+## Why are statistics so important?
 
 Although many students dislike taking statistics (I was one of them!), there is no escaping statistics in our everyday lives and even more so in our professional lives as scientists.
 
@@ -22,7 +22,7 @@ Even though statistics are all around us, an appreciation of statistics arises b
 Before we jump in, here are a few best practices to keep in mind:
 
 - Visualize your data
-  - **always** look at your data before, during and after your analysis
+  - **ALWAYS** look at your data before, during and after your analysis
 
 - Hypothesize first, test second
   - statistics can support, but not replace, sound scientific hypotheses

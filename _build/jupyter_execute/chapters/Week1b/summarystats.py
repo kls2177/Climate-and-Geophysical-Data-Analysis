@@ -37,7 +37,7 @@ $$
 \overline{x} = \frac{1}{N}\sum_{i=1}^{N}x_i 
 $$
 
-If we assume that our sample is a measurement taken at a fixed location but at a certain frequency in time (aka, a time series) then the overbar denotes the sample time mean and the subscript i denotes the time step.
+If we assume that our sample is a measurement taken at a fixed location but at a certain frequency in time (aka, a time series), then the overbar denotes the sample time mean and the subscript i denotes the time step.
 
 ```{note} The sample mean is an *unbiased* estimate of the population mean, $\mu$.
 
@@ -73,3 +73,4 @@ $$
 
 But notice that we are dividing by $N-1$ instead of $N$. Since the calculation of the sample variance depends on the sample mean (which is itself an approximation and introduces some bias), then we need to divide by $N-1$ rather than $N$ to remove this bias. You can find out more [here](https://www.youtube.com/watch?v=D1hgiAla3KI).
 ```
+

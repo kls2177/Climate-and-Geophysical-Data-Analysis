@@ -1,13 +1,29 @@
 
-
 <!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta charset="utf-8" />
     <title>What is a distribution? &#8212; Climate and Geophysical Data Analysis</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" integrity="sha384-KA6wR/X5RY4zFAHpv/CnoG2UW1uogYfdnP67Uv7eULvTveboZJg0qUpmJZb5VqzN" crossorigin="anonymous">
-    <link href="../../_static/css/index.css" rel="stylesheet">
+    
+  <link rel="stylesheet" href="../../_static/css/index.d431a4ee1c1efae0e38bdfebc22debff.css">
+
+    
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+  <link rel="stylesheet"
+    href="../../_static/vendor/open-sans_all/1.44.1/index.css">
+  <link rel="stylesheet"
+    href="../../_static/vendor/lato_latin-ext/1.44.1/index.css">
+
+    
     <link rel="stylesheet" href="../../_static/sphinx-book-theme.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
@@ -15,6 +31,9 @@
     <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/jupyter-sphinx.css" />
+    
+  <link rel="preload" as="script" href="../../_static/js/index.30270b6e4c972e43c488.js">
+
     <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
     <script src="../../_static/sphinx-book-theme.js"></script>
     <script src="../../_static/jquery.js"></script>
@@ -43,8 +62,8 @@
     <link rel="next" title="Summary Statistics: Part II" href="summarystats2.html" />
     <link rel="prev" title="Example: Sensitivity of Standard Deviation to Sampling" href="Variance_Example.html" />
 
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="docsearch:language" content="en">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
 
 
 <!-- Opengraph tags -->
@@ -103,7 +122,7 @@
  </li>
  <li class="toctree-l1 current active">
   <a class="reference internal" href="descriptivestats.html">
-   Descriptive statistics
+   Descriptive Statistics
   </a>
   <ul class="current">
    <li class="toctree-l2">
@@ -129,13 +148,8 @@
   </ul>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../Week2a/normaldist.html">
-   Descriptive statistics
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../Week2b/signal2noise.html">
-   Descriptive statistics
+  <a class="reference internal" href="../Week2/hypothesis_testing.html">
+   Statistical Hypothesis Testing
   </a>
  </li>
 </ul>
@@ -265,7 +279,7 @@
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># load data: UTSC air temperature data for the years 2015-2018. in deg C. Data are collected hourly.</span>
-<span class="n">filename</span> <span class="o">=</span> <span class="s1">&#39;/Users/Karen/Dropbox/EES1132/Fall2019/Lecture 1/UTSC Weather data/UTSC_TC_20152018.csv&#39;</span>
+<span class="n">filename</span> <span class="o">=</span> <span class="s1">&#39;UTSC_TC_20152018.csv&#39;</span>
 <span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">genfromtxt</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">delimiter</span> <span class="o">=</span> <span class="s1">&#39;,&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -276,8 +290,8 @@
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># draw random values from X</span>
 
-<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="n">size</span> <span class="o">=</span> <span class="p">(</span><span class="mi">25</span><span class="p">,))</span> <span class="c1"># sample size of 25</span>
-<span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="n">size</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1000</span><span class="p">,))</span> <span class="c1"># sample size of 1000</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="n">size</span> <span class="o">=</span> <span class="mi">25</span><span class="p">)</span> <span class="c1"># sample size of 25</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="n">size</span> <span class="o">=</span> <span class="mi">1000</span><span class="p">)</span> <span class="c1"># sample size of 1000</span>
 </pre></div>
 </div>
 </div>
@@ -304,9 +318,9 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>[14.05  -4.677 13.91  22.6   15.81  13.88  15.57   0.452  9.26  23.68
-  7.191  5.94  18.86  19.95   9.87  19.01  -2.565  5.218 11.25   5.214
-  0.37  17.44  24.59   2.668 16.1  ]
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>[-15.67    8.96   24.3    17.52    0.678   3.548  21.33    4.005  28.18
+  11.95    4.075   4.491  26.95   19.88   20.39    6.615   1.93    8.34
+  11.77   18.97   -4.745  -0.087  24.28    5.508  31.13 ]
 </pre></div>
 </div>
 </div>
@@ -372,7 +386,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>(array([0, 0, 0, 0, 2, 3, 6, 4, 7, 3, 0, 0]), array([-25, -20, -15, -10,  -5,   0,   5,  10,  15,  20,  25,  30,  35]))
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>(array([0, 1, 0, 0, 2, 6, 4, 2, 3, 4, 2, 1]), array([-25, -20, -15, -10,  -5,   0,   5,  10,  15,  20,  25,  30,  35]))
 </pre></div>
 </div>
 </div>
@@ -456,7 +470,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>[   5   15   43   97  204  378  504  612  794  931  992 1000]
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>[   2   11   40  106  225  387  529  662  813  938  993 1000]
 </pre></div>
 </div>
 </div>
@@ -464,7 +478,7 @@
 <p>Now, let’s plot it.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># plot the cummulative distribution</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># plot the cumulative distribution</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span><span class="mi">6</span><span class="p">))</span>
 
 <span class="c1"># use plt.bar to plot the histogram for x</span>
@@ -474,7 +488,7 @@
 <span class="n">plt</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;SAT&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Relative Frequency&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;(a) Cummulative Distribution of UTSC SAT (N = 25)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;(a) Cumulative Distribution of UTSC SAT (N = 25)&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mf">1.1</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="o">-</span><span class="mi">30</span><span class="p">,</span><span class="mi">35</span><span class="p">)</span>
 
@@ -485,7 +499,7 @@
 <span class="n">plt</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;SAT&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Relative Frequency&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;(b) Cummulative Distribution of UTSC SAT (N = 1000)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;(b) Cumulative Distribution of UTSC SAT (N = 1000)&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mf">1.1</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="o">-</span><span class="mi">30</span><span class="p">,</span><span class="mi">35</span><span class="p">)</span>
 </pre></div>
@@ -498,7 +512,7 @@
 <img alt="../../_images/what_is_pdf_23_1.png" src="../../_images/what_is_pdf_23_1.png" />
 </div>
 </div>
-<p>As we can see in the figure above, the cummulative distribution will always sum to 1. The gray horizontal lines are plotted for a value of 0.5. This indicates that 50% of the sample data values fall within bins below this line and 50% fall within the bins above this line. Note that the 50% cut-off likely lies somewhere within the width of the intersecting bin.</p>
+<p>As we can see in the figure above, the cumulative distribution will always sum to 1. The gray horizontal lines are plotted for a value of 0.5. This indicates that 50% of the sample data values fall within bins below this line and 50% fall within the bins above this line. Note that the 50% cut-off likely lies somewhere within the width of the intersecting bin.</p>
 </div>
 </div>
 
@@ -550,7 +564,10 @@
       </div>
     </div>
 
-    <script src="../../_static/js/index.js"></script>
+    
+  <script src="../../_static/js/index.30270b6e4c972e43c488.js"></script>
+
+
     
   </body>
 </html>

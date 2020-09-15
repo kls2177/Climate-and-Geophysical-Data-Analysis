@@ -1,0 +1,427 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>Basic Probability &#8212; Climate and Geophysical Data Analysis</title>
+    
+  <link rel="stylesheet" href="../../_static/css/index.d431a4ee1c1efae0e38bdfebc22debff.css">
+
+    
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+  <link rel="stylesheet"
+    href="../../_static/vendor/open-sans_all/1.44.1/index.css">
+  <link rel="stylesheet"
+    href="../../_static/vendor/lato_latin-ext/1.44.1/index.css">
+
+    
+    <link rel="stylesheet" href="../../_static/sphinx-book-theme.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/jupyter-sphinx.css" />
+    
+  <link rel="preload" as="script" href="../../_static/js/index.30270b6e4c972e43c488.js">
+
+    <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/sphinx-book-theme.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/language_data.js"></script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script src="../../_static/mystnb.js"></script>
+    <script src="../../_static/sphinx-book-theme.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.18.0/dist/embed-amd.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe,.cell"
+        const thebe_selector_input = "pre,.cell_input div.highlight"
+        const thebe_selector_output = ".output,.cell_output"
+    </script>
+    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <link rel="canonical" href="https://kls2177.github.io/Climate-and-Geophysical-Data-Analysis/chapters/index.html/chapters/Week2/probability.html" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="The Standard Normal Distribution" href="normdist.html" />
+    <link rel="prev" title="Statistical Hypothesis Testing" href="hypothesis_testing.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+
+
+<!-- Opengraph tags -->
+<meta property="og:url"         content="https://kls2177.github.io/Climate-and-Geophysical-Data-Analysis/chapters/index.html/chapters/Week2/probability.html" />
+<meta property="og:type"        content="article" />
+<meta property="og:title"       content="Basic Probability" />
+<meta property="og:description" content="Basic Probability  Statistical hypothesis testing involves estimating the probability of obtaining a particular result, e.g. the sample mean, or something more " />
+<meta property="og:image"       content="https://kls2177.github.io/Climate-and-Geophysical-Data-Analysis/chapters/index.html/_static/gistemp.png" />
+
+<meta name="twitter:card" content="summary" />
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="../../index.html">
+  
+  <img src="../../_static/gistemp.png" class="logo" alt="logo">
+  
+  
+  <h1 class="site-logo" id="site-title">Climate and Geophysical Data Analysis</h1>
+  
+</a>
+</div>
+
+<form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../index.html">
+   Climate and Geophysical Data Analysis
+  </a>
+ </li>
+</ul>
+<ul class="current nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../introduction/intro.html">
+   Introduction
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Week1a/whatarestatsgoodfor.html">
+   What are statistics good for?
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Week1b/descriptivestats.html">
+   Descriptive Statistics
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="reference internal" href="hypothesis_testing.html">
+   Statistical Hypothesis Testing
+  </a>
+  <ul class="current">
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     Basic Probability
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="normdist.html">
+     The Standard Normal Distribution
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="zstat.html">
+     The
+     <em>
+      z
+     </em>
+     -Statistic
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="signal2noise.html">
+     Signal-to-Noise
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="central_limit_theorem.html">
+     The Central Limit Theorem
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="statistical_significance.html">
+     Estimating Statistical Significance with a
+     <em>
+      z
+     </em>
+     -test
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="tstat.html">
+     The
+     <em>
+      t
+     </em>
+     -Statistic
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="resampling.html">
+     Resampling Techniques
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+</nav>
+
+ <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="row topbar fixed-top container-xl">
+    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+    </div>
+    <div class="col pl-2 topbar-main">
+        
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        
+        <div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../../_sources/chapters/Week2/probability.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.md</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+    
+</div>
+        <!-- Source interaction buttons -->
+
+
+        <!-- Full screen (wrap in <a> to have style consistency -->
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                data-placement="bottom" onclick="toggleFullScreen()" title="Fullscreen mode"><i
+                    class="fas fa-expand"></i></button></a>
+
+        <!-- Launch buttons -->
+
+    </div>
+
+    <!-- Table of contents -->
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i> On this page
+        </div>
+        <nav id="bd-toc-nav">
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#notation">
+   Notation
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#unions-and-intersections">
+   Unions and Intersections
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#conditional-probability">
+   Conditional probability
+  </a>
+ </li>
+</ul>
+
+        </nav>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="basic-probability">
+<h1>Basic Probability<a class="headerlink" href="#basic-probability" title="Permalink to this headline">¶</a></h1>
+<p>Statistical hypothesis testing involves estimating the <strong>probability</strong> of obtaining a particular result, e.g. the sample mean, or something more extreme, if the null hypothesis were true. If the probability of getting the result is low, i.e., below a certain threshold, you conclude that the null hypothesis is probably not true. So, let’s familiarize ourselves with some basic probability.</p>
+<div class="section" id="notation">
+<h2>Notation<a class="headerlink" href="#notation" title="Permalink to this headline">¶</a></h2>
+<p>We will define an event as <span class="math notranslate nohighlight">\(E\)</span>. For example, <span class="math notranslate nohighlight">\(E\)</span> could be getting tails when you flip a coin or getting a 2 when you roll a die.</p>
+<p>We define the probability of <span class="math notranslate nohighlight">\(E\)</span> as <span class="math notranslate nohighlight">\(Pr(E)\)</span>.</p>
+<p>For the example of getting a 2 when you roll a die,</p>
+<div class="math notranslate nohighlight">
+\[
+Pr(E) = \frac{1}{6}
+\]</div>
+<p>The probability of <span class="math notranslate nohighlight">\(E\)</span> not happening is defined as,</p>
+<div class="math notranslate nohighlight">
+\[
+Pr(\tilde{E}) = 1 - Pr(E)
+\]</div>
+<p>For the example of rolling the die,</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align}
+Pr(\tilde{E}) &amp; = 1 - \frac{1}{6}\\
+&amp; = \frac{5}{6}
+\end{align}
+\end{split}\]</div>
+</div>
+<div class="section" id="unions-and-intersections">
+<h2>Unions and Intersections<a class="headerlink" href="#unions-and-intersections" title="Permalink to this headline">¶</a></h2>
+<p>The probability that two events, <span class="math notranslate nohighlight">\(E_1\)</span> (rolling a 5) and <span class="math notranslate nohighlight">\(E_2\)</span> (rolling a 6) will both occur is called the <strong>intersection</strong> of the two probabilities and is denoted as</p>
+<div class="math notranslate nohighlight">
+\[
+Pr(E_1 \cap E_2)
+\]</div>
+<p>This is sometimes also called the <em>joint</em> probability of <span class="math notranslate nohighlight">\(E_1\)</span> and <span class="math notranslate nohighlight">\(E_2\)</span>.</p>
+<p>The probability that <em>either or both</em> of the two events, <span class="math notranslate nohighlight">\(E_1\)</span> (rolling a 5) and <span class="math notranslate nohighlight">\(E_2\)</span> (rolling a 6) will occur is called the <strong>union</strong> of the two probabilities. This is denoted as</p>
+<div class="math notranslate nohighlight">
+\[
+Pr(E_1 \cup E_2) = Pr(E_1) + Pr(E_2) - Pr(E_1 \cap E_2)
+\]</div>
+<div class="figure align-default" id="venn">
+<a class="reference internal image-reference" href="../../_images/unions_intersections.png"><img alt="../../_images/unions_intersections.png" src="../../_images/unions_intersections.png" style="width: 496.8px; height: 173.70000000000002px;" /></a>
+<p class="caption"><span class="caption-number">Fig. 6 </span><span class="caption-text">Venn diagram of an intersection and a union of events <span class="math notranslate nohighlight">\(E_1\)</span> and <span class="math notranslate nohighlight">\(E_2\)</span>.</span><a class="headerlink" href="#venn" title="Permalink to this image">¶</a></p>
+</div>
+<p>Figure <a class="reference internal" href="#venn"><span class="std std-numref">Fig. 6</span></a> shows a Venn diagram visualization of the meaning of intersection and union of events <span class="math notranslate nohighlight">\(E_1\)</span> and <span class="math notranslate nohighlight">\(E_2\)</span>. Notice visually how the probability of the union is equal to the sum of the two individual probabilities minus the probability of the intersection - we do not want to double count the region where the two individual probabilities intersect.</p>
+</div>
+<div class="section" id="conditional-probability">
+<h2>Conditional probability<a class="headerlink" href="#conditional-probability" title="Permalink to this headline">¶</a></h2>
+<p>The final concept we will discuss is <strong>conditional probability</strong>. The conditional probability of the event <span class="math notranslate nohighlight">\(E_2\)</span> is the probability that the event will occur given the knowledge that a particular event, for example, <span class="math notranslate nohighlight">\(E_1\)</span>, has already occurred. We denote this conditional probability as follows:</p>
+<div class="math notranslate nohighlight">
+\[
+Pr(E_2|E_1)
+\]</div>
+<p>and we typically say “the probability of <span class="math notranslate nohighlight">\(E_2\)</span> <em>given</em> <span class="math notranslate nohighlight">\(E_1\)</span>”.</p>
+<p>The above conditional probability is defined as</p>
+<div class="math notranslate nohighlight">
+\[
+Pr(E_2|E_1) = \frac{Pr(E_1 \cap E_2)}{Pr(E_1)}
+\]</div>
+<p>Rearranging this conditional probability formula yields the probability of the intersection, called the <strong>multiplicative law of probability</strong>:</p>
+<div class="math notranslate nohighlight">
+\[
+Pr(E_1 \cap E_2) = Pr(E_2|E_1) \cdot Pr(E_1) = Pr(E_1|E_2) \cdot Pr(E_2)
+\]</div>
+<p>If <span class="math notranslate nohighlight">\(E_1\)</span> and <span class="math notranslate nohighlight">\(E_2\)</span> are independent events, i.e. their probabilities do not depend on each other, then the conditional probability is simply,</p>
+<div class="math notranslate nohighlight">
+\[
+Pr(E_2|E_1) = Pr(E_2)
+\]</div>
+<p>and consequently,</p>
+<div class="math notranslate nohighlight">
+\[
+Pr(E_1 \cap E_2) = Pr(E_2) \cdot Pr(E_1)
+\]</div>
+<p>This is the formal definition of <strong>statistical independence</strong> for two events.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Two events <span class="math notranslate nohighlight">\(E_1\)</span> and <span class="math notranslate nohighlight">\(E_2\)</span> are <strong>independent</strong> if and only if their joint probability equals the product of their probabilities.</p>
+</div>
+<p>For example, rolling a fair die yields statistically independent events. Therefore, the joint probability of rolling both a 5 (<span class="math notranslate nohighlight">\(E_1\)</span>) and a 6 (<span class="math notranslate nohighlight">\(E_2\)</span>) is equal to</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align}
+Pr(E_1 \cap E_2) &amp; = Pr(E_2) \cdot Pr(E_1)\\
+&amp; = \frac{1}{6} \cdot \frac{1}{6}\\
+&amp; = \frac{1}{36}
+\end{align}
+\end{split}\]</div>
+<p>###ADD interactive buttons here###</p>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "kls2177/Climate-and-Geophysical-Data-Analysis",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./chapters/Week2"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        </div>
+    </div>
+    
+    
+    <div class='prev-next-bottom'>
+        
+    <a class='left-prev' id="prev-link" href="hypothesis_testing.html" title="previous page">Statistical Hypothesis Testing</a>
+    <a class='right-next' id="next-link" href="normdist.html" title="next page">The Standard Normal Distribution</a>
+
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Karen Smith<br/>
+        
+            &copy; Copyright 2020.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    
+  <script src="../../_static/js/index.30270b6e4c972e43c488.js"></script>
+
+
+    
+  </body>
+</html>

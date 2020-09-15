@@ -15,7 +15,7 @@ mpl.rc('font',size=16) #set default font size and weight for plots
 Next, we load in the time series data that we will be working with.
 
 # load data: UTSC air temperature data for the years 2015-2018. in deg C. Data are collected hourly.
-filename = '/Users/Karen/Dropbox/EES1132/Fall2019/Lecture 1/UTSC Weather data/UTSC_TC_20152018.csv'
+filename = 'UTSC_TC_20152018.csv'
 X = np.genfromtxt(filename, delimiter = ',')
 
 Let's adhere to one of our "best practices" when working with data - let's take a look at it.

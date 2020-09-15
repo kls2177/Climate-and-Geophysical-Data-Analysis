@@ -17,15 +17,15 @@ import time
 Load the data:
 
 # load data: UTSC air temperature data for the years 2015-2018. in deg C. Data are collected hourly.
-filename = '/Users/Karen/Dropbox/EES1132/Fall2019/Lecture 1/UTSC Weather data/UTSC_TC_20152018.csv'
+filename = 'UTSC_TC_20152018.csv'
 X = np.genfromtxt(filename, delimiter = ',')
 
 Let's start by just choosing two smaller sub-samples of data.
 
 # draw random values from X
 
-x = np.random.choice(X,size = (25,)) # sample size of 25
-y = np.random.choice(X,size = (1000,)) # sample size of 1000
+x = np.random.choice(X,size = 25) # sample size of 25
+y = np.random.choice(X,size = 1000) # sample size of 1000
 
 It's always good practice to check that we did what we wanted to do.
 
@@ -142,7 +142,7 @@ print(hyy)
 
 Now, let's plot it.
 
-# plot the cummulative distribution
+# plot the cumulative distribution
 plt.figure(figsize=(20,6))
 
 # use plt.bar to plot the histogram for x
@@ -152,7 +152,7 @@ plt.axhline(1,color='r')
 plt.axhline(0.5,color='gray')
 plt.xlabel('SAT')
 plt.ylabel('Relative Frequency')
-plt.title('(a) Cummulative Distribution of UTSC SAT (N = 25)')
+plt.title('(a) Cumulative Distribution of UTSC SAT (N = 25)')
 plt.ylim(0,1.1)
 plt.xlim(-30,35)
 
@@ -163,9 +163,8 @@ plt.axhline(1,color='k')
 plt.axhline(0.5,color='gray')
 plt.xlabel('SAT')
 plt.ylabel('Relative Frequency')
-plt.title('(b) Cummulative Distribution of UTSC SAT (N = 1000)')
+plt.title('(b) Cumulative Distribution of UTSC SAT (N = 1000)')
 plt.ylim(0,1.1)
 plt.xlim(-30,35)
 
-As we can see in the figure above, the cummulative distribution will always sum to 1. The gray horizontal lines are plotted for a value of 0.5. This indicates that 50% of the sample data values fall within bins below this line and 50% fall within the bins above this line. Note that the 50% cut-off likely lies somewhere within the width of the intersecting bin.
-
+As we can see in the figure above, the cumulative distribution will always sum to 1. The gray horizontal lines are plotted for a value of 0.5. This indicates that 50% of the sample data values fall within bins below this line and 50% fall within the bins above this line. Note that the 50% cut-off likely lies somewhere within the width of the intersecting bin.
