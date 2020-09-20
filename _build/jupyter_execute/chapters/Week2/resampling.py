@@ -14,7 +14,7 @@ Let's start with an example of a resampling technique called **"bootstrap"** res
 
 - *Bootstrapping for confidence intervals* involves resampling your specific sample to create a sampling distribution based on your specific sample data. From this sampling distribution you can compute confidence intervals. 
 
-Let's look at an example. For this example, we are going to examine a large-scale mode of atmospheric variability, the North Atlantic Oscillation (NAO).
+Let's look at an example. For this example, we are going to examine a large-scale mode of atmospheric variability, the North Atlantic Oscillation (NAO). You can download your own copy of the NAO data file [here](https://github.com/kls2177/ccia_files/blob/master/nao_timeseries.mat?raw=true).
 
 # Load packages
 import numpy as np
