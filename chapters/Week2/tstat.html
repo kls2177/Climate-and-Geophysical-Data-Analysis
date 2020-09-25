@@ -1,9 +1,10 @@
 
 <!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
   <head>
     <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>The t-Statistic &#8212; Climate and Geophysical Data Analysis</title>
     
   <link rel="stylesheet" href="../../_static/css/index.d431a4ee1c1efae0e38bdfebc22debff.css">
@@ -30,12 +31,12 @@
     <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/jupyter-sphinx.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
     
   <link rel="preload" as="script" href="../../_static/js/index.30270b6e4c972e43c488.js">
 
     <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
-    <script src="../../_static/sphinx-book-theme.js"></script>
     <script src="../../_static/jquery.js"></script>
     <script src="../../_static/underscore.js"></script>
     <script src="../../_static/doctools.js"></script>
@@ -43,12 +44,12 @@
     <script src="../../_static/togglebutton.js"></script>
     <script src="../../_static/clipboard.min.js"></script>
     <script src="../../_static/copybutton.js"></script>
-    <script src="../../_static/mystnb.js"></script>
     <script src="../../_static/sphinx-book-theme.js"></script>
     <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.18.0/dist/embed-amd.js"></script>
-    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
     <script >
         const thebe_selector = ".thebe,.cell"
@@ -258,6 +259,11 @@
         
         
         
+        <a class="colab-button" href="https://colab.research.google.com/github/kls2177/Climate-and-Geophysical-Data-Analysis/blob/master/chapters/Week2/tstat.ipynb"><button type="button" class="btn btn-secondary topbarbtn"
+                title="Launch Colab" data-toggle="tooltip" data-placement="left"><img class="colab-button-logo"
+                    src="../../_static/images/logo_colab.png"
+                    alt="Interact on Colab">Colab</button></a>
+        
         <button type="button" class="btn btn-secondary topbarbtn"
             onclick="initThebeSBT()" title="Launch Thebe" data-toggle="tooltip" data-placement="left"><i
                 class="fas fa-play"></i><span style="margin-left: .4em;">Live Code</span></button>
@@ -270,7 +276,7 @@
     <!-- Table of contents -->
     <div class="d-none d-md-block col-md-2 bd-toc show">
         <div class="tocsection onthispage pt-5 pb-3">
-            <i class="fas fa-list"></i> On this page
+            <i class="fas fa-list"></i> Contents
         </div>
         <nav id="bd-toc-nav">
             <ul class="nav section-nav flex-column">
@@ -357,7 +363,7 @@ z &amp;= \frac{\overline{x} - \mu}{\frac{\sigma}{\sqrt{N}}}
 <p>Let’s compare the <span class="math notranslate nohighlight">\(z\)</span>- and <span class="math notranslate nohighlight">\(t\)</span>-distributions for different sample sizes.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Load packages</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Load packages</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 <span class="kn">import</span> <span class="nn">scipy.stats</span> <span class="k">as</span> <span class="nn">st</span>
@@ -368,7 +374,7 @@ z &amp;= \frac{\overline{x} - \mu}{\frac{\sigma}{\sqrt{N}}}
 <p>Click on the “Run Live Code” button at the top of the page and try running this code with different values for the degrees of freedom (dof). Try the following: dof = 50, 30, 20, 10, 5, 2</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plot z and t distributions</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plot z and t distributions</span>
 
 <span class="n">dof</span> <span class="o">=</span> <span class="mi">50</span> <span class="c1">#degrees of freedom (N-1)</span>
 <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="mi">6</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="o">.</span><span class="mi">01</span><span class="p">)</span>
@@ -406,7 +412,7 @@ z &amp;= \frac{\overline{x} - \mu}{\frac{\sigma}{\sqrt{N}}}
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.lines.Line2D at 0x7f81d9221518&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.lines.Line2D at 0x7f8245b494a8&gt;
 </pre></div>
 </div>
 <img alt="../../_images/tstat_3_1.png" src="../../_images/tstat_3_1.png" />
@@ -469,7 +475,7 @@ t &amp;= \frac{\overline{x} - \mu}{\frac{s}{\sqrt{N-1}}} \\
 <p>where <span class="math notranslate nohighlight">\(t_{\alpha/2}\)</span> is the value for <span class="math notranslate nohighlight">\(t\)</span> for a two-sided 95% confidence level (5% significance level). We can use python to find this value:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Question #5</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Question #5</span>
 <span class="c1"># find t values for a two-sided 95% confidence level</span>
 <span class="n">N</span> <span class="o">=</span> <span class="mi">10</span>
 <span class="n">dof</span> <span class="o">=</span> <span class="n">N</span> <span class="o">-</span> <span class="mi">1</span>
@@ -480,7 +486,7 @@ t &amp;= \frac{\overline{x} - \mu}{\frac{s}{\sqrt{N-1}}} \\
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>-2.26 2.26
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-2.26 2.26
 </pre></div>
 </div>
 </div>
@@ -523,7 +529,7 @@ t &amp;= \frac{\overline{x} - \mu}{\frac{s}{\sqrt{N-1}}} \\
 <p>You have 5 years of monthly-mean temperature data derived from the MSU4 satellite (upper stratosphere). The mean temperature along 60°N during January is -60°C and the standard deviation is 8°C. What are the 95% confidence limits on the true population mean?</p>
 </div>
 <p><strong>The z-Statistic:</strong></p>
-<p>The critical value <span class="math notranslate nohighlight">\(z_c\)</span> = $\pm$1.96 for 95% confidence. Thus, the population mean <span class="math notranslate nohighlight">\(\mu\)</span> is expected to lie within:</p>
+<p>The critical value <span class="math notranslate nohighlight">\(z_c\)</span> = <span class="math notranslate nohighlight">\(\pm\)</span> 1.96 for 95% confidence. Thus, the population mean <span class="math notranslate nohighlight">\(\mu\)</span> is expected to lie within:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
 \begin{align}
