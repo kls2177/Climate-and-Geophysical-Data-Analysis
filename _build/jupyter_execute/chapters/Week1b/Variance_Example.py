@@ -1,10 +1,16 @@
-# Example: Sensitivity of Standard Deviation to Sampling
+#!/usr/bin/env python
+# coding: utf-8
 
-As you may have already realized, the sample mean and variance/standard deviation of our data often depend on the sample size of the data and how random the values in our sample are. Another important thing to note is that the estimate of the standard deviation depends greatly on the sampling rate (e.g. for time series the standard deviation likely depends on whether or not you are using daily data, monthly data, yearly data, etc.).
+# # Example: Sensitivity of Standard Deviation to Sampling
+# 
+# As you may have already realized, the sample mean and variance/standard deviation of our data often depend on the sample size of the data and how random the values in our sample are. Another important thing to note is that the estimate of the standard deviation depends greatly on the sampling rate (e.g. for time series the standard deviation likely depends on whether or not you are using daily data, monthly data, yearly data, etc.).
+# 
+# Here is an example demonstrating the sensitivity of surface air temperature (SAT) standard deviation to sampling rate. The data are from the [UTSC weather station](https://weather.utsc.utoronto.ca/data/). You can download the file [here](https://github.com/kls2177/Climate-and-Geophysical-Data-Analysis/blob/master/chapters/Week1b/UTSC_TC_20152018.csv?raw=true) to use in your own notebook.
 
-Here is an example demonstrating the sensitivity of surface air temperature (SAT) standard deviation to sampling rate. The data are from the [UTSC weather station](https://weather.utsc.utoronto.ca/data/). You can download the file [here](https://github.com/kls2177/Climate-and-Geophysical-Data-Analysis/blob/master/chapters/Week1b/UTSC_TC_20152018.csv?raw=true) to use in your own notebook.
+# First, we import the packages we need.
 
-First, we import the packages we need.
+# In[1]:
+
 
 # import packages
 import numpy as np
@@ -12,13 +18,21 @@ from matplotlib import pyplot as plt
 import matplotlib as mpl
 mpl.rc('font',size=16) #set default font size and weight for plots
 
-Next, we load in the time series data that we will be working with.
+
+# Next, we load in the time series data that we will be working with.
+
+# In[2]:
+
 
 # load data: UTSC air temperature data for the years 2015-2018. in deg C. Data are collected hourly.
 filename = 'UTSC_TC_20152018.csv'
 X = np.genfromtxt(filename, delimiter = ',')
 
-Let's adhere to one of our "best practices" when working with data - let's take a look at it.
+
+# Let's adhere to one of our "best practices" when working with data - let's take a look at it.
+
+# In[3]:
+
 
 # define size of plot
 plt.figure(figsize=(10,6))
@@ -31,29 +45,45 @@ plt.ylabel("Temperature ($^{\circ}$C)")
 plt.xlabel("Time Step")
 plt.title("Hourly SAT, UTSC (2015-2018)")
 
-```{tip} 
-*Data analysis* in the sciences requires us to connect what we see in the data to physical processes. What are the key features of the data that you notice? What do you think is the largest source of variability? What do you think is the smallest source of variability? 
-```
 
-To make the data more readable, let's convert the x-axis to number of days rather than number of hours.
+# ```{tip} 
+# *Data analysis* in the sciences requires us to connect what we see in the data to physical processes. What are the key features of the data that you notice? What do you think is the largest source of variability? What do you think is the smallest source of variability? 
+# ```
+
+# To make the data more readable, let's convert the x-axis to number of days rather than number of hours.
+
+# In[4]:
+
 
 # create a time dimension in units of days
 
 # use np.arange() to specify a range of values
 xindex = (np.arange(0,np.size(X),1))/24.0 # divide by 24 hours per day
 
-Now, let's compute the summary statistics we have looked at so far, the **sample mean and standard deviation**.
+
+# Now, let's compute the summary statistics we have looked at so far, the **sample mean and standard deviation**.
+
+# In[5]:
+
 
 # average temperature and standard deviation of hourly temperature
 avg = np.mean(X)
 v = np.std(X)
 print(avg, v)
 
-I'm going to round these to the nearest hundredth.
+
+# I'm going to round these to the nearest hundredth.
+
+# In[6]:
+
 
 print(np.round(avg,2), np.round(v,2))
 
-We can now replot the data and add our summary statistics to the plot.
+
+# We can now replot the data and add our summary statistics to the plot.
+
+# In[7]:
+
 
 # define size of plot
 plt.figure(figsize=(10,6))
@@ -80,7 +110,11 @@ plt.title("Hourly SAT, UTSC (2015-2018)")
 # add legend
 plt.legend(loc="lower right")
 
-Now, let's imagine that instead of hourly data, we only sample the temperature once per month. How does this change the standard deviation?
+
+# Now, let's imagine that instead of hourly data, we only sample the temperature once per month. How does this change the standard deviation?
+
+# In[8]:
+
 
 # average temperature and standard deviation of once-per-month temperature
 
@@ -89,7 +123,11 @@ avg_mnth = np.round(np.mean(X[::720]),2) # note how I've calculated the mean and
 v_mnth = np.round(np.std(X[::720]),2) 
 print(avg_mnth,v_mnth)
 
-Notice how the mean and standard deviation have changed! Let's plot the data to see how what this looks like.
+
+# Notice how the mean and standard deviation have changed! Let's plot the data to see how what this looks like.
+
+# In[9]:
+
 
 # define size of plot
 fig = plt.figure(figsize=(10,6))
@@ -115,7 +153,11 @@ plt.title("Once-per-Month SAT, UTSC (2015-2018)")
 # add legend
 plt.legend(loc="lower right")
 
-Now, let's imagine that we only have one month of hourly data. Let's choose the last month of our record (December 2018). How does this change the standard deviation?
+
+# Now, let's imagine that we only have one month of hourly data. Let's choose the last month of our record (December 2018). How does this change the standard deviation?
+
+# In[10]:
+
 
 # average temperature and standard deviation of the last month of temperature
 
@@ -124,7 +166,11 @@ avg_dec = np.round(np.mean(X[-720:]),2)
 v_dec = np.round(np.std(X[-720:]),2) 
 print(avg_dec,v_dec)
 
-Again, let's plot this data to see what it looks like.
+
+# Again, let's plot this data to see what it looks like.
+
+# In[11]:
+
 
 # define size of plot
 fig = plt.figure(figsize=(10,6))
@@ -149,4 +195,10 @@ plt.title("SAT, UTSC, December 2018")
 
 # add legend
 plt.legend(loc="lower right")
+
+
+# In[ ]:
+
+
+
 

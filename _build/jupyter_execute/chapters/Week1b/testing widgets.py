@@ -1,7 +1,17 @@
+#!/usr/bin/env python
+# coding: utf-8
+
+# In[1]:
+
+
 import ipywidgets as widgets
 import sys
 from IPython.display import display
 from IPython.display import clear_output
+
+
+# In[2]:
+
 
 def create_multipleChoice_widget(description, options, correct_answer):
     if correct_answer not in options:
@@ -40,11 +50,25 @@ def create_multipleChoice_widget(description, options, correct_answer):
     return widgets.VBox([description_out, alternative, check, feedback_out])
     
 
+
+# In[3]:
+
+
 Q1 = create_multipleChoice_widget('blablabla',['apple','banana','pear'],'pear')
 Q2 = create_multipleChoice_widget('lalalalal',['cat','dog','mouse'],'dog')
 Q3 = create_multipleChoice_widget('jajajajaj',['blue','white','red'],'white')
 
+
+# In[4]:
+
+
 display(Q1)
 display(Q2)
 display(Q3)
+
+
+# In[ ]:
+
+
+
 

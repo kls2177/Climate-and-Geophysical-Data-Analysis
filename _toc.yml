@@ -23,3 +23,9 @@
     - file: chapters/Week2/statistical_significance
     - file: chapters/Week2/tstat
     - file: chapters/Week2/resampling
+- file: chapters/Week3/linreg
+  sections:
+    - file: chapters/Week3/basics_linreg
+    - file: chapters/Week3/confidence_intervals
+    - file: chapters/Week3/goodness
+    - file: chapters/Week3/assumptions
