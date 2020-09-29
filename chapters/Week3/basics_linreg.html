@@ -328,8 +328,8 @@
 </div>
 </div>
 </div>
-<p>First, we will load in our ENSO and precipitation data from a global climate model. The ENSO index follows the <a class="reference external" href="https://climatedataguide.ucar.edu/climate-data/nino-sst-indices-nino-12-3-34-4-oni-and-tni">NINO3.4 definition</a> and is the November-December-January-February (NDJF) average.</p>
-<p>The precipitation data is averaged over the California region and over the winter months, December-January-February-March.</p>
+<p>First, we will load in our ENSO and precipitation data from a global climate model. The ENSO index follows the <a class="reference external" href="https://climatedataguide.ucar.edu/climate-data/nino-sst-indices-nino-12-3-34-4-oni-and-tni">NINO3.4 definition</a> and is the November-December-January-February (NDJF) average. You can download the file <a class="reference external" href="https://kls2177.github.io/Climate-and-Geophysical-Data-Analysis/chapters/Week3/linreg.html?raw=true">here</a>.</p>
+<p>The precipitation data is averaged over the California region and over the winter months, December-January-February-March. You can download the file <a class="reference external" href="https://github.com/kls2177/ccia_files/blob/master/CA_PRECIP_DJFM.pickle?raw=true">here</a>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># ENSO Data:</span>
@@ -418,7 +418,7 @@
 <div class="section" id="aside-data-visualization">
 <h3>Aside: Data Visualization<a class="headerlink" href="#aside-data-visualization" title="Permalink to this headline">¶</a></h3>
 <p>Before, we get into the mathematics of linear regression, let’s take a brief detour into <strong>data visualization</strong>. Effective data visualization is not trivial and it is an extremely important part of science communication. Details in diagrams and plots are often simple but can help to convey meaning. For example, we can make our plot more meaningful by highlighting the El Niño and La Niña events.</p>
-<p>SST anomalies in the NINO3.4 region are considered El Niño events if they exceed 0.5<span class="math notranslate nohighlight">\(^\circ\)</span>C and La Niña events if they fall below -0.5<span class="math notranslate nohighlight">\(^\circ\)</span>C. Small magnitude SST anomalies are simply considered neutral ENSO years.</p>
+<p>SST anomalies in the NINO3.4 region are considered El Niño events if they exceed 0.5<span class="math notranslate nohighlight">\(^\circ\)</span>C and La Niña events if they fall below -0.5<span class="math notranslate nohighlight">\(^\circ\)</span>C. Small magnitude SST anomalies are simply considered neutral ENSO years. Let’s use load a file that identifies these events (<a class="reference external" href="https://github.com/kls2177/ccia_files/blob/master/ENSO_NDJF_years_rev.pickle?raw=true">here</a>).</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># unpickle data indicating strong El Niño/La Niña years</span>
@@ -454,7 +454,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7faaa614fd30&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7faf7ca52cf8&gt;
 </pre></div>
 </div>
 <img alt="../../_images/basics_linreg_13_1.png" src="../../_images/basics_linreg_13_1.png" />
@@ -657,7 +657,7 @@ a_0 &amp;= \overline{y} - a_1\overline{x}
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7faaa62bdd30&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7faf7cb6ee10&gt;
 </pre></div>
 </div>
 <img alt="../../_images/basics_linreg_24_1.png" src="../../_images/basics_linreg_24_1.png" />
