@@ -30,9 +30,9 @@ import matplotlib as mpl
 mpl.rc('font',size=16,weight='bold') #set default font size and weight for plots
 
 
-# First, we will load in our ENSO and precipitation data from a global climate model. The ENSO index follows the [NINO3.4 definition](https://climatedataguide.ucar.edu/climate-data/nino-sst-indices-nino-12-3-34-4-oni-and-tni) and is the November-December-January-February (NDJF) average. 
+# First, we will load in our ENSO and precipitation data from a global climate model. The ENSO index follows the [NINO3.4 definition](https://climatedataguide.ucar.edu/climate-data/nino-sst-indices-nino-12-3-34-4-oni-and-tni) and is the November-December-January-February (NDJF) average. You can download the file [here](https://kls2177.github.io/Climate-and-Geophysical-Data-Analysis/chapters/Week3/linreg.html?raw=true).
 # 
-# The precipitation data is averaged over the California region and over the winter months, December-January-February-March. 
+# The precipitation data is averaged over the California region and over the winter months, December-January-February-March. You can download the file [here](https://github.com/kls2177/ccia_files/blob/master/CA_PRECIP_DJFM.pickle?raw=true).
 
 # In[2]:
 
@@ -106,7 +106,7 @@ plt.title('Scatter Plot: NINO3.4 vs. CA Precip')
 # 
 # Before, we get into the mathematics of linear regression, let's take a brief detour into **data visualization**. Effective data visualization is not trivial and it is an extremely important part of science communication. Details in diagrams and plots are often simple but can help to convey meaning. For example, we can make our plot more meaningful by highlighting the El Niño and La Niña events.
 # 
-# SST anomalies in the NINO3.4 region are considered El Niño events if they exceed 0.5$^\circ$C and La Niña events if they fall below -0.5$^\circ$C. Small magnitude SST anomalies are simply considered neutral ENSO years. 
+# SST anomalies in the NINO3.4 region are considered El Niño events if they exceed 0.5$^\circ$C and La Niña events if they fall below -0.5$^\circ$C. Small magnitude SST anomalies are simply considered neutral ENSO years. Let's use load a file that identifies these events ([here](https://github.com/kls2177/ccia_files/blob/master/ENSO_NDJF_years_rev.pickle?raw=true)).
 
 # In[7]:
 
