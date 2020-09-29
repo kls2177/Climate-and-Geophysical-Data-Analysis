@@ -1,0 +1,511 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Goodness of Fit &#8212; Climate and Geophysical Data Analysis</title>
+    
+  <link rel="stylesheet" href="../../_static/css/index.d431a4ee1c1efae0e38bdfebc22debff.css">
+
+    
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+  <link rel="stylesheet"
+    href="../../_static/vendor/open-sans_all/1.44.1/index.css">
+  <link rel="stylesheet"
+    href="../../_static/vendor/lato_latin-ext/1.44.1/index.css">
+
+    
+    <link rel="stylesheet" href="../../_static/sphinx-book-theme.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../../_static/js/index.30270b6e4c972e43c488.js">
+
+    <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/language_data.js"></script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script src="../../_static/sphinx-book-theme.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe,.cell"
+        const thebe_selector_input = "pre,.cell_input div.highlight"
+        const thebe_selector_output = ".output,.cell_output"
+    </script>
+    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <link rel="canonical" href="https://kls2177.github.io/Climate-and-Geophysical-Data-Analysis/chapters/index.html/chapters/Week3/goodness.html" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Assumptions of Linear Regression" href="assumptions.html" />
+    <link rel="prev" title="Confidence Intervals" href="confidence_intervals.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+
+
+<!-- Opengraph tags -->
+<meta property="og:url"         content="https://kls2177.github.io/Climate-and-Geophysical-Data-Analysis/chapters/index.html/chapters/Week3/goodness.html" />
+<meta property="og:type"        content="article" />
+<meta property="og:title"       content="Goodness of Fit" />
+<meta property="og:description" content="Goodness of Fit  How much we trust that the regression coefficient, a_{1}, reflects the true relationship between x(t) and y(t) depends on the spread of the poi" />
+<meta property="og:image"       content="https://kls2177.github.io/Climate-and-Geophysical-Data-Analysis/chapters/index.html/_static/gistemp.png" />
+
+<meta name="twitter:card" content="summary" />
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="../../index.html">
+  
+  <img src="../../_static/gistemp.png" class="logo" alt="logo">
+  
+  
+  <h1 class="site-logo" id="site-title">Climate and Geophysical Data Analysis</h1>
+  
+</a>
+</div>
+
+<form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../index.html">
+   Climate and Geophysical Data Analysis
+  </a>
+ </li>
+</ul>
+<ul class="current nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../introduction/intro.html">
+   Introduction
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Week1a/whatarestatsgoodfor.html">
+   What are statistics good for?
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Week1b/descriptivestats.html">
+   Descriptive Statistics
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Week2/hypothesis_testing.html">
+   Statistical Hypothesis Testing
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="reference internal" href="linreg.html">
+   Linear Regression
+  </a>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="basics_linreg.html">
+     Introduction to Linear Regression
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="confidence_intervals.html">
+     Confidence Intervals
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     Goodness of Fit
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="assumptions.html">
+     Assumptions of Linear Regression
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+</nav>
+
+ <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="row topbar fixed-top container-xl">
+    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+    </div>
+    <div class="col pl-2 topbar-main">
+        
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        
+        <div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../../_sources/chapters/Week3/goodness.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+    
+</div>
+        <!-- Source interaction buttons -->
+
+
+        <!-- Full screen (wrap in <a> to have style consistency -->
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                data-placement="bottom" onclick="toggleFullScreen()" title="Fullscreen mode"><i
+                    class="fas fa-expand"></i></button></a>
+
+        <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/kls2177/Climate-and-Geophysical-Data-Analysis/master?urlpath=tree/chapters/Week3/goodness.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        <a class="colab-button" href="https://colab.research.google.com/github/kls2177/Climate-and-Geophysical-Data-Analysis/blob/master/chapters/Week3/goodness.ipynb"><button type="button" class="btn btn-secondary topbarbtn"
+                title="Launch Colab" data-toggle="tooltip" data-placement="left"><img class="colab-button-logo"
+                    src="../../_static/images/logo_colab.png"
+                    alt="Interact on Colab">Colab</button></a>
+        
+        <button type="button" class="btn btn-secondary topbarbtn"
+            onclick="initThebeSBT()" title="Launch Thebe" data-toggle="tooltip" data-placement="left"><i
+                class="fas fa-play"></i><span style="margin-left: .4em;">Live Code</span></button>
+        
+    </div>
+</div>
+
+    </div>
+
+    <!-- Table of contents -->
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i> Contents
+        </div>
+        <nav id="bd-toc-nav">
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#correlation-coefficient">
+   Correlation Coefficient
+  </a>
+ </li>
+</ul>
+
+        </nav>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="goodness-of-fit">
+<h1>Goodness of Fit<a class="headerlink" href="#goodness-of-fit" title="Permalink to this headline">¶</a></h1>
+<p>How much we trust that the regression coefficient, <span class="math notranslate nohighlight">\(a_{1}\)</span>, reflects the true relationship between <span class="math notranslate nohighlight">\(x(t)\)</span> and <span class="math notranslate nohighlight">\(y(t)\)</span> depends on the spread of the points about the best fit line. <a class="reference internal" href="#goodness"><span class="std std-ref">Figure 12</span></a> illustrates this point. On the right, we see that the points cluster closely to the best fit line, while on the left, the points are more spread out and do not correspond to the best fit line as well.</p>
+<div class="figure align-default" id="goodness">
+<a class="reference internal image-reference" href="../../_images/goodness.png"><img alt="../../_images/goodness.png" src="../../_images/goodness.png" style="width: 921.6px; height: 345.6px;" /></a>
+<p class="caption"><span class="caption-number">Fig. 12 </span><span class="caption-text">Scatter plots showing (a) small scatter/spread and (b) large scatter/spread of points about the best fit line.</span><a class="headerlink" href="#goodness" title="Permalink to this image">¶</a></p>
+</div>
+<p>If the points are closely packed about the regression line, then the fit is considered to be “good”. Quantitatively, the measure of the spread of the points about the best fit line is given by the <strong>correlation coefficient, <span class="math notranslate nohighlight">\(r\)</span></strong>.</p>
+<div class="section" id="correlation-coefficient">
+<h2>Correlation Coefficient<a class="headerlink" href="#correlation-coefficient" title="Permalink to this headline">¶</a></h2>
+<p>Let’s start to write down the expression for the correlation coefficient. What we aim to do is to come up with an expression that tells us how much of the original variance in <span class="math notranslate nohighlight">\(y(t)\)</span> is captured by the fit, <span class="math notranslate nohighlight">\(\hat{y}(t)\)</span>. We will start by defining the total sum of squares for <span class="math notranslate nohighlight">\(y(t)\)</span>, <span class="math notranslate nohighlight">\(S_{yy}\)</span>,</p>
+<div class="math notranslate nohighlight">
+\[
+S_{yy} = \sum\limits_{i=1}^N(y_i(t) - \overline{y})^2
+\]</div>
+<p>This is essentially the variance of <span class="math notranslate nohighlight">\(y(t)\)</span> except that we are not dividing by <span class="math notranslate nohighlight">\(N\)</span>, just to keep things simple.</p>
+<p>Next, let’s write down an expression for the sum of squares for <span class="math notranslate nohighlight">\(\hat{y(t)}\)</span>, which represents the variance in the fit between <span class="math notranslate nohighlight">\(x(t)\)</span> and <span class="math notranslate nohighlight">\(y(t)\)</span> (except again, we are not going to divide by <span class="math notranslate nohighlight">\(N\)</span>),</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align}
+S_{\hat{y}\hat{y}} &amp; = \sum\limits_{i=1}^N(\hat{y_i}(t) - \overline{\hat{y}})^2\\
+&amp; = \sum\limits_{i=1}^N(\hat{y_i}(t) - \overline{y})^2
+\end{align}
+\end{split}\]</div>
+<p>You can prove to yourself that <span class="math notranslate nohighlight">\(\overline{\hat{y}}\)</span> = <span class="math notranslate nohighlight">\(\overline{y}\)</span>.</p>
+<p>So, now we have the two parts of the expression that we need. The ratio of <span class="math notranslate nohighlight">\(S_{\hat{y}\hat{y}}\)</span> to <span class="math notranslate nohighlight">\(S_{yy}\)</span> tells of the fraction of the totoal variance in <span class="math notranslate nohighlight">\(y(t)\)</span> explained by the variance of the fit. This ratio is called the <strong>coefficient of determination, <span class="math notranslate nohighlight">\(r^2\)</span></strong>. The coefficient of determination is the correlation coefficient squared!</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align}
+r^2 &amp; = \frac{\text{explained variance}}{\text{total variance}}\\
+&amp; = \frac{S_{\hat{y}\hat{y}}}{S_{yy}}\\
+&amp; \\
+&amp; \text{Plugging in the expression for $\hat{y}(t)$ and rearranging things, we get ...}\\
+&amp; \\
+&amp; = \frac{(\overline{x^{\prime}y^{\prime}})^2}{\overline{{x^\prime}^2}\overline{{y^\prime}^2}}
+\end{align}
+\end{split}\]</div>
+<p>We are not going to worry about all the algebra required to get to the final expression for the coefficient of determination, but if you are interested you can take a look <a class="reference external" href="https://online.stat.psu.edu/stat462/node/96/">here</a>.</p>
+<p>So, the correlation coefficient is the square-root of <span class="math notranslate nohighlight">\(r^2\)</span>,</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align}
+r &amp; = \pm\sqrt{r^2}\\
+&amp; = \frac{\overline{x^{\prime}y^{\prime}}}{\sigma_x\sigma_y}
+\end{align}
+\end{split}\]</div>
+<p>To summarize the above:</p>
+<p><strong><span class="math notranslate nohighlight">\(r^2\)</span>, the coefficient of determination (aka “r-squared”):</strong></p>
+<ul class="simple">
+<li><p>is the fraction of variance explained by the linear least-squares fit between the two variables</p></li>
+<li><p>always lies between 0 and 1</p></li>
+</ul>
+<p><strong>r, the correlation coefficient:</strong></p>
+<ul class="simple">
+<li><p>varies between -1 and 1</p></li>
+<li><p>indicates the sign of the relationship between the two variables</p></li>
+</ul>
+<p>The <a class="reference internal" href="#correlation"><span class="std std-ref">table</span></a> below shows some values of <span class="math notranslate nohighlight">\(r\)</span> and <span class="math notranslate nohighlight">\(r^2\)</span>.</p>
+<table class="table" id="correlation">
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Correlation Coefficient</p></th>
+<th class="head"><p>Coefficient of Determination</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>0.99</p></td>
+<td><p>0.98</p></td>
+</tr>
+<tr class="row-odd"><td><p>0.90</p></td>
+<td><p>0.81</p></td>
+</tr>
+<tr class="row-even"><td><p>0.70</p></td>
+<td><p>0.49</p></td>
+</tr>
+<tr class="row-odd"><td><p>0.50</p></td>
+<td><p>0.25</p></td>
+</tr>
+<tr class="row-even"><td><p>0.25</p></td>
+<td><p>0.06</p></td>
+</tr>
+</tbody>
+</table>
+<p>Let’s take a look at how good the fit between ENSO and California precipitation is by calculating the correlation coefficient.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># load packages</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pickle</span> <span class="k">as</span> <span class="nn">pickle</span>
+<span class="kn">import</span> <span class="nn">scipy.stats</span> <span class="k">as</span> <span class="nn">st</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">matplotlib</span> <span class="k">as</span> <span class="nn">mpl</span>
+<span class="n">mpl</span><span class="o">.</span><span class="n">rc</span><span class="p">(</span><span class="s1">&#39;font&#39;</span><span class="p">,</span><span class="n">size</span><span class="o">=</span><span class="mi">16</span><span class="p">,</span><span class="n">weight</span><span class="o">=</span><span class="s1">&#39;bold&#39;</span><span class="p">)</span> <span class="c1">#set default font size and weight for plots</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let’s load in our ENSO and California precipitation data again.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># ENSO Data:</span>
+<span class="c1"># unpickle NINO34 (units of degC)</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;NINO34_NDJF.pickle&#39;</span><span class="p">,</span><span class="s1">&#39;rb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">fp</span><span class="p">:</span> <span class="c1">#.pickle files are a python file type</span>
+    <span class="n">nino34</span> <span class="o">=</span> <span class="n">pickle</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">fp</span><span class="p">,</span><span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;latin1&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#  Precipitation Data:</span>
+<span class="c1">#  unpickle CA_PRECIP_DJFM (units of mm/day)</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;CA_PRECIP_DJFM.pickle&#39;</span><span class="p">,</span><span class="s1">&#39;rb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">fp</span><span class="p">:</span> <span class="c1">#.pickle files are a python file type</span>
+    <span class="n">precip_djfm</span> <span class="o">=</span> <span class="n">pickle</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">fp</span><span class="p">,</span><span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;latin1&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We will take a look at two ways to compute the correlation coefficient, first using <code class="docutils literal notranslate"><span class="pre">np.corrcoeff()</span></code> and second using <code class="docutils literal notranslate"><span class="pre">stats.pearsonr()</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># np.corrcoef computes the correlation matrix, </span>
+<span class="c1"># i.e. it computes the correlation between nino34 and itself, precip_djfm and itself and nino34 and precip_djfm</span>
+
+<span class="n">r</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">corrcoef</span><span class="p">(</span><span class="n">nino34</span><span class="p">,</span><span class="n">precip_djfm</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">r</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[1.        0.5020922]
+ [0.5020922 1.       ]]
+</pre></div>
+</div>
+</div>
+</div>
+<p>The correlation between ENSO and California precipitation are the correlations on the off-diagonals while the correlations of each variable with itself are identically 1.0 and along the diagonal.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># extract the correlation we want using slicing</span>
+<span class="n">r</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">corrcoef</span><span class="p">(</span><span class="n">nino34</span><span class="p">,</span><span class="n">precip_djfm</span><span class="p">)[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">r</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.5020922027309636
+</pre></div>
+</div>
+</div>
+</div>
+<p>We can also calculate the correlation coefficient using the following function. This function also provides the p-value for the correlation (we will talk more about computing the statistical significance of correlations in the next section).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># alternative correlation coefficient function including the p-value</span>
+<span class="n">pearsons_corrcoef</span><span class="p">,</span> <span class="n">p_corr</span> <span class="o">=</span> <span class="n">st</span><span class="o">.</span><span class="n">pearsonr</span><span class="p">(</span><span class="n">nino34</span><span class="p">,</span><span class="n">precip_djfm</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The correlation = &quot;</span><span class="p">,</span> <span class="n">pearsons_corrcoef</span><span class="p">,</span> <span class="s2">&quot;with a very small p-value of&quot;</span><span class="p">,</span> <span class="n">p_corr</span><span class="p">,</span> <span class="s2">&quot;i.e., very significant!&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The correlation =  0.5020922027309633 with a very small p-value of 2.6350145043515812e-71 i.e., very significant!
+</pre></div>
+</div>
+</div>
+</div>
+<p>We find that the correlation between ENSO and California precipitation is positive and approximately 0.5. We can express this as the fraction of variance explained by the fit using the r-squared.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># calculate r-squared (aka coefficient of determination)</span>
+<span class="n">r2</span> <span class="o">=</span> <span class="n">r</span><span class="o">**</span><span class="mi">2</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">r2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.252096580043231
+</pre></div>
+</div>
+</div>
+</div>
+<p>So, the fraction of variance in California precipitation explained by ENSO is about 25%. That’s actually a fair bit considering all the meteorological phenomena that can affect precipitation.</p>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "kls2177/Climate-and-Geophysical-Data-Analysis",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./chapters/Week3"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        </div>
+    </div>
+    
+    
+    <div class='prev-next-bottom'>
+        
+    <a class='left-prev' id="prev-link" href="confidence_intervals.html" title="previous page">Confidence Intervals</a>
+    <a class='right-next' id="next-link" href="assumptions.html" title="next page">Assumptions of Linear Regression</a>
+
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Karen Smith<br/>
+        
+            &copy; Copyright 2020.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    
+  <script src="../../_static/js/index.30270b6e4c972e43c488.js"></script>
+
+
+    
+  </body>
+</html>
