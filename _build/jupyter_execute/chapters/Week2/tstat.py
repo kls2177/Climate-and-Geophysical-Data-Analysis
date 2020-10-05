@@ -93,7 +93,7 @@ plt.axhline(0)
 # 
 # $$
 # \begin{align}
-# t &= \frac{\overline{x} - \mu}{\frac{s}{\sqrt{N-1}}}
+# t &= \frac{\overline{x} - \mu}{\frac{s}{\sqrt{N}}}
 # \end{align}
 # $$
 # 
@@ -101,18 +101,18 @@ plt.axhline(0)
 # 
 # Recall from the CLT example that when $N$ $\geq$ 30, the true standard deviation of the distribution of sample means is well-approximated by $\sigma/\sqrt{N}$, where $\sigma$ in the population standard deviation. This is the definition of the $z$-statistic. However, in the case of the $t$-statistic, we write $s$ since the true $\sigma$ is unknown.
 # 
-# Note the similarities between the $z$-statistic and the $t$-statistic. The main differences are the use of $s$ versus $\sigma$ and dividing this by $\sqrt{N-1}$ rather than $\sqrt{N}$ to account for the loss of a degree of freedom.
+# Note the similarities between the $z$-statistic and the $t$-statistic. The main differences are the use of $s$ versus $\sigma$ to account for the loss of a degree of freedom.
 # 
-# As before, we can manipulate the above equation to compute the $t$-statistic for the difference of means. It is very similar to that for the $z$-statistic, but with slight modifications. Assume two samples $N_1$ and $N_2$ are drawn from an normal distributions whose standard deviations are equal ($s_1$ = $s_2$).
+# As before, we can manipulate the above equation to compute the $t$-statistic for the difference of means. It is very similar to that for the $z$-statistic, but with slight modifications. Assume two samples $N_1$ and $N_2$ are drawn from an normal distributions whose standard deviations are similar ($s_1$ $\approx$ $s_2$).
 # 
 # $$
-# t = \frac{(\overline{x_1} - \overline{x_2}) - \Delta_{1,2}}{\hat{s}\sqrt{\frac{1}{N_1 - 1} + \frac{1}{N_2 - 1}}}
+# t = \frac{(\overline{x_1} - \overline{x_2}) - \Delta_{1,2}}{\hat{s}\sqrt{\frac{1}{N_1} + \frac{1}{N_2}}}
 # $$
 # 
 # where
 # 
 # $$
-# \hat{s} = \sqrt{\frac{N_1s_1^2 + N_2s_2^2}{N_1 + N_2 - 2}}
+# \hat{s} = \sqrt{\frac{(N_1-1)s_1^2 + (N_2-1)s_2^2}{N_1 + N_2 - 2}}
 # $$
 # 
 # is the pooled standard deviation, the square-root of the weighted average of the sample variances.
@@ -136,8 +136,8 @@ plt.axhline(0)
 # 
 # $$
 # \begin{align}
-# t &= \frac{\overline{x} - \mu}{\frac{s}{\sqrt{N-1}}} \\
-# \mu & = \overline{x} - t\frac{s}{\sqrt{N-1}}
+# t &= \frac{\overline{x} - \mu}{\frac{s}{\sqrt{N}}} \\
+# \mu & = \overline{x} - t\frac{s}{\sqrt{N}}
 # \end{align}
 # $$
 # 
@@ -145,7 +145,7 @@ plt.axhline(0)
 # 
 # $$
 # \begin{align}
-# \mu & = \overline{x} \pm t_{\alpha/2}\frac{s}{\sqrt{N-1}}
+# \mu & = \overline{x} \pm t_{\alpha/2}\frac{s}{\sqrt{N}}
 # \end{align}
 # $$
 # 
@@ -167,15 +167,15 @@ print(round(tneg,2),round(tpos,2))
 # 
 # $$
 # \begin{align}
-# \mu & = 10 \pm 2.26\frac{5}{\sqrt{9}}\\
-# & = 10 \pm 1.7
+# \mu & = 10 \pm 2.26\frac{5}{\sqrt{10}}\\
+# & = 10 \pm 3.57
 # \end{align}
 # $$
 # 
 # Thus, the 95% confidence intervals on the true population mean, $\mu$ are,
 # 
 # $$
-# 6.23^{\circ}C \leq \mu \leq 13.77^{\circ}C
+# 6.43^{\circ}C \leq \mu \leq 13.57^{\circ}C
 # $$
 # 
 # So, we can see that when we have a smaller sample size, we become less confident in our estimate of the true population mean.
@@ -205,7 +205,7 @@ print(round(tneg,2),round(tpos,2))
 # 
 # **The z-Statistic:**
 # 
-# The critical value $z_c$ = $\pm$ 1.96 for 95% confidence. Thus, the population mean $\mu$ is expected to lie within:
+# The critical value $z_c$ = $\pm$ 1.96 for 95% confidence. Here, we must assume that the standard deviation provided represents the population standard deviation. Thus, the population mean $\mu$ is expected to lie within:
 # 
 # $$
 # \begin{align}
@@ -224,13 +224,13 @@ print(round(tneg,2),round(tpos,2))
 # 
 # $$
 # \begin{align}
-# \mu &= -60 \pm 2.78\frac{8}{\sqrt{4}}\\
-# &= -60 \pm 11.1
+# \mu &= -60 \pm 2.78\frac{8}{\sqrt{5}}\\
+# &= -60 \pm 9.94
 # \end{align}
 # $$
 # 
 # $$
-# -71.1^{\circ}C \leq \mu \leq -48.9^{\circ}C
+# -69.94^{\circ}C \leq \mu \leq -50.06^{\circ}C
 # $$
 # 
 # We can see that we get a more conservative estimate of the confidence intervals using the $t$-statistic, which reasonably reflects the fact that we have a very small sample size.

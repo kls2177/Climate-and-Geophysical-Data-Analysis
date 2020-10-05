@@ -30,7 +30,7 @@ import matplotlib as mpl
 mpl.rc('font',size=16,weight='bold') #set default font size and weight for plots
 
 
-# First, we will load in our ENSO and precipitation data from a global climate model. The ENSO index follows the [NINO3.4 definition](https://climatedataguide.ucar.edu/climate-data/nino-sst-indices-nino-12-3-34-4-oni-and-tni) and is the November-December-January-February (NDJF) average. You can download the file [here](https://kls2177.github.io/Climate-and-Geophysical-Data-Analysis/chapters/Week3/linreg.html?raw=true).
+# First, we will load in our ENSO and precipitation data from a global climate model. The ENSO index follows the [NINO3.4 definition](https://climatedataguide.ucar.edu/climate-data/nino-sst-indices-nino-12-3-34-4-oni-and-tni) and is the November-December-January-February (NDJF) average. You can download the file [here](https://github.com/kls2177/ccia_files/blob/master/NINO34_NDJF.pickle?raw=true).
 # 
 # The precipitation data is averaged over the California region and over the winter months, December-January-February-March. You can download the file [here](https://github.com/kls2177/ccia_files/blob/master/CA_PRECIP_DJFM.pickle?raw=true).
 
