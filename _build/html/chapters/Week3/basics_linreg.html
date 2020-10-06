@@ -48,6 +48,8 @@
     <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.18.0/dist/embed-amd.js"></script>
     <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
     <script >
         const thebe_selector = ".thebe,.cell"
@@ -154,7 +156,22 @@
      Assumptions of Linear Regression
     </a>
    </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="composites.html">
+     Compositing
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="filtering.html">
+     Filtering or Detrending using Regression
+    </a>
+   </li>
   </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Week4/corr.html">
+   Correlation
+  </a>
  </li>
 </ul>
 
@@ -454,7 +471,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7fdfc3a44d30&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7fb678090dd8&gt;
 </pre></div>
 </div>
 <img alt="../../_images/basics_linreg_13_1.png" src="../../_images/basics_linreg_13_1.png" />
@@ -657,7 +674,7 @@ a_0 &amp;= \overline{y} - a_1\overline{x}
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7fdfc3b5ee48&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7fb6783e5d68&gt;
 </pre></div>
 </div>
 <img alt="../../_images/basics_linreg_24_1.png" src="../../_images/basics_linreg_24_1.png" />

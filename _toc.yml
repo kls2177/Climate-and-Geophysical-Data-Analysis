@@ -29,3 +29,11 @@
     - file: chapters/Week3/confidence_intervals
     - file: chapters/Week3/goodness
     - file: chapters/Week3/assumptions
+    - file: chapters/Week3/composites
+    - file: chapters/Week3/filtering
+- file: chapters/Week4/corr
+  sections:
+    - file: chapters/Week4/corr_rev
+    - file: chapters/Week4/stat_corr
+    - file: chapters/Week4/nonpar_corr
+    - file: chapters/Week4/autocorr
