@@ -48,8 +48,6 @@
     <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.18.0/dist/embed-amd.js"></script>
     <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
     <script >
         const thebe_selector = ".thebe,.cell"
@@ -416,13 +414,13 @@ a_0 - t_{\alpha/2}s_{a_0} \leq b_0 \leq a_0 + t_{\alpha/2}s_{a_0}
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># calculate the standard error of the regression, s_y/x</span>
-<span class="n">s_yx</span> <span class="o">=</span> <span class="n">s_a1</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">var</span><span class="p">(</span><span class="n">nino34</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">nino34</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">))</span>
+<span class="n">s_yx</span> <span class="o">=</span> <span class="n">s_a1</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">var</span><span class="p">(</span><span class="n">nino34</span><span class="p">,</span><span class="n">ddof</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">nino34</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">))</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">s_yx</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.8350837859208119
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.8354636284630473
 </pre></div>
 </div>
 </div>
@@ -431,7 +429,7 @@ a_0 - t_{\alpha/2}s_{a_0} \leq b_0 \leq a_0 + t_{\alpha/2}s_{a_0}
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># calculate the standard error of the intercept, s_a0</span>
-<span class="n">s_a0</span> <span class="o">=</span> <span class="n">s_yx</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">nino34</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">/</span><span class="p">((</span><span class="nb">len</span><span class="p">(</span><span class="n">nino34</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="nb">len</span><span class="p">(</span><span class="n">nino34</span><span class="p">)</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">var</span><span class="p">(</span><span class="n">nino34</span><span class="p">)))</span>
+<span class="n">s_a0</span> <span class="o">=</span> <span class="n">s_yx</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">nino34</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">/</span><span class="p">((</span><span class="nb">len</span><span class="p">(</span><span class="n">nino34</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="nb">len</span><span class="p">(</span><span class="n">nino34</span><span class="p">)</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">var</span><span class="p">(</span><span class="n">nino34</span><span class="p">,</span><span class="n">ddof</span><span class="o">=</span><span class="mi">1</span><span class="p">)))</span>
 
 <span class="c1"># calculate the 95% confidence interval on the intercept</span>
 <span class="n">confidence_interval_yint</span> <span class="o">=</span> <span class="n">t_crit</span><span class="o">*</span><span class="n">s_a0</span>
@@ -496,7 +494,7 @@ s_{\hat{y}} = s_{y/x}\sqrt{\frac{1}{N} + \frac{(x_i(t) - \overline{x})^2}{\sum\l
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7fdb5736fdd8&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7fd64b245cf8&gt;
 </pre></div>
 </div>
 <img alt="../../_images/confidence_intervals_19_1.png" src="../../_images/confidence_intervals_19_1.png" />
