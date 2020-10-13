@@ -66,6 +66,8 @@ plt.show()
 acorr = np.correlate(x,x/len(x),'same')
 
 
+# Note that we use the function argument `'same'` to allow for more overlap between the two time series without having to pad the arrays with too many zeros when there is insufficient overlap. The size of the output array will be the same size as the input arrays (see the following [documentation](https://numpy.org/doc/stable/reference/generated/numpy.convolve.html) for more information).
+# 
 # To visualize the autocorrelation function, we plot it as a function of lag, $\tau$.
 
 # In[4]:

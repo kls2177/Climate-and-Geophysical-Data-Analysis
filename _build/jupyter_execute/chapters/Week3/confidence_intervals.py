@@ -139,7 +139,7 @@ print("The true value of the slope is then", np.round(slope,2), "+/-", np.round(
 
 
 # calculate the standard error of the regression, s_y/x
-s_yx = s_a1*np.sqrt(np.var(nino34)*(len(nino34)-1))
+s_yx = s_a1*np.sqrt(np.var(nino34,ddof=1)*(len(nino34)-1))
 print(s_yx)
 
 
@@ -149,7 +149,7 @@ print(s_yx)
 
 
 # calculate the standard error of the intercept, s_a0
-s_a0 = s_yx*np.sqrt(np.sum(nino34**2)/((len(nino34)-1)*len(nino34)*np.var(nino34)))
+s_a0 = s_yx*np.sqrt(np.sum(nino34**2)/((len(nino34)-1)*len(nino34)*np.var(nino34,ddof=1)))
 
 # calculate the 95% confidence interval on the intercept
 confidence_interval_yint = t_crit*s_a0
