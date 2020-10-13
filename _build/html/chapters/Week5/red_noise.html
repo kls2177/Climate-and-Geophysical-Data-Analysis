@@ -1,0 +1,511 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Introduction to Red Noise &#8212; Climate and Geophysical Data Analysis</title>
+    
+  <link rel="stylesheet" href="../../_static/css/index.73d71520a4ca3b99cfee5594769eaaae.css">
+
+    
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+  <link rel="stylesheet"
+    href="../../_static/vendor/open-sans_all/1.44.1/index.css">
+  <link rel="stylesheet"
+    href="../../_static/vendor/lato_latin-ext/1.44.1/index.css">
+
+    
+    <link rel="stylesheet" href="../../_static/sphinx-book-theme.2d2078699c18a0efb88233928e1cf6ed.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../../_static/js/index.3da636dd464baa7582d2.js">
+
+    <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/language_data.js"></script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../../_static/sphinx-book-theme.be0a4a0c39cd630af62a2fcf693f3f06.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.18.0/dist/embed-amd.js"></script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe,.cell"
+        const thebe_selector_input = "pre,.cell_input div.highlight"
+        const thebe_selector_output = ".output,.cell_output"
+    </script>
+    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <link rel="canonical" href="https://kls2177.github.io/Climate-and-Geophysical-Data-Analysis/chapters/index.html/chapters/Week5/red_noise.html" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Example: Correlation with Memory" href="autocorr_implications.html" />
+    <link rel="prev" title="Autocorrelation in Climate and Geophysical Data" href="autocorr_example.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+
+
+<!-- Opengraph tags -->
+<meta property="og:url"         content="https://kls2177.github.io/Climate-and-Geophysical-Data-Analysis/chapters/index.html/chapters/Week5/red_noise.html" />
+<meta property="og:type"        content="article" />
+<meta property="og:title"       content="Introduction to Red Noise" />
+<meta property="og:description" content="Introduction to Red Noise  To determine by how much we need to decrease N to account for persistence in a time series, we will use a theoretical model for an au" />
+<meta property="og:image"       content="https://kls2177.github.io/Climate-and-Geophysical-Data-Analysis/chapters/index.html/_static/gistemp.png" />
+
+<meta name="twitter:card" content="summary" />
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="../../index.html">
+  
+  <img src="../../_static/gistemp.png" class="logo" alt="logo">
+  
+  
+  <h1 class="site-logo" id="site-title">Climate and Geophysical Data Analysis</h1>
+  
+</a>
+</div>
+
+<form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../index.html">
+   Climate and Geophysical Data Analysis
+  </a>
+ </li>
+</ul>
+<ul class="current nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../introduction/intro.html">
+   Introduction
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Week1a/whatarestatsgoodfor.html">
+   What are statistics good for?
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Week1b/descriptivestats.html">
+   Descriptive Statistics
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Week2/hypothesis_testing.html">
+   Statistical Hypothesis Testing
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Week3/linreg.html">
+   Linear Regression
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Week4/corr.html">
+   Correlation
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="reference internal" href="persistence.html">
+   Persistence in Time Series
+  </a>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="autocorr_example.html">
+     Autocorrelation in Climate and Geophysical Data
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     Introduction to Red Noise
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="autocorr_implications.html">
+     Example: Correlation with Memory
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="n_eff.html">
+     Accounting for Autocorrelation: Effective Sample Size
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+</nav>
+
+ <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="row topbar fixed-top container-xl">
+    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+    </div>
+    <div class="col pl-2 topbar-main">
+        
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        
+        <div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../../_sources/chapters/Week5/red_noise.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+    
+</div>
+        <!-- Source interaction buttons -->
+
+
+        <!-- Full screen (wrap in <a> to have style consistency -->
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+                title="Fullscreen mode"><i
+                    class="fas fa-expand"></i></button></a>
+
+        <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/kls2177/Climate-and-Geophysical-Data-Analysis/master?urlpath=tree/chapters/Week5/red_noise.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        <a class="colab-button" href="https://colab.research.google.com/github/kls2177/Climate-and-Geophysical-Data-Analysis/blob/master/chapters/Week5/red_noise.ipynb"><button type="button" class="btn btn-secondary topbarbtn"
+                title="Launch Colab" data-toggle="tooltip" data-placement="left"><img class="colab-button-logo"
+                    src="../../_static/images/logo_colab.png"
+                    alt="Interact on Colab">Colab</button></a>
+        
+        <button type="button" class="btn btn-secondary topbarbtn"
+            onclick="initThebeSBT()" title="Launch Thebe" data-toggle="tooltip" data-placement="left"><i
+                class="fas fa-play"></i><span style="margin-left: .4em;">Live Code</span></button>
+        
+    </div>
+</div>
+
+    </div>
+
+    <!-- Table of contents -->
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+        
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i> Contents
+        </div>
+        <nav id="bd-toc-nav">
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#definition-of-red-noise">
+   Definition of Red Noise
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#coefficients-of-a-red-noise-time-series">
+     Coefficients of a Red Noise Time Series
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#autocorrelation-function-of-a-red-noise-time-series">
+   Autocorrelation Function of a Red Noise Time Series
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#properies-of-the-red-noise-autocorrelation-function-acf">
+     Properies of the Red Noise Autocorrelation Function (ACF)
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#white-noise">
+   White Noise
+  </a>
+ </li>
+</ul>
+
+        </nav>
+        
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="introduction-to-red-noise">
+<h1>Introduction to Red Noise<a class="headerlink" href="#introduction-to-red-noise" title="Permalink to this headline">¶</a></h1>
+<p>To determine by how much we need to decrease <span class="math notranslate nohighlight">\(N\)</span> to account for persistence in a time series, we will use a theoretical model for an autocorrelated time series, called a <strong>red noise</strong> time series.</p>
+<p>If you scroll down, you will see a lot of equations. <em>Don’t panic</em>. The math is actually not that bad. The equations actually help to demonstrate that red noise time series are simpler than you might first think. Let’s start with the definition of a red noise time series.</p>
+<div class="section" id="definition-of-red-noise">
+<h2>Definition of Red Noise<a class="headerlink" href="#definition-of-red-noise" title="Permalink to this headline">¶</a></h2>
+<p>A red noise time series, <span class="math notranslate nohighlight">\(x(t)\)</span>, is defined mathematically as:</p>
+<div class="math notranslate nohighlight">
+\[
+x(t) = ax(t - \Delta t) + b\epsilon(t)
+\]</div>
+<p>where,</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(x\)</span> is a standardized variable</p></li>
+<li><p><span class="math notranslate nohighlight">\(\Delta t\)</span> is the time interval between adjacent data points (and is assumed to be a constant)</p></li>
+<li><p><span class="math notranslate nohighlight">\(a\)</span> lies between 0 and 1 and measures the <em>memory</em> of the previous state, i.e., the larger the value of <span class="math notranslate nohighlight">\(a\)</span>, the more alike adjacent data points are.</p></li>
+<li><p>(<span class="math notranslate nohighlight">\(t - \Delta t\)</span>) is the time before time <span class="math notranslate nohighlight">\(t\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\epsilon(t)\)</span> is a random variable drawn from the standard normal distribution and represents <em>white noise</em> in the system (we will formally define white noise later)</p></li>
+</ul>
+<div class="section" id="coefficients-of-a-red-noise-time-series">
+<h3>Coefficients of a Red Noise Time Series<a class="headerlink" href="#coefficients-of-a-red-noise-time-series" title="Permalink to this headline">¶</a></h3>
+<p>To determine <span class="math notranslate nohighlight">\(a\)</span>, we multiply the both sides of the equation above by <span class="math notranslate nohighlight">\(x(t - \Delta t)\)</span> and take the time average,</p>
+<div class="math notranslate nohighlight">
+\[
+\overline{x(t)x(t - \Delta t)} = a\overline{x(t - \Delta t)x(t - \Delta t)} + b\overline{\epsilon(t)x(t - \Delta t)}
+\]</div>
+<p>Since <span class="math notranslate nohighlight">\(x\)</span> is standardized (variance of 1), the first term of the right-hand-side (rhs) of the equation is <span class="math notranslate nohighlight">\(a\)</span> x 1. In addition, since <span class="math notranslate nohighlight">\(\epsilon(t)\)</span> is random in time, assuming your time series is long enough, the time average of <span class="math notranslate nohighlight">\(\epsilon(t)\)</span> is zero and, thus, the entire last term on the rhs, is also zero.</p>
+<p>With these simplifications, we end up with,</p>
+<div class="math notranslate nohighlight">
+\[
+a = \overline{x(t)x(t - \Delta t)}
+\]</div>
+<p>This expression should look somewhat familiar. Recall the expression for <strong>autovariance</strong> (<span class="math notranslate nohighlight">\(\gamma\)</span>). The above expression is simply a statement of the autovariance for <span class="math notranslate nohighlight">\(\tau\)</span> = 1 (<span class="math notranslate nohighlight">\(\Delta t\)</span> -&gt; <span class="math notranslate nohighlight">\(\tau\)</span> = 1).</p>
+<p>That is, <em><strong><span class="math notranslate nohighlight">\(a\)</span> is the autocorrelation at lag <span class="math notranslate nohighlight">\(\Delta t\)</span> (aka the lag-1 autocorrelation)</strong></em>! Cool!</p>
+<div class="math notranslate nohighlight">
+\[
+a = \gamma(\tau = 1) = \gamma(\Delta t) = \gamma(1)
+\]</div>
+<p>Since <span class="math notranslate nohighlight">\(x\)</span> is standardized, the above expression is also a statement of the <strong>autocorrelation</strong> (<span class="math notranslate nohighlight">\(\rho\)</span>) for <span class="math notranslate nohighlight">\(\tau\)</span> = 1 (<span class="math notranslate nohighlight">\(\Delta t\)</span> -&gt; <span class="math notranslate nohighlight">\(\tau\)</span> = 1).</p>
+<div class="math notranslate nohighlight">
+\[
+a = \rho(\tau = 1) = \rho(\Delta t) = \rho(1)
+\]</div>
+<p>What about <span class="math notranslate nohighlight">\(b\)</span>, the magnitude of the <em>white noise</em> term?</p>
+<p>Since <span class="math notranslate nohighlight">\(x(t)\)</span> and <span class="math notranslate nohighlight">\(\epsilon(t)\)</span> both have unit variance, we can square both sides of the red noise equation and then take the time average to solve for <span class="math notranslate nohighlight">\(b\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align}
+\overline{x(t)^2} &amp; = a^2\overline{x(t - \Delta t)^2} + b^2\overline{\epsilon(t)^2}\\
+1 &amp; = a^2 + b^2\\
+b &amp; = \sqrt{1 - a^2}
+\end{align}
+\end{split}\]</div>
+</div>
+</div>
+<div class="section" id="autocorrelation-function-of-a-red-noise-time-series">
+<h2>Autocorrelation Function of a Red Noise Time Series<a class="headerlink" href="#autocorrelation-function-of-a-red-noise-time-series" title="Permalink to this headline">¶</a></h2>
+<p>Now, that we have defined a red noise time series to be one the explicity includes autocorrelation, let’s take a look at what this theoretical autocorrelation function looks like.</p>
+<p>We will start by writing down the values of <span class="math notranslate nohighlight">\(x(t)\)</span>, <span class="math notranslate nohighlight">\(x(t + \Delta t)\)</span> and <span class="math notranslate nohighlight">\(x(t + 2\Delta t)\)</span>, so that we can start to see a pattern emerge:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align}
+x(t) &amp; = ax(t - \Delta t) + b\epsilon(t)\\
+x(t + \Delta t) &amp; = ax(t) + b\epsilon(t + \Delta t)\\
+x(t + 2\Delta t) &amp; = ax(t - \Delta t) + b\epsilon(t + 2\Delta t)\\
+\end{align}
+\end{split}\]</div>
+<p>Now, we will develop an expression for the autocorreltion function by focusing on the last example,</p>
+<div class="math notranslate nohighlight">
+\[
+x(t + 2\Delta t) = ax(t - \Delta t) + b\epsilon(t + 2\Delta t)
+\]</div>
+<p>We can derive an expression for the autocorrelation at lag <span class="math notranslate nohighlight">\(2\Delta t\)</span> (the lag-2 autocorrelation) by multiplying both sides of the equation by <span class="math notranslate nohighlight">\(x(t)\)</span> and taking the time average:</p>
+<div class="math notranslate nohighlight">
+\[
+\overline{x(t)x(t + 2\Delta t)} = a\overline{x(t)x(t - \Delta t)} + b\overline{x(t)\epsilon(t + 2\Delta t)}
+\]</div>
+<p>As before the time average of the last term on the rhs is zero. Thus, we can rewrite the above in terms of autocorrelation:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align}
+\rho(2\Delta t) &amp; = a\rho(\Delta t)\\
+&amp; = \rho^2(\Delta t)
+\end{align}
+\end{split}\]</div>
+<p>where <span class="math notranslate nohighlight">\(a = \rho(\Delta t)\)</span> (see above).</p>
+<p>What does this tell us? <strong>This is important!</strong> The above tells us that the lag-2 autocorrelation of a red-noise time series is equal to the lag-1 autocorrelation squared.</p>
+<p>Now, we can generalize this statement by recognizing the pattern we noted above when we wrote down the red noise equation for consecutive time points. Thus, for lag-<span class="math notranslate nohighlight">\(n\)</span>, where <span class="math notranslate nohighlight">\(n\)</span> = 1,…,<span class="math notranslate nohighlight">\(N\)</span>, the autocorrelation becomes,</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align}
+\rho(n\Delta t) &amp; = a\rho((n-1)\Delta t)\\
+&amp; = \rho^n(\Delta t)
+\end{align}
+\end{split}\]</div>
+<p>This the <strong>autocorrelation function for our red noise time series!</strong></p>
+<div class="section" id="properies-of-the-red-noise-autocorrelation-function-acf">
+<h3>Properies of the Red Noise Autocorrelation Function (ACF)<a class="headerlink" href="#properies-of-the-red-noise-autocorrelation-function-acf" title="Permalink to this headline">¶</a></h3>
+<p>A function that behaves in the same way as the Red Noise ACF is the exponential: <span class="math notranslate nohighlight">\(e^{(nx)}\)</span> = <span class="math notranslate nohighlight">\((e^x)^n\)</span>. So, it turns out that the ACF for a red noise time series is an exponential:</p>
+<div class="math notranslate nohighlight">
+\[
+\rho(n\Delta t) = e^{\frac{-n\Delta t}{T_e}}
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(T_e\)</span> is is the <strong><span class="math notranslate nohighlight">\(e\)</span>-folding time-scale</strong> of the autocorrelation function.</p>
+<p>In other words, the autocorrelation function of red noise decays exponentially as a function of lag <span class="math notranslate nohighlight">\(\tau\)</span> = <span class="math notranslate nohighlight">\(n\Delta t\)</span>.</p>
+<p>The <span class="math notranslate nohighlight">\(e\)</span>-folding time-scale is the time it takes for the autocorrelation to drop to 1/<span class="math notranslate nohighlight">\(e\)</span> = 0.368 of the original value (<span class="math notranslate nohighlight">\(\rho\)</span>(0)=1), and can be computed as,</p>
+<div class="math notranslate nohighlight">
+\[
+T_e = -\frac{\Delta t}{ln(a)}
+\]</div>
+<p>Let’s take a look at an example of what we mean by the <span class="math notranslate nohighlight">\(e\)</span>-folding time-scale.</p>
+<div class="tip admonition">
+<p class="admonition-title">Question #1</p>
+<p>Suppose we have a red noise time series with a temporal resolution of <span class="math notranslate nohighlight">\(\Delta t\)</span> = 1 day. The lag-1 autocorrelation of the time series is <span class="math notranslate nohighlight">\(\rho(1)\)</span> = 0.6, what is the e-folding time-scale?</p>
+</div>
+<p>We can simply plug these values into the equation for <span class="math notranslate nohighlight">\(T_e\)</span> above.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="c1"># calculate the e-folding time scale</span>
+<span class="n">Te</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="mf">0.6</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">Te</span><span class="p">,</span><span class="mi">2</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1.96
+</pre></div>
+</div>
+</div>
+</div>
+<p>The <span class="math notranslate nohighlight">\(e\)</span>-folding time-scale of the autocorrelation function is approximately 2 days. In other words, the time series loses approximately ~37% of its memory of its of its previous state after ~2 days.</p>
+</div>
+</div>
+<div class="section" id="white-noise">
+<h2>White Noise<a class="headerlink" href="#white-noise" title="Permalink to this headline">¶</a></h2>
+<p>Recall that a red noise process is defined as,</p>
+<div class="math notranslate nohighlight">
+\[
+x(t) = ax(t - \Delta t) + b\epsilon(t)
+\]</div>
+<p>A <strong>white noise</strong> process is a special case, where <span class="math notranslate nohighlight">\(\rho(\Delta t &gt;\)</span> 0) = 0, i.e. <span class="math notranslate nohighlight">\(a\)</span> = 0</p>
+<p>White noise has zero autocorrelation (no memory of the previous time steps). In geophysical applications, white noise is generally assumed to be normally distributed.</p>
+<p>In terms of our previous regression example, our goal is for the ACF of our residuals to look like the ACF for white noise.</p>
+<p>In the next section, we will take a closer look at the implications of autocorrelation in time series.</p>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "kls2177/Climate-and-Geophysical-Data-Analysis",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./chapters/Week5"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        </div>
+    </div>
+    
+    
+    <div class='prev-next-bottom'>
+        
+    <a class='left-prev' id="prev-link" href="autocorr_example.html" title="previous page">Autocorrelation in Climate and Geophysical Data</a>
+    <a class='right-next' id="next-link" href="autocorr_implications.html" title="next page">Example: Correlation with Memory</a>
+
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Karen Smith<br/>
+        
+            &copy; Copyright 2020.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    
+  <script src="../../_static/js/index.3da636dd464baa7582d2.js"></script>
+
+
+    
+  </body>
+</html>
