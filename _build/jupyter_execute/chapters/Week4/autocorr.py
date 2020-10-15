@@ -17,9 +17,27 @@
 # 
 # where $t_1$ and $t_N$ are the starting and end points of the time series, respectively, and the prime denotes departures from the time mean.
 # 
-# For $\tau$ = 0, the autocovariance is $\gamma$(0) = $\overline{x^{\prime2}}$ = variance.
+# It often helps to understand what's going on in the above equation if we write out what this expression looks like for a certain value of $\tau$. Let's look at $\tau$ = 1 assuming $t_1$ = 0 and $t_N$ = $N$:
 # 
-# **Autocorrelation** ($\rho$($\tau$)) is simply $\frac{\gamma(\tau)}{\gamma(0)}$ , i.e. the autocovariance divided by the variance.
+# $$
+# \gamma(1) = \frac{1}{N-1}\left(x^{\prime}(0) \cdot x^{\prime}(1) + x^{\prime}(1) \cdot x^{\prime}(2) + x^{\prime}(2) \cdot x^{\prime}(3) + ... + x^{\prime}(N-1) \cdot x^{\prime}(N)\right)
+# $$
+# 
+# What about $\tau$ = 2?
+# 
+# $$
+# \gamma(2) = \frac{1}{N-2}\left(x^{\prime}(0) \cdot x^{\prime}(2) + x^{\prime}(1) \cdot x^{\prime}(3) + x^{\prime}(2) \cdot x^{\prime}(4) + ... + x^{\prime}(N-2) \cdot x^{\prime}(N)\right)
+# $$
+# 
+# And $\tau$ = $N$-1?
+# 
+# $$
+# \gamma(N-1) = \left(x^{\prime}(0) \cdot x^{\prime}(N-1) + x^{\prime}(1) \cdot x^{\prime}(N)\right)
+# $$
+# 
+# For $\tau$ = 0, the autocovariance is $\gamma$(0) = $\frac{\overline{x^{\prime2}}}{N}$ = variance.
+# 
+# **Autocorrelation**, $\rho$($\tau$), is simply $\frac{\gamma(\tau)}{\gamma(0)}$ , i.e. the autocovariance divided by the variance.
 # 
 # ### *Key Characteristics of Autocovariance/Autocorrelation:*
 # 
@@ -57,7 +75,13 @@ plt.title("Time Series of Random Normal Data")
 plt.show()
 
 
-# We can calculate the autocorrelation function using the `np.correlate()` function. Note that this function computes the autocovariance (except it does not divide by $N$), not the autocorrelation, so we have to make some adjustments to convert to autocorrelation. In this case, we simply divide by $N$, because we are using random data drawn from a standard normal distribution, i.e. $\sigma$ = 1. 
+# ### A few notes on the `np.correlate()` function...
+# 
+# We can calculate the autocorrelation function using the `np.correlate()` function. This function uses an algorithm that computes the autocovariance (but does not include the $\frac{1}{(t_N - 1) - t_1}$ factor), not the autocorrelation, so we have to make some adjustments to convert to autocorrelation. In addition, we use the function argument `'same'` to allow for more overlap between the two time series. Where the time series do not overlap, the arrays are "padded" with zeros, such that the $\frac{1}{(t_N - 1) - t_1}$ factor is always equal to $\frac{1}{N}$. The size of the output array will be the "same" size as the input arrays (see the following [documentation](https://numpy.org/doc/stable/reference/generated/numpy.convolve.html) for more information).
+# 
+# ### ... Back to our example
+# 
+# Thus, in order to get the autocorrelation, we simply divide by $N$, because we are using random data drawn from a standard normal distribution, i.e. $\sigma$ = 1. 
 
 # In[3]:
 
@@ -66,8 +90,6 @@ plt.show()
 acorr = np.correlate(x,x/len(x),'same')
 
 
-# Note that we use the function argument `'same'` to allow for more overlap between the two time series without having to pad the arrays with too many zeros when there is insufficient overlap. The size of the output array will be the same size as the input arrays (see the following [documentation](https://numpy.org/doc/stable/reference/generated/numpy.convolve.html) for more information).
-# 
 # To visualize the autocorrelation function, we plot it as a function of lag, $\tau$.
 
 # In[4]:
