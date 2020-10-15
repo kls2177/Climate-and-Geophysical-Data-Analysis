@@ -48,8 +48,6 @@
     <script src="../../_static/sphinx-book-theme.be0a4a0c39cd630af62a2fcf693f3f06.js"></script>
     <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.18.0/dist/embed-amd.js"></script>
     <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
     <script >
         const thebe_selector = ".thebe,.cell"
@@ -272,6 +270,22 @@
    </em>
   </a>
  </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#a-few-notes-on-the-np-correlate-function">
+   A few notes on the
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     np.correlate()
+    </span>
+   </code>
+   function…
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#back-to-our-example">
+   … Back to our example
+  </a>
+ </li>
 </ul>
 
         </nav>
@@ -294,8 +308,23 @@
 \gamma(\tau) = \frac{1}{(t_N - \tau) - t_1}\sum_{t=t_1}^{t_N - \tau}x^{\prime}(t) \cdot x^{\prime}(t + \tau)
 \]</div>
 <p>where <span class="math notranslate nohighlight">\(t_1\)</span> and <span class="math notranslate nohighlight">\(t_N\)</span> are the starting and end points of the time series, respectively, and the prime denotes departures from the time mean.</p>
-<p>For <span class="math notranslate nohighlight">\(\tau\)</span> = 0, the autocovariance is <span class="math notranslate nohighlight">\(\gamma\)</span>(0) = <span class="math notranslate nohighlight">\(\overline{x^{\prime2}}\)</span> = variance.</p>
-<p><strong>Autocorrelation</strong> (<span class="math notranslate nohighlight">\(\rho\)</span>(<span class="math notranslate nohighlight">\(\tau\)</span>)) is simply <span class="math notranslate nohighlight">\(\frac{\gamma(\tau)}{\gamma(0)}\)</span> , i.e. the autocovariance divided by the variance.</p>
+<p>It often helps to understand what’s going on in the above equation if we write out what this expression looks like for a certain value of <span class="math notranslate nohighlight">\(\tau\)</span>. Let’s look at <span class="math notranslate nohighlight">\(\tau\)</span> = 1 assuming <span class="math notranslate nohighlight">\(t_1\)</span> = 0 and <span class="math notranslate nohighlight">\(t_N\)</span> = <span class="math notranslate nohighlight">\(N\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[
+\gamma(1) = \frac{1}{N-1}\left(x^{\prime}(0) \cdot x^{\prime}(1) + x^{\prime}(1) \cdot x^{\prime}(2) + x^{\prime}(2) \cdot x^{\prime}(3) + ... + x^{\prime}(N-1) \cdot x^{\prime}(N)\right)
+\]</div>
+<p>What about <span class="math notranslate nohighlight">\(\tau\)</span> = 2?</p>
+<div class="math notranslate nohighlight">
+\[
+\gamma(2) = \frac{1}{N-2}\left(x^{\prime}(0) \cdot x^{\prime}(2) + x^{\prime}(1) \cdot x^{\prime}(3) + x^{\prime}(2) \cdot x^{\prime}(4) + ... + x^{\prime}(N-2) \cdot x^{\prime}(N)\right)
+\]</div>
+<p>And <span class="math notranslate nohighlight">\(\tau\)</span> = <span class="math notranslate nohighlight">\(N\)</span>-1?</p>
+<div class="math notranslate nohighlight">
+\[
+\gamma(N-1) = \left(x^{\prime}(0) \cdot x^{\prime}(N-1) + x^{\prime}(1) \cdot x^{\prime}(N)\right)
+\]</div>
+<p>For <span class="math notranslate nohighlight">\(\tau\)</span> = 0, the autocovariance is <span class="math notranslate nohighlight">\(\gamma\)</span>(0) = <span class="math notranslate nohighlight">\(\frac{\overline{x^{\prime2}}}{N}\)</span> = variance.</p>
+<p><strong>Autocorrelation</strong>, <span class="math notranslate nohighlight">\(\rho\)</span>(<span class="math notranslate nohighlight">\(\tau\)</span>), is simply <span class="math notranslate nohighlight">\(\frac{\gamma(\tau)}{\gamma(0)}\)</span> , i.e. the autocovariance divided by the variance.</p>
 <div class="section" id="key-characteristics-of-autocovariance-autocorrelation">
 <h2><em>Key Characteristics of Autocovariance/Autocorrelation:</em><a class="headerlink" href="#key-characteristics-of-autocovariance-autocorrelation" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
@@ -335,7 +364,14 @@
 <img alt="../../_images/autocorr_3_0.png" src="../../_images/autocorr_3_0.png" />
 </div>
 </div>
-<p>We can calculate the autocorrelation function using the <code class="docutils literal notranslate"><span class="pre">np.correlate()</span></code> function. Note that this function computes the autocovariance (except it does not divide by <span class="math notranslate nohighlight">\(N\)</span>), not the autocorrelation, so we have to make some adjustments to convert to autocorrelation. In this case, we simply divide by <span class="math notranslate nohighlight">\(N\)</span>, because we are using random data drawn from a standard normal distribution, i.e. <span class="math notranslate nohighlight">\(\sigma\)</span> = 1.</p>
+</div>
+<div class="section" id="a-few-notes-on-the-np-correlate-function">
+<h2>A few notes on the <code class="docutils literal notranslate"><span class="pre">np.correlate()</span></code> function…<a class="headerlink" href="#a-few-notes-on-the-np-correlate-function" title="Permalink to this headline">¶</a></h2>
+<p>We can calculate the autocorrelation function using the <code class="docutils literal notranslate"><span class="pre">np.correlate()</span></code> function. This function uses an algorithm that computes the autocovariance (but does not include the <span class="math notranslate nohighlight">\(\frac{1}{(t_N - 1) - t_1}\)</span> factor), not the autocorrelation, so we have to make some adjustments to convert to autocorrelation. In addition, we use the function argument <code class="docutils literal notranslate"><span class="pre">'same'</span></code> to allow for more overlap between the two time series. Where the time series do not overlap, the arrays are “padded” with zeros, such that the <span class="math notranslate nohighlight">\(\frac{1}{(t_N - 1) - t_1}\)</span> factor is always equal to <span class="math notranslate nohighlight">\(\frac{1}{N}\)</span>. The size of the output array will be the “same” size as the input arrays (see the following <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.convolve.html">documentation</a> for more information).</p>
+</div>
+<div class="section" id="back-to-our-example">
+<h2>… Back to our example<a class="headerlink" href="#back-to-our-example" title="Permalink to this headline">¶</a></h2>
+<p>Thus, in order to get the autocorrelation, we simply divide by <span class="math notranslate nohighlight">\(N\)</span>, because we are using random data drawn from a standard normal distribution, i.e. <span class="math notranslate nohighlight">\(\sigma\)</span> = 1.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># calculate the autocorrelation of x</span>
@@ -344,7 +380,6 @@
 </div>
 </div>
 </div>
-<p>Note that we use the function argument <code class="docutils literal notranslate"><span class="pre">'same'</span></code> to allow for more overlap between the two time series without having to pad the arrays with too many zeros when there is insufficient overlap. The size of the output array will be the same size as the input arrays (see the following <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.convolve.html">documentation</a> for more information).</p>
 <p>To visualize the autocorrelation function, we plot it as a function of lag, <span class="math notranslate nohighlight">\(\tau\)</span>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
