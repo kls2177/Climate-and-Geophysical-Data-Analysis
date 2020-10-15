@@ -48,8 +48,6 @@
     <script src="../../_static/sphinx-book-theme.be0a4a0c39cd630af62a2fcf693f3f06.js"></script>
     <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.18.0/dist/embed-amd.js"></script>
     <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
     <script >
         const thebe_selector = ".thebe,.cell"
@@ -421,7 +419,7 @@ T_e = -\frac{\Delta t}{ln(a)}
 <p>Suppose we have a red noise time series with a temporal resolution of <span class="math notranslate nohighlight">\(\Delta t\)</span> = 1 day. The lag-1 autocorrelation of the time series is <span class="math notranslate nohighlight">\(\rho(1)\)</span> = 0.6, what is the e-folding time-scale?</p>
 </div>
 <p>We can simply plug these values into the equation for <span class="math notranslate nohighlight">\(T_e\)</span> above.</p>
-<div class="cell docutils container">
+<div class="cell tag_hide-output docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 
