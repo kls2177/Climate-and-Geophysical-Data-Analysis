@@ -77,7 +77,7 @@ plt.show()
 
 # ### A few notes on the `np.correlate()` function...
 # 
-# We can calculate the autocorrelation function using the `np.correlate()` function. This function uses an algorithm that computes the autocovariance (but does not include the $\frac{1}{(t_N - 1) - t_1}$ factor), not the autocorrelation, so we have to make some adjustments to convert to autocorrelation. In addition, we use the function argument `'same'` to allow for more overlap between the two time series. Where the time series do not overlap, the arrays are "padded" with zeros, such that the $\frac{1}{(t_N - 1) - t_1}$ factor is always equal to $\frac{1}{N}$. The size of the output array will be the "same" size as the input arrays (see the following [documentation](https://numpy.org/doc/stable/reference/generated/numpy.convolve.html) for more information).
+# We can calculate the autocorrelation function using the `np.correlate()` function. This function uses an algorithm that computes the autocovariance (but does not include the $\frac{1}{(t_N - \tau) - t_1}$ factor), not the autocorrelation, so we have to make some adjustments to convert to autocorrelation. In addition, we use the function argument `'same'` to allow for more overlap between the two time series. Where the time series do not overlap, the arrays are "padded" with zeros, such that the $\frac{1}{(t_N - \tau) - t_1}$ factor is always equal to $\frac{1}{N}$. The zero-padding builds in a taper towards zero at larger lags. The size of the output array will be the "same" size as the input arrays (see the following [documentation](https://numpy.org/doc/stable/reference/generated/numpy.convolve.html) for more information).
 # 
 # ### ... Back to our example
 # 

@@ -1,0 +1,703 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Filtering in the Time Domain: Part II &#8212; Climate and Geophysical Data Analysis</title>
+    
+  <link rel="stylesheet" href="../../_static/css/index.73d71520a4ca3b99cfee5594769eaaae.css">
+
+    
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+  <link rel="stylesheet"
+    href="../../_static/vendor/open-sans_all/1.44.1/index.css">
+  <link rel="stylesheet"
+    href="../../_static/vendor/lato_latin-ext/1.44.1/index.css">
+
+    
+    <link rel="stylesheet" href="../../_static/sphinx-book-theme.2d2078699c18a0efb88233928e1cf6ed.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../../_static/js/index.3da636dd464baa7582d2.js">
+
+    <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/language_data.js"></script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../../_static/sphinx-book-theme.be0a4a0c39cd630af62a2fcf693f3f06.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.18.0/dist/embed-amd.js"></script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe,.cell"
+        const thebe_selector_input = "pre,.cell_input div.highlight"
+        const thebe_selector_output = ".output,.cell_output"
+    </script>
+    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <link rel="canonical" href="https://kls2177.github.io/Climate-and-Geophysical-Data-Analysis/chapters/index.html/chapters/Week6/Harmonics.html" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="prev" title="Filtering in the Time Domain: Part I" href="filtering_in_time.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+
+
+<!-- Opengraph tags -->
+<meta property="og:url"         content="https://kls2177.github.io/Climate-and-Geophysical-Data-Analysis/chapters/index.html/chapters/Week6/Harmonics.html" />
+<meta property="og:type"        content="article" />
+<meta property="og:title"       content="Filtering in the Time Domain: Part II" />
+<meta property="og:description" content="Filtering in the Time Domain: Part II  In this section, we will begin exploring how time series can be decomposed into a linear combination of sine and cosine f" />
+<meta property="og:image"       content="https://kls2177.github.io/Climate-and-Geophysical-Data-Analysis/chapters/index.html/_static/gistemp.png" />
+
+<meta name="twitter:card" content="summary" />
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="../../index.html">
+  
+  <img src="../../_static/gistemp.png" class="logo" alt="logo">
+  
+  
+  <h1 class="site-logo" id="site-title">Climate and Geophysical Data Analysis</h1>
+  
+</a>
+</div>
+
+<form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../index.html">
+   Climate and Geophysical Data Analysis
+  </a>
+ </li>
+</ul>
+<ul class="current nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../introduction/intro.html">
+   Introduction
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Week1a/whatarestatsgoodfor.html">
+   What are statistics good for?
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Week1b/descriptivestats.html">
+   Descriptive Statistics
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Week2/hypothesis_testing.html">
+   Statistical Hypothesis Testing
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Week3/linreg.html">
+   Linear Regression
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Week4/corr.html">
+   Correlation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Week5/persistence.html">
+   Persistence in Time Series
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="reference internal" href="filt.html">
+   Time Series Analysis
+  </a>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="filtering_in_time.html">
+     Filtering in the Time Domain: Part I
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     Filtering in the Time Domain: Part II
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+</nav>
+
+ <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="row topbar fixed-top container-xl">
+    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+    </div>
+    <div class="col pl-2 topbar-main">
+        
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        
+        <div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../../_sources/chapters/Week6/Harmonics.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+    
+</div>
+        <!-- Source interaction buttons -->
+
+
+        <!-- Full screen (wrap in <a> to have style consistency -->
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+                title="Fullscreen mode"><i
+                    class="fas fa-expand"></i></button></a>
+
+        <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/kls2177/Climate-and-Geophysical-Data-Analysis/master?urlpath=tree/chapters/Week6/Harmonics.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        <a class="colab-button" href="https://colab.research.google.com/github/kls2177/Climate-and-Geophysical-Data-Analysis/blob/master/chapters/Week6/Harmonics.ipynb"><button type="button" class="btn btn-secondary topbarbtn"
+                title="Launch Colab" data-toggle="tooltip" data-placement="left"><img class="colab-button-logo"
+                    src="../../_static/images/logo_colab.png"
+                    alt="Interact on Colab">Colab</button></a>
+        
+        <button type="button" class="btn btn-secondary topbarbtn"
+            onclick="initThebeSBT()" title="Launch Thebe" data-toggle="tooltip" data-placement="left"><i
+                class="fas fa-play"></i><span style="margin-left: .4em;">Live Code</span></button>
+        
+    </div>
+</div>
+
+    </div>
+
+    <!-- Table of contents -->
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+        
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i> Contents
+        </div>
+        <nav id="bd-toc-nav">
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#introduction-to-harmonics">
+   Introduction to Harmonics
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#review-of-the-sine-function">
+     Review of the Sine Function
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#fourier-series">
+     Fourier Series
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#using-this-framework-we-can-write-a-time-series-y-t-as">
+       Using this framework,
+       <em>
+        we can write a time series,
+        <span class="math notranslate nohighlight">
+         \(y(t)\)
+        </span>
+       </em>
+       , as
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#nyquist-wavenumber-frequency">
+     Nyquist Wavenumber/Frequency
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#method-4-filtering-the-seasonal-cycle-using-harmonics">
+   Method 4: Filtering the Seasonal Cycle using Harmonics
+  </a>
+ </li>
+</ul>
+
+        </nav>
+        
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="filtering-in-the-time-domain-part-ii">
+<h1>Filtering in the Time Domain: Part II<a class="headerlink" href="#filtering-in-the-time-domain-part-ii" title="Permalink to this headline">¶</a></h1>
+<p>In this section, we will begin exploring how time series can be decomposed into a linear combination of sine and cosine funtions. This concept is critically important to time series analysis and will allow us to evaluate time scales of variability in the <em>frequency</em> domain.</p>
+<div class="section" id="introduction-to-harmonics">
+<h2>Introduction to Harmonics<a class="headerlink" href="#introduction-to-harmonics" title="Permalink to this headline">¶</a></h2>
+<p>For oscillatory time series, like those with a distinct seasonal cycle, we can fit <strong>harmonics</strong>, aka, sine and cosine functions (see <a class="reference internal" href="#harmonics"><span class="std std-ref">Figure 20</span></a>), to the data in order to remove these oscillations.</p>
+<div class="figure align-default" id="harmonics">
+<a class="reference internal image-reference" href="../../_images/sine_cosine.png"><img alt="../../_images/sine_cosine.png" src="../../_images/sine_cosine.png" style="width: 1966.0px; height: 790.0px;" /></a>
+<p class="caption"><span class="caption-number">Fig. 20 </span><span class="caption-text">Sine (red curve) and cosine (blue curve) functions.</span><a class="headerlink" href="#harmonics" title="Permalink to this image">¶</a></p>
+</div>
+<div class="section" id="review-of-the-sine-function">
+<h3>Review of the Sine Function<a class="headerlink" href="#review-of-the-sine-function" title="Permalink to this headline">¶</a></h3>
+<p>A sine function can be written as,</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align}
+y(t) &amp; = A \text{sin}(2\pi ft + \phi)\\
+&amp; = A \text{sin}(\omega t + \phi)
+\end{align}
+\end{split}\]</div>
+<p>where</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(A\)</span> is the amplitude, the deviation of the curve from zero</p></li>
+<li><p><span class="math notranslate nohighlight">\(f\)</span> is the frequency in units of the number of oscillations that occur each time step</p></li>
+<li><p><span class="math notranslate nohighlight">\(\omega\)</span> = 2<span class="math notranslate nohighlight">\(\pi f\)</span> is the angular frequency, or the frequency in units of radians per time step</p></li>
+<li><p><span class="math notranslate nohighlight">\(\phi\)</span> is the phase (in radians), or the shift.</p></li>
+</ul>
+<p><em>As a reminder:</em></p>
+<ul class="simple">
+<li><p>frequency, <span class="math notranslate nohighlight">\(f\)</span>: number of oscillations per time step</p></li>
+<li><p>period, <span class="math notranslate nohighlight">\(T\)</span>: number of time steps per oscillation, <span class="math notranslate nohighlight">\(\frac{1}{f}\)</span></p></li>
+<li><p>wavenumber, <span class="math notranslate nohighlight">\(k\)</span> (an integer): number of oscillations that fit inside the domain, <span class="math notranslate nohighlight">\(k\)</span> = <span class="math notranslate nohighlight">\(fT\)</span></p></li>
+</ul>
+</div>
+<div class="section" id="fourier-series">
+<h3>Fourier Series<a class="headerlink" href="#fourier-series" title="Permalink to this headline">¶</a></h3>
+<p><strong>Fourier Series</strong> is a way of representing a time series as a summation of contributions from harmonic functions, each with a unique temporal scale. These harmonic functions form a <a class="reference external" href="https://mathworld.wolfram.com/VectorBasis.html"><em>basis</em></a>.</p>
+<p>This is analogous to regression, where you try to describe one variable as a combination of others. But, in the case of harmonic analysis, the functions to be fit (i.e., the predictors) are sines and cosines:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\text{sin}(2\pi k \frac{t}{T})\\
+\text{cos}(2\pi k \frac{t}{T})    
+\end{split}\]</div>
+<p>where <span class="math notranslate nohighlight">\(k\)</span> is an integer from 1 to <span class="math notranslate nohighlight">\(N\)</span>/2 (and <span class="math notranslate nohighlight">\(N\)</span> is the number of values you have in the time series), and is often called the wavenumber.</p>
+<p>Recall that in this case, <span class="math notranslate nohighlight">\(k/T = f\)</span>.</p>
+<div class="section" id="using-this-framework-we-can-write-a-time-series-y-t-as">
+<h4>Using this framework, <em>we can write a time series, <span class="math notranslate nohighlight">\(y(t)\)</span></em>, as<a class="headerlink" href="#using-this-framework-we-can-write-a-time-series-y-t-as" title="Permalink to this headline">¶</a></h4>
+<div class="math notranslate nohighlight">
+\[
+y(t) = A_0 + \sum_{k=1}^{N/2} A_k\text{cos}(2\pi k \frac{t}{T}) +  \sum_{k=1}^{N/2} B_k\text{sin}(2\pi k \frac{t}{T})
+\]</div>
+<p>where</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(y\)</span> is resolved on the time interval from 0 <span class="math notranslate nohighlight">\(\leq\)</span> <span class="math notranslate nohighlight">\(t\)</span> <span class="math notranslate nohighlight">\(\leq\)</span> <span class="math notranslate nohighlight">\(T\)</span></p></li>
+<li><p>the length of the time series is <span class="math notranslate nohighlight">\(N\)</span> + 1 (note that <span class="math notranslate nohighlight">\(N\)</span> needs to be even so that the highest wavenumber is an integer)</p></li>
+<li><p><span class="math notranslate nohighlight">\(A_k\)</span> and <span class="math notranslate nohighlight">\(B_k\)</span> are the regression coefficients for each predictor each predictor is a harmonic function with frequency 2<span class="math notranslate nohighlight">\(\pi k/T\)</span> and thus fits into the interval from <span class="math notranslate nohighlight">\(t_1\)</span> = 0 to <span class="math notranslate nohighlight">\(t_N\)</span>+1 = <span class="math notranslate nohighlight">\(T\)</span> an integer <span class="math notranslate nohighlight">\(k\)</span> number of times</p></li>
+<li><p>if <span class="math notranslate nohighlight">\(k\)</span> = 1, the function has frequency 2<span class="math notranslate nohighlight">\(\pi\)</span> radians in the full length of the data. This is the lowest resolved frequency.</p></li>
+<li><p>if <span class="math notranslate nohighlight">\(k\)</span> = <span class="math notranslate nohighlight">\(N\)</span>/2, the function has frequency 2<span class="math notranslate nohighlight">\(\pi\)</span> radians in 2 time steps (and <span class="math notranslate nohighlight">\(B_k\)</span> is zero). This is the highest possible wavenumber/frequency that can be resolved using Fourier series, called the <em>Nyquist frequency</em>.</p></li>
+</ul>
+<p>There are many animations of how fourier series can be used to create time series that look very different from the individual sine and cosine componenents on youtube: here is <a class="reference external" href="https://www.youtube.com/watch?v=LznjC4Lo7lE&amp;feature=emb_logo">one example</a>.</p>
+<p>Let’s take a look at plotting some harmonic components using the above equation for <span class="math notranslate nohighlight">\(y(t)\)</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># import packages</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We will start by picking a period, <span class="math notranslate nohighlight">\(T\)</span>, and a sampling rate, <span class="math notranslate nohighlight">\(\Delta t\)</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># harmonic parameters (period and sampling rate)</span>
+<span class="n">T</span> <span class="o">=</span> <span class="mf">4.0</span>
+<span class="n">sampling_rate</span> <span class="o">=</span> <span class="mf">0.05</span>
+
+<span class="c1"># define time dimension based on period and sampling rate</span>
+<span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mf">0.</span><span class="p">,</span><span class="n">T</span><span class="o">+</span><span class="n">sampling_rate</span><span class="p">,</span><span class="n">sampling_rate</span><span class="p">)</span>
+
+<span class="c1"># length of time series</span>
+<span class="n">N</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">t</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Note that the period, <span class="math notranslate nohighlight">\(T\)</span>, divided by <span class="math notranslate nohighlight">\(N\)</span> gives the sampling rate. Now, we can plot different harmonic components.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># colours for plotting</span>
+<span class="n">CLRs</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;limegreen&#39;</span><span class="p">,</span><span class="s1">&#39;dodgerblue&#39;</span><span class="p">,</span><span class="s1">&#39;crimson&#39;</span><span class="p">]</span>
+
+<span class="c1"># initialize figure</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span><span class="mi">4</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">t</span><span class="p">),</span><span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">t</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="o">-</span><span class="mf">1.75</span><span class="p">,</span><span class="mf">1.75</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;time&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Harmonic Components for N = &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">N</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="c1"># counting index for changing the plotting colour</span>
+<span class="n">count</span> <span class="o">=</span> <span class="mi">0</span>
+
+<span class="c1"># loop over three values for wavenumber, k</span>
+<span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="n">N</span><span class="o">/</span><span class="mi">2</span><span class="p">):</span>
+    
+    <span class="c1"># define sine and cosine components of y(t)</span>
+    <span class="n">y1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="mf">2.</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="n">k</span><span class="o">*</span><span class="n">t</span><span class="o">/</span><span class="n">T</span><span class="p">)</span>
+    <span class="n">y2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="mf">2.</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="n">k</span><span class="o">*</span><span class="n">t</span><span class="o">/</span><span class="n">T</span><span class="p">)</span>
+
+    <span class="c1"># plot harmonic components</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">y1</span><span class="p">,</span><span class="s1">&#39;x--&#39;</span><span class="p">,</span><span class="n">color</span> <span class="o">=</span> <span class="n">CLRs</span><span class="p">[</span><span class="n">count</span><span class="p">],</span><span class="n">linewidth</span> <span class="o">=</span> <span class="mf">0.75</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;k=&#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">k</span><span class="p">))</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">y2</span><span class="p">,</span><span class="s1">&#39;o--&#39;</span><span class="p">,</span><span class="n">color</span> <span class="o">=</span> <span class="n">CLRs</span><span class="p">[</span><span class="n">count</span><span class="p">],</span><span class="n">linewidth</span> <span class="o">=</span> <span class="mf">0.75</span><span class="p">)</span>
+
+    <span class="n">count</span> <span class="o">+=</span> <span class="mi">1</span>
+    
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7fa0900268e0&gt;
+</pre></div>
+</div>
+<img alt="../../_images/Harmonics_5_1.png" src="../../_images/Harmonics_5_1.png" />
+</div>
+</div>
+<p>What happens when <span class="math notranslate nohighlight">\(k\)</span> = <span class="math notranslate nohighlight">\(N\)</span>/2, the Nyquist frequency? The sine wave component becomes zero at all times.</p>
+</div>
+</div>
+<div class="section" id="nyquist-wavenumber-frequency">
+<h3>Nyquist Wavenumber/Frequency<a class="headerlink" href="#nyquist-wavenumber-frequency" title="Permalink to this headline">¶</a></h3>
+<p>The <em>Nyquist wavenumber/frequency</em> (<span class="math notranslate nohighlight">\(k\)</span> = <span class="math notranslate nohighlight">\(N\)</span>/2) is the highest frequency that can be resolved in your data using Fourier series. Why is this? Why not <span class="math notranslate nohighlight">\(k\)</span> = <span class="math notranslate nohighlight">\(N\)</span>?</p>
+<p>As stated above, if <span class="math notranslate nohighlight">\(k\)</span> = <span class="math notranslate nohighlight">\(N\)</span>/2, the function has frequency 2<span class="math notranslate nohighlight">\(\pi\)</span> radians in 2 time steps. If <span class="math notranslate nohighlight">\(k\)</span> = <span class="math notranslate nohighlight">\(N\)</span>, this would imply that the function has a frequency of 2<span class="math notranslate nohighlight">\(\pi\)</span> radians in 1 time step. But, Hhow can we detect a complete cycle in a single time step? We can’t. In other words, we cannot resolve frequencies that are higher than the Nyquist frequency.</p>
+<p>Let’s take a look what this means using python. First, let’s define our harmonic parameters.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># harmonic parameters (period and sampling rate)</span>
+<span class="n">T</span> <span class="o">=</span> <span class="mf">10.</span> 
+<span class="n">sampling_rate</span> <span class="o">=</span> <span class="mf">0.01</span>
+
+<span class="c1"># define time dimension based on period and sampling rate</span>
+<span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mf">0.</span><span class="p">,</span><span class="n">T</span><span class="o">+</span><span class="n">sampling_rate</span><span class="p">,</span><span class="n">sampling_rate</span><span class="p">)</span>
+
+<span class="c1"># length of time series</span>
+<span class="n">N</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">t</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The wavenumber corresponding to the Nyquist frequency is&quot;</span><span class="p">,</span><span class="n">N</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span> <span class="c1"># Nyquist wavenumber: k = N/2</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;This means that the Nyquist frequency is&quot;</span><span class="p">,</span> <span class="n">N</span><span class="o">/</span><span class="mi">2</span><span class="o">/</span><span class="n">T</span><span class="p">,</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span> <span class="c1"># using f = k/T</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The wavenumber corresponding to the Nyquist frequency is 500.0
+This means that the Nyquist frequency is 50.0 
+</pre></div>
+</div>
+</div>
+</div>
+<p>Below, we will examine how the sampling rate affects the resolved frequencies. We will assume that we have a “true” cosine wave and one that we are trying to resolve using a lower-frequency sampling rate. As some point the sampling rate is not sufficient to resolve the frequency/wavenumber of the cosine wave, demonstrating the threshold Nyquist frequency.</p>
+<p>Let’s define a new time dimension with a lower-frequency sampling rate:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># low frequency t used to demonstrate how sampling rate effects our ability to detect all frequencies</span>
+<span class="n">sampling_rate_low</span> <span class="o">=</span> <span class="mf">1.0</span>
+
+<span class="c1"># define time dimension based on period and sampling rate</span>
+<span class="n">tl</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">t</span><span class="p">),</span><span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">t</span><span class="p">)</span><span class="o">+</span><span class="n">sampling_rate_low</span><span class="p">,</span><span class="n">sampling_rate_low</span><span class="p">)</span> 
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The wavenumber corresponding to the Nyquist frequecy for the low-frequency sampling rate is&quot;</span><span class="p">,(</span><span class="nb">len</span><span class="p">(</span><span class="n">tl</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;This means that the Nyquist frequency for the low-frequency sampling rate is&quot;</span><span class="p">,</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">tl</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="o">/</span><span class="n">T</span><span class="p">,</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The wavenumber corresponding to the Nyquist frequecy for the low-frequency sampling rate is 5.0
+This means that the Nyquist frequency for the low-frequency sampling rate is 0.5 
+</pre></div>
+</div>
+</div>
+</div>
+<p>Notice how the Nyquist wavenumber/frequency changes. This means that we will only be able to detect the correct frequency of the cosine wave up to wavenumber= 5.0 or frequency = 0.5 for the given sampling rate.</p>
+<p>Use the “Live Code/Launch Thebe” button to see what happens when we change <span class="math notranslate nohighlight">\(k\)</span> below.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">k</span> <span class="o">=</span> <span class="mi">1</span> <span class="c1"># see what happends when you change wavenumber to the following values (1, 3, 5, 7, 10)</span>
+
+<span class="c1"># initialize figure</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span><span class="mi">4</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">t</span><span class="p">),</span><span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">t</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="o">-</span><span class="mf">1.3</span><span class="p">,</span><span class="mf">1.3</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;time&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Nyquist cutoff: 5 total waves, 1 per 2 time steps&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
+
+<span class="c1"># define cosine wave using high-frequency t: this will be our &quot;true&quot; cosine wave</span>
+<span class="n">yh</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="mf">2.</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="n">k</span><span class="o">*</span><span class="n">t</span><span class="o">/</span><span class="n">T</span><span class="p">)</span>
+
+<span class="c1"># plot true cosine wave</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">yh</span><span class="p">,</span><span class="s1">&#39;--&#39;</span><span class="p">,</span><span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="n">linewidth</span> <span class="o">=</span> <span class="mf">1.</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;True Cosine Wave&#39;</span><span class="p">)</span>
+
+<span class="c1">#define harmonics using low-frequency t</span>
+<span class="n">yl</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="mf">2.</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="n">k</span><span class="o">*</span><span class="n">tl</span><span class="o">/</span><span class="n">T</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t1</span><span class="p">,</span><span class="n">yl</span><span class="p">,</span><span class="s1">&#39;.&#39;</span><span class="p">,</span><span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;blue&#39;</span><span class="p">,</span><span class="n">markersize</span> <span class="o">=</span> <span class="mi">20</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t1</span><span class="p">,</span><span class="n">yl</span><span class="p">,</span><span class="s1">&#39;-&#39;</span><span class="p">,</span><span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;blue&#39;</span><span class="p">,</span> <span class="n">linewidth</span> <span class="o">=</span> <span class="mf">1.</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;Sampled Cosine Wave&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="o">&lt;</span><span class="n">ipython</span><span class="o">-</span><span class="nb">input</span><span class="o">-</span><span class="mi">6</span><span class="o">-</span><span class="mi">9</span><span class="n">b6d31b14bc7</span><span class="o">&gt;</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="g g-Whitespace">     </span><span class="mi">18</span> <span class="n">yl</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="mf">2.</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="n">k</span><span class="o">*</span><span class="n">tl</span><span class="o">/</span><span class="n">T</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">19</span> 
+<span class="ne">---&gt; </span><span class="mi">20</span> <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t1</span><span class="p">,</span><span class="n">yl</span><span class="p">,</span><span class="s1">&#39;.&#39;</span><span class="p">,</span><span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;blue&#39;</span><span class="p">,</span><span class="n">markersize</span> <span class="o">=</span> <span class="mi">20</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">21</span> <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t1</span><span class="p">,</span><span class="n">yl</span><span class="p">,</span><span class="s1">&#39;-&#39;</span><span class="p">,</span><span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;blue&#39;</span><span class="p">,</span> <span class="n">linewidth</span> <span class="o">=</span> <span class="mf">1.</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;Sampled Cosine Wave&#39;</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">22</span> <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+
+<span class="ne">NameError</span>: name &#39;t1&#39; is not defined
+</pre></div>
+</div>
+<img alt="../../_images/Harmonics_12_1.png" src="../../_images/Harmonics_12_1.png" />
+</div>
+</div>
+<p>What happens when <span class="math notranslate nohighlight">\(k\)</span> becomes larger than the Nyquist wavenumber, 5? In other words, what happens if we have higher frequencies in our data? In this case, they will get <em>aliased</em> onto lower frequencies (e.g. when <span class="math notranslate nohighlight">\(k\)</span> = 7 in the above example). This can be a problem when there is a large amount of variance in frequencies higher than the Nyquist frequency. We will revisit the concept of aliasing in the next section.</p>
+<p>Note that the Nyquist frequency is completely dependent on your <em>sampling rate</em> (temporal resolution of your data), <strong>NOT</strong> the total amount of data you have. The smaller the time step, the higher the Nyquist frequency.</p>
+</div>
+</div>
+<div class="section" id="method-4-filtering-the-seasonal-cycle-using-harmonics">
+<h2>Method 4: Filtering the Seasonal Cycle using Harmonics<a class="headerlink" href="#method-4-filtering-the-seasonal-cycle-using-harmonics" title="Permalink to this headline">¶</a></h2>
+<p>Now, that we have reviewed sine and cosine waves and fourier series, we will explore how we can use harmonics to describe time series with oscillations and take advantage of this to filter such time series.</p>
+<p>In this section, we will make sure of a package called <a class="reference external" href="https://www.esrl.noaa.gov/gmd/ccgg/mbl/crvfit/crvfit.html"><code class="docutils literal notranslate"><span class="pre">ccgfilt()</span></code></a> to fit harmonic functions to our Arctic SIE time series.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># import packages</span>
+<span class="kn">import</span> <span class="nn">ccgfilt3</span> <span class="k">as</span> <span class="nn">ccgfilt</span>
+<span class="kn">import</span> <span class="nn">pickle</span> <span class="k">as</span> <span class="nn">pickle</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Read in the Arctic SIE data.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># read in data</span>
+<span class="n">fname</span> <span class="o">=</span> <span class="s1">&#39;SIE_Total.pickle&#39;</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">fname</span><span class="p">,</span><span class="s1">&#39;rb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">fp</span><span class="p">:</span>
+    <span class="n">sie</span><span class="p">,</span><span class="n">lat</span><span class="p">,</span><span class="n">lon</span> <span class="o">=</span> <span class="n">pickle</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">fp</span><span class="p">,</span> <span class="n">encoding</span> <span class="o">=</span> <span class="s1">&#39;iso8859&#39;</span><span class="p">)</span>
+    
+<span class="c1"># convert sie to time series </span>
+<span class="c1"># (I&#39;m using np.ravel but you can also use np.reshape)</span>
+<span class="n">sie_ts</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ravel</span><span class="p">(</span><span class="n">sie</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>This function needs the time dimension in decimal years.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># convert time to &quot;decimal year&quot;</span>
+<span class="n">time</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">sie_ts</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">dtime</span> <span class="o">=</span> <span class="n">time</span><span class="o">/</span><span class="mf">365.0</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Here, we will use the <code class="docutils literal notranslate"><span class="pre">ccgfilt()</span></code> function to fit 5 harmonic functions. You can use the “Live Code/Launch Thebe” button to change the number of harmonics and see what happens.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># create ccgfilt instance</span>
+<span class="n">filt</span> <span class="o">=</span> <span class="n">ccgfilt</span><span class="o">.</span><span class="n">ccgFilter</span><span class="p">(</span><span class="n">dtime</span><span class="p">,</span><span class="n">sie_ts</span><span class="o">/</span><span class="mf">1e12</span><span class="p">,</span> <span class="n">sampleinterval</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">numpolyterms</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">numharmonics</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">timezero</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span> <span class="n">gap</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">debug</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>To extract the harmonic component, we can do the following:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># extract the harmonic component of the fit, i.e. the seasonal cycle</span>
+<span class="n">sie_season</span> <span class="o">=</span> <span class="n">filt</span><span class="o">.</span><span class="n">getHarmonicValue</span><span class="p">(</span><span class="n">dtime</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>What does this seasonal cycle look like?</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># plot seasonal cycle</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="mi">4</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">sie_season</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">1</span><span class="o">*</span><span class="mi">365</span><span class="p">])</span> <span class="c1"># plot one year of harmonic time series to show seasonal cycle</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="o">*</span><span class="mi">365</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Days&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Sea Ice Extent (10$^6$ km$^2$)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;SIE Anomaly from a Year-2000 GCM Control Integration (first 50 years only)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/Harmonics_24_0.png" src="../../_images/Harmonics_24_0.png" />
+</div>
+</div>
+<p>We can now simply substract this harmonic fit from the original time series to filter out the seasonal cycle.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># remove the seasonal cycle from original time series</span>
+<span class="n">sie_deseason5</span> <span class="o">=</span> <span class="n">sie_ts</span><span class="o">/</span><span class="mf">1e12</span> <span class="o">-</span> <span class="n">sie_season</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># plot to show that the seasonal cycle has been removed</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">sie_deseason5</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">50</span><span class="o">*</span><span class="mi">365</span><span class="p">])</span> <span class="c1">#this data consists of 400 years of daily data, but here I am just plotting 50 years</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">50</span><span class="o">*</span><span class="mi">365</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Days&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Sea Ice Extent (10$^6$ km$^2$)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;SIE with Seasonal Cycle Removed (first 5 harmonics) from GCM Pre-Industrial Integration (first 50 years only)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/Harmonics_27_0.png" src="../../_images/Harmonics_27_0.png" />
+</div>
+</div>
+<p>Note, that the harmonics are fit to the time series with the long-term mean removed (this is the <code class="docutils literal notranslate"><span class="pre">numpolyterms</span> <span class="pre">=</span> <span class="pre">0</span></code> parameter). Thus, when we subtract the seasonal cycle, we get an anomaly that fluctuates around the long-term mean.</p>
+<p>In the next section, we will build on the concept of Fourier series to explore time scales of variability in the <em>frequency</em> domain.</p>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "kls2177/Climate-and-Geophysical-Data-Analysis",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./chapters/Week6"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        </div>
+    </div>
+    
+    
+    <div class='prev-next-bottom'>
+        
+    <a class='left-prev' id="prev-link" href="filtering_in_time.html" title="previous page">Filtering in the Time Domain: Part I</a>
+
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Karen Smith<br/>
+        
+            &copy; Copyright 2020.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    
+  <script src="../../_static/js/index.3da636dd464baa7582d2.js"></script>
+
+
+    
+  </body>
+</html>

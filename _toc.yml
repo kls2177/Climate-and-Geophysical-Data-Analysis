@@ -43,3 +43,7 @@
     - file: chapters/Week5/red_noise
     - file: chapters/Week5/autocorr_implications
     - file: chapters/Week5/n_eff
+- file: chapters/Week6/filt
+  sections:
+    - file: chapters/Week6/filtering_in_time
+    - file: chapters/Week6/Harmonics
