@@ -48,8 +48,6 @@
     <script src="../../_static/sphinx-book-theme.be0a4a0c39cd630af62a2fcf693f3f06.js"></script>
     <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.18.0/dist/embed-amd.js"></script>
     <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
     <script >
         const thebe_selector = ".thebe,.cell"
@@ -425,7 +423,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7fd65e3feb80&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7ff0524ecb80&gt;
 </pre></div>
 </div>
 <img alt="../../_images/filtering_in_time_11_1.png" src="../../_images/filtering_in_time_11_1.png" />
@@ -508,7 +506,7 @@ x_{ij}^\prime(t) = x_{ij}(t) - \overline{x_j}
 <p>where <span class="math notranslate nohighlight">\(i\)</span> is a year and <span class="math notranslate nohighlight">\(j\)</span> is the day of the year (for data with daily temporal resolution). Thus, <span class="math notranslate nohighlight">\(\overline{x_j}\)</span> represents the <em>climatology</em> or the time mean of the seasonal cycle. If we subtract this, then we should be left with all the variability that is not associated with this time mean seasonal cycle.</p>
 <p>Let’s take a closer look at the meaning of <span class="math notranslate nohighlight">\(\overline{x_j}\)</span> using our Arctic SIE data. <a class="reference internal" href="#anomaly"><span class="std std-ref">Figure 19</span></a> shows a section of the Arctic SIE time series with dots added showing values in the time series for all the January 1st’s. The black horizontal line shows the average of all the January 1st’s. Thus, value of the black line is equal to <span class="math notranslate nohighlight">\(\overline{x_j}\)</span>, where <span class="math notranslate nohighlight">\(j\)</span> = January 1st.</p>
 <div class="figure align-default" id="anomaly">
-<a class="reference internal image-reference" href="../../_images/anomaly.png"><img alt="../../_images/anomaly.png" src="../../_images/anomaly.png" style="width: 1268.0px; height: 806.0px;" /></a>
+<a class="reference internal image-reference" href="../../_images/anomaly.png"><img alt="../../_images/anomaly.png" src="../../_images/anomaly.png" style="width: 634.0px; height: 403.0px;" /></a>
 <p class="caption"><span class="caption-number">Fig. 19 </span><span class="caption-text">Time series of Arctic sea ice extent from a global climate model pre-industrial integration. The dots represent January 1st and the horizonal black line represents the mean of all the January 1st’s.</span><a class="headerlink" href="#anomaly" title="Permalink to this image">¶</a></p>
 </div>
 <p>The SIE data that we originally loaded is in a convenient 2-D format for calculating <span class="math notranslate nohighlight">\(\overline{x_j}\)</span>.</p>

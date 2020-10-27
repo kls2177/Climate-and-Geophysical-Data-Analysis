@@ -48,8 +48,6 @@
     <script src="../../_static/sphinx-book-theme.be0a4a0c39cd630af62a2fcf693f3f06.js"></script>
     <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.18.0/dist/embed-amd.js"></script>
     <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
     <script >
         const thebe_selector = ".thebe,.cell"
@@ -318,7 +316,7 @@
 <h2>Introduction to Harmonics<a class="headerlink" href="#introduction-to-harmonics" title="Permalink to this headline">¶</a></h2>
 <p>For oscillatory time series, like those with a distinct seasonal cycle, we can fit <strong>harmonics</strong>, aka, sine and cosine functions (see <a class="reference internal" href="#harmonics"><span class="std std-ref">Figure 20</span></a>), to the data in order to remove these oscillations.</p>
 <div class="figure align-default" id="harmonics">
-<a class="reference internal image-reference" href="../../_images/sine_cosine.png"><img alt="../../_images/sine_cosine.png" src="../../_images/sine_cosine.png" style="width: 1966.0px; height: 790.0px;" /></a>
+<a class="reference internal image-reference" href="../../_images/sine_cosine.png"><img alt="../../_images/sine_cosine.png" src="../../_images/sine_cosine.png" style="width: 786.4000000000001px; height: 316.0px;" /></a>
 <p class="caption"><span class="caption-number">Fig. 20 </span><span class="caption-text">Sine (red curve) and cosine (blue curve) functions.</span><a class="headerlink" href="#harmonics" title="Permalink to this image">¶</a></p>
 </div>
 <div class="section" id="review-of-the-sine-function">
@@ -342,7 +340,7 @@ y(t) &amp; = A \text{sin}(2\pi ft + \phi)\\
 <ul class="simple">
 <li><p>frequency, <span class="math notranslate nohighlight">\(f\)</span>: number of oscillations per time step</p></li>
 <li><p>period, <span class="math notranslate nohighlight">\(T\)</span>: number of time steps per oscillation, <span class="math notranslate nohighlight">\(\frac{1}{f}\)</span></p></li>
-<li><p>wavenumber, <span class="math notranslate nohighlight">\(k\)</span> (an integer): number of oscillations that fit inside the domain, <span class="math notranslate nohighlight">\(k\)</span> = <span class="math notranslate nohighlight">\(fT\)</span></p></li>
+<li><p>wavenumber, <span class="math notranslate nohighlight">\(k\)</span> (an integer): number of oscillations that fit inside the domain, <span class="math notranslate nohighlight">\(k\)</span> = <span class="math notranslate nohighlight">\(fT\)</span>.</p></li>
 </ul>
 </div>
 <div class="section" id="fourier-series">
@@ -432,7 +430,7 @@ y(t) = A_0 + \sum_{k=1}^{N/2} A_k\text{cos}(2\pi k \frac{t}{T}) +  \sum_{k=1}^{N
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7fa0900268e0&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7fa1c97f78e0&gt;
 </pre></div>
 </div>
 <img alt="../../_images/Harmonics_5_1.png" src="../../_images/Harmonics_5_1.png" />
@@ -515,27 +513,15 @@ This means that the Nyquist frequency for the low-frequency sampling rate is 0.5
 <span class="c1">#define harmonics using low-frequency t</span>
 <span class="n">yl</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="mf">2.</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="n">k</span><span class="o">*</span><span class="n">tl</span><span class="o">/</span><span class="n">T</span><span class="p">)</span>
 
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t1</span><span class="p">,</span><span class="n">yl</span><span class="p">,</span><span class="s1">&#39;.&#39;</span><span class="p">,</span><span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;blue&#39;</span><span class="p">,</span><span class="n">markersize</span> <span class="o">=</span> <span class="mi">20</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t1</span><span class="p">,</span><span class="n">yl</span><span class="p">,</span><span class="s1">&#39;-&#39;</span><span class="p">,</span><span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;blue&#39;</span><span class="p">,</span> <span class="n">linewidth</span> <span class="o">=</span> <span class="mf">1.</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;Sampled Cosine Wave&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">tl</span><span class="p">,</span><span class="n">yl</span><span class="p">,</span><span class="s1">&#39;.&#39;</span><span class="p">,</span><span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;blue&#39;</span><span class="p">,</span><span class="n">markersize</span> <span class="o">=</span> <span class="mi">20</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">tl</span><span class="p">,</span><span class="n">yl</span><span class="p">,</span><span class="s1">&#39;-&#39;</span><span class="p">,</span><span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;blue&#39;</span><span class="p">,</span> <span class="n">linewidth</span> <span class="o">=</span> <span class="mf">1.</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;Sampled Cosine Wave&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="o">&lt;</span><span class="n">ipython</span><span class="o">-</span><span class="nb">input</span><span class="o">-</span><span class="mi">6</span><span class="o">-</span><span class="mi">9</span><span class="n">b6d31b14bc7</span><span class="o">&gt;</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
-<span class="g g-Whitespace">     </span><span class="mi">18</span> <span class="n">yl</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="mf">2.</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="n">k</span><span class="o">*</span><span class="n">tl</span><span class="o">/</span><span class="n">T</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">19</span> 
-<span class="ne">---&gt; </span><span class="mi">20</span> <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t1</span><span class="p">,</span><span class="n">yl</span><span class="p">,</span><span class="s1">&#39;.&#39;</span><span class="p">,</span><span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;blue&#39;</span><span class="p">,</span><span class="n">markersize</span> <span class="o">=</span> <span class="mi">20</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">21</span> <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t1</span><span class="p">,</span><span class="n">yl</span><span class="p">,</span><span class="s1">&#39;-&#39;</span><span class="p">,</span><span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;blue&#39;</span><span class="p">,</span> <span class="n">linewidth</span> <span class="o">=</span> <span class="mf">1.</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;Sampled Cosine Wave&#39;</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">22</span> <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
-
-<span class="ne">NameError</span>: name &#39;t1&#39; is not defined
-</pre></div>
-</div>
-<img alt="../../_images/Harmonics_12_1.png" src="../../_images/Harmonics_12_1.png" />
+<img alt="../../_images/Harmonics_12_0.png" src="../../_images/Harmonics_12_0.png" />
 </div>
 </div>
 <p>What happens when <span class="math notranslate nohighlight">\(k\)</span> becomes larger than the Nyquist wavenumber, 5? In other words, what happens if we have higher frequencies in our data? In this case, they will get <em>aliased</em> onto lower frequencies (e.g. when <span class="math notranslate nohighlight">\(k\)</span> = 7 in the above example). This can be a problem when there is a large amount of variance in frequencies higher than the Nyquist frequency. We will revisit the concept of aliasing in the next section.</p>
@@ -545,7 +531,7 @@ This means that the Nyquist frequency for the low-frequency sampling rate is 0.5
 <div class="section" id="method-4-filtering-the-seasonal-cycle-using-harmonics">
 <h2>Method 4: Filtering the Seasonal Cycle using Harmonics<a class="headerlink" href="#method-4-filtering-the-seasonal-cycle-using-harmonics" title="Permalink to this headline">¶</a></h2>
 <p>Now, that we have reviewed sine and cosine waves and fourier series, we will explore how we can use harmonics to describe time series with oscillations and take advantage of this to filter such time series.</p>
-<p>In this section, we will make sure of a package called <a class="reference external" href="https://www.esrl.noaa.gov/gmd/ccgg/mbl/crvfit/crvfit.html"><code class="docutils literal notranslate"><span class="pre">ccgfilt()</span></code></a> to fit harmonic functions to our Arctic SIE time series.</p>
+<p>In this section, we will make sure of a package called <a class="reference external" href="https://www.esrl.noaa.gov/gmd/ccgg/mbl/crvfit/crvfit.html"><code class="docutils literal notranslate"><span class="pre">ccgfilt()</span></code></a> to fit harmonic functions to our Arctic SIE time series. You can download a copy of the function <a class="reference external" href="https://github.com/kls2177/ccia_files/blob/master/ccgfilt3.py?raw=true">here</a>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># import packages</span>

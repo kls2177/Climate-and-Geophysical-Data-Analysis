@@ -194,7 +194,7 @@ plt.tight_layout()
 # 
 # ```{figure} anomaly.png
 # ---
-# scale: 100%
+# scale: 50%
 # name: anomaly
 # ---
 # Time series of Arctic sea ice extent from a global climate model pre-industrial integration. The dots represent January 1st and the horizonal black line represents the mean of all the January 1st's.

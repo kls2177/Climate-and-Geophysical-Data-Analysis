@@ -11,7 +11,7 @@
 # 
 # ```{figure} sine_cosine.png
 # ---
-# scale: 100%
+# scale: 40%
 # name: harmonics
 # ---
 # Sine (red curve) and cosine (blue curve) functions.
@@ -39,7 +39,7 @@
 # 
 # - frequency, $f$: number of oscillations per time step
 # - period, $T$: number of time steps per oscillation, $\frac{1}{f}$
-# - wavenumber, $k$ (an integer): number of oscillations that fit inside the domain, $k$ = $fT$
+# - wavenumber, $k$ (an integer): number of oscillations that fit inside the domain, $k$ = $fT$.
 # 
 # ### Fourier Series
 # 
@@ -202,8 +202,8 @@ plt.plot(t,yh,'--',color = 'red', linewidth = 1.,label='True Cosine Wave')
 #define harmonics using low-frequency t
 yl = np.cos(2.*np.pi*k*tl/T)
 
-plt.plot(t1,yl,'.',color = 'blue',markersize = 20)
-plt.plot(t1,yl,'-',color = 'blue', linewidth = 1.,label='Sampled Cosine Wave')
+plt.plot(tl,yl,'.',color = 'blue',markersize = 20)
+plt.plot(tl,yl,'-',color = 'blue', linewidth = 1.,label='Sampled Cosine Wave')
 plt.legend()
 plt.show()
 
@@ -216,9 +216,9 @@ plt.show()
 # 
 # Now, that we have reviewed sine and cosine waves and fourier series, we will explore how we can use harmonics to describe time series with oscillations and take advantage of this to filter such time series.
 # 
-# In this section, we will make sure of a package called [`ccgfilt()`](https://www.esrl.noaa.gov/gmd/ccgg/mbl/crvfit/crvfit.html) to fit harmonic functions to our Arctic SIE time series.
+# In this section, we will make sure of a package called [`ccgfilt()`](https://www.esrl.noaa.gov/gmd/ccgg/mbl/crvfit/crvfit.html) to fit harmonic functions to our Arctic SIE time series. You can download a copy of the function [here](https://github.com/kls2177/ccia_files/blob/master/ccgfilt3.py?raw=true).
 
-# In[2]:
+# In[7]:
 
 
 # import packages
@@ -228,7 +228,7 @@ import pickle as pickle
 
 # Read in the Arctic SIE data.
 
-# In[3]:
+# In[8]:
 
 
 # read in data
@@ -243,7 +243,7 @@ sie_ts = np.ravel(sie)
 
 # This function needs the time dimension in decimal years.
 
-# In[4]:
+# In[9]:
 
 
 # convert time to "decimal year"
@@ -253,7 +253,7 @@ dtime = time/365.0
 
 # Here, we will use the `ccgfilt()` function to fit 5 harmonic functions. You can use the "Live Code/Launch Thebe" button to change the number of harmonics and see what happens.
 
-# In[55]:
+# In[10]:
 
 
 # create ccgfilt instance
@@ -262,7 +262,7 @@ filt = ccgfilt.ccgFilter(dtime,sie_ts/1e12, sampleinterval=0, numpolyterms=0, nu
 
 # To extract the harmonic component, we can do the following:
 
-# In[56]:
+# In[11]:
 
 
 # extract the harmonic component of the fit, i.e. the seasonal cycle
@@ -271,7 +271,7 @@ sie_season = filt.getHarmonicValue(dtime)
 
 # What does this seasonal cycle look like?
 
-# In[57]:
+# In[12]:
 
 
 # plot seasonal cycle
@@ -286,14 +286,14 @@ plt.tight_layout()
 
 # We can now simply substract this harmonic fit from the original time series to filter out the seasonal cycle.
 
-# In[58]:
+# In[13]:
 
 
 # remove the seasonal cycle from original time series
 sie_deseason5 = sie_ts/1e12 - sie_season
 
 
-# In[59]:
+# In[14]:
 
 
 # plot to show that the seasonal cycle has been removed
