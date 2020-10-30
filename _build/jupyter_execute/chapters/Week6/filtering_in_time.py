@@ -24,7 +24,7 @@ import pickle as pickle
 mpl.rc('font',size=14,weight='bold') #set default font size and weight for plots
 
 
-# Read in monthly TLT data starting in Jan. 1979 - Dec. 2019.
+# Read in monthly TLT data starting in Jan. 1979 - Dec. 2019. The file is [here](https://github.com/kls2177/ccia_files/blob/master/TLT_19792019.csv?raw=true).
 
 # In[2]:
 
@@ -125,7 +125,7 @@ plt.legend(loc='upper right')
 # 
 # One feature of many climate and geophysical variables that results in autocorrelation is the **seasonal cycle**. In the following example, we will explore different methods to remove the seasonal cycle in order to reduce the autocorrelation. Again, reducing the autocorrelation, may not be the only reason to do this, but it is often the primary reason.
 # 
-# To look at this problem, we will load in some Arctic sea ice extent (SIE) data from a pre-industrial integration of a global climate model (GCM). I have chosen to use data from a *pre-industrial* integration in order to focus on the seasonal cycle rather than the long-term trend that is evident in historical (GCM) integrations.
+# To look at this problem, we will load in some Arctic sea ice extent (SIE) data from a pre-industrial integration of a global climate model (GCM). I have chosen to use data from a *pre-industrial* integration in order to focus on the seasonal cycle rather than the long-term trend that is evident in historical (GCM) integrations. The file is [here](https://github.com/kls2177/ccia_files/blob/master/SIE_Total.pickle?raw=true).
 
 # In[7]:
 

@@ -47,3 +47,4 @@
   sections:
     - file: chapters/Week6/filtering_in_time
     - file: chapters/Week6/Harmonics
+    - file: chapters/Week6/filtering_in_freq

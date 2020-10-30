@@ -48,6 +48,8 @@
     <script src="../../_static/sphinx-book-theme.be0a4a0c39cd630af62a2fcf693f3f06.js"></script>
     <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.18.0/dist/embed-amd.js"></script>
     <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
     <script >
         const thebe_selector = ".thebe,.cell"
@@ -58,6 +60,7 @@
     <link rel="canonical" href="https://kls2177.github.io/Climate-and-Geophysical-Data-Analysis/chapters/index.html/chapters/Week6/Harmonics.html" />
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Filtering in the Frequency Domain: Discrete Fourier Transform" href="filtering_in_freq.html" />
     <link rel="prev" title="Filtering in the Time Domain: Part I" href="filtering_in_time.html" />
 
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -156,6 +159,11 @@
    <li class="toctree-l2 current active">
     <a class="current reference internal" href="#">
      Filtering in the Time Domain: Part II
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="filtering_in_freq.html">
+     Filtering in the Frequency Domain: Discrete Fourier Transform
     </a>
    </li>
   </ul>
@@ -430,7 +438,7 @@ y(t) = A_0 + \sum_{k=1}^{N/2} A_k\text{cos}(2\pi k \frac{t}{T}) +  \sum_{k=1}^{N
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7fa1c97f78e0&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7fe6cdeea8e0&gt;
 </pre></div>
 </div>
 <img alt="../../_images/Harmonics_5_1.png" src="../../_images/Harmonics_5_1.png" />
@@ -662,6 +670,7 @@ This means that the Nyquist frequency for the low-frequency sampling rate is 0.5
     <div class='prev-next-bottom'>
         
     <a class='left-prev' id="prev-link" href="filtering_in_time.html" title="previous page">Filtering in the Time Domain: Part I</a>
+    <a class='right-next' id="next-link" href="filtering_in_freq.html" title="next page">Filtering in the Frequency Domain: Discrete Fourier Transform</a>
 
     </div>
     <footer class="footer mt-5 mt-md-0">
