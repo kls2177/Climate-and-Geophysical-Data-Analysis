@@ -48,8 +48,6 @@
     <script src="../../_static/sphinx-book-theme.be0a4a0c39cd630af62a2fcf693f3f06.js"></script>
     <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.18.0/dist/embed-amd.js"></script>
     <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
     <script >
         const thebe_selector = ".thebe,.cell"
@@ -383,7 +381,7 @@ y(t) = \frac{1}{2\pi}\int_{-\infty}^{\infty} Y(\omega)\text{e}^{i\omega t} \,d\o
 </div>
 </div>
 </div>
-<p>Note: the below is the same thing but just take over half of the symmetric FFT output. Thus, we multiply by 2. You are probably wondering what I mean by “symmetric” FFT. We will explore the symmetric nature for the FFT further below.</p>
+<p>Note: the below is the same thing but just taken over half of the symmetric FFT output. So, we need to multiply by 2.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># compute power over half the FFT output</span>
@@ -392,6 +390,7 @@ y(t) = \frac{1}{2\pi}\int_{-\infty}^{\infty} Y(\omega)\text{e}^{i\omega t} \,d\o
 </div>
 </div>
 </div>
+<p>You are probably wondering what I mean by the “symmetric” FFT output. We will explore the symmetric nature for the FFT further below.</p>
 <p>Now, we compute the sum over all frequencies to get the estimated variance and compare it to the variance of the original time series.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -501,7 +500,7 @@ y(t) = \frac{1}{2\pi}\int_{-\infty}^{\infty} Y(\omega)\text{e}^{i\omega t} \,d\o
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7fcf7acddb50&gt;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7f819fce43d0&gt;]
 </pre></div>
 </div>
 <img alt="../../_images/filtering_in_freq2_19_1.png" src="../../_images/filtering_in_freq2_19_1.png" />
@@ -567,7 +566,7 @@ y(t) = \frac{1}{2\pi}\int_{-\infty}^{\infty} Y(\omega)\text{e}^{i\omega t} \,d\o
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7fcf7a94cdf0&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7f819f944ac0&gt;
 </pre></div>
 </div>
 <img alt="../../_images/filtering_in_freq2_27_1.png" src="../../_images/filtering_in_freq2_27_1.png" />
