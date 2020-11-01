@@ -1,0 +1,700 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Continuous Power Spectrum and the Significance of Spectral Peaks &#8212; Climate and Geophysical Data Analysis</title>
+    
+  <link rel="stylesheet" href="../../_static/css/index.73d71520a4ca3b99cfee5594769eaaae.css">
+
+    
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+  <link rel="stylesheet"
+    href="../../_static/vendor/open-sans_all/1.44.1/index.css">
+  <link rel="stylesheet"
+    href="../../_static/vendor/lato_latin-ext/1.44.1/index.css">
+
+    
+    <link rel="stylesheet" href="../../_static/sphinx-book-theme.2d2078699c18a0efb88233928e1cf6ed.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../../_static/js/index.3da636dd464baa7582d2.js">
+
+    <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/language_data.js"></script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../../_static/sphinx-book-theme.be0a4a0c39cd630af62a2fcf693f3f06.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.18.0/dist/embed-amd.js"></script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe,.cell"
+        const thebe_selector_input = "pre,.cell_input div.highlight"
+        const thebe_selector_output = ".output,.cell_output"
+    </script>
+    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <link rel="canonical" href="https://kls2177.github.io/Climate-and-Geophysical-Data-Analysis/chapters/index.html/chapters/Week6/filtering_in_freq3.html" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="prev" title="Fast Fourier Transform" href="filtering_in_freq2.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+
+
+<!-- Opengraph tags -->
+<meta property="og:url"         content="https://kls2177.github.io/Climate-and-Geophysical-Data-Analysis/chapters/index.html/chapters/Week6/filtering_in_freq3.html" />
+<meta property="og:type"        content="article" />
+<meta property="og:title"       content="Continuous Power Spectrum and the Significance of Spectral Peaks" />
+<meta property="og:description" content="Continuous Power Spectrum and the Significance of Spectral Peaks  In this section, we will examine how to construct the continuous power spectrum and how we can" />
+<meta property="og:image"       content="https://kls2177.github.io/Climate-and-Geophysical-Data-Analysis/chapters/index.html/_static/gistemp.png" />
+
+<meta name="twitter:card" content="summary" />
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="../../index.html">
+  
+  <img src="../../_static/gistemp.png" class="logo" alt="logo">
+  
+  
+  <h1 class="site-logo" id="site-title">Climate and Geophysical Data Analysis</h1>
+  
+</a>
+</div>
+
+<form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../index.html">
+   Climate and Geophysical Data Analysis
+  </a>
+ </li>
+</ul>
+<ul class="current nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../introduction/intro.html">
+   Introduction
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Week1a/whatarestatsgoodfor.html">
+   What are statistics good for?
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Week1b/descriptivestats.html">
+   Descriptive Statistics
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Week2/hypothesis_testing.html">
+   Statistical Hypothesis Testing
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Week3/linreg.html">
+   Linear Regression
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Week4/corr.html">
+   Correlation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Week5/persistence.html">
+   Persistence in Time Series
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="reference internal" href="filt.html">
+   Time Series Analysis
+  </a>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="filtering_in_time.html">
+     Filtering in the Time Domain: Part I
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="Harmonics.html">
+     Filtering in the Time Domain: Part II
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="filtering_in_freq1.html">
+     Filtering in the Frequency Domain: Discrete Fourier Transform
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="filtering_in_freq2.html">
+     Fast Fourier Transform
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     Continuous Power Spectrum and the Significance of Spectral Peaks
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+</nav>
+
+ <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="row topbar fixed-top container-xl">
+    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+    </div>
+    <div class="col pl-2 topbar-main">
+        
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        
+        <div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../../_sources/chapters/Week6/filtering_in_freq3.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+    
+</div>
+        <!-- Source interaction buttons -->
+
+
+        <!-- Full screen (wrap in <a> to have style consistency -->
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+                title="Fullscreen mode"><i
+                    class="fas fa-expand"></i></button></a>
+
+        <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/kls2177/Climate-and-Geophysical-Data-Analysis/master?urlpath=tree/chapters/Week6/filtering_in_freq3.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        <a class="colab-button" href="https://colab.research.google.com/github/kls2177/Climate-and-Geophysical-Data-Analysis/blob/master/chapters/Week6/filtering_in_freq3.ipynb"><button type="button" class="btn btn-secondary topbarbtn"
+                title="Launch Colab" data-toggle="tooltip" data-placement="left"><img class="colab-button-logo"
+                    src="../../_static/images/logo_colab.png"
+                    alt="Interact on Colab">Colab</button></a>
+        
+        <button type="button" class="btn btn-secondary topbarbtn"
+            onclick="initThebeSBT()" title="Launch Thebe" data-toggle="tooltip" data-placement="left"><i
+                class="fas fa-play"></i><span style="margin-left: .4em;">Live Code</span></button>
+        
+    </div>
+</div>
+
+    </div>
+
+    <!-- Table of contents -->
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+        
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i> Contents
+        </div>
+        <nav id="bd-toc-nav">
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#drawbacks-of-dft">
+   Drawbacks of DFT:
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#construction-of-continuous-power-spectrum">
+   Construction of Continuous Power Spectrum
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#plotting-the-continuous-power-spectrum">
+     Plotting the Continuous Power Spectrum
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#testing-the-significance-of-spectral-peaks">
+   Testing the Significance of Spectral Peaks
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#power-spectrum-of-red-noise">
+     Power Spectrum of Red Noise
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+        </nav>
+        
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="continuous-power-spectrum-and-the-significance-of-spectral-peaks">
+<h1>Continuous Power Spectrum and the Significance of Spectral Peaks<a class="headerlink" href="#continuous-power-spectrum-and-the-significance-of-spectral-peaks" title="Permalink to this headline">¶</a></h1>
+<p>In this section, we will examine how to construct the <strong>continuous power spectrum</strong> and how we can use this to assess the statistical significance of spectral peaks.</p>
+<div class="section" id="drawbacks-of-dft">
+<h2>Drawbacks of DFT:<a class="headerlink" href="#drawbacks-of-dft" title="Permalink to this headline">¶</a></h2>
+<p>While the discrete power spectrum is fine if we have an infinite sample, it has serious drawbacks if we only have a finite data record:</p>
+<ul class="simple">
+<li><p>integral values of <span class="math notranslate nohighlight">\(k\)</span> do not have any special relationship to the population being sampled, and are completely dependent on the length of the data record <span class="math notranslate nohighlight">\(T\)</span> which is presumably arbitrary.</p></li>
+<li><p>the individual spectral lines each contain about 2 degrees of freedom: <span class="math notranslate nohighlight">\(N\)</span>+1 data points were used to determine, <span class="math notranslate nohighlight">\(N\)</span>/2 amplitudes and <span class="math notranslate nohighlight">\(N\)</span>/2 - 1 phases.</p></li>
+<li><p>except for diurnal/seasonal cycles, most geophysical phenomena are only quasi-periodic, and thus, do not conform to the idea of a single integer wavenumber, but are likely better represented as spectral bands of finite width.</p></li>
+</ul>
+<p>These considerations suggest the notion of a <strong>continuous power spectrum</strong>, where the variance <span class="math notranslate nohighlight">\(y(t)\)</span> is given per unit frequency (or wavenumber). This is what we will cover in this section.</p>
+</div>
+<div class="section" id="construction-of-continuous-power-spectrum">
+<h2>Construction of Continuous Power Spectrum<a class="headerlink" href="#construction-of-continuous-power-spectrum" title="Permalink to this headline">¶</a></h2>
+<p>Recall that under the discrete power spectrum framework, the variance of a time series, <span class="math notranslate nohighlight">\(y(t)\)</span> can be approximated as,</p>
+<div class="math notranslate nohighlight">
+\[
+\overline{y(t)^{\prime 2}} = \sum_{k=1}^{N/2}\frac{C_k^2}{2}
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(k\)</span> is an integer. As mentioned previously, restricting the power spectrum to integer values of <span class="math notranslate nohighlight">\(k\)</span> has drawbacks.</p>
+<p>Alternatively, we define the variance of <span class="math notranslate nohighlight">\(y(t)\)</span> over a continuous value for <span class="math notranslate nohighlight">\(k\)</span> as follows,</p>
+<div class="math notranslate nohighlight">
+\[
+\overline{y(t)^{\prime 2}} = \int_{0}^{k^*} \phi (k) \,dk
+\]</div>
+<p>where,</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\phi (k)\)</span> is the continuous power spectrum</p></li>
+<li><p><span class="math notranslate nohighlight">\(k^*\)</span> corresponds to the Nyquist frequency, i.e. one cycle per 2<span class="math notranslate nohighlight">\(\Delta t\)</span> where <span class="math notranslate nohighlight">\(\Delta t\)</span> is the constant spacing between data points</p></li>
+</ul>
+<p>Note that <span class="math notranslate nohighlight">\(\phi (k)\)</span> is simply a continuous version of <span class="math notranslate nohighlight">\(\frac{C_k^2}{2}\)</span> and is estimated either by smoothing the line spectrum or by averaging many line spectra together. Let’s take a look at these two methods of computing <span class="math notranslate nohighlight">\(\phi (k)\)</span>. The process of computing the continuous power spectrum results in a greater number of degrees of freedom (d.o.f.) per spectral estimate, which allows us to assess the statistical significance of these spectral estimates.</p>
+<p><em><strong>Two ways of constructing a continuous power spectrum and obtaining more degrees of freedom:</strong></em></p>
+<ol class="simple">
+<li><p>Average adjacent spectral estimates together: we lose resolution, but gain d.o.f.. For example, if you average 10 adjacent spectral estimates together, the frequency resolution decreases by a factor of 10 but the number of d.o.f. increases by a factor of 10.</p></li>
+<li><p>Average realizations of the spectra together: we lose information at lower frequencies but gain d.o.f. For example, if you subdivide a long time series into 10 shorter time series of equal length, the lowest frequencies resolved increases by a factor of 10, but the number of d.o.f. also increases by a factor of 10.</p></li>
+</ol>
+<p>When constructing a continuous power spectrum, there is a trade-off between resolution and robustness (degrees of freedom).</p>
+<p>Formally, the <strong>degrees of freedom per spectral estimate</strong> is given by:</p>
+<div class="math notranslate nohighlight">
+\[
+D.O.F. = \frac{N}{M^*}
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(M^*\)</span> is the number of independent spectral estimates and <span class="math notranslate nohighlight">\(N\)</span> is the number of actual data points. So, for the discrete power spectrum, <span class="math notranslate nohighlight">\(M^*\)</span> = <span class="math notranslate nohighlight">\(N\)</span>/2, and so, <span class="math notranslate nohighlight">\(D.O.F. = \frac{N}{(N/2)}\)</span> = 2. For a continuous power spectrum, <span class="math notranslate nohighlight">\(M^*\)</span> decreases, but <span class="math notranslate nohighlight">\(D.O.F.\)</span> increases.</p>
+<div class="section" id="plotting-the-continuous-power-spectrum">
+<h3>Plotting the Continuous Power Spectrum<a class="headerlink" href="#plotting-the-continuous-power-spectrum" title="Permalink to this headline">¶</a></h3>
+<p>Before we move on, here are a few notes about plotting the continuous power spectrum. There are two basic schemes for plotting the power spectra</p>
+<ol class="simple">
+<li><p>the linear scale</p></li>
+<li><p>the logarithmic scale</p></li>
+</ol>
+<p>In the linear scale, you plot the wavenumber (or frequency, <span class="math notranslate nohighlight">\(\omega\)</span>) versus the power spectral density <span class="math notranslate nohighlight">\(\phi (k)\)</span> (or <span class="math notranslate nohighlight">\(\phi (\omega)\)</span>), such that the power or variance between two wavenumbers is proportional to the integral under the curve.</p>
+<p>In this case,</p>
+<div class="math notranslate nohighlight">
+\[
+\int_{k_1}^{k_2} \phi (k) \,dk
+\]</div>
+<p>is the variance in the time series between <span class="math notranslate nohighlight">\(k\)</span>=<span class="math notranslate nohighlight">\(k_1\)</span> and <span class="math notranslate nohighlight">\(k\)</span> = <span class="math notranslate nohighlight">\(k_2\)</span>.</p>
+<p>When the frequency interval of interest ranges over several orders of magnitude, it is useful to plot the natural log of the <span class="math notranslate nohighlight">\(x\)</span>-axis (e.g. wavenumber/frequency).</p>
+<p>In this case, the <span class="math notranslate nohighlight">\(y\)</span>-axis scale is set to <span class="math notranslate nohighlight">\(k\phi (k)\)</span> such that the area under the curve remains proportional to the total variance, i.e.</p>
+<div class="math notranslate nohighlight">
+\[
+\int_{\text{ln}(k_1)}^{\text{ln}k_2} k\phi (k) \,d(\text{ln}k) = \int_{k_1}^{k_2} \phi (k) \,dk
+\]</div>
+<p>where</p>
+<div class="math notranslate nohighlight">
+\[
+dx = x d(\text{ln}x)
+\]</div>
+<p>since</p>
+<div class="math notranslate nohighlight">
+\[
+d(\text{ln}x) = \frac{dx}{x}
+\]</div>
+<p>In the log-scale, the low-frequency end of the spectrum is stretched. In the example below, we will take a look at plotting the continuous power spectrum both ways.</p>
+<p>We will take a look at plotting the continuous power spectrum in the two different ways below.</p>
+</div>
+</div>
+<div class="section" id="testing-the-significance-of-spectral-peaks">
+<h2>Testing the Significance of Spectral Peaks<a class="headerlink" href="#testing-the-significance-of-spectral-peaks" title="Permalink to this headline">¶</a></h2>
+<p>The statistical significance of spectral peaks is typically assessed by testing against the null hypothesis that the data is just “red noise”, i.e. it has low-frequency variability but is <strong>not periodic</strong>. Recall that the autocorrelation function of red noise did not contain any periodicity, just a decaying exponential.</p>
+<p>The amplitude of a spectral peak is tested against the spectrum of the red noise fit to the data. Since the continuous power spectrum is a plot of variance per unit frequency, to test the statistical significance of a spectral peak, we are interested in the ratio of variances between the power spectrum of interest, <span class="math notranslate nohighlight">\(\phi_1\)</span> and the corresponding power spectrum of red noise, <span class="math notranslate nohighlight">\(\phi_0\)</span>. The significance of this ratio can be assessed using the <span class="math notranslate nohighlight">\(F\)</span><strong>-statistic</strong>:</p>
+<div class="math notranslate nohighlight">
+\[
+F = \frac{S_1^2}{S_0^2}
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(S_1^2\)</span> and <span class="math notranslate nohighlight">\(S_0^2\)</span> are the variances of the original spectrum and the red noise spectrum. The <span class="math notranslate nohighlight">\(F\)</span>-statistic requires the degrees of freedom <span class="math notranslate nohighlight">\(\nu_1\)</span> and <span class="math notranslate nohighlight">\(\nu_0\)</span> for the numerator and denominator.</p>
+<ul class="simple">
+<li><p>for red noise (<span class="math notranslate nohighlight">\(\nu_0\)</span>), we typically assume it is a large number</p></li>
+<li><p>for the real time series (<span class="math notranslate nohighlight">\(\nu_1\)</span>), use <span class="math notranslate nohighlight">\(N\)</span>/(# of spectral estimates) = <span class="math notranslate nohighlight">\(N\)</span>/<span class="math notranslate nohighlight">\(M^*\)</span></p></li>
+</ul>
+<p><a class="reference internal" href="#enso-cesm"><span class="std std-ref">Figure 22</span></a> shows an example of the continuous power spectrum of the Niño3.4 index for an observational data product (left) and for a global climate model (right) along with the red noise power spectrum and its upper 95% and 99% confidence limits. For each panel, <span class="math notranslate nohighlight">\(\phi_1\)</span> is the power spectrum of the Niño3.4 index (black curve) and the <span class="math notranslate nohighlight">\(\phi_0\)</span> is the corresponding power spectrum of red noise (red curve).</p>
+<div class="figure align-default" id="enso-cesm">
+<a class="reference internal image-reference" href="../../_images/ENSO_CESM.png"><img alt="../../_images/ENSO_CESM.png" src="../../_images/ENSO_CESM.png" style="width: 1440.0px; height: 762.0px;" /></a>
+<p class="caption"><span class="caption-number">Fig. 22 </span><span class="caption-text">Continuous power spectra of the Niño3.4 index for (left) the ERSST version 5 observational data product and (right) and <a class="reference external" href="http://www.cesm.ucar.edu/working_groups/CVC/cvdp/">Community Earth System Model version 2</a> (black curves). Note that the ERSST power spectrum in reproduced in the right panel in grey. The red curve show the corresponding red noise power spectrum for each time series and the blue and green curves show the upper 95% and 99% confidence limits on the red noise spectrum. Where the black curves exceed the blue curves, the variance in that frequency range is significantly different from red noise.</span><a class="headerlink" href="#enso-cesm" title="Permalink to this image">¶</a></p>
+</div>
+<p>Let’s take a look at an example.</p>
+<div class="tip admonition">
+<p class="admonition-title">Question #1</p>
+<p>Suppose you have a daily time series that is 512 days in length. You have split it into 128-day chunks (4 separate realizations) and calculated the continuous power spectrum by averaging the discrete power spectra of the 4 chunks together. If you have a peak in your continuous spectrum that is 3 times higher than the red noise value, is this significant at the 99% confidence level?</p>
+</div>
+<p>How would you go about solving this?</p>
+<ol class="simple">
+<li><p>let’s assume the peak is at a location we expected <em>a priori</em>.</p></li>
+<li><p>analogous to the <span class="math notranslate nohighlight">\(t\)</span>-test, we need to find out whether <span class="math notranslate nohighlight">\(F_{crit}\)</span> &lt; 3. If so, we can reject the null hypothesis that the peak is just random fluctuations of a red noise time series.</p></li>
+<li><p>we need to determine the degrees of freedom for our data and the red-noise time series, <span class="math notranslate nohighlight">\(\nu_{data}\)</span>, <span class="math notranslate nohighlight">\(\nu_{red}\)</span></p></li>
+</ol>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align}
+\nu_{data} &amp;= \frac{N}{M^*/2}\\
+&amp; = \frac{512}{128/2}\\
+&amp;= 8
+\end{align}
+\end{split}\]</div>
+<p>and</p>
+<div class="math notranslate nohighlight">
+\[
+\nu_{red} = \text{large number (typically greater than 100)}
+\]</div>
+<p>Now, we can look up the critical <span class="math notranslate nohighlight">\(F\)</span>-value.</p>
+<ol class="simple">
+<li><p>remember that for the <span class="math notranslate nohighlight">\(F\)</span>-statistic, the data is the numerator and the red-noise is the denominator.</p></li>
+</ol>
+<p>We can use an <span class="math notranslate nohighlight">\(F\)</span>-table to find the critical <span class="math notranslate nohighlight">\(F\)</span>-value or we can use the built-in <code class="docutils literal notranslate"><span class="pre">scipy.stats</span></code> function.</p>
+<div class="cell tag_hide-input tag_hide-output docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># import packages</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">scipy.stats</span> <span class="k">as</span> <span class="nn">st</span>
+
+<span class="c1"># degrees of freedom</span>
+<span class="n">dfn</span> <span class="o">=</span> <span class="mi">8</span>
+<span class="n">dfd</span> <span class="o">=</span> <span class="mi">100</span>
+
+<span class="c1"># one-sided critical F-value</span>
+<span class="n">f_crit</span> <span class="o">=</span> <span class="n">st</span><span class="o">.</span><span class="n">f</span><span class="o">.</span><span class="n">ppf</span><span class="p">(</span><span class="mf">0.99</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">100</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">f_crit</span><span class="p">,</span><span class="mi">2</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2.69
+</pre></div>
+</div>
+</div>
+</div>
+<p>Since <span class="math notranslate nohighlight">\(F_{crit}\)</span> = 2.69 &lt; 3, our peak passes the <span class="math notranslate nohighlight">\(F\)</span>-test and we can reject the null hypothesis.</p>
+<div class="section" id="power-spectrum-of-red-noise">
+<h3>Power Spectrum of Red Noise<a class="headerlink" href="#power-spectrum-of-red-noise" title="Permalink to this headline">¶</a></h3>
+<p>So, now that we have a sense of how to assess the statistical significance of spectral peaks, we need an expression to compute the power spectrum of red noise. We will approach this using an <a class="reference external" href="https://en.wikipedia.org/wiki/Wiener%E2%80%93Khinchin_theorem#:~:text=In%20applied%20mathematics%2C%20the%20Wiener,decomposition%20given%20by%20the%20power">Wiener-Khinchin theorem</a> that states that</p>
+<div class="note admonition">
+<p class="admonition-title">Wiener-Khinchin Theorem</p>
+<p>For a time series, <span class="math notranslate nohighlight">\(y(t)\)</span>, the autocorrelation function, <span class="math notranslate nohighlight">\(\gamma(\tau)\)</span> and the power spectrum <span class="math notranslate nohighlight">\(\phi(\omega)\)</span> are Fourier transforms of each other.</p>
+</div>
+<p>As we have done previously, we are not going to prove this theorem, but make use of it. Recall that the autocorrelation function for red-noise is</p>
+<div class="math notranslate nohighlight">
+\[
+\gamma(\tau) = e^{\frac{-\tau}{T_e}}
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(T_e\)</span> is the <span class="math notranslate nohighlight">\(e\)</span>-folding time-scale.</p>
+<p>The power spectrum is the Fourier Transform of <span class="math notranslate nohighlight">\(\gamma(\tau)\)</span>,</p>
+<div class="math notranslate nohighlight">
+\[
+\phi(\omega) = \int_{-\infty}^{\infty} e^{\frac{-\tau}{T_e}}e^{-i\omega t} \,d\tau
+\]</div>
+<p>and after integration we get,</p>
+<div class="math notranslate nohighlight">
+\[
+\phi(\omega) = \frac{2T_e}{1+T_e^2\omega^2}
+\]</div>
+<p>In the real world, we only have an estimate of red noise based on a limited sample, while the above is for an infinitely long sample. Thus, in practice, we will use the discrete red noise spectrum developed by Gilman et al. (1963) where its unnormalized form is given by,</p>
+<div class="math notranslate nohighlight">
+\[
+\phi(\omega)_{discrete} = \frac{1-\rho^2}{1-2\rho\text{cos}(\frac{h\pi}{N/2})+\rho^2}
+\]</div>
+<p>where h = 0,1,2,…,<span class="math notranslate nohighlight">\(N\)</span>/2 and <span class="math notranslate nohighlight">\(\rho\)</span> is the lag-1 autocorrelation of the red noise process. Note that this discrete version does not differ much from the theoretical version, and the theoretical version is more conservative.</p>
+<p>Now, let’s look at an example.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># import extra packages</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">scipy.signal</span> <span class="k">as</span> <span class="nn">sig</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We are going to create a synthetic time series that combines a red noise process with a periodic cosine wave with a frequency of 0.2 cycles per time step. Let’s set up some parameters for this time series:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># input parameters</span>
+<span class="n">T</span> <span class="o">=</span> <span class="mi">256</span>         <span class="c1">#length of time series</span>
+<span class="n">N</span> <span class="o">=</span> <span class="mi">4</span>           <span class="c1">#number of chunks</span>
+<span class="n">alpha</span> <span class="o">=</span> <span class="mf">0.5</span>     <span class="c1">#red noise lag-one autocorrelation</span>
+<span class="n">beta</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mf">1.</span><span class="o">-</span><span class="n">alpha</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>  <span class="c1">#beta, red noise parameter</span>
+
+<span class="n">T2</span> <span class="o">=</span> <span class="n">T</span><span class="o">/</span><span class="mi">2</span>
+<span class="n">freq</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mf">0.</span><span class="p">,</span><span class="n">T2</span><span class="o">+</span><span class="mf">1.</span><span class="p">)</span><span class="o">/</span><span class="n">T</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We will use the Gilman et al. expression for the power spectrum of a red noise process:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># contstruct expected red noise spectrum </span>
+<span class="n">rspec</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">h</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">T2</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">):</span>
+    <span class="n">rspec</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="mf">1.</span><span class="o">-</span><span class="n">alpha</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="mf">1.</span><span class="o">-</span><span class="mf">2.</span><span class="o">*</span><span class="n">alpha</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="p">(</span><span class="n">h</span><span class="p">)</span><span class="o">/</span><span class="n">T2</span><span class="p">)</span><span class="o">+</span><span class="n">alpha</span><span class="o">**</span><span class="mi">2</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We are going to work our way up to constructing a continuous power spectrum by computing the power spectrum for multiple realizations and taking the average. We are going to use a function called <code class="docutils literal notranslate"><span class="pre">scipy.signal.welch</span></code> to compute the power spectrum and we will discuss the details of this function in the next section. For now, we will just take it as given that this function gives us the discrete power spectrum.</p>
+<p>Let’s start by assuming that we just have one realization of our synthetic time series. This means that the degrees of freedom for any spectral peak is only 2. Thus, the confidence limits on the red noise spectrum will be quite large.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># initialize array for zeros for synthetic time series</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">T</span><span class="p">,)</span>
+
+<span class="c1"># construct synthetic time series (note the f for the cosine wave is approximate 0.2)</span>
+<span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">beta</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">()</span>
+<span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">T</span><span class="p">,</span><span class="mi">1</span><span class="p">):</span>
+    <span class="n">x</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">x</span><span class="p">[</span><span class="n">j</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="n">alpha</span> <span class="o">+</span> <span class="n">beta</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">()</span><span class="o">+</span><span class="mf">0.5</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="mf">2.</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="p">(</span><span class="mf">0.99</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">())</span><span class="o">*</span><span class="mf">50.</span><span class="o">/</span><span class="mf">256.</span><span class="o">*</span><span class="n">j</span><span class="p">)</span>
+        
+<span class="c1"># compute power spectrum</span>
+<span class="n">p</span> <span class="o">=</span> <span class="n">sig</span><span class="o">.</span><span class="n">welch</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">window</span><span class="o">=</span><span class="s1">&#39;hanning&#39;</span><span class="p">,</span> <span class="n">nperseg</span><span class="o">=</span><span class="n">T</span><span class="p">);</span>
+<span class="n">pave</span> <span class="o">=</span> <span class="n">p</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+
+<span class="c1">#normalize the spectrum (divide by )</span>
+<span class="n">pave</span> <span class="o">=</span> <span class="n">pave</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">pave</span><span class="p">)</span>
+ 
+<span class="c1"># calculate significance using F-test</span>
+<span class="n">dof</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="n">fstat</span> <span class="o">=</span> <span class="n">st</span><span class="o">.</span><span class="n">f</span><span class="o">.</span><span class="n">ppf</span><span class="p">(</span><span class="o">.</span><span class="mi">99</span><span class="p">,</span><span class="n">dof</span><span class="p">,</span><span class="mi">1000</span><span class="p">)</span>
+<span class="n">spec99</span> <span class="o">=</span> <span class="p">[</span><span class="n">fstat</span><span class="o">*</span><span class="n">m</span> <span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="n">rspec</span><span class="p">]</span>
+    
+<span class="n">fstat</span> <span class="o">=</span> <span class="n">st</span><span class="o">.</span><span class="n">f</span><span class="o">.</span><span class="n">ppf</span><span class="p">(</span><span class="o">.</span><span class="mi">95</span><span class="p">,</span><span class="n">dof</span><span class="p">,</span><span class="mi">1000</span><span class="p">)</span>
+<span class="n">spec95</span> <span class="o">=</span> <span class="p">[</span><span class="n">fstat</span><span class="o">*</span><span class="n">m</span> <span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="n">rspec</span><span class="p">]</span>
+    
+<span class="c1"># plot power spectrum and red noise spectra</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;frequency (cycles per time step)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;power&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;# Realizations = 1&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mf">15.</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mf">0.5</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">freq</span><span class="p">,</span><span class="n">pave</span><span class="p">,</span><span class="s1">&#39;-k&#39;</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;data&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">freq</span><span class="p">,</span><span class="n">rspec</span><span class="p">,</span><span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;red-noise fit&#39;</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;blue&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">freq</span><span class="p">,</span><span class="n">spec99</span><span class="p">,</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;99</span><span class="si">% c</span><span class="s1">onfidence&#39;</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;red&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">freq</span><span class="p">,</span><span class="n">spec95</span><span class="p">,</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;95</span><span class="si">% c</span><span class="s1">onfidence&#39;</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;orange&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">frameon</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/filtering_in_freq3_12_0.png" src="../../_images/filtering_in_freq3_12_0.png" />
+</div>
+</div>
+<p>The power spectrum plot above does not clearly show one strong peak at a frequency of 0.2 as we might expect given the cosine component of the synthetic time series we constructed and most of the peaks in the power spectrum on not statistically significant. Because we have several random components in our time series, you will find that you get a slightly different power spectrum everytime you run the cell above.</p>
+<p>Let’s see what happens when we run mutliple realizations of the power spectrum and average them together.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># initialize array for zeros for synthetic time series</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">T</span><span class="p">,)</span>
+
+<span class="c1"># counter for plotting</span>
+<span class="n">s</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">14</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
+
+<span class="c1"># loop over realizations</span>
+<span class="k">for</span> <span class="n">ir</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">40</span><span class="p">):</span>
+    
+    <span class="c1"># construct synthetic time series (note the f for the cosine wave is approximate 0.2)</span>
+    <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">beta</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">()</span>
+    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">T</span><span class="p">,</span><span class="mi">1</span><span class="p">):</span>
+        <span class="n">x</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">x</span><span class="p">[</span><span class="n">j</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="n">alpha</span> <span class="o">+</span> <span class="n">beta</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">()</span><span class="o">+</span><span class="mf">0.5</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="mf">2.</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="p">(</span><span class="mf">1.</span><span class="o">-</span><span class="mf">0.01</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">())</span><span class="o">*</span><span class="mf">50.</span><span class="o">/</span><span class="mf">256.</span><span class="o">*</span><span class="n">j</span><span class="p">)</span>
+        
+    <span class="c1"># compute power spectrum</span>
+    <span class="n">p</span> <span class="o">=</span> <span class="n">sig</span><span class="o">.</span><span class="n">welch</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">window</span><span class="o">=</span><span class="s1">&#39;hanning&#39;</span><span class="p">,</span> <span class="n">nperseg</span><span class="o">=</span><span class="n">T</span><span class="p">);</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">ir</span><span class="o">==</span><span class="mi">0</span><span class="p">):</span>
+        <span class="n">psum</span> <span class="o">=</span> <span class="n">p</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="c1"># add power spectra for each realization together</span>
+        <span class="n">psum</span> <span class="o">=</span> <span class="n">psum</span> <span class="o">+</span> <span class="n">p</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+
+    <span class="c1"># calculate average    </span>
+    <span class="n">pave</span> <span class="o">=</span> <span class="n">psum</span><span class="o">/</span><span class="p">(</span><span class="n">ir</span><span class="o">+</span><span class="mf">1.0</span><span class="p">)</span>
+    
+    <span class="c1">#normalize the spectrum</span>
+    <span class="n">pave</span> <span class="o">=</span> <span class="n">pave</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">pave</span><span class="p">)</span>
+ 
+    
+    <span class="c1"># calculate significance using F-test</span>
+    <span class="n">dof</span> <span class="o">=</span> <span class="mf">2.</span><span class="o">*</span><span class="p">(</span><span class="n">ir</span><span class="o">+</span><span class="mf">1.</span><span class="p">)</span>
+    <span class="n">fstat</span> <span class="o">=</span> <span class="n">st</span><span class="o">.</span><span class="n">f</span><span class="o">.</span><span class="n">ppf</span><span class="p">(</span><span class="o">.</span><span class="mi">99</span><span class="p">,</span><span class="n">dof</span><span class="p">,</span><span class="mi">1000</span><span class="p">)</span>
+    <span class="n">spec99</span> <span class="o">=</span> <span class="p">[</span><span class="n">fstat</span><span class="o">*</span><span class="n">m</span> <span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="n">rspec</span><span class="p">]</span>
+    
+    <span class="n">fstat</span> <span class="o">=</span> <span class="n">st</span><span class="o">.</span><span class="n">f</span><span class="o">.</span><span class="n">ppf</span><span class="p">(</span><span class="o">.</span><span class="mi">95</span><span class="p">,</span><span class="n">dof</span><span class="p">,</span><span class="mi">1000</span><span class="p">)</span>
+    <span class="n">spec95</span> <span class="o">=</span> <span class="p">[</span><span class="n">fstat</span><span class="o">*</span><span class="n">m</span> <span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="n">rspec</span><span class="p">]</span>
+    
+    <span class="c1"># plot only for N = 1 and multiples of 20</span>
+    <span class="k">if</span><span class="p">((</span><span class="n">ir</span><span class="o">+</span><span class="mf">1.</span><span class="p">)</span> <span class="o">%</span> <span class="mi">20</span> <span class="o">==</span> <span class="mi">0</span> <span class="ow">or</span> <span class="n">ir</span><span class="o">==</span><span class="mi">0</span><span class="p">):</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="n">s</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;frequency (cycles per time step)&#39;</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;power&#39;</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;# Realizations = &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">ir</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mf">15.</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mf">0.5</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">freq</span><span class="p">,</span><span class="n">pave</span><span class="p">,</span><span class="s1">&#39;-k&#39;</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;data&#39;</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">freq</span><span class="p">,</span><span class="n">rspec</span><span class="p">,</span><span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;red-noise fit&#39;</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;blue&#39;</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">freq</span><span class="p">,</span><span class="n">spec99</span><span class="p">,</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;99</span><span class="si">% c</span><span class="s1">onfidence&#39;</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;red&#39;</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">freq</span><span class="p">,</span><span class="n">spec95</span><span class="p">,</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;95</span><span class="si">% c</span><span class="s1">onfidence&#39;</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;orange&#39;</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">frameon</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span>
+        <span class="n">s</span> <span class="o">=</span> <span class="n">s</span> <span class="o">+</span> <span class="mi">1</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/filtering_in_freq3_14_0.png" src="../../_images/filtering_in_freq3_14_0.png" />
+</div>
+</div>
+<p>As we increase the number of realizations, we see that the confidence limits on the red noise power spectrum decrease and we also see the a significant spectral peak at the frequency of the cosine wave component emerge.</p>
+<p>In the next section, we will take a closer look at the <code class="docutils literal notranslate"><span class="pre">scipy.sig.welch</span></code> function and the reasons behind why I have used this function in this example rather than the <code class="docutils literal notranslate"><span class="pre">np.fft.fft</span></code> function.</p>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "kls2177/Climate-and-Geophysical-Data-Analysis",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./chapters/Week6"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        </div>
+    </div>
+    
+    
+    <div class='prev-next-bottom'>
+        
+    <a class='left-prev' id="prev-link" href="filtering_in_freq2.html" title="previous page">Fast Fourier Transform</a>
+
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Karen Smith<br/>
+        
+            &copy; Copyright 2020.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    
+  <script src="../../_static/js/index.3da636dd464baa7582d2.js"></script>
+
+
+    
+  </body>
+</html>
