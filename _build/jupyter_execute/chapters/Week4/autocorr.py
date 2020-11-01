@@ -35,7 +35,7 @@
 # \gamma(N-1) = \left(x^{\prime}(0) \cdot x^{\prime}(N-1) + x^{\prime}(1) \cdot x^{\prime}(N)\right)
 # $$
 # 
-# For $\tau$ = 0, the autocovariance is $\gamma$(0) = $\frac{\overline{x^{\prime2}}}{N}$ = variance.
+# For $\tau$ = 0, the autocovariance is $\gamma$(0) = $\overline{x^{\prime2}}$ = variance.
 # 
 # **Autocorrelation**, $\rho$($\tau$), is simply $\frac{\gamma(\tau)}{\gamma(0)}$ , i.e. the autocovariance divided by the variance.
 # 
