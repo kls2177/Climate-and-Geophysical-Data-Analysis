@@ -48,6 +48,8 @@
     <script src="../../_static/sphinx-book-theme.be0a4a0c39cd630af62a2fcf693f3f06.js"></script>
     <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.18.0/dist/embed-amd.js"></script>
     <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
     <script >
         const thebe_selector = ".thebe,.cell"
@@ -58,6 +60,7 @@
     <link rel="canonical" href="https://kls2177.github.io/Climate-and-Geophysical-Data-Analysis/chapters/index.html/chapters/Week6/leak.html" />
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Convolution and Filtering in the Time Domain" href="convolution_filters_in_time.html" />
     <link rel="prev" title="Continuous Power Spectrum and the Significance of Spectral Peaks" href="filtering_in_freq3.html" />
 
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -176,6 +179,11 @@
    <li class="toctree-l2 current active">
     <a class="current reference internal" href="#">
      Spectral Leakage
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="convolution_filters_in_time.html">
+     Convolution and Filtering in the Time Domain
     </a>
    </li>
   </ul>
@@ -710,7 +718,7 @@ sinc(x) = \frac{\text{sin}(\pi x)}{\pi x}
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7fc42b0fa490&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7fb2b6800ee0&gt;
 </pre></div>
 </div>
 <img alt="../../_images/leak_28_1.png" src="../../_images/leak_28_1.png" />
@@ -776,7 +784,7 @@ h(t) = \frac{1}{2}\left(1-\text{cos}(\frac{2\pi t}{T})\right) \quad \text{when $
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7fc42b25bd90&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7fb2b697e0d0&gt;
 </pre></div>
 </div>
 <img alt="../../_images/leak_31_1.png" src="../../_images/leak_31_1.png" />
@@ -906,6 +914,7 @@ DOF = \frac{N}{M^*}f_w
     <div class='prev-next-bottom'>
         
     <a class='left-prev' id="prev-link" href="filtering_in_freq3.html" title="previous page">Continuous Power Spectrum and the Significance of Spectral Peaks</a>
+    <a class='right-next' id="next-link" href="convolution_filters_in_time.html" title="next page">Convolution and Filtering in the Time Domain</a>
 
     </div>
     <footer class="footer mt-5 mt-md-0">
