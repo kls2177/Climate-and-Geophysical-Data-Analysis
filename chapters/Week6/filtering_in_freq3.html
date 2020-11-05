@@ -48,6 +48,8 @@
     <script src="../../_static/sphinx-book-theme.be0a4a0c39cd630af62a2fcf693f3f06.js"></script>
     <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.18.0/dist/embed-amd.js"></script>
     <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
     <script >
         const thebe_selector = ".thebe,.cell"
@@ -58,6 +60,7 @@
     <link rel="canonical" href="https://kls2177.github.io/Climate-and-Geophysical-Data-Analysis/chapters/index.html/chapters/Week6/filtering_in_freq3.html" />
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Spectral Leakage" href="leak.html" />
     <link rel="prev" title="Fast Fourier Transform" href="filtering_in_freq2.html" />
 
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -171,6 +174,11 @@
    <li class="toctree-l2 current active">
     <a class="current reference internal" href="#">
      Continuous Power Spectrum and the Significance of Spectral Peaks
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="leak.html">
+     Spectral Leakage
     </a>
    </li>
   </ul>
@@ -405,7 +413,7 @@ F = \frac{S_1^2}{S_0^2}
 </ul>
 <p><a class="reference internal" href="#enso-cesm"><span class="std std-ref">Figure 22</span></a> shows an example of the continuous power spectrum of the Niño3.4 index for an observational data product (left) and for a global climate model (right) along with the red noise power spectrum and its upper 95% and 99% confidence limits. For each panel, <span class="math notranslate nohighlight">\(\phi_1\)</span> is the power spectrum of the Niño3.4 index (black curve) and the <span class="math notranslate nohighlight">\(\phi_0\)</span> is the corresponding power spectrum of red noise (red curve).</p>
 <div class="figure align-default" id="enso-cesm">
-<a class="reference internal image-reference" href="../../_images/ENSO_CESM.png"><img alt="../../_images/ENSO_CESM.png" src="../../_images/ENSO_CESM.png" style="width: 768.0px; height: 406.40000000000003px;" /></a>
+<a class="reference internal image-reference" href="../../_images/ENSO_CESM.png"><img alt="../../_images/ENSO_CESM.png" src="../../_images/ENSO_CESM.png" style="width: 1440.0px; height: 762.0px;" /></a>
 <p class="caption"><span class="caption-number">Fig. 22 </span><span class="caption-text">Continuous power spectra of the Niño3.4 index for (left) the ERSST version 5 observational data product and (right) and <a class="reference external" href="http://www.cesm.ucar.edu/working_groups/CVC/cvdp/">Community Earth System Model version 2</a> (black curves). Note that the ERSST power spectrum in reproduced in the right panel in grey. The red curve show the corresponding red noise power spectrum for each time series and the blue and green curves show the upper 95% and 99% confidence limits on the red noise spectrum. Where the black curves exceed the blue curves, the variance in that frequency range is significantly different from red noise.</span><a class="headerlink" href="#enso-cesm" title="Permalink to this image">¶</a></p>
 </div>
 <p>Let’s take a look at an example.</p>
@@ -422,7 +430,8 @@ F = \frac{S_1^2}{S_0^2}
 <div class="math notranslate nohighlight">
 \[\begin{split}
 \begin{align}
-\nu_{data} &amp;= \frac{N}{M^*/2}\\
+\nu_{data} &amp;= \frac{N}{M^*}\\
+&amp; = \frac{N}{N/4/2}
 &amp; = \frac{512}{128/2}\\
 &amp;= 8
 \end{align}
@@ -488,7 +497,7 @@ F = \frac{S_1^2}{S_0^2}
 \[
 \phi(\omega)_{discrete} = \frac{1-\rho^2}{1-2\rho\text{cos}(\frac{h\pi}{N/2})+\rho^2}
 \]</div>
-<p>where h = 0,1,2,…,<span class="math notranslate nohighlight">\(N\)</span>/2 and <span class="math notranslate nohighlight">\(\rho\)</span> is the lag-1 autocorrelation of the red noise process. Note that this discrete version does not differ much from the theoretical version, and the theoretical version is more conservative.</p>
+<p>where h = 0,1,2,…,<span class="math notranslate nohighlight">\(N\)</span>/2 and <span class="math notranslate nohighlight">\(\rho\)</span> is the lag-1 autocorrelation of the time series. Note that this discrete version does not differ much from the theoretical version, and the theoretical version is more conservative.</p>
 <p>Now, let’s look at an example.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -535,14 +544,14 @@ F = \frac{S_1^2}{S_0^2}
 <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">beta</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">()</span>
 <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">T</span><span class="p">,</span><span class="mi">1</span><span class="p">):</span>
     <span class="n">x</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">x</span><span class="p">[</span><span class="n">j</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="n">alpha</span> <span class="o">+</span> <span class="n">beta</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">()</span><span class="o">+</span><span class="mf">0.5</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="mf">2.</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="p">(</span><span class="mf">0.99</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">())</span><span class="o">*</span><span class="mf">50.</span><span class="o">/</span><span class="mf">256.</span><span class="o">*</span><span class="n">j</span><span class="p">)</span>
-        
+
 <span class="c1"># compute power spectrum</span>
-<span class="n">p</span> <span class="o">=</span> <span class="n">sig</span><span class="o">.</span><span class="n">welch</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">window</span><span class="o">=</span><span class="s1">&#39;hanning&#39;</span><span class="p">,</span> <span class="n">nperseg</span><span class="o">=</span><span class="n">T</span><span class="p">);</span>
+<span class="n">p</span> <span class="o">=</span> <span class="n">sig</span><span class="o">.</span><span class="n">welch</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">window</span><span class="o">=</span><span class="s1">&#39;hanning&#39;</span><span class="p">,</span> <span class="n">nperseg</span><span class="o">=</span><span class="n">T</span><span class="p">)</span>
 <span class="n">pave</span> <span class="o">=</span> <span class="n">p</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
 
-<span class="c1">#normalize the spectrum (divide by )</span>
-<span class="n">pave</span> <span class="o">=</span> <span class="n">pave</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">pave</span><span class="p">)</span>
- 
+<span class="c1"># normalize the spectrum</span>
+<span class="n">pave</span> <span class="o">=</span> <span class="n">pave</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">pave</span><span class="p">)</span>
+
 <span class="c1"># calculate significance using F-test</span>
 <span class="n">dof</span> <span class="o">=</span> <span class="mi">2</span>
 <span class="n">fstat</span> <span class="o">=</span> <span class="n">st</span><span class="o">.</span><span class="n">f</span><span class="o">.</span><span class="n">ppf</span><span class="p">(</span><span class="o">.</span><span class="mi">99</span><span class="p">,</span><span class="n">dof</span><span class="p">,</span><span class="mi">1000</span><span class="p">)</span>
@@ -553,15 +562,15 @@ F = \frac{S_1^2}{S_0^2}
     
 <span class="c1"># plot power spectrum and red noise spectra</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;frequency (cycles per time step)&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;power&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Frequency (cycles per time step)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Normalized Power&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;# Realizations = 1&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mf">15.</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mf">0.12</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mf">0.5</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">freq</span><span class="p">,</span><span class="n">pave</span><span class="p">,</span><span class="s1">&#39;-k&#39;</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;data&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">freq</span><span class="p">,</span><span class="n">rspec</span><span class="p">,</span><span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;red-noise fit&#39;</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;blue&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">freq</span><span class="p">,</span><span class="n">spec99</span><span class="p">,</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;99</span><span class="si">% c</span><span class="s1">onfidence&#39;</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;red&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">freq</span><span class="p">,</span><span class="n">spec95</span><span class="p">,</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;95</span><span class="si">% c</span><span class="s1">onfidence&#39;</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;orange&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">freq</span><span class="p">,</span><span class="n">rspec</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">rspec</span><span class="p">),</span><span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;red-noise fit&#39;</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;blue&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">freq</span><span class="p">,</span><span class="n">spec99</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">rspec</span><span class="p">),</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;99</span><span class="si">% c</span><span class="s1">onfidence&#39;</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;red&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">freq</span><span class="p">,</span><span class="n">spec95</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">rspec</span><span class="p">),</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;95</span><span class="si">% c</span><span class="s1">onfidence&#39;</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;orange&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">frameon</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
 </pre></div>
@@ -588,7 +597,7 @@ F = \frac{S_1^2}{S_0^2}
     <span class="c1"># construct synthetic time series (note the f for the cosine wave is approximate 0.2)</span>
     <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">beta</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">()</span>
     <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">T</span><span class="p">,</span><span class="mi">1</span><span class="p">):</span>
-        <span class="n">x</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">x</span><span class="p">[</span><span class="n">j</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="n">alpha</span> <span class="o">+</span> <span class="n">beta</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">()</span><span class="o">+</span><span class="mf">0.5</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="mf">2.</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="p">(</span><span class="mf">1.</span><span class="o">-</span><span class="mf">0.01</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">())</span><span class="o">*</span><span class="mf">50.</span><span class="o">/</span><span class="mf">256.</span><span class="o">*</span><span class="n">j</span><span class="p">)</span>
+        <span class="n">x</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">x</span><span class="p">[</span><span class="n">j</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="n">alpha</span> <span class="o">+</span> <span class="n">beta</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">()</span><span class="o">+</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="mf">2.</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="p">(</span><span class="mf">1.</span><span class="o">-</span><span class="mf">0.01</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">())</span><span class="o">*</span><span class="mf">50.</span><span class="o">/</span><span class="mf">256.</span><span class="o">*</span><span class="n">j</span><span class="p">)</span>
         
     <span class="c1"># compute power spectrum</span>
     <span class="n">p</span> <span class="o">=</span> <span class="n">sig</span><span class="o">.</span><span class="n">welch</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">window</span><span class="o">=</span><span class="s1">&#39;hanning&#39;</span><span class="p">,</span> <span class="n">nperseg</span><span class="o">=</span><span class="n">T</span><span class="p">);</span>
@@ -601,8 +610,8 @@ F = \frac{S_1^2}{S_0^2}
     <span class="c1"># calculate average    </span>
     <span class="n">pave</span> <span class="o">=</span> <span class="n">psum</span><span class="o">/</span><span class="p">(</span><span class="n">ir</span><span class="o">+</span><span class="mf">1.0</span><span class="p">)</span>
     
-    <span class="c1">#normalize the spectrum</span>
-    <span class="n">pave</span> <span class="o">=</span> <span class="n">pave</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">pave</span><span class="p">)</span>
+    <span class="c1"># normalize the spectrum</span>
+    <span class="n">pave</span> <span class="o">=</span> <span class="n">pave</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">pave</span><span class="p">)</span>
  
     
     <span class="c1"># calculate significance using F-test</span>
@@ -616,15 +625,15 @@ F = \frac{S_1^2}{S_0^2}
     <span class="c1"># plot only for N = 1 and multiples of 20</span>
     <span class="k">if</span><span class="p">((</span><span class="n">ir</span><span class="o">+</span><span class="mf">1.</span><span class="p">)</span> <span class="o">%</span> <span class="mi">20</span> <span class="o">==</span> <span class="mi">0</span> <span class="ow">or</span> <span class="n">ir</span><span class="o">==</span><span class="mi">0</span><span class="p">):</span>
         <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="n">s</span><span class="p">)</span>
-        <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;frequency (cycles per time step)&#39;</span><span class="p">)</span>
-        <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;power&#39;</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Frequency (cycles per time step)&#39;</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Normalized Power&#39;</span><span class="p">)</span>
         <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;# Realizations = &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">ir</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span>
-        <span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mf">15.</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mf">0.12</span><span class="p">)</span>
         <span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mf">0.5</span><span class="p">)</span>
         <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">freq</span><span class="p">,</span><span class="n">pave</span><span class="p">,</span><span class="s1">&#39;-k&#39;</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;data&#39;</span><span class="p">)</span>
-        <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">freq</span><span class="p">,</span><span class="n">rspec</span><span class="p">,</span><span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;red-noise fit&#39;</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;blue&#39;</span><span class="p">)</span>
-        <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">freq</span><span class="p">,</span><span class="n">spec99</span><span class="p">,</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;99</span><span class="si">% c</span><span class="s1">onfidence&#39;</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;red&#39;</span><span class="p">)</span>
-        <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">freq</span><span class="p">,</span><span class="n">spec95</span><span class="p">,</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;95</span><span class="si">% c</span><span class="s1">onfidence&#39;</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;orange&#39;</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">freq</span><span class="p">,</span><span class="n">rspec</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">rspec</span><span class="p">),</span><span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;red-noise fit&#39;</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;blue&#39;</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">freq</span><span class="p">,</span><span class="n">spec99</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">rspec</span><span class="p">),</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;99</span><span class="si">% c</span><span class="s1">onfidence&#39;</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;red&#39;</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">freq</span><span class="p">,</span><span class="n">spec95</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">rspec</span><span class="p">),</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;95</span><span class="si">% c</span><span class="s1">onfidence&#39;</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;orange&#39;</span><span class="p">)</span>
         <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">frameon</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span>
         <span class="n">s</span> <span class="o">=</span> <span class="n">s</span> <span class="o">+</span> <span class="mi">1</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
@@ -670,6 +679,7 @@ F = \frac{S_1^2}{S_0^2}
     <div class='prev-next-bottom'>
         
     <a class='left-prev' id="prev-link" href="filtering_in_freq2.html" title="previous page">Fast Fourier Transform</a>
+    <a class='right-next' id="next-link" href="leak.html" title="next page">Spectral Leakage</a>
 
     </div>
     <footer class="footer mt-5 mt-md-0">
