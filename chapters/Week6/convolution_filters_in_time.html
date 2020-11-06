@@ -48,8 +48,6 @@
     <script src="../../_static/sphinx-book-theme.be0a4a0c39cd630af62a2fcf693f3f06.js"></script>
     <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.18.0/dist/embed-amd.js"></script>
     <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
     <script >
         const thebe_selector = ".thebe,.cell"
@@ -323,6 +321,58 @@ y(t)_{filtered} &amp;= (g * y)(t)\\
 &amp; = \mathcal{Y}(\omega)\mathcal{G}(\omega)
 \end{align}
 \end{split}\]</div>
+<p><em>Ideal Filter</em>:</p>
+<p>Suppose we want to low-pass filter the time series, <span class="math notranslate nohighlight">\(y(t)\)</span>. The Fourier Transform of an ideal filter, <span class="math notranslate nohighlight">\(\mathcal{G}(\omega)\)</span>, should be such that all low-frequencies are retain and all high-frequencies are set to zero. Graphically, the response function of an ideal filter should look like the plot below, for the situation where we have monthly data and we want to low-pass filter out frequencies higher than 12 months.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import packages</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">scipy.stats</span> <span class="k">as</span> <span class="nn">st</span>
+<span class="kn">import</span> <span class="nn">scipy.signal</span> <span class="k">as</span> <span class="nn">sig</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Response function for ideal filter with L = 12</span>
+<span class="n">L</span> <span class="o">=</span> <span class="mi">12</span>
+<span class="c1"># time variable</span>
+<span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">20</span><span class="o">*</span><span class="n">L</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+<span class="c1"># frequency</span>
+<span class="n">freqr</span> <span class="o">=</span> <span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="nb">int</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">t</span><span class="p">))</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="nb">len</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
+
+<span class="c1"># response function</span>
+<span class="n">ideal_response</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">freqr</span><span class="p">))</span>
+<span class="n">ideal_response</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">20</span><span class="p">]</span><span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">freqr</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">20</span><span class="p">]))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># plot response functions for running-mean filter with L = 12</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">14</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">freqr</span><span class="p">,</span><span class="n">ideal_response</span><span class="p">,</span><span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;Ideal Filter: L = 12&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">freqr</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">([</span><span class="n">freqr</span><span class="p">[</span><span class="mi">19</span><span class="p">],</span><span class="n">freqr</span><span class="p">[</span><span class="mi">39</span><span class="p">],</span><span class="n">freqr</span><span class="p">[</span><span class="mi">59</span><span class="p">],</span><span class="n">freqr</span><span class="p">[</span><span class="mi">79</span><span class="p">],</span><span class="n">freqr</span><span class="p">[</span><span class="mi">99</span><span class="p">],</span><span class="n">freqr</span><span class="p">[</span><span class="mi">119</span><span class="p">],</span><span class="n">freqr</span><span class="p">[</span><span class="mi">139</span><span class="p">],</span>
+            <span class="n">freqr</span><span class="p">[</span><span class="mi">159</span><span class="p">],</span><span class="n">freqr</span><span class="p">[</span><span class="mi">179</span><span class="p">],</span><span class="n">freqr</span><span class="p">[</span><span class="mi">199</span><span class="p">],</span><span class="n">freqr</span><span class="p">[</span><span class="mi">219</span><span class="p">],</span><span class="n">freqr</span><span class="p">[</span><span class="mi">239</span><span class="p">]],</span>
+           <span class="p">[</span><span class="s2">&quot;12&quot;</span><span class="p">,</span><span class="s2">&quot;6&quot;</span><span class="p">,</span><span class="s2">&quot;4&quot;</span><span class="p">,</span><span class="s2">&quot;3&quot;</span><span class="p">,</span><span class="s2">&quot;2.4&quot;</span><span class="p">,</span><span class="s2">&quot;2&quot;</span><span class="p">,</span><span class="s2">&quot;1.7&quot;</span><span class="p">,</span><span class="s2">&quot;1.5&quot;</span><span class="p">,</span><span class="s2">&quot;1.33&quot;</span><span class="p">,</span><span class="s2">&quot;1.2&quot;</span><span class="p">,</span><span class="s2">&quot;1.09&quot;</span><span class="p">,</span><span class="s2">&quot;1&quot;</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;frequency (months)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7fa4f229edf0&gt;
+</pre></div>
+</div>
+<img alt="../../_images/convolution_filters_in_time_3_1.png" src="../../_images/convolution_filters_in_time_3_1.png" />
+</div>
+</div>
+<p><em>Running-Mean Filter</em>:</p>
 <p>If <span class="math notranslate nohighlight">\(g(t)\)</span> is a running-mean filter, then this is essentially the same thing as the boxcar window that we saw in the previous section. In other words,</p>
 <div class="math notranslate nohighlight">
 \[
@@ -337,17 +387,6 @@ y(t)_{filtered} &amp;= (g * y)(t)\\
 <p>So, if you apply a 12-month running mean to monthly data, you will exactly remove the 12-month cycle, the 6-month cycle, the 4-month cycle, etc. Thus, you do not perfectly remove all frequencies higher than <span class="math notranslate nohighlight">\(L\)</span> = 12.</p>
 <p>In addition, the side lobes of the <span class="math notranslate nohighlight">\(sinc\)</span> response function cause additional problems. These will phase shift your frequencies between these perfectly removed harmonics, leading to <em>spectral leakage</em> to other frequencies.</p>
 <p>Let’s remind ourselves of what a boxcar response function looks like:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import packages</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="kn">import</span> <span class="nn">scipy.stats</span> <span class="k">as</span> <span class="nn">st</span>
-<span class="kn">import</span> <span class="nn">scipy.signal</span> <span class="k">as</span> <span class="nn">sig</span>
-</pre></div>
-</div>
-</div>
-</div>
 <p>Let’s construct it like a running mean filter, with <span class="math notranslate nohighlight">\(L\)</span> = 12, assuming we have monthly data and we want to filter out the seasonal cycle.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -367,8 +406,9 @@ y(t)_{filtered} &amp;= (g * y)(t)\\
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># plot response functions for running-mean filter with L = 12</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">14</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">freqr</span><span class="p">,</span><span class="n">bxcr_response</span><span class="p">,</span><span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;L = 12&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">freqr</span><span class="p">,</span><span class="n">ideal_response</span><span class="p">,</span><span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;Ideal Filter: L = 12&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">freqr</span><span class="p">,</span><span class="n">bxcr_response</span><span class="p">,</span><span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;Running-Mean Filter: L = 12&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">freqr</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">([</span><span class="n">freqr</span><span class="p">[</span><span class="mi">19</span><span class="p">],</span><span class="n">freqr</span><span class="p">[</span><span class="mi">39</span><span class="p">],</span><span class="n">freqr</span><span class="p">[</span><span class="mi">59</span><span class="p">],</span><span class="n">freqr</span><span class="p">[</span><span class="mi">79</span><span class="p">],</span><span class="n">freqr</span><span class="p">[</span><span class="mi">99</span><span class="p">],</span><span class="n">freqr</span><span class="p">[</span><span class="mi">119</span><span class="p">],</span><span class="n">freqr</span><span class="p">[</span><span class="mi">139</span><span class="p">],</span>
             <span class="n">freqr</span><span class="p">[</span><span class="mi">159</span><span class="p">],</span><span class="n">freqr</span><span class="p">[</span><span class="mi">179</span><span class="p">],</span><span class="n">freqr</span><span class="p">[</span><span class="mi">199</span><span class="p">],</span><span class="n">freqr</span><span class="p">[</span><span class="mi">219</span><span class="p">],</span><span class="n">freqr</span><span class="p">[</span><span class="mi">239</span><span class="p">]],</span>
@@ -379,15 +419,15 @@ y(t)_{filtered} &amp;= (g * y)(t)\\
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7fd9df2aaf70&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7fa4f247d130&gt;
 </pre></div>
 </div>
-<img alt="../../_images/convolution_filters_in_time_4_1.png" src="../../_images/convolution_filters_in_time_4_1.png" />
+<img alt="../../_images/convolution_filters_in_time_7_1.png" src="../../_images/convolution_filters_in_time_7_1.png" />
 </div>
 </div>
-<p>So, what this response function illustrates is that a time series filtered using a running-mean filter will exactly filter out the 12-month frequency and retain the lower frequencies, but these will be smoothed out. The filter does not maintain all the power contained in these low frequencies because the response function decays from a value of 1 to 0. In addition, a time series filtered using a running-mean filter will have some high frequencies removed (note that the response function is 0 for 6-months, 4-months, 3-months, etc.) but it still contain other high frequencies due to the oscillatory side lobes. Thus, the running-mean filter is not a pure low-pass filter.</p>
-<p>As we saw in the previous section, we can use alternative windows or filters to alleviate some of these issues. An in-depth discussion of how this is done is beyond the scope of this course, but the <em>Gaussian</em> filter that was mentioned in the first section, is one such alternative.</p>
-<p>Filtering in the <em>frequency domain</em> and then applying the inverse Fourier Transform is the other option - as we have seen in a previous section.</p>
+<p>So, what this response function illustrates is that a time series filtered using a running-mean filter will exactly filter out the 12-month frequency and retain the lower frequencies, but these will be smoothed out. The filter does not maintain all the power contained in these low frequencies because the response function decays from a value of 1 to 0 over the lower frequency range. In addition, a time series filtered using a running-mean filter will have some high frequencies removed (note that the response function is 0 for 6-months, 4-months, 3-months, etc.) but it still contain other high frequencies due to the oscillatory side lobes. Thus, the running-mean filter is not a pure low-pass filter.</p>
+<p>As we saw in the previous section, we can use alternative windows or filters to alleviate some of these issues and attempt to approach the ideal filter response function. An in-depth discussion of how this is done is beyond the scope of this course, but the <em>Gaussian</em> filter that was mentioned in the first section, is one such alternative.</p>
+<p>Filtering in the <em>frequency domain</em> and then applying the inverse Fourier Transform is another alternative - as we have seen in a previous section.</p>
 </div>
 </div>
 
