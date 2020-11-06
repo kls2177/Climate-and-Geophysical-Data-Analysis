@@ -1,0 +1,487 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Convolution and Filtering in the Time Domain &#8212; Climate and Geophysical Data Analysis</title>
+    
+  <link rel="stylesheet" href="../../_static/css/index.73d71520a4ca3b99cfee5594769eaaae.css">
+
+    
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+  <link rel="stylesheet"
+    href="../../_static/vendor/open-sans_all/1.44.1/index.css">
+  <link rel="stylesheet"
+    href="../../_static/vendor/lato_latin-ext/1.44.1/index.css">
+
+    
+    <link rel="stylesheet" href="../../_static/sphinx-book-theme.2d2078699c18a0efb88233928e1cf6ed.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../../_static/js/index.3da636dd464baa7582d2.js">
+
+    <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/language_data.js"></script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../../_static/sphinx-book-theme.be0a4a0c39cd630af62a2fcf693f3f06.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe,.cell"
+        const thebe_selector_input = "pre,.cell_input div.highlight"
+        const thebe_selector_output = ".output,.cell_output"
+    </script>
+    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <link rel="canonical" href="https://kls2177.github.io/Climate-and-Geophysical-Data-Analysis/chapters/index.html/chapters/Week6/convolution_filters_in_time.html" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="prev" title="Spectral Leakage" href="leak.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+
+
+<!-- Opengraph tags -->
+<meta property="og:url"         content="https://kls2177.github.io/Climate-and-Geophysical-Data-Analysis/chapters/index.html/chapters/Week6/convolution_filters_in_time.html" />
+<meta property="og:type"        content="article" />
+<meta property="og:title"       content="Convolution and Filtering in the Time Domain" />
+<meta property="og:description" content="Convolution and Filtering in the Time Domain  In this section, we are going to return to filtering in the time domain and use the knowledge we have gained about" />
+<meta property="og:image"       content="https://kls2177.github.io/Climate-and-Geophysical-Data-Analysis/chapters/index.html/_static/gistemp.png" />
+
+<meta name="twitter:card" content="summary" />
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="../../index.html">
+  
+  <img src="../../_static/gistemp.png" class="logo" alt="logo">
+  
+  
+  <h1 class="site-logo" id="site-title">Climate and Geophysical Data Analysis</h1>
+  
+</a>
+</div>
+
+<form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../index.html">
+   Climate and Geophysical Data Analysis
+  </a>
+ </li>
+</ul>
+<ul class="current nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../introduction/intro.html">
+   Introduction
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Week1a/whatarestatsgoodfor.html">
+   What are statistics good for?
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Week1b/descriptivestats.html">
+   Descriptive Statistics
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Week2/hypothesis_testing.html">
+   Statistical Hypothesis Testing
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Week3/linreg.html">
+   Linear Regression
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Week4/corr.html">
+   Correlation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Week5/persistence.html">
+   Persistence in Time Series
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="reference internal" href="filt.html">
+   Time Series Analysis
+  </a>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="filtering_in_time.html">
+     Filtering in the Time Domain: Part I
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="Harmonics.html">
+     Filtering in the Time Domain: Part II
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="filtering_in_freq1.html">
+     Filtering in the Frequency Domain: Discrete Fourier Transform
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="filtering_in_freq2.html">
+     Fast Fourier Transform
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="filtering_in_freq3.html">
+     Continuous Power Spectrum and the Significance of Spectral Peaks
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="leak.html">
+     Spectral Leakage
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     Convolution and Filtering in the Time Domain
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+</nav>
+
+ <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="row topbar fixed-top container-xl">
+    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+    </div>
+    <div class="col pl-2 topbar-main">
+        
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        
+        <div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../../_sources/chapters/Week6/convolution_filters_in_time.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+    
+</div>
+        <!-- Source interaction buttons -->
+
+
+        <!-- Full screen (wrap in <a> to have style consistency -->
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+                title="Fullscreen mode"><i
+                    class="fas fa-expand"></i></button></a>
+
+        <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/kls2177/Climate-and-Geophysical-Data-Analysis/master?urlpath=tree/chapters/Week6/convolution_filters_in_time.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        <a class="colab-button" href="https://colab.research.google.com/github/kls2177/Climate-and-Geophysical-Data-Analysis/blob/master/chapters/Week6/convolution_filters_in_time.ipynb"><button type="button" class="btn btn-secondary topbarbtn"
+                title="Launch Colab" data-toggle="tooltip" data-placement="left"><img class="colab-button-logo"
+                    src="../../_static/images/logo_colab.png"
+                    alt="Interact on Colab">Colab</button></a>
+        
+        <button type="button" class="btn btn-secondary topbarbtn"
+            onclick="initThebeSBT()" title="Launch Thebe" data-toggle="tooltip" data-placement="left"><i
+                class="fas fa-play"></i><span style="margin-left: .4em;">Live Code</span></button>
+        
+    </div>
+</div>
+
+    </div>
+
+    <!-- Table of contents -->
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+        
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i> Contents
+        </div>
+        <nav id="bd-toc-nav">
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#convolution-as-a-method-of-filtering">
+   Convolution as a Method of Filtering
+  </a>
+ </li>
+</ul>
+
+        </nav>
+        
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="convolution-and-filtering-in-the-time-domain">
+<h1>Convolution and Filtering in the Time Domain<a class="headerlink" href="#convolution-and-filtering-in-the-time-domain" title="Permalink to this headline">¶</a></h1>
+<p>In this section, we are going to return to filtering in the time domain and use the knowledge we have gained about convolution and the convolution theorem to gain insight into filtering methods that we discussed, such as the running-mean filter.</p>
+<div class="section" id="convolution-as-a-method-of-filtering">
+<h2>Convolution as a Method of Filtering<a class="headerlink" href="#convolution-as-a-method-of-filtering" title="Permalink to this headline">¶</a></h2>
+<p>Recall that in the previous section, we saw that the convolution is really just a sliding window, or, a sliding weighted average. This sounds just like filtering or smoothing in the time domain! For example, a running-mean filter, is simply a sliding weighted average of size <span class="math notranslate nohighlight">\(L\)</span> applied over a time series.</p>
+<p>If <span class="math notranslate nohighlight">\(y(t)\)</span> is our original time series and <span class="math notranslate nohighlight">\(g(t)\)</span> is the weighing function (e.g. a filter or window such as boxcar, gaussian, etc.), then the filtered time series <span class="math notranslate nohighlight">\(y(t)_{filtered}\)</span> is the convolution of <span class="math notranslate nohighlight">\(y(t)\)</span> and <span class="math notranslate nohighlight">\(g(t)\)</span>,</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align}
+y(t)_{filtered} &amp;= (g * y)(t)\\
+&amp;= \int_{-\infty}^{\infty} g(\tau)y(t-\tau) \,d\tau\\
+\end{align}
+\end{split}\]</div>
+<p>Thus, using the convolution theorem, the Fourier Transform of the filtered time series, <span class="math notranslate nohighlight">\(y(t)_{filtered}\)</span> is,</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align}
+\mathcal{F}(y(t)_{filtered})&amp; = \mathcal{F}(y(t)*g(t))\\
+&amp;= \mathcal{F}(y(t))\mathcal{F}(g(t))\\
+&amp; = \mathcal{Y}(\omega)\mathcal{G}(\omega)
+\end{align}
+\end{split}\]</div>
+<p><em>Ideal Filter</em>:</p>
+<p>Suppose we want to low-pass filter the time series, <span class="math notranslate nohighlight">\(y(t)\)</span>. The Fourier Transform of an ideal filter, <span class="math notranslate nohighlight">\(\mathcal{G}(\omega)\)</span>, should be such that all low-frequencies are retain and all high-frequencies are set to zero. Graphically, the response function of an ideal filter should look like the plot below, for the situation where we have monthly data and we want to low-pass filter out frequencies higher than 12 months.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import packages</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">scipy.stats</span> <span class="k">as</span> <span class="nn">st</span>
+<span class="kn">import</span> <span class="nn">scipy.signal</span> <span class="k">as</span> <span class="nn">sig</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Response function for ideal filter with L = 12</span>
+<span class="n">L</span> <span class="o">=</span> <span class="mi">12</span>
+<span class="c1"># time variable</span>
+<span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">20</span><span class="o">*</span><span class="n">L</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+<span class="c1"># frequency</span>
+<span class="n">freqr</span> <span class="o">=</span> <span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="nb">int</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">t</span><span class="p">))</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="nb">len</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
+
+<span class="c1"># response function</span>
+<span class="n">ideal_response</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">freqr</span><span class="p">))</span>
+<span class="n">ideal_response</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">20</span><span class="p">]</span><span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">freqr</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">20</span><span class="p">]))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># plot response functions for running-mean filter with L = 12</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">14</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">freqr</span><span class="p">,</span><span class="n">ideal_response</span><span class="p">,</span><span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;Ideal Filter: L = 12&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">freqr</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">([</span><span class="n">freqr</span><span class="p">[</span><span class="mi">19</span><span class="p">],</span><span class="n">freqr</span><span class="p">[</span><span class="mi">39</span><span class="p">],</span><span class="n">freqr</span><span class="p">[</span><span class="mi">59</span><span class="p">],</span><span class="n">freqr</span><span class="p">[</span><span class="mi">79</span><span class="p">],</span><span class="n">freqr</span><span class="p">[</span><span class="mi">99</span><span class="p">],</span><span class="n">freqr</span><span class="p">[</span><span class="mi">119</span><span class="p">],</span><span class="n">freqr</span><span class="p">[</span><span class="mi">139</span><span class="p">],</span>
+            <span class="n">freqr</span><span class="p">[</span><span class="mi">159</span><span class="p">],</span><span class="n">freqr</span><span class="p">[</span><span class="mi">179</span><span class="p">],</span><span class="n">freqr</span><span class="p">[</span><span class="mi">199</span><span class="p">],</span><span class="n">freqr</span><span class="p">[</span><span class="mi">219</span><span class="p">],</span><span class="n">freqr</span><span class="p">[</span><span class="mi">239</span><span class="p">]],</span>
+           <span class="p">[</span><span class="s2">&quot;12&quot;</span><span class="p">,</span><span class="s2">&quot;6&quot;</span><span class="p">,</span><span class="s2">&quot;4&quot;</span><span class="p">,</span><span class="s2">&quot;3&quot;</span><span class="p">,</span><span class="s2">&quot;2.4&quot;</span><span class="p">,</span><span class="s2">&quot;2&quot;</span><span class="p">,</span><span class="s2">&quot;1.7&quot;</span><span class="p">,</span><span class="s2">&quot;1.5&quot;</span><span class="p">,</span><span class="s2">&quot;1.33&quot;</span><span class="p">,</span><span class="s2">&quot;1.2&quot;</span><span class="p">,</span><span class="s2">&quot;1.09&quot;</span><span class="p">,</span><span class="s2">&quot;1&quot;</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;frequency (months)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7fa4f229edf0&gt;
+</pre></div>
+</div>
+<img alt="../../_images/convolution_filters_in_time_3_1.png" src="../../_images/convolution_filters_in_time_3_1.png" />
+</div>
+</div>
+<p><em>Running-Mean Filter</em>:</p>
+<p>If <span class="math notranslate nohighlight">\(g(t)\)</span> is a running-mean filter, then this is essentially the same thing as the boxcar window that we saw in the previous section. In other words,</p>
+<div class="math notranslate nohighlight">
+\[
+\mathcal{G}(\omega) = sinc(\omega L/2\pi)
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(L\)</span> is the length of the running-mean filter. Note that,</p>
+<div class="math notranslate nohighlight">
+\[
+\mathcal{G}(\omega) = 0 \quad \text{when $\omega L$ = 2$\pi$, 4$\pi$, 6$\pi$, that is, when you have 1 cycle/$L$, 2 cycles/$L$, 3 cycles/$L$
+}
+\]</div>
+<p>So, if you apply a 12-month running mean to monthly data, you will exactly remove the 12-month cycle, the 6-month cycle, the 4-month cycle, etc. Thus, you do not perfectly remove all frequencies higher than <span class="math notranslate nohighlight">\(L\)</span> = 12.</p>
+<p>In addition, the side lobes of the <span class="math notranslate nohighlight">\(sinc\)</span> response function cause additional problems. These will phase shift your frequencies between these perfectly removed harmonics, leading to <em>spectral leakage</em> to other frequencies.</p>
+<p>Let’s remind ourselves of what a boxcar response function looks like:</p>
+<p>Let’s construct it like a running mean filter, with <span class="math notranslate nohighlight">\(L\)</span> = 12, assuming we have monthly data and we want to filter out the seasonal cycle.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Response function for running-mean filter with L = 12</span>
+<span class="n">L</span> <span class="o">=</span> <span class="mi">12</span>
+<span class="c1"># time variable</span>
+<span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">20</span><span class="o">*</span><span class="n">L</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+<span class="c1"># frequency</span>
+<span class="n">freqr</span> <span class="o">=</span> <span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="nb">int</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">t</span><span class="p">))</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="nb">len</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
+
+<span class="n">bxcr_response</span><span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sinc</span><span class="p">(</span><span class="n">freqr</span><span class="o">*</span><span class="n">L</span><span class="o">/</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># plot response functions for running-mean filter with L = 12</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">14</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">freqr</span><span class="p">,</span><span class="n">ideal_response</span><span class="p">,</span><span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;Ideal Filter: L = 12&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">freqr</span><span class="p">,</span><span class="n">bxcr_response</span><span class="p">,</span><span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;Running-Mean Filter: L = 12&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">freqr</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">([</span><span class="n">freqr</span><span class="p">[</span><span class="mi">19</span><span class="p">],</span><span class="n">freqr</span><span class="p">[</span><span class="mi">39</span><span class="p">],</span><span class="n">freqr</span><span class="p">[</span><span class="mi">59</span><span class="p">],</span><span class="n">freqr</span><span class="p">[</span><span class="mi">79</span><span class="p">],</span><span class="n">freqr</span><span class="p">[</span><span class="mi">99</span><span class="p">],</span><span class="n">freqr</span><span class="p">[</span><span class="mi">119</span><span class="p">],</span><span class="n">freqr</span><span class="p">[</span><span class="mi">139</span><span class="p">],</span>
+            <span class="n">freqr</span><span class="p">[</span><span class="mi">159</span><span class="p">],</span><span class="n">freqr</span><span class="p">[</span><span class="mi">179</span><span class="p">],</span><span class="n">freqr</span><span class="p">[</span><span class="mi">199</span><span class="p">],</span><span class="n">freqr</span><span class="p">[</span><span class="mi">219</span><span class="p">],</span><span class="n">freqr</span><span class="p">[</span><span class="mi">239</span><span class="p">]],</span>
+           <span class="p">[</span><span class="s2">&quot;12&quot;</span><span class="p">,</span><span class="s2">&quot;6&quot;</span><span class="p">,</span><span class="s2">&quot;4&quot;</span><span class="p">,</span><span class="s2">&quot;3&quot;</span><span class="p">,</span><span class="s2">&quot;2.4&quot;</span><span class="p">,</span><span class="s2">&quot;2&quot;</span><span class="p">,</span><span class="s2">&quot;1.7&quot;</span><span class="p">,</span><span class="s2">&quot;1.5&quot;</span><span class="p">,</span><span class="s2">&quot;1.33&quot;</span><span class="p">,</span><span class="s2">&quot;1.2&quot;</span><span class="p">,</span><span class="s2">&quot;1.09&quot;</span><span class="p">,</span><span class="s2">&quot;1&quot;</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;frequency (months)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7fa4f247d130&gt;
+</pre></div>
+</div>
+<img alt="../../_images/convolution_filters_in_time_7_1.png" src="../../_images/convolution_filters_in_time_7_1.png" />
+</div>
+</div>
+<p>So, what this response function illustrates is that a time series filtered using a running-mean filter will exactly filter out the 12-month frequency and retain the lower frequencies, but these will be smoothed out. The filter does not maintain all the power contained in these low frequencies because the response function decays from a value of 1 to 0 over the lower frequency range. In addition, a time series filtered using a running-mean filter will have some high frequencies removed (note that the response function is 0 for 6-months, 4-months, 3-months, etc.) but it still contain other high frequencies due to the oscillatory side lobes. Thus, the running-mean filter is not a pure low-pass filter.</p>
+<p>As we saw in the previous section, we can use alternative windows or filters to alleviate some of these issues and attempt to approach the ideal filter response function. An in-depth discussion of how this is done is beyond the scope of this course, but the <em>Gaussian</em> filter that was mentioned in the first section, is one such alternative.</p>
+<p>Filtering in the <em>frequency domain</em> and then applying the inverse Fourier Transform is another alternative - as we have seen in a previous section.</p>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "kls2177/Climate-and-Geophysical-Data-Analysis",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./chapters/Week6"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        </div>
+    </div>
+    
+    
+    <div class='prev-next-bottom'>
+        
+    <a class='left-prev' id="prev-link" href="leak.html" title="previous page">Spectral Leakage</a>
+
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Karen Smith<br/>
+        
+            &copy; Copyright 2020.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    
+  <script src="../../_static/js/index.3da636dd464baa7582d2.js"></script>
+
+
+    
+  </body>
+</html>

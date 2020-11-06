@@ -48,6 +48,8 @@
     <script src="../../_static/sphinx-book-theme.be0a4a0c39cd630af62a2fcf693f3f06.js"></script>
     <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.18.0/dist/embed-amd.js"></script>
     <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
     <script >
         const thebe_selector = ".thebe,.cell"
@@ -58,6 +60,7 @@
     <link rel="canonical" href="https://kls2177.github.io/Climate-and-Geophysical-Data-Analysis/chapters/index.html/chapters/Week6/filtering_in_freq2.html" />
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Continuous Power Spectrum and the Significance of Spectral Peaks" href="filtering_in_freq3.html" />
     <link rel="prev" title="Filtering in the Frequency Domain: Discrete Fourier Transform" href="filtering_in_freq1.html" />
 
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -166,6 +169,21 @@
    <li class="toctree-l2 current active">
     <a class="current reference internal" href="#">
      Fast Fourier Transform
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="filtering_in_freq3.html">
+     Continuous Power Spectrum and the Significance of Spectral Peaks
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="leak.html">
+     Spectral Leakage
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="convolution_filters_in_time.html">
+     Convolution and Filtering in the Time Domain
     </a>
    </li>
   </ul>
@@ -297,13 +315,13 @@
 <p>Until now, we have expressed the Fourier Transform using <em>real</em> arithmetic (sines and cosines); however, it is much more efficient to write the Fourier Transform using <em>complex</em> arithmetic and using radial frequency, <span class="math notranslate nohighlight">\(\omega\)</span>, rather than wavenumber:</p>
 <div class="math notranslate nohighlight">
 \[
-Y(\omega) = \int_{-\infty}^{\infty} y(t)\text{e}^{-i\omega t} \,dt
+Y(\omega) = \int_{-\infty}^{\infty} y(t)e^{-i\omega t} \,dt
 \]</div>
-<p>where <span class="math notranslate nohighlight">\(Y(\omega)\)</span> is the Fourier Transfrom of a time series <span class="math notranslate nohighlight">\(y(t)\)</span>, <span class="math notranslate nohighlight">\(\omega\)</span> is the radial frequency (radians per units time), and <span class="math notranslate nohighlight">\(F(\omega)\)</span> is generally a complex number and <span class="math notranslate nohighlight">\(i = \sqrt{-1}\)</span>.</p>
+<p>where <span class="math notranslate nohighlight">\(Y(\omega)\)</span> is the Fourier Transfrom of a time series <span class="math notranslate nohighlight">\(y(t)\)</span>, <span class="math notranslate nohighlight">\(\omega\)</span> is the radial frequency (radians per units time), and <span class="math notranslate nohighlight">\(Y(\omega)\)</span> is generally a complex number and <span class="math notranslate nohighlight">\(i = \sqrt{-1}\)</span>.</p>
 <p>To convert from the frequency domain back to the time domain, we use the inverse Fourier Transform:</p>
 <div class="math notranslate nohighlight">
 \[
-y(t) = \frac{1}{2\pi}\int_{-\infty}^{\infty} Y(\omega)\text{e}^{i\omega t} \,d\omega
+y(t) = \frac{1}{2\pi}\int_{-\infty}^{\infty} Y(\omega)e^{i\omega t} \,d\omega
 \]</div>
 <p>Let’s take a look at how we use the <code class="docutils literal notranslate"><span class="pre">np.fft.fft</span></code> function in python using a simple example.</p>
 <div class="cell docutils container">
@@ -381,7 +399,7 @@ y(t) = \frac{1}{2\pi}\int_{-\infty}^{\infty} Y(\omega)\text{e}^{i\omega t} \,d\o
 </div>
 </div>
 </div>
-<p>Note: the below is the same thing but just taken over half of the symmetric FFT output. So, we need to multiply by 2.</p>
+<p>Note: the below is the same thing but just take over half of the symmetric FFT output. Thus, we multiply by 2. You are probably wondering what I mean by “symmetric” FFT. We will explore the symmetric nature for the FFT further below.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># compute power over half the FFT output</span>
@@ -390,7 +408,6 @@ y(t) = \frac{1}{2\pi}\int_{-\infty}^{\infty} Y(\omega)\text{e}^{i\omega t} \,d\o
 </div>
 </div>
 </div>
-<p>You are probably wondering what I mean by the “symmetric” FFT output. We will explore the symmetric nature for the FFT further below.</p>
 <p>Now, we compute the sum over all frequencies to get the estimated variance and compare it to the variance of the original time series.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -500,7 +517,7 @@ y(t) = \frac{1}{2\pi}\int_{-\infty}^{\infty} Y(\omega)\text{e}^{i\omega t} \,d\o
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7f819fce43d0&gt;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7f826ccddb50&gt;]
 </pre></div>
 </div>
 <img alt="../../_images/filtering_in_freq2_19_1.png" src="../../_images/filtering_in_freq2_19_1.png" />
@@ -566,7 +583,7 @@ y(t) = \frac{1}{2\pi}\int_{-\infty}^{\infty} Y(\omega)\text{e}^{i\omega t} \,d\o
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7f819f944ac0&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7f826c933af0&gt;
 </pre></div>
 </div>
 <img alt="../../_images/filtering_in_freq2_27_1.png" src="../../_images/filtering_in_freq2_27_1.png" />
@@ -607,6 +624,7 @@ y(t) = \frac{1}{2\pi}\int_{-\infty}^{\infty} Y(\omega)\text{e}^{i\omega t} \,d\o
     <div class='prev-next-bottom'>
         
     <a class='left-prev' id="prev-link" href="filtering_in_freq1.html" title="previous page">Filtering in the Frequency Domain: Discrete Fourier Transform</a>
+    <a class='right-next' id="next-link" href="filtering_in_freq3.html" title="next page">Continuous Power Spectrum and the Significance of Spectral Peaks</a>
 
     </div>
     <footer class="footer mt-5 mt-md-0">

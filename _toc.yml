@@ -49,3 +49,6 @@
     - file: chapters/Week6/Harmonics
     - file: chapters/Week6/filtering_in_freq1
     - file: chapters/Week6/filtering_in_freq2
+    - file: chapters/Week6/filtering_in_freq3
+    - file: chapters/Week6/leak
+    - file: chapters/Week6/convolution_filters_in_time

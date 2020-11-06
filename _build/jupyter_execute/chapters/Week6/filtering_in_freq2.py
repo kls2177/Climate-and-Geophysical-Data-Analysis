@@ -12,16 +12,16 @@
 # Until now, we have expressed the Fourier Transform using *real* arithmetic (sines and cosines); however, it is much more efficient to write the Fourier Transform using *complex* arithmetic and using radial frequency, $\omega$, rather than wavenumber:
 # 
 # $$
-# Y(\omega) = \int_{-\infty}^{\infty} y(t)\text{e}^{-i\omega t} \,dt
+# Y(\omega) = \int_{-\infty}^{\infty} y(t)e^{-i\omega t} \,dt
 # $$
 # 
 # 
-# where $Y(\omega)$ is the Fourier Transfrom of a time series $y(t)$, $\omega$ is the radial frequency (radians per units time), and $F(\omega)$ is generally a complex number and $i = \sqrt{-1}$.
+# where $Y(\omega)$ is the Fourier Transfrom of a time series $y(t)$, $\omega$ is the radial frequency (radians per units time), and $Y(\omega)$ is generally a complex number and $i = \sqrt{-1}$.
 # 
 # To convert from the frequency domain back to the time domain, we use the inverse Fourier Transform:
 # 
 # $$
-# y(t) = \frac{1}{2\pi}\int_{-\infty}^{\infty} Y(\omega)\text{e}^{i\omega t} \,d\omega
+# y(t) = \frac{1}{2\pi}\int_{-\infty}^{\infty} Y(\omega)e^{i\omega t} \,d\omega
 # $$
 # 
 # Let's take a look at how we use the `np.fft.fft` function in python using a simple example.
@@ -96,7 +96,7 @@ Zfft = Z/len(ps_anom)
 Ck2 = np.abs(Zfft)**2
 
 
-# Note: the below is the same thing but just taken over half of the symmetric FFT output. So, we need to multiply by 2. 
+# Note: the below is the same thing but just take over half of the symmetric FFT output. Thus, we multiply by 2. You are probably wondering what I mean by "symmetric" FFT. We will explore the symmetric nature for the FFT further below.
 
 # In[6]:
 
@@ -105,8 +105,6 @@ Ck2 = np.abs(Zfft)**2
 Ck2 = 2*np.abs(Zfft[0:int(len(ps_anom)/2)+1])**2
 
 
-# You are probably wondering what I mean by the "symmetric" FFT output. We will explore the symmetric nature for the FFT further below.
-# 
 # Now, we compute the sum over all frequencies to get the estimated variance and compare it to the variance of the original time series.
 
 # In[7]:
