@@ -48,8 +48,6 @@
     <script src="../../_static/sphinx-book-theme.be0a4a0c39cd630af62a2fcf693f3f06.js"></script>
     <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.18.0/dist/embed-amd.js"></script>
     <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
     <script >
         const thebe_selector = ".thebe,.cell"
@@ -718,7 +716,7 @@ sinc(x) = \frac{\text{sin}(\pi x)}{\pi x}
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7fb2b6800ee0&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7f916b76afa0&gt;
 </pre></div>
 </div>
 <img alt="../../_images/leak_28_1.png" src="../../_images/leak_28_1.png" />
@@ -784,7 +782,7 @@ h(t) = \frac{1}{2}\left(1-\text{cos}(\frac{2\pi t}{T})\right) \quad \text{when $
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7fb2b697e0d0&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7f916ba559a0&gt;
 </pre></div>
 </div>
 <img alt="../../_images/leak_31_1.png" src="../../_images/leak_31_1.png" />
@@ -855,7 +853,7 @@ DOF = \frac{N}{M^*}f_w
 <span class="n">pave</span> <span class="o">=</span> <span class="n">pave</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">pave</span><span class="p">)</span>
 
 <span class="c1"># calculate significance using F-test</span>
-<span class="n">dof</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="n">dof</span> <span class="o">=</span> <span class="mi">2</span><span class="o">*</span><span class="n">N</span><span class="o">*</span><span class="mf">1.2</span>
 <span class="n">fstat</span> <span class="o">=</span> <span class="n">st</span><span class="o">.</span><span class="n">f</span><span class="o">.</span><span class="n">ppf</span><span class="p">(</span><span class="o">.</span><span class="mi">99</span><span class="p">,</span><span class="n">dof</span><span class="p">,</span><span class="mi">1000</span><span class="p">)</span>
 <span class="n">spec99</span> <span class="o">=</span> <span class="p">[</span><span class="n">fstat</span><span class="o">*</span><span class="n">m</span> <span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="n">rspec</span><span class="p">]</span>
     
