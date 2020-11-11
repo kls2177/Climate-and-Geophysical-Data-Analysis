@@ -348,32 +348,23 @@
 </div>
 </div>
 </div>
-<p>Now, let’s read in some <span class="xref myst">SST data</span>. Here we are using the <a class="reference external" href="https://www.ncdc.noaa.gov/data-access/marineocean-data/extended-reconstructed-sea-surface-temperature-ersst-v4">Extended Reconstructed Sea Surface Temperature data set</a></p>
+<p>Now, let’s read in some SST data. Here we are using the <a class="reference external" href="https://www.ncdc.noaa.gov/data-access/marineocean-data/extended-reconstructed-sea-surface-temperature-ersst-v4">Extended Reconstructed Sea Surface Temperature data set</a>. We will access it using the <a class="reference external" href="https://earthdata.nasa.gov/collaborate/open-data-services-and-software/api/opendap">OpenDAP data server architecture</a>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">nc</span> <span class="o">=</span> <span class="n">Dataset</span><span class="p">(</span><span class="s1">&#39;ERSST_v5_data.nc&#39;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># the data we will use is described here</span>
+<span class="c1"># http://www.ncdc.noaa.gov/data-access/marineocean-data/extended-reconstructed-sea-surface-temperature-ersst-v5</span>
+<span class="c1"># It is stored in the IRI data library</span>
+<span class="n">iri_url</span> <span class="o">=</span> <span class="s2">&quot;http://iridl.ldeo.columbia.edu/SOURCES/.NOAA/.NCDC/.ERSST/.version5/.sst/&quot;</span>
+<span class="n">T_convert</span> <span class="o">=</span> <span class="s2">&quot;T/[(days)(since)(1960-01-01)]sconcat/streamgridunitconvert/&quot;</span>
+
+<span class="c1"># complete url</span>
+<span class="n">url</span> <span class="o">=</span> <span class="n">iri_url</span> <span class="o">+</span> <span class="n">T_convert</span> <span class="o">+</span> <span class="s2">&quot;dods&quot;</span>
+
+<span class="n">nc</span> <span class="o">=</span> <span class="n">Dataset</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
 <span class="n">sst</span> <span class="o">=</span> <span class="n">nc</span><span class="o">.</span><span class="n">variables</span><span class="p">[</span><span class="s1">&#39;sst&#39;</span><span class="p">][:]</span>
 <span class="n">lat</span> <span class="o">=</span> <span class="n">nc</span><span class="o">.</span><span class="n">variables</span><span class="p">[</span><span class="s1">&#39;Y&#39;</span><span class="p">][:]</span>
 <span class="n">lon</span> <span class="o">=</span> <span class="n">nc</span><span class="o">.</span><span class="n">variables</span><span class="p">[</span><span class="s1">&#39;X&#39;</span><span class="p">][:]</span>
 <span class="n">time</span> <span class="o">=</span> <span class="n">nc</span><span class="o">.</span><span class="n">variables</span><span class="p">[</span><span class="s1">&#39;T&#39;</span><span class="p">][:]</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">FileNotFoundError</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
-<span class="o">&lt;</span><span class="n">ipython</span><span class="o">-</span><span class="nb">input</span><span class="o">-</span><span class="mi">2</span><span class="o">-</span><span class="mi">5748499526</span><span class="n">f9</span><span class="o">&gt;</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
-<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">nc</span> <span class="o">=</span> <span class="n">Dataset</span><span class="p">(</span><span class="s1">&#39;ERSST_v5_data.nc&#39;</span><span class="p">)</span>
-<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="n">sst</span> <span class="o">=</span> <span class="n">nc</span><span class="o">.</span><span class="n">variables</span><span class="p">[</span><span class="s1">&#39;sst&#39;</span><span class="p">][:]</span>
-<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="n">lat</span> <span class="o">=</span> <span class="n">nc</span><span class="o">.</span><span class="n">variables</span><span class="p">[</span><span class="s1">&#39;Y&#39;</span><span class="p">][:]</span>
-<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="n">lon</span> <span class="o">=</span> <span class="n">nc</span><span class="o">.</span><span class="n">variables</span><span class="p">[</span><span class="s1">&#39;X&#39;</span><span class="p">][:]</span>
-<span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="n">time</span> <span class="o">=</span> <span class="n">nc</span><span class="o">.</span><span class="n">variables</span><span class="p">[</span><span class="s1">&#39;T&#39;</span><span class="p">][:]</span>
-
-<span class="nn">netCDF4/_netCDF4.pyx</span> in <span class="ni">netCDF4._netCDF4.Dataset.__init__</span><span class="nt">()</span>
-
-<span class="nn">netCDF4/_netCDF4.pyx</span> in <span class="ni">netCDF4._netCDF4._ensure_nc_success</span><span class="nt">()</span>
-
-<span class="ne">FileNotFoundError</span>: [Errno 2] No such file or directory: b&#39;ERSST_v5_data.nc&#39;
 </pre></div>
 </div>
 </div>
@@ -542,7 +533,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.colorbar.Colorbar at 0x7fe76cc3c760&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.colorbar.Colorbar at 0x7f964c57c130&gt;
 </pre></div>
 </div>
 <img alt="../../_images/Intro_to_PCA_23_1.png" src="../../_images/Intro_to_PCA_23_1.png" />
