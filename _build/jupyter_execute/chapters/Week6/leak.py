@@ -527,7 +527,7 @@ pave = p[1]
 pave = pave/np.sum(pave)
 
 # calculate significance using F-test
-dof = 2
+dof = 2*N*1.2
 fstat = st.f.ppf(.99,dof,1000)
 spec99 = [fstat*m for m in rspec]
     

@@ -52,3 +52,6 @@
     - file: chapters/Week6/filtering_in_freq3
     - file: chapters/Week6/leak
     - file: chapters/Week6/convolution_filters_in_time
+- file: chapters/Week7/pca
+  sections:
+    - file: chapters/Week7/Intro_to_PCA
