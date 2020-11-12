@@ -1,0 +1,729 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Review of Linear Algebra &#8212; Climate and Geophysical Data Analysis</title>
+    
+  <link rel="stylesheet" href="../../_static/css/index.73d71520a4ca3b99cfee5594769eaaae.css">
+
+    
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+  <link rel="stylesheet"
+    href="../../_static/vendor/open-sans_all/1.44.1/index.css">
+  <link rel="stylesheet"
+    href="../../_static/vendor/lato_latin-ext/1.44.1/index.css">
+
+    
+    <link rel="stylesheet" href="../../_static/sphinx-book-theme.2d2078699c18a0efb88233928e1cf6ed.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../../_static/js/index.3da636dd464baa7582d2.js">
+
+    <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/language_data.js"></script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../../_static/sphinx-book-theme.be0a4a0c39cd630af62a2fcf693f3f06.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe,.cell"
+        const thebe_selector_input = "pre,.cell_input div.highlight"
+        const thebe_selector_output = ".output,.cell_output"
+    </script>
+    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <link rel="canonical" href="https://kls2177.github.io/Climate-and-Geophysical-Data-Analysis/chapters/index.html/chapters/Week7/linalg.html" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="prev" title="Introduction to Principal Component Analysis" href="Intro_to_PCA.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+
+
+<!-- Opengraph tags -->
+<meta property="og:url"         content="https://kls2177.github.io/Climate-and-Geophysical-Data-Analysis/chapters/index.html/chapters/Week7/linalg.html" />
+<meta property="og:type"        content="article" />
+<meta property="og:title"       content="Review of Linear Algebra" />
+<meta property="og:description" content="Review of Linear Algebra  Now that we will be working with multi-dimensional data, so we need to introduce matrix notation and several linear algebra concepts. " />
+<meta property="og:image"       content="https://kls2177.github.io/Climate-and-Geophysical-Data-Analysis/chapters/index.html/_static/gistemp.png" />
+
+<meta name="twitter:card" content="summary" />
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="../../index.html">
+  
+  <img src="../../_static/gistemp.png" class="logo" alt="logo">
+  
+  
+  <h1 class="site-logo" id="site-title">Climate and Geophysical Data Analysis</h1>
+  
+</a>
+</div>
+
+<form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../index.html">
+   Climate and Geophysical Data Analysis
+  </a>
+ </li>
+</ul>
+<ul class="current nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../introduction/intro.html">
+   Introduction
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Week1a/whatarestatsgoodfor.html">
+   What are statistics good for?
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Week1b/descriptivestats.html">
+   Descriptive Statistics
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Week2/hypothesis_testing.html">
+   Statistical Hypothesis Testing
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Week3/linreg.html">
+   Linear Regression
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Week4/corr.html">
+   Correlation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Week5/persistence.html">
+   Persistence in Time Series
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Week6/filt.html">
+   Time Series Analysis
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="reference internal" href="pca.html">
+   Patterns in Multivariate Data
+  </a>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="Intro_to_PCA.html">
+     Introduction to Principal Component Analysis
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     Review of Linear Algebra
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+</nav>
+
+ <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="row topbar fixed-top container-xl">
+    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+    </div>
+    <div class="col pl-2 topbar-main">
+        
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        
+        <div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../../_sources/chapters/Week7/linalg.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+    
+</div>
+        <!-- Source interaction buttons -->
+
+
+        <!-- Full screen (wrap in <a> to have style consistency -->
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+                title="Fullscreen mode"><i
+                    class="fas fa-expand"></i></button></a>
+
+        <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/kls2177/Climate-and-Geophysical-Data-Analysis/master?urlpath=tree/chapters/Week7/linalg.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        <a class="colab-button" href="https://colab.research.google.com/github/kls2177/Climate-and-Geophysical-Data-Analysis/blob/master/chapters/Week7/linalg.ipynb"><button type="button" class="btn btn-secondary topbarbtn"
+                title="Launch Colab" data-toggle="tooltip" data-placement="left"><img class="colab-button-logo"
+                    src="../../_static/images/logo_colab.png"
+                    alt="Interact on Colab">Colab</button></a>
+        
+        <button type="button" class="btn btn-secondary topbarbtn"
+            onclick="initThebeSBT()" title="Launch Thebe" data-toggle="tooltip" data-placement="left"><i
+                class="fas fa-play"></i><span style="margin-left: .4em;">Live Code</span></button>
+        
+    </div>
+</div>
+
+    </div>
+
+    <!-- Table of contents -->
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+        
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i> Contents
+        </div>
+        <nav id="bd-toc-nav">
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#matrix-notation">
+   Matrix Notation
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#transpose-of-a-matrix">
+   Transpose of a Matrix
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#multiplying-matrices">
+   Multiplying Matrices
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#multiplying-vectors">
+   Multiplying Vectors
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#inner-product-of-two-vectors">
+   Inner Product of Two Vectors
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#the-covariance-matrix">
+   The Covariance Matrix
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#column-1">
+     Column 1:
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#column-2">
+     Column 2:
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#inverse-of-a-matrix">
+   Inverse of a Matrix
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#types-of-matrices">
+   Types of Matrices
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#vector-spaces-and-basis-vectors">
+   Vector Spaces and Basis Vectors
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#the-determinant">
+     The Determinant
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#rank-of-a-matrix-and-linear-independence">
+   Rank of a Matrix and Linear Independence
+  </a>
+ </li>
+</ul>
+
+        </nav>
+        
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="review-of-linear-algebra">
+<h1>Review of Linear Algebra<a class="headerlink" href="#review-of-linear-algebra" title="Permalink to this headline">¶</a></h1>
+<p>Now that we will be working with multi-dimensional data, so we need to introduce matrix notation and several linear algebra concepts. The notation and concepts that are covered below are building towards the construction of the <strong>covariance matrix</strong>.</p>
+<div class="section" id="matrix-notation">
+<h2>Matrix Notation<a class="headerlink" href="#matrix-notation" title="Permalink to this headline">¶</a></h2>
+<p>A matrix <strong>A</strong> with <span class="math notranslate nohighlight">\(M\)</span> rows and <span class="math notranslate nohighlight">\(N\)</span> columns (dimensions <span class="math notranslate nohighlight">\(M x N\)</span>) is ordered in the following way:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\bf{A} = 
+\begin{bmatrix}
+a_{11} &amp; a_{12} &amp; a_{13} &amp; ... &amp; a_{1n}\\
+a_{21} &amp; a_{22} &amp; a_{23} &amp; ... &amp; a_{2n}\\
+. &amp; . &amp; . &amp; ... &amp; .\\
+. &amp; . &amp; . &amp; ... &amp; .\\
+a_{m1} &amp; a_{m2} &amp; a_{m3} &amp; ... &amp; a_{mn}
+\end{bmatrix}
+\end{split}\]</div>
+<p>The notation <span class="math notranslate nohighlight">\(a_{ij}\)</span> will be used to denote the element in the <span class="math notranslate nohighlight">\(i\)</span>th row and the <span class="math notranslate nohighlight">\(j\)</span>th column, where 1 <span class="math notranslate nohighlight">\(\leq i \leq M\)</span> and 1 <span class="math notranslate nohighlight">\(\leq j \leq N\)</span>.</p>
+</div>
+<div class="section" id="transpose-of-a-matrix">
+<h2>Transpose of a Matrix<a class="headerlink" href="#transpose-of-a-matrix" title="Permalink to this headline">¶</a></h2>
+<p>The transpose of a matrix <strong>X</strong> is written as <strong>X<span class="math notranslate nohighlight">\(^T\)</span></strong>, and is calculated by flipping the rows and columns of the the matrix. So, if the dimensions of <strong>X</strong> are <span class="math notranslate nohighlight">\(M x N\)</span>, then the dimensions of <strong>X<span class="math notranslate nohighlight">\(^T\)</span></strong> are <span class="math notranslate nohighlight">\(N x M\)</span>.</p>
+<p>Written in index notation:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align}
+\bf{X} &amp;= \bf{Y}^T\\
+\bf{X}_{ij} &amp;= \bf{Y}_{ij}
+\end{align}
+\end{split}\]</div>
+<p>Let’s write down an example: What is the transpose of <strong>X</strong>?</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\bf{X} = 
+\begin{bmatrix}
+1 &amp; 2 &amp; 3 \\
+-1 &amp; -1 &amp; -3
+\end{bmatrix}
+\end{split}\]</div>
+<div class="toggle docutils container">
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\bf{X}^T = 
+\begin{bmatrix}
+1 &amp; -1\\
+2 &amp; -1\\
+3 &amp; -3
+\end{bmatrix}
+\end{split}\]</div>
+</div>
+</div>
+<div class="section" id="multiplying-matrices">
+<h2>Multiplying Matrices<a class="headerlink" href="#multiplying-matrices" title="Permalink to this headline">¶</a></h2>
+<p>If <strong>X</strong> is <span class="math notranslate nohighlight">\(M x N\)</span> and <strong>B</strong> is <span class="math notranslate nohighlight">\(N x P\)</span>, then, their product can be written as,</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\bf{AB} = \bf{C}\\
+\end{split}\]</div>
+<p>and the corresponding sizes of the matrices are,</p>
+<div class="math notranslate nohighlight">
+\[
+[M x N] \cdot [N x P] = [M x P]
+\]</div>
+<p>Unlike regular multiplication, one cannot re-order matrix multiplication, e.g. <strong>AB</strong> is ok but <strong>BA</strong> is not. The number of columns of the first matrix must be equal to the number of rows of the second matrix.</p>
+<p>This is the case because, when we multiply matrices together, we multiply the row of the first matrix with the column of the second matrix and sum the values to get the value that goes in the first row and first column of the solution. Let’s look at an example:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{bmatrix}
+1 &amp; 2 &amp; 3 \\
+-1 &amp; -1 &amp; -3
+\end{bmatrix} \cdot
+\begin{bmatrix}
+2 &amp; 3 \\
+4 &amp; 2\\
+-1 &amp; 1
+\end{bmatrix}
+\end{split}\]</div>
+<div class="toggle docutils container">
+<div class="math notranslate nohighlight">
+\[\begin{split} 
+= \begin{bmatrix}
+7 &amp; 10 \\
+-3 &amp; -8
+\end{bmatrix}
+\end{split}\]</div>
+</div>
+<p>where the corresponding sizes of the matrices are,</p>
+<div class="math notranslate nohighlight">
+\[
+[2 x 3] \cdot [3 x 2]  = [2 x 2]
+\]</div>
+</div>
+<div class="section" id="multiplying-vectors">
+<h2>Multiplying Vectors<a class="headerlink" href="#multiplying-vectors" title="Permalink to this headline">¶</a></h2>
+<p>Suppose that we have two <span class="math notranslate nohighlight">\(M x 1\)</span> vectors, <strong>X</strong> and <strong>Y</strong>. How can we multiply these together, following the rules of matrix multiplication? There are two ways that give very different results:</p>
+<div class="math notranslate nohighlight">
+\[
+\mathbf{XY}^T = \mathbf{Z}
+\]</div>
+<p>where the corresponding sizes of the vectors/matrices are,</p>
+<div class="math notranslate nohighlight">
+\[
+[M x 1] \cdot [1 x M]  = [M x M]
+\]</div>
+<p>and</p>
+<div class="math notranslate nohighlight">
+\[
+\mathbf{X}^T\mathbf{Y} = \mathbf{W}
+\]</div>
+<p>where the corresponding sizes of the vectors/matrices are,</p>
+<div class="math notranslate nohighlight">
+\[
+[1 x M] \cdot [M x 1]  = [1 x 1]
+\]</div>
+</div>
+<div class="section" id="inner-product-of-two-vectors">
+<h2>Inner Product of Two Vectors<a class="headerlink" href="#inner-product-of-two-vectors" title="Permalink to this headline">¶</a></h2>
+<p>The second example of multiplying vectors is called the <strong>inner product</strong> of two vectors. This is important to keep in mind as we build toward constructing the <strong>covariance matrix</strong>. Before we get to the covariance matrix; however, we will look at how we can construct the <em>variance</em> of a vector <strong>X</strong> by computing its inner product. To relate what we will do below, to what we have already covered in the courseware, we can think of a vector as a time series.</p>
+<p>Let’s show that if <strong>X</strong> is a vector with mean removed, then <strong>X<span class="math notranslate nohighlight">\(^T\)</span>X</strong> is the same as the variance of (<span class="math notranslate nohighlight">\(M\)</span>-1)<strong>X</strong>. <strong>X<span class="math notranslate nohighlight">\(^T\)</span>X</strong> is known as the inner product of <strong>X</strong>:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align}
+\mathbf{X^TX} &amp;= \sum_{n=1}^{M} x_i^{\prime}x_i^{\prime}\\
+&amp;= \sum_{n=1}^{M} x_i^{\prime2}\\
+&amp; = \text{scalar quantity}
+\end{align}
+\end{split}\]</div>
+<p>This should look very much like the equation for the <a class="reference external" href="https://kls2177.github.io/Climate-and-Geophysical-Data-Analysis/chapters/Week1b/summarystats.html"><em>sample variance</em></a> without the factor of <span class="math notranslate nohighlight">\(\frac{1}{M-1}\)</span> in front.</p>
+<p>The inner product of two <span class="math notranslate nohighlight">\(M x 1\)</span> vectors, <strong>X</strong> and <strong>Y</strong>, represents the covariance between <strong>X</strong> and <strong>Y</strong>,</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align}
+\mathbf{X^TY} &amp;= \sum_{n=1}^{M} x_i^{\prime}y_i^{\prime}\\
+&amp; = \text{scalar quantity}
+\end{align}
+\end{split}\]</div>
+</div>
+<div class="section" id="the-covariance-matrix">
+<h2>The Covariance Matrix<a class="headerlink" href="#the-covariance-matrix" title="Permalink to this headline">¶</a></h2>
+<p>Now, suppose you have a matrix <strong>X</strong> of dimensions <span class="math notranslate nohighlight">\(M x N\)</span>. If the columns of <strong>X</strong> have mean zero (you can think of each column as an anomaly time series), then</p>
+<div class="math notranslate nohighlight">
+\[
+\mathbf{C} = \frac{1}{M-1} \mathbf{X^TX}
+\]</div>
+<p>where <strong>C</strong> is the <strong>covariance matrix</strong> of dimensions <span class="math notranslate nohighlight">\(N x N\)</span>. If the columns of <strong>X</strong> are standardized, then <strong>C</strong> is the <em>correlation matrix</em>.</p>
+<p>Let’s take a closer look at what the covariance matrix is using a 2<span class="math notranslate nohighlight">\(x\)</span>2 matrix where each colunm has a mean of zero:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\mathbf{X} = \begin{bmatrix}
+x_{11}^{\prime} &amp; x_{12}^{\prime} \\
+x_{21}^{\prime} &amp; x_{22}^{\prime}
+\end{bmatrix}
+\end{split}\]</div>
+<p>The covariance matrix for <strong>X</strong> is then,</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align}
+\frac{1}{M-1} \mathbf{X^TX} &amp;= \begin{bmatrix}
+x_{11}^{\prime} &amp; x_{21}^{\prime} \\
+x_{12}^{\prime} &amp; x_{22}^{\prime}
+\end{bmatrix} \cdot
+\begin{bmatrix}
+x_{11}^{\prime} &amp; x_{12}^{\prime} \\
+x_{21}^{\prime} &amp; x_{22}^{\prime}
+\end{bmatrix}\\
+&amp; = \frac{1}{M-1}\begin{bmatrix}
+x_{11}^{\prime2}+x_{21}^{\prime2} &amp; x_{11}^{\prime}x_{12}^{\prime} + x_{21}^{\prime}x_{22}^{\prime} \\
+x_{11}^{\prime}x_{12}^{\prime} + x_{21}^{\prime}x_{22}^{\prime} &amp; x_{12}^{\prime2} + x_{22}^{\prime2}
+\end{bmatrix}
+\end{align}
+\end{split}\]</div>
+<p>This looks pretty messy, but we can start to understand what the different elements of this matrix are by again assuming that each column of <strong>X</strong> represents an anomaly time series. We can compute the variance for each column in the usual way:</p>
+<div class="section" id="column-1">
+<h3>Column 1:<a class="headerlink" href="#column-1" title="Permalink to this headline">¶</a></h3>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align}
+\text{Variance of Column 1} &amp;= \frac{1}{M-1}\sum_{n=1}^{M} x_{i1}^{\prime2}\\
+&amp;= \frac{1}{M-1}\left(x_{11}^{\prime2} + x_{21}^{\prime2}\right)
+\end{align}
+\end{split}\]</div>
+</div>
+<div class="section" id="column-2">
+<h3>Column 2:<a class="headerlink" href="#column-2" title="Permalink to this headline">¶</a></h3>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align}
+\text{Variance of Column 2} &amp;= \frac{1}{M-1}\sum_{n=1}^{M} x_{i2}^{\prime2}\\
+&amp;= \frac{1}{M-1}\left(x_{12}^{\prime2} + x_{22}^{\prime2}\right)
+\end{align}
+\end{split}\]</div>
+<p>Note that these variances appear in the covariance matrix above along the diagnoal. The off-diagonal elements show the covariances, i.e., the <em>inner product</em> of column 1 and column 2.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align}
+\text{Covariance of Column 1 and Column 2} &amp;= \frac{1}{M-1}\sum_{n=1}^{M} x_{i1}^{\prime}x_{i2}^{\prime}\\
+&amp;= \frac{1}{M-1}\left(x_{11}^{\prime}x_{12}^{\prime} + x_{21}^{\prime}x_{22}^{\prime}\right)
+\end{align}
+\end{split}\]</div>
+</div>
+</div>
+<div class="section" id="inverse-of-a-matrix">
+<h2>Inverse of a Matrix<a class="headerlink" href="#inverse-of-a-matrix" title="Permalink to this headline">¶</a></h2>
+<p>The inverse of a square matrix is an incredibly important and useful concept.</p>
+<p>The inverse of square matrix <strong>X</strong> is written as <strong>X</strong><span class="math notranslate nohighlight">\(^{-1}\)</span>.</p>
+<p>In matrix notation, this does not mean raise the matrix to the -1 power, but rather, it denotes the inverse specifically. The inverse has a very special property such that,</p>
+<div class="math notranslate nohighlight">
+\[
+\mathbf{XX^{-1}} = \mathbf{X^{-1}X} = \mathbf{I}
+\]</div>
+<p>where <strong>I</strong> is the identity matrix, which is a square matrix with 1’s along the diagonal and zeros elsewhere.</p>
+<p>Note that only square matrices have inverses. In algebra, if you have a variable multiplied on one side of an equation, you use division to get rid of it. With matrices, you use the inverse!</p>
+</div>
+<div class="section" id="types-of-matrices">
+<h2>Types of Matrices<a class="headerlink" href="#types-of-matrices" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p><strong>X</strong> is diagonal if: <strong>X</strong> is square, with values along the diagonal and zeros everywhere else</p></li>
+<li><p><strong>X</strong> is symmetric if: <strong>X</strong><span class="math notranslate nohighlight">\(^T\)</span> = <strong>X</strong></p></li>
+<li><p><strong>X</strong> is orthonormal if: <strong>X</strong><span class="math notranslate nohighlight">\(^T\)</span> = <strong>X</strong><span class="math notranslate nohighlight">\(^{-1}\)</span> or/and <strong>X<span class="math notranslate nohighlight">\(^T\)</span>X</strong> = <strong>XX<span class="math notranslate nohighlight">\(^T\)</span></strong> = <strong>I</strong></p></li>
+<li><p>i.e., if all of the off-diagonal elements of <strong>X<span class="math notranslate nohighlight">\(^T\)</span>X</strong> are zero, then <strong>X</strong><span class="math notranslate nohighlight">\(^T\)</span> = <strong>X</strong><span class="math notranslate nohighlight">\(^{-1}\)</span>, and all the columns in <strong>X</strong> are linearly independent (not correlated with one another).</p></li>
+</ul>
+</div>
+<div class="section" id="vector-spaces-and-basis-vectors">
+<h2>Vector Spaces and Basis Vectors<a class="headerlink" href="#vector-spaces-and-basis-vectors" title="Permalink to this headline">¶</a></h2>
+<p>A vector space (<strong>R<span class="math notranslate nohighlight">\(^N\)</span></strong>) is a fancy way of describing the dimensionality of domain we are working in. Here are some examples:</p>
+<ul class="simple">
+<li><p><strong>R<span class="math notranslate nohighlight">\(^0\)</span></strong>: a single point (e.g. 0)</p></li>
+<li><p><strong>R<span class="math notranslate nohighlight">\(^1\)</span></strong>: the real line</p></li>
+<li><p><strong>R<span class="math notranslate nohighlight">\(^2\)</span></strong>: 2-D space</p></li>
+<li><p><strong>R<span class="math notranslate nohighlight">\(^3\)</span></strong>: 3-D space</p></li>
+</ul>
+<p>Vector spaces are spanned by a set of basis vectors. The basis for <strong>R<span class="math notranslate nohighlight">\(^N\)</span></strong> is a set of <span class="math notranslate nohighlight">\(N\)</span> vectors that through linear combination can describe any vector in <strong>R<span class="math notranslate nohighlight">\(^N\)</span></strong>.</p>
+<p>While there are an infinite number of basis vectors for any <strong>R<span class="math notranslate nohighlight">\(^N\)</span></strong> (<span class="math notranslate nohighlight">\(N\)</span> &gt; 0), the typical vectors chosen are the unit vectors. Let’s work through some examples.</p>
+<p>For <strong>R<span class="math notranslate nohighlight">\(^2\)</span></strong>, there are 2 basis vectors, each of length 2 <span class="math notranslate nohighlight">\(x\)</span> 1. The unit vectors are,</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align}
+\mathbf{e_1} &amp;= (1,0)\\
+\mathbf{e_2} &amp;= (0,1)
+\end{align}
+\end{split}\]</div>
+<p>Any point in <strong>R<span class="math notranslate nohighlight">\(^2\)</span></strong> can be written as a linear combination of <span class="math notranslate nohighlight">\(e_1\)</span> and <span class="math notranslate nohighlight">\(e_2\)</span>. For example, the point (3,2) is can be written as</p>
+<div class="math notranslate nohighlight">
+\[
+(3,2) = 3\mathbf{e_1} + 2\mathbf{e_2}
+\]</div>
+<p>Let’s look at another example. Suppose we have the following vectors:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align}
+\mathbf{e_1} &amp;= (1,0)\\
+\mathbf{e_2} &amp;= (2,0)
+\end{align}
+\end{split}\]</div>
+<p>Do these form a basis for <strong>R<span class="math notranslate nohighlight">\(^2\)</span></strong>?</p>
+<p>The answer is “no”, since any point with a non-zero second index cannot be obtained through linear combination. In this case, the space (0,1) and all linear combinations of this vector is called the <em>null space</em> since it cannot be reached by the vectors listed (<span class="math notranslate nohighlight">\(e_1\)</span>, <span class="math notranslate nohighlight">\(e_2\)</span>). More on null spaces later.</p>
+<p>How about for <strong>R<span class="math notranslate nohighlight">\(^3\)</span></strong>? The basis vectors in this case are 3 vectors each of length 3 <span class="math notranslate nohighlight">\(x\)</span> 1</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align}
+\mathbf{e_1} &amp;= (1,0,0)\\
+\mathbf{e_2} &amp;= (0,1,0)\\
+\mathbf{e_3} &amp;= (0,0,1)
+\end{align}
+\end{split}\]</div>
+<p>By definition, basis vectors must be <em>linearly independent</em> - that is, each provides unique information that the others do not.</p>
+<div class="section" id="the-determinant">
+<h3>The Determinant<a class="headerlink" href="#the-determinant" title="Permalink to this headline">¶</a></h3>
+<p>To check if a set of vectors form a basis, we ask if there is a vector <span class="math notranslate nohighlight">\(x\)</span> such that</p>
+<div class="math notranslate nohighlight">
+\[
+\mathbf{Ax} = 0
+\]</div>
+<p>where <strong>A</strong> is a matrix made of the vectors we are testing. If there is a non-trivial solution to this equation (there is a unique, non-zero vector <span class="math notranslate nohighlight">\(x\)</span>), then the vectors do not span the entire space and/or are not all independent. In other words, If <span class="math notranslate nohighlight">\(x\)</span> exists, then the vectors do not form a basis and there is a non-trivial null-space of <strong>A</strong>.</p>
+<p>Instead of solving the above equation for specific <span class="math notranslate nohighlight">\(x\)</span>’s, we really just want to know if a solution exists or not. Turns out, there is a shortcut. If</p>
+<div class="math notranslate nohighlight">
+\[
+\text{det}(\mathbf{A}) = \begin{vmatrix}\mathbf{A}\end{vmatrix} = 0
+\]</div>
+<p>then there is a non-trivial solution <span class="math notranslate nohighlight">\(x\)</span> to</p>
+<div class="math notranslate nohighlight">
+\[
+\mathbf{Ax} = 0
+\]</div>
+<p>where det(<strong>A</strong>) is the <strong>determinant</strong> of <strong>A</strong>.</p>
+<p>We’re not going to go into the details of how to calculate determinants here, because it’s quite cumbersome, but, as an example, here is the determinant for a 2 <span class="math notranslate nohighlight">\(x\)</span> 2 matrix:</p>
+<div class="math notranslate nohighlight">
+\[
+\text{det}(\mathbf{A}) = \begin{vmatrix}\mathbf{A}\end{vmatrix} = a_{11}a_{22} - a_{12}a_{21}
+\]</div>
+<p>So, if the matrix <strong>A</strong> is square, and there is a non-trivial solution to</p>
+<div class="math notranslate nohighlight">
+\[
+\mathbf{Ax} = 0
+\]</div>
+<p>then <strong>A</strong> is termed <em>singular</em> or <em>degenerate</em> and does not have an inverse.</p>
+</div>
+</div>
+<div class="section" id="rank-of-a-matrix-and-linear-independence">
+<h2>Rank of a Matrix and Linear Independence<a class="headerlink" href="#rank-of-a-matrix-and-linear-independence" title="Permalink to this headline">¶</a></h2>
+<p>The rank <span class="math notranslate nohighlight">\(r\)</span> of a matrix is the number of linearly independent columns. Returning to our previous example, if <strong>A</strong> holds the basis vectors for <strong>R^2</strong>, then</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\mathbf{A} = \begin{bmatrix}
+1 &amp; 0 \\
+0 &amp; 1
+\end{bmatrix}
+\end{split}\]</div>
+<p>We can check that the columns of <strong>A</strong> are linearly independent by confirming that</p>
+<div class="math notranslate nohighlight">
+\[
+\text{det}(\mathbf{A}) = 1 \neq 0
+\]</div>
+<p>Thus, the rank of <strong>A</strong> is 2.</p>
+<p>However, if</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\mathbf{A} = \begin{bmatrix}
+1 &amp; 2 \\
+0 &amp; 0
+\end{bmatrix}
+\end{split}\]</div>
+<p>Then</p>
+<div class="math notranslate nohighlight">
+\[
+\text{det}(\mathbf{A}) = 0
+\]</div>
+<p>and we see the columns are not linearly independent. In this instance, the rank <span class="math notranslate nohighlight">\(r\)</span> of <strong>A</strong> is 1, even though <strong>A</strong> is 2 <span class="math notranslate nohighlight">\(x\)</span> 2.</p>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "kls2177/Climate-and-Geophysical-Data-Analysis",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./chapters/Week7"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        </div>
+    </div>
+    
+    
+    <div class='prev-next-bottom'>
+        
+    <a class='left-prev' id="prev-link" href="Intro_to_PCA.html" title="previous page">Introduction to Principal Component Analysis</a>
+
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Karen Smith<br/>
+        
+            &copy; Copyright 2020.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    
+  <script src="../../_static/js/index.3da636dd464baa7582d2.js"></script>
+
+
+    
+  </body>
+</html>
