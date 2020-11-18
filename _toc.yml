@@ -55,3 +55,5 @@
 - file: chapters/Week7/pca
   sections:
     - file: chapters/Week7/Intro_to_PCA
+    - file: chapters/Week7/linalg
+    - file: chapters/Week7/eig

@@ -60,6 +60,7 @@
     <link rel="canonical" href="https://kls2177.github.io/Climate-and-Geophysical-Data-Analysis/chapters/index.html/chapters/Week7/Intro_to_PCA.html" />
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Review of Linear Algebra" href="linalg.html" />
     <link rel="prev" title="Patterns in Multivariate Data" href="pca.html" />
 
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -161,8 +162,13 @@
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="#pca-step-by-step">
-     PCA: Step-by-step
+    <a class="reference internal" href="linalg.html">
+     Review of Linear Algebra
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="eig.html">
+     Eigenanalysis
     </a>
    </li>
   </ul>
@@ -264,71 +270,64 @@
         </div>
         <nav id="bd-toc-nav">
             <ul class="nav section-nav flex-column">
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#">
-   Introduction to Principal Component Analysis
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#nino3-4-index">
+   Niño3.4 Index
   </a>
   <ul class="nav section-nav flex-column">
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#nino3-4-index">
-     Niño3.4 Index
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#step-1-isolate-nin3-4-region-and-compute-area-average">
+     Step 1: Isolate Niñ3.4 region and compute area average
     </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#step-1-isolate-nin3-4-region-and-compute-area-average">
-       Step 1: Isolate Niñ3.4 region and compute area average
-      </a>
-     </li>
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#step-2-compute-sst-anomaly">
-       Step 2: Compute SST anomaly
-      </a>
-     </li>
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#step-3-apply-5-month-running-mean">
-       Step 3: Apply 5-month running-mean
-      </a>
-     </li>
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#step-4-standardize-by-the-standard-deviation">
-       Step 4: Standardize by the standard deviation
-      </a>
-     </li>
-    </ul>
    </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#pca-of-tropical-pacific-sst-setting-up-the-problem">
-     PCA of Tropical Pacific SST: Setting up the Problem
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#step-2-compute-sst-anomaly">
+     Step 2: Compute SST anomaly
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#step-3-apply-5-month-running-mean">
+     Step 3: Apply 5-month running-mean
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#step-4-standardize-by-the-standard-deviation">
+     Step 4: Standardize by the standard deviation
     </a>
    </li>
   </ul>
  </li>
- <li class="toc-h1 nav-item toc-entry">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#pca-of-tropical-pacific-sst-setting-up-the-problem">
+   PCA of Tropical Pacific SST: Setting up the Problem
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#pca-step-by-step">
    PCA: Step-by-step
   </a>
   <ul class="nav section-nav flex-column">
-   <li class="toc-h2 nav-item toc-entry">
+   <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#step-1-missing-values">
      Step 1: Missing values
     </a>
    </li>
-   <li class="toc-h2 nav-item toc-entry">
+   <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#step-2-standardize-data">
      Step 2: Standardize data
     </a>
    </li>
-   <li class="toc-h2 nav-item toc-entry">
+   <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#step-3-convert-3d-array-to-2d-matrix">
      Step 3: Convert 3D array to 2D matrix
     </a>
    </li>
-   <li class="toc-h2 nav-item toc-entry">
+   <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#step-4-calculate-covariance-matrix">
      Step 4: Calculate covariance matrix
     </a>
    </li>
-   <li class="toc-h2 nav-item toc-entry">
+   <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#step-5-perform-eigenanalysis-of-covariance-matrix">
      Step 5: Perform eigenanalysis of covariance matrix
     </a>
@@ -362,10 +361,19 @@
 </div>
 </div>
 </div>
-<p>Now, let’s read in some SST data. Here we are using the <a class="reference external" href="https://www.ncdc.noaa.gov/data-access/marineocean-data/extended-reconstructed-sea-surface-temperature-ersst-v4">Extended Reconstructed Sea Surface Temperature data set</a></p>
+<p>Now, let’s read in some SST data. Here we are using the <a class="reference external" href="https://www.ncdc.noaa.gov/data-access/marineocean-data/extended-reconstructed-sea-surface-temperature-ersst-v4">Extended Reconstructed Sea Surface Temperature data set</a>. We will access it using the <a class="reference external" href="https://earthdata.nasa.gov/collaborate/open-data-services-and-software/api/opendap">OpenDAP data server architecture</a>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">nc</span> <span class="o">=</span> <span class="n">Dataset</span><span class="p">(</span><span class="s1">&#39;ERSST_v5_data.nc&#39;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># the data we will use is described here</span>
+<span class="c1"># http://www.ncdc.noaa.gov/data-access/marineocean-data/extended-reconstructed-sea-surface-temperature-ersst-v5</span>
+<span class="c1"># It is stored in the IRI data library</span>
+<span class="n">iri_url</span> <span class="o">=</span> <span class="s2">&quot;http://iridl.ldeo.columbia.edu/SOURCES/.NOAA/.NCDC/.ERSST/.version5/.sst/&quot;</span>
+<span class="n">T_convert</span> <span class="o">=</span> <span class="s2">&quot;T/[(days)(since)(1960-01-01)]sconcat/streamgridunitconvert/&quot;</span>
+
+<span class="c1"># complete url</span>
+<span class="n">url</span> <span class="o">=</span> <span class="n">iri_url</span> <span class="o">+</span> <span class="n">T_convert</span> <span class="o">+</span> <span class="s2">&quot;dods&quot;</span>
+
+<span class="n">nc</span> <span class="o">=</span> <span class="n">Dataset</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
 <span class="n">sst</span> <span class="o">=</span> <span class="n">nc</span><span class="o">.</span><span class="n">variables</span><span class="p">[</span><span class="s1">&#39;sst&#39;</span><span class="p">][:]</span>
 <span class="n">lat</span> <span class="o">=</span> <span class="n">nc</span><span class="o">.</span><span class="n">variables</span><span class="p">[</span><span class="s1">&#39;Y&#39;</span><span class="p">][:]</span>
 <span class="n">lon</span> <span class="o">=</span> <span class="n">nc</span><span class="o">.</span><span class="n">variables</span><span class="p">[</span><span class="s1">&#39;X&#39;</span><span class="p">][:]</span>
@@ -538,7 +546,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.colorbar.Colorbar at 0x7f86a8036130&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.colorbar.Colorbar at 0x7fa20c57b130&gt;
 </pre></div>
 </div>
 <img alt="../../_images/Intro_to_PCA_23_1.png" src="../../_images/Intro_to_PCA_23_1.png" />
@@ -561,7 +569,7 @@
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># visualize the region we&#39;re working with</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">18</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">pcolormesh</span><span class="p">(</span><span class="n">ssta_pac</span><span class="p">[</span><span class="mi">0</span><span class="p">,:,:],</span><span class="n">cmap</span> <span class="o">=</span> <span class="s2">&quot;RdBu_r&quot;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">clim</span><span class="p">(</span><span class="o">-</span><span class="mi">4</span><span class="p">,</span><span class="mi">4</span><span class="p">)</span>
@@ -596,16 +604,16 @@
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># visualize the variability of the region we&#39;re working with</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">18</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">pcolormesh</span><span class="p">(</span><span class="n">ssta_pac_std</span><span class="p">,</span><span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;Reds&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;(a) Standard Deviation of SST Anomaly with Time Mean Removed&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;(a) STDEV of SST Anomaly (Time Mean Removed)&quot;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">clim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">5</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">()</span>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">pcolormesh</span><span class="p">(</span><span class="n">ssta_pac_std_noseasons</span><span class="p">,</span><span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;Reds&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;(b) Standard Deviation of SST Anomaly with Monthly Climatology Removed&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;(b) STDEV of SST Anomaly (Monthly Climatology Removed)&quot;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">clim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mf">1.5</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">()</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
@@ -618,12 +626,11 @@
 </div>
 <p>Notice that the patterns look quite different (I have also set different colorbar limits in the different panels). Panel (a) shows low values for standard deviation in the tropics while in panel (b) the largest vales of standard deviation are in the tropics.</p>
 </div>
-</div>
 <div class="section" id="pca-step-by-step">
-<h1>PCA: Step-by-step<a class="headerlink" href="#pca-step-by-step" title="Permalink to this headline">¶</a></h1>
+<h2>PCA: Step-by-step<a class="headerlink" href="#pca-step-by-step" title="Permalink to this headline">¶</a></h2>
 <p>Now, that we have our SST anomaly as a function of time, latitude and longitude for our region of interest, there are a few more steps that we have to go through to prepare the data for PCA.</p>
 <div class="section" id="step-1-missing-values">
-<h2>Step 1: Missing values<a class="headerlink" href="#step-1-missing-values" title="Permalink to this headline">¶</a></h2>
+<h3>Step 1: Missing values<a class="headerlink" href="#step-1-missing-values" title="Permalink to this headline">¶</a></h3>
 <p>The python PCA function will not work with “NaN” values, so we are going to fill these with zeros. When we fill these with zeros, these will not contribute to the variance as the mean of our <em>anomaly</em> data is also zero.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -635,7 +642,7 @@
 </div>
 </div>
 <div class="section" id="step-2-standardize-data">
-<h2>Step 2: Standardize data<a class="headerlink" href="#step-2-standardize-data" title="Permalink to this headline">¶</a></h2>
+<h3>Step 2: Standardize data<a class="headerlink" href="#step-2-standardize-data" title="Permalink to this headline">¶</a></h3>
 <p>Sometimes, we will want to standardize our data before beginning our EOF analysis. This step is not required and whether or not we include this step depends on our data. We will discuss this in more detail later in this section. For now, we will standardize our data.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -654,10 +661,10 @@
 <p>The next few cells of code will be hidden. We will focus on the output of PCA. But, come back to this page after you have worked through the next two sections to revisit what is going on.</p>
 </div>
 <div class="section" id="step-3-convert-3d-array-to-2d-matrix">
-<h2>Step 3: Convert 3D array to 2D matrix<a class="headerlink" href="#step-3-convert-3d-array-to-2d-matrix" title="Permalink to this headline">¶</a></h2>
+<h3>Step 3: Convert 3D array to 2D matrix<a class="headerlink" href="#step-3-convert-3d-array-to-2d-matrix" title="Permalink to this headline">¶</a></h3>
 <p>The next step is to convert our 3D array into a 2D matrix, so that we can perform matrix operations. We do this by combining all the spatial dimensions together.</p>
 <p>Let’s remind ourselves of the shape of our data.</p>
-<div class="cell docutils container">
+<div class="cell tag_hide-input tag_hide-output docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
 </pre></div>
@@ -696,7 +703,7 @@
 </div>
 </div>
 <div class="section" id="step-4-calculate-covariance-matrix">
-<h2>Step 4: Calculate covariance matrix<a class="headerlink" href="#step-4-calculate-covariance-matrix" title="Permalink to this headline">¶</a></h2>
+<h3>Step 4: Calculate covariance matrix<a class="headerlink" href="#step-4-calculate-covariance-matrix" title="Permalink to this headline">¶</a></h3>
 <p>Now, we can calculate the covariance matrix. Since our data is standardized, we will actually be computing the correlation matrix.</p>
 <div class="cell tag_hide-input tag_hide-output docutils container">
 <div class="cell_input docutils container">
@@ -714,7 +721,7 @@
 </div>
 </div>
 <div class="section" id="step-5-perform-eigenanalysis-of-covariance-matrix">
-<h2>Step 5: Perform eigenanalysis of covariance matrix<a class="headerlink" href="#step-5-perform-eigenanalysis-of-covariance-matrix" title="Permalink to this headline">¶</a></h2>
+<h3>Step 5: Perform eigenanalysis of covariance matrix<a class="headerlink" href="#step-5-perform-eigenanalysis-of-covariance-matrix" title="Permalink to this headline">¶</a></h3>
 <div class="cell tag_hide-input tag_hide-output docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># eigenanalysis</span>
@@ -820,6 +827,7 @@
 <p>Although the results of the PCA of tropical Pacific SST may not be entirely surprising, the beauty of PCA is that with a single operation, we simultaneously generate spatial patterns and their corresponding time series. And for large, noisy data sets, these patterns may not be quite as obvious as they were for tropical Pacific SST.</p>
 </div>
 </div>
+</div>
 
     <script type="text/x-thebe-config">
     {
@@ -850,6 +858,7 @@
     <div class='prev-next-bottom'>
         
     <a class='left-prev' id="prev-link" href="pca.html" title="previous page">Patterns in Multivariate Data</a>
+    <a class='right-next' id="next-link" href="linalg.html" title="next page">Review of Linear Algebra</a>
 
     </div>
     <footer class="footer mt-5 mt-md-0">

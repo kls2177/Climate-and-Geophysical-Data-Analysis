@@ -18,12 +18,21 @@ import matplotlib as mpl
 mpl.rc('font',size=14) #set default font size and weight for plots
 
 
-# Now, let's read in some SST data. Here we are using the [Extended Reconstructed Sea Surface Temperature data set](https://www.ncdc.noaa.gov/data-access/marineocean-data/extended-reconstructed-sea-surface-temperature-ersst-v4)
+# Now, let's read in some SST data. Here we are using the [Extended Reconstructed Sea Surface Temperature data set](https://www.ncdc.noaa.gov/data-access/marineocean-data/extended-reconstructed-sea-surface-temperature-ersst-v4). We will access it using the [OpenDAP data server architecture](https://earthdata.nasa.gov/collaborate/open-data-services-and-software/api/opendap).
 
 # In[2]:
 
 
-nc = Dataset('ERSST_v5_data.nc')
+# the data we will use is described here
+# http://www.ncdc.noaa.gov/data-access/marineocean-data/extended-reconstructed-sea-surface-temperature-ersst-v5
+# It is stored in the IRI data library
+iri_url = "http://iridl.ldeo.columbia.edu/SOURCES/.NOAA/.NCDC/.ERSST/.version5/.sst/"
+T_convert = "T/[(days)(since)(1960-01-01)]sconcat/streamgridunitconvert/"
+
+# complete url
+url = iri_url + T_convert + "dods"
+
+nc = Dataset(url)
 sst = nc.variables['sst'][:]
 lat = nc.variables['Y'][:]
 lon = nc.variables['X'][:]
@@ -205,7 +214,7 @@ ssta_pac_noseasons = np.reshape(ssta_pac_noseasons,(70*12,sst_pac.shape[1],sst_p
 
 
 # visualize the region we're working with
-plt.figure(figsize=(16,5))
+plt.figure(figsize=(18,5))
 plt.subplot(1,2,1)
 plt.pcolormesh(ssta_pac[0,:,:],cmap = "RdBu_r")
 plt.clim(-4,4)
@@ -238,16 +247,16 @@ ssta_pac_std_noseasons = np.std(ssta_pac_noseasons,axis=0)
 
 
 # visualize the variability of the region we're working with
-plt.figure(figsize=(16,5))
+plt.figure(figsize=(18,5))
 plt.subplot(1,2,1)
 plt.pcolormesh(ssta_pac_std,cmap='Reds')
-plt.title("(a) Standard Deviation of SST Anomaly with Time Mean Removed")
+plt.title("(a) STDEV of SST Anomaly (Time Mean Removed)")
 plt.clim(0,5)
 plt.colorbar()
 
 plt.subplot(1,2,2)
 plt.pcolormesh(ssta_pac_std_noseasons,cmap='Reds')
-plt.title("(b) Standard Deviation of SST Anomaly with Monthly Climatology Removed")
+plt.title("(b) STDEV of SST Anomaly (Monthly Climatology Removed)")
 plt.clim(0,1.5)
 plt.colorbar()
 plt.tight_layout()
@@ -255,7 +264,7 @@ plt.tight_layout()
 
 # Notice that the patterns look quite different (I have also set different colorbar limits in the different panels). Panel (a) shows low values for standard deviation in the tropics while in panel (b) the largest vales of standard deviation are in the tropics.
 
-# # PCA: Step-by-step
+# ## PCA: Step-by-step
 # 
 # Now, that we have our SST anomaly as a function of time, latitude and longitude for our region of interest, there are a few more steps that we have to go through to prepare the data for PCA.
 # 
