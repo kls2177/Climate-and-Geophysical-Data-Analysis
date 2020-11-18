@@ -48,6 +48,8 @@
     <script src="../../_static/sphinx-book-theme.be0a4a0c39cd630af62a2fcf693f3f06.js"></script>
     <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.18.0/dist/embed-amd.js"></script>
     <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
     <script >
         const thebe_selector = ".thebe,.cell"
@@ -58,6 +60,7 @@
     <link rel="canonical" href="https://kls2177.github.io/Climate-and-Geophysical-Data-Analysis/chapters/index.html/chapters/Week7/eig.html" />
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="EOFs via Eigenanalysis" href="eofs.html" />
     <link rel="prev" title="Review of Linear Algebra" href="linalg.html" />
 
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -166,6 +169,11 @@
    <li class="toctree-l2 current active">
     <a class="current reference internal" href="#">
      Eigenanalysis
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="eofs.html">
+     EOFs via Eigenanalysis
     </a>
    </li>
   </ul>
@@ -352,10 +360,10 @@
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># plotting parameters</span>
 <span class="n">FS</span> <span class="o">=</span> <span class="mi">14</span>
-<span class="n">inc</span> <span class="o">=</span> <span class="o">-</span><span class="mf">0.8</span>
+<span class="n">inc</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
 
 <span class="c1"># plot columns of A on 2-D plane</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">12</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">9</span><span class="p">))</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">A</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">A</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">marker</span> <span class="o">=</span> <span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="n">linestyle</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">markersize</span> <span class="o">=</span> <span class="mi">10</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;r&#39;</span><span class="p">,</span><span class="n">markeredgecolor</span> <span class="o">=</span> <span class="s1">&#39;lightgray&#39;</span><span class="p">)</span>
 
 <span class="c1"># label each point</span>
@@ -493,7 +501,7 @@
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># plotting parameters</span>
 <span class="n">FS</span> <span class="o">=</span> <span class="mi">14</span>
 <span class="n">inc</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
-<span class="n">mult_fact</span> <span class="o">=</span> <span class="mi">15</span>
+<span class="n">mult_fac</span> <span class="o">=</span> <span class="mi">15</span>
 
 <span class="c1"># plot columns of A on 2-D plane</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">12</span><span class="p">))</span>
@@ -524,7 +532,19 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/eig_13_0.png" src="../../_images/eig_13_0.png" />
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="o">&lt;</span><span class="n">ipython</span><span class="o">-</span><span class="nb">input</span><span class="o">-</span><span class="mi">8</span><span class="o">-</span><span class="mf">1e8</span><span class="n">c20724e33</span><span class="o">&gt;</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="g g-Whitespace">     </span><span class="mi">20</span> <span class="n">plt</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">linewidth</span> <span class="o">=</span> <span class="mi">2</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">21</span> 
+<span class="ne">---&gt; </span><span class="mi">22</span> <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="n">E</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span><span class="o">*-</span><span class="n">mult_fact</span><span class="p">,</span> <span class="n">E</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="n">mult_fact</span><span class="p">],[</span><span class="n">E</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span><span class="o">*-</span><span class="n">mult_fact</span><span class="p">,</span> <span class="n">E</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="n">mult_fact</span><span class="p">],</span><span class="n">linestyle</span> <span class="o">=</span> <span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">linewidth</span> <span class="o">=</span> <span class="mi">2</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;k&#39;</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">23</span> 
+<span class="g g-Whitespace">     </span><span class="mi">24</span> <span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="o">-</span><span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+
+<span class="ne">NameError</span>: name &#39;mult_fact&#39; is not defined
+</pre></div>
+</div>
+<img alt="../../_images/eig_13_1.png" src="../../_images/eig_13_1.png" />
 </div>
 </div>
 <p>The dashed black line in the plot above, delineates the line for which our eigenvector forms a basis. Any point along this line can be expressed using the eigenvector. Thus, all the variance in <strong>A</strong> can be explained by this one eigenvector.</p>
@@ -538,8 +558,9 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[ 1.41421356e+00 -2.22044605e-16]
- [-1.41421356e+00  2.22044605e-16]]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[-0.18480123  1.4020872 ]
+ [ 0.18480123 -1.4020872 ]
+ [-0.34449733 -2.25639571]]
 </pre></div>
 </div>
 </div>
@@ -549,7 +570,7 @@
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># plotting parameters</span>
 <span class="n">FS</span> <span class="o">=</span> <span class="mi">14</span>
 <span class="n">inc</span> <span class="o">=</span> <span class="o">-</span><span class="mf">1.2</span>
-<span class="n">mult_fact</span> <span class="o">=</span> <span class="mi">15</span>
+<span class="n">mult_fac</span> <span class="o">=</span> <span class="mi">15</span>
 
 <span class="c1"># plot columns of A on 2-D plane</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">12</span><span class="p">))</span>
@@ -589,7 +610,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.lines.Line2D at 0x7fc26d6c0a00&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.lines.Line2D at 0x7fb9a2883a60&gt;
 </pre></div>
 </div>
 <img alt="../../_images/eig_16_1.png" src="../../_images/eig_16_1.png" />
@@ -788,7 +809,7 @@ e_{21} \end{bmatrix} &amp; = 0\\
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.lines.Line2D at 0x7fc26e787430&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.lines.Line2D at 0x7fb9a3dae730&gt;
 </pre></div>
 </div>
 <img alt="../../_images/eig_28_1.png" src="../../_images/eig_28_1.png" />
@@ -829,6 +850,7 @@ e_{21} \end{bmatrix} &amp; = 0\\
     <div class='prev-next-bottom'>
         
     <a class='left-prev' id="prev-link" href="linalg.html" title="previous page">Review of Linear Algebra</a>
+    <a class='right-next' id="next-link" href="eofs.html" title="next page">EOFs via Eigenanalysis</a>
 
     </div>
     <footer class="footer mt-5 mt-md-0">
