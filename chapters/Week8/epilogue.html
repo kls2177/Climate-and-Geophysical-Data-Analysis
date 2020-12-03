@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Patterns in Multivariate Data &#8212; Climate and Geophysical Data Analysis</title>
+    <title>Epilogue &#8212; Climate and Geophysical Data Analysis</title>
     
   <link rel="stylesheet" href="../../_static/css/index.73d71520a4ca3b99cfee5594769eaaae.css">
 
@@ -48,8 +48,6 @@
     <script src="../../_static/sphinx-book-theme.be0a4a0c39cd630af62a2fcf693f3f06.js"></script>
     <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.18.0/dist/embed-amd.js"></script>
     <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
     <script >
         const thebe_selector = ".thebe,.cell"
@@ -57,21 +55,20 @@
         const thebe_selector_output = ".output,.cell_output"
     </script>
     <script async="async" src="../../_static/sphinx-thebe.js"></script>
-    <link rel="canonical" href="https://kls2177.github.io/Climate-and-Geophysical-Data-Analysis/chapters/index.html/chapters/Week7/pca.html" />
+    <link rel="canonical" href="https://kls2177.github.io/Climate-and-Geophysical-Data-Analysis/chapters/index.html/chapters/Week8/epilogue.html" />
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="Introduction to Principal Component Analysis" href="Intro_to_PCA.html" />
-    <link rel="prev" title="Convolution and Filtering in the Time Domain" href="../Week6/convolution_filters_in_time.html" />
+    <link rel="prev" title="EOFs with Real Data" href="../Week7/naoeof.html" />
 
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
 
 
 <!-- Opengraph tags -->
-<meta property="og:url"         content="https://kls2177.github.io/Climate-and-Geophysical-Data-Analysis/chapters/index.html/chapters/Week7/pca.html" />
+<meta property="og:url"         content="https://kls2177.github.io/Climate-and-Geophysical-Data-Analysis/chapters/index.html/chapters/Week8/epilogue.html" />
 <meta property="og:type"        content="article" />
-<meta property="og:title"       content="Patterns in Multivariate Data" />
-<meta property="og:description" content="Patterns in Multivariate Data  Thus far, we have restricted our analysis to one-dimensional time series data sets. However, many climate and geophysical data se" />
+<meta property="og:title"       content="Epilogue" />
+<meta property="og:description" content="Epilogue  This brings us to the end of the courseware for Climate and Geophysical Data Analysis. Although, the courseware is far from exhaustive, it provides an" />
 <meta property="og:image"       content="https://kls2177.github.io/Climate-and-Geophysical-Data-Analysis/chapters/index.html/_static/gistemp.png" />
 
 <meta name="twitter:card" content="summary" />
@@ -151,40 +148,13 @@
    Time Series Analysis
   </a>
  </li>
- <li class="toctree-l1 current active">
-  <a class="current reference internal" href="#">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Week7/pca.html">
    Patterns in Multivariate Data
   </a>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="Intro_to_PCA.html">
-     Introduction to Principal Component Analysis
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="linalg.html">
-     Review of Linear Algebra
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="eig.html">
-     Eigenanalysis
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="eofs.html">
-     EOFs via Eigenanalysis
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="naoeof.html">
-     EOFs with Real Data
-    </a>
-   </li>
-  </ul>
  </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../Week8/epilogue.html">
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
    Epilogue
   </a>
  </li>
@@ -230,7 +200,7 @@
         <!-- ipynb file if we had a myst markdown file -->
         
         <!-- Download raw file -->
-        <a class="dropdown-buttons" href="../../_sources/chapters/Week7/pca.md"><button type="button"
+        <a class="dropdown-buttons" href="../../_sources/chapters/Week8/epilogue.md"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
                 data-placement="left">.md</button></a>
         <!-- Download PDF via print -->
@@ -262,12 +232,25 @@
         
               <div>
                 
-  <div class="section" id="patterns-in-multivariate-data">
-<h1>Patterns in Multivariate Data<a class="headerlink" href="#patterns-in-multivariate-data" title="Permalink to this headline">¶</a></h1>
-<p>Thus far, we have restricted our analysis to one-dimensional time series data sets. However, many climate and geophysical data sets are multi-dimensional and exhibit variability in both <strong>time</strong> and in <strong>space</strong>. In the final section of this courseware, we will explore one of the most common methods for describing the variability of these data sets, <em>principal component analysis (PCA)</em>.</p>
-<p>We will start with an example of the El Niño-Southern Oscillation to help us develop an intuitive sense of PCA is all about. Next, we will review some of the matrix algebra and eigenanalysis concepts needed to understand how PCA works. Finally, we will learn how to conduct PCA in practice using python.</p>
-<div class="toctree-wrapper compound">
-</div>
+  <div class="section" id="epilogue">
+<h1>Epilogue<a class="headerlink" href="#epilogue" title="Permalink to this headline">¶</a></h1>
+<p>This brings us to the end of the courseware for <em>Climate and Geophysical Data Analysis</em>. Although, the courseware is far from exhaustive, it provides an overview of the common methods and tools used in the fields of climate science and geophysics.</p>
+<p>If you are interested in learning more, you can check out these two other online course offerings:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://earth-env-data-science.github.io/intro.html">Introduction to Earth and Environmental Data Science</a></p></li>
+<li><p><a class="reference external" href="https://www.earthdatascience.org/">Earth Lab</a></p></li>
+</ul>
+<p>There are also several other python packages that are really useful for analyzing climate and geophysical data sets:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://xarray.pydata.org/en/stable/">xarray</a></p></li>
+<li><p><a class="reference external" href="https://pandas.pydata.org/">pandas</a></p></li>
+</ul>
+<p>Finally, beyond python, there are several very useful tools for processing large climate data sets:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="http://nco.sourceforge.net/">NetCDF Operators</a></p></li>
+<li><p><a class="reference external" href="https://code.mpimet.mpg.de/projects/cdo">Climate Data Operators</a></p></li>
+<li><p><a class="reference external" href="https://www.ncl.ucar.edu/">NCAR Command Language</a></p></li>
+</ul>
 </div>
 
     <script type="text/x-thebe-config">
@@ -283,7 +266,7 @@
         },
         kernelOptions: {
             kernelName: "python3",
-            path: "./chapters/Week7"
+            path: "./chapters/Week8"
         },
         predefinedOutput: true
     }
@@ -298,8 +281,7 @@
     
     <div class='prev-next-bottom'>
         
-    <a class='left-prev' id="prev-link" href="../Week6/convolution_filters_in_time.html" title="previous page">Convolution and Filtering in the Time Domain</a>
-    <a class='right-next' id="next-link" href="Intro_to_PCA.html" title="next page">Introduction to Principal Component Analysis</a>
+    <a class='left-prev' id="prev-link" href="../Week7/naoeof.html" title="previous page">EOFs with Real Data</a>
 
     </div>
     <footer class="footer mt-5 mt-md-0">
