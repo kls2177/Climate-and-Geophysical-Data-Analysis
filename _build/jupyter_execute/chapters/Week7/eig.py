@@ -68,10 +68,10 @@ mpl.rc('font',size=14) #set default font size for plots
 
 # plotting parameters
 FS = 14
-inc = -0.8
+inc = -1
 
 # plot columns of A on 2-D plane
-plt.figure(figsize=(12,12))
+plt.figure(figsize=(10,9))
 plt.plot(A[0],A[1], marker = 'o', linestyle = '', markersize = 10, color = 'r',markeredgecolor = 'lightgray')
 
 # label each point
@@ -195,7 +195,7 @@ print(LAM)
 # plotting parameters
 FS = 14
 inc = -1
-mult_fact = 15
+mult_fac = 15
 
 # plot columns of A on 2-D plane
 plt.figure(figsize=(12,12))
@@ -228,7 +228,7 @@ plt.show()
 # 
 # We can perform a *change of basis*, to convert **A** into the basis of eigenvectors by multiplying **A** and **E**.
 
-# In[9]:
+# In[146]:
 
 
 # change of basis: use np.dot to perform matrix multiplication
@@ -236,13 +236,13 @@ A_new = np.dot(A,E)
 print(A_new)
 
 
-# In[10]:
+# In[147]:
 
 
 # plotting parameters
 FS = 14
 inc = -1.2
-mult_fact = 15
+mult_fac = 15
 
 # plot columns of A on 2-D plane
 plt.figure(figsize=(12,12))
@@ -356,7 +356,7 @@ plt.axhline(0,linewidth = 2)
 # $$
 # 
 
-# In[11]:
+# In[126]:
 
 
 # redefine A 
@@ -366,7 +366,7 @@ print(A)
 
 # Next, we compute the covariance matrix of **A**,
 
-# In[12]:
+# In[148]:
 
 
 # find eigenvalues and eigenvectors of covariance matrix of A
@@ -376,7 +376,7 @@ print(C)
 
 # We can then find the eigenvalues and eigenvectors of **C** in order to define a new set of linearly independent basis vectors that best describe the variance in **A**.
 
-# In[13]:
+# In[149]:
 
 
 # solve the eigenvalue problem
@@ -386,7 +386,7 @@ print(LAM)
 
 # We get two, non-zero eigenvalues and their corresponding eigenvectors,
 
-# In[14]:
+# In[150]:
 
 
 print(E)
@@ -394,7 +394,7 @@ print(E)
 
 # As before, we can find the coordinates of A in the new vector space spanned by the eigenvectors.
 
-# In[15]:
+# In[152]:
 
 
 # change of basis
@@ -403,7 +403,7 @@ A_new = np.dot(A,E)
 
 # Now, let's plot the coordinates corresponding to the columns of **A** and the eigenvectors. 
 
-# In[16]:
+# In[154]:
 
 
 # plotting parameters

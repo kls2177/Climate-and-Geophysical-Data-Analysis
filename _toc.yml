@@ -57,3 +57,6 @@
     - file: chapters/Week7/Intro_to_PCA
     - file: chapters/Week7/linalg
     - file: chapters/Week7/eig
+    - file: chapters/Week7/eofs
+    - file: chapters/Week7/naoeof
+- file: chapters/Week8/epilogue
