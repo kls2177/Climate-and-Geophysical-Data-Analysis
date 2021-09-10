@@ -12,6 +12,6 @@ This courseware is designed for [EES1132][ees1132]/[EESD21][eesd21] at the [Univ
 ### Let's get started!
 
 [karen]: https://kls2177.github.io/
-[ees1132]: https://www.utsc.utoronto.ca/gradpes/ees1132h-climate-data-analysis
-[eesd21]:https://www.utsc.utoronto.ca/gradpes/ees1132h-climate-data-analysis
+[ees1132]: https://www.utsc.utoronto.ca/physsci/ees1132h-climate-data-analysis
+[eesd21]:https://utsc.calendar.utoronto.ca/course/eesd21h3
 [utsc]: https://www.utsc.utoronto.ca/home/
