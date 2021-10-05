@@ -48,8 +48,6 @@
     <script src="../../_static/sphinx-book-theme.be0a4a0c39cd630af62a2fcf693f3f06.js"></script>
     <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.18.0/dist/embed-amd.js"></script>
     <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
     <script >
         const thebe_selector = ".thebe,.cell"
@@ -368,14 +366,14 @@
 </div>
 </div>
 </div>
-<p>First, we will load in our ENSO and precipitation data from a global climate model. The ENSO index follows the <a class="reference external" href="https://climatedataguide.ucar.edu/climate-data/nino-sst-indices-nino-12-3-34-4-oni-and-tni">NINO3.4 definition</a> and is the November-December-January-February (NDJF) average. You can download the file <a class="reference external" href="https://github.com/kls2177/ccia_files/blob/master/NINO34_NDJF.pickle?raw=true">here</a>.</p>
+<p>First, we will load in our ENSO and precipitation data from a global climate model. The ENSO index follows the <a class="reference external" href="https://climatedataguide.ucar.edu/climate-data/nino-sst-indices-nino-12-3-34-4-oni-and-tni">NINO3.4 definition</a> and is the November-December-January-February (NDJF) average. You can download the file <a class="reference external" href="https://github.com/kls2177/ccia_files/blob/master/NINO34_NDJF_2021.pickle?raw=true">here</a>.</p>
 <p>The precipitation data is averaged over the California region and over the winter months, December-January-February-March. You can download the file <a class="reference external" href="https://github.com/kls2177/ccia_files/blob/master/CA_PRECIP_DJFM.pickle?raw=true">here</a>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># ENSO Data:</span>
 <span class="c1"># unpickle NINO34 (units of degC)</span>
-<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;NINO34_NDJF.pickle&#39;</span><span class="p">,</span><span class="s1">&#39;rb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">fp</span><span class="p">:</span> <span class="c1">#.pickle files are a python file type</span>
-    <span class="n">nino34</span> <span class="o">=</span> <span class="n">pickle</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">fp</span><span class="p">,</span><span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;latin1&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;NINO34_NDJF_2021.pickle&#39;</span><span class="p">,</span><span class="s1">&#39;rb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">fp</span><span class="p">:</span> <span class="c1">#.pickle files are a python file type</span>
+    <span class="n">nino34</span> <span class="o">=</span> <span class="n">pickle</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">fp</span><span class="p">,</span><span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;latin1&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -494,7 +492,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7fdf6050f6a0&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7fe6ef50e6a0&gt;
 </pre></div>
 </div>
 <img alt="../../_images/basics_linreg_13_1.png" src="../../_images/basics_linreg_13_1.png" />
@@ -697,7 +695,7 @@ a_0 &amp;= \overline{y} - a_1\overline{x}
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7fdf5fcec040&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7fe6eebee100&gt;
 </pre></div>
 </div>
 <img alt="../../_images/basics_linreg_24_1.png" src="../../_images/basics_linreg_24_1.png" />
