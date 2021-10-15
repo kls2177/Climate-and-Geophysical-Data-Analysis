@@ -48,8 +48,6 @@
     <script src="../../_static/sphinx-book-theme.be0a4a0c39cd630af62a2fcf693f3f06.js"></script>
     <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.18.0/dist/embed-amd.js"></script>
     <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
     <script >
         const thebe_selector = ".thebe,.cell"
@@ -321,7 +319,7 @@
 <h2>Example: Lower Tropospheric Temperature Data<a class="headerlink" href="#example-lower-tropospheric-temperature-data" title="Permalink to this headline">¶</a></h2>
 <p>Here, we will revisit the study of Santer et al. (2000) which examines trends in the lower tropospheric temperature (TLT) channel of the Microwave Sounding Unit (MSU) satellite instrument from 1979-1993. Details about the updated TLT data set that we will be working with can be found <a class="reference external" href="http://www.remss.com/measurements/upper-air-temperature/">here</a>.</p>
 <p>Since Santer et al. (2000) was published some adjustments have been made to the satellite retrievals for the 1979-1993 time period (you can read a brief discussion about these corrections in this <a class="reference external" href="http://www.realclimate.org/index.php/archives/2005/08/et-tu-lt/">blog post</a>) and corrections to the more recent part of the TLT record have also been made (you can read a brief discussion of these corrections in this <a class="reference external" href="https://www.carbonbrief.org/major-correction-to-satellite-data-shows-140-faster-warming-since-1998">blog post</a>).</p>
-<p>Let’s start by reading in the data.</p>
+<p>Let’s start by reading in the <a class="reference external" href="https://github.com/kls2177/ccia_files/blob/master/TLT_19792019.csv?raw=0">data</a>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Load packages</span>
@@ -537,7 +535,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7f82e6bb1a00&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7ffb4eba5a00&gt;
 </pre></div>
 </div>
 <img alt="../../_images/autocorr_example_25_1.png" src="../../_images/autocorr_example_25_1.png" />
