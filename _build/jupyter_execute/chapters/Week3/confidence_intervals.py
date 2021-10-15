@@ -26,8 +26,8 @@ mpl.rc('font',size=16,weight='bold') #set default font size and weight for plots
 
 # ENSO Data:
 # unpickle NINO34 (units of degC)
-with open('NINO34_NDJF.pickle','rb') as fp: #.pickle files are a python file type
-    nino34 = pickle.load(fp,encoding='latin1')[0]
+with open('NINO34_NDJF_2021.pickle','rb') as fp: #.pickle files are a python file type
+    nino34 = pickle.load(fp,encoding='latin1')
 
 
 # In[3]:

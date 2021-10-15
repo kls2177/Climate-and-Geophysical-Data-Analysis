@@ -48,8 +48,6 @@
     <script src="../../_static/sphinx-book-theme.be0a4a0c39cd630af62a2fcf693f3f06.js"></script>
     <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.18.0/dist/embed-amd.js"></script>
     <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
     <script >
         const thebe_selector = ".thebe,.cell"
@@ -363,7 +361,7 @@
 <p>What we want is displayed in the right column of <a class="reference internal" href="#scedastic"><span class="std std-ref">Figure 14</span></a>. If you see that the spread changes as a function of <span class="math notranslate nohighlight">\(x\)</span>, as in the left column of <a class="reference internal" href="#scedastic"><span class="std std-ref">Figure 14</span></a>, then a quantitative test is in order.</p>
 <div class="section" id="goldfeld-quandt-test">
 <h3>Goldfeld-Quandt Test<a class="headerlink" href="#goldfeld-quandt-test" title="Permalink to this headline">¶</a></h3>
-<p>The test we will use is called the <a class="reference external" href="https://www.statisticshowto.com/goldfeld-quandt-test/">Goldfeld-Quandt test</a>, which in essence tests whether or not the variances of the residuals for two different segments of your data are significantly different from each other using an <span class="math notranslate nohighlight">\(F\)</span>-statistic.</p>
+<p>The test we will use is called the <a class="reference external" href="https://www.statisticshowto.com/goldfeld-quandt-test/">Goldfeld-Quandt test</a>, which in essence tests whether or not the variances of the residuals for two different segments of your data are significantly different from each other using a statistic that we have not seen before, the <span class="math notranslate nohighlight">\(F\)</span>-statistic.</p>
 <p><em>In general</em>, the <span class="math notranslate nohighlight">\(F\)</span>-statistic is used to assess the ratio between two sample standard deviations, <span class="math notranslate nohighlight">\(s_1\)</span> and <span class="math notranslate nohighlight">\(s_2\)</span>. f s1 and s2 are the variances of independent random samples of size N1 and N2, taken from two normal populations having true variances <span class="math notranslate nohighlight">\(\sigma_1\)</span> and <span class="math notranslate nohighlight">\(\sigma_2\)</span>, respectively, then we can define <span class="math notranslate nohighlight">\(F\)</span> as:</p>
 <div class="math notranslate nohighlight">
 \[
@@ -373,7 +371,7 @@ F = \frac{s_1}{s_2}
 <p><em>For the Goldfeld-Quandt test</em>, the variances that we are comparing are the sums of squared errors for the two sets of residuals that we compute for different segments of our data:</p>
 <div class="math notranslate nohighlight">
 \[
-F = \frac{\frac{Q_1}{(N_1 - 1}}{\frac{Q_2}{N_2 -1}}
+F = \frac{\frac{Q_1}{(N_1 - 1)}}{\frac{Q_2}{(N_2 -1)}}
 \]</div>
 <p>where <span class="math notranslate nohighlight">\(Q_1\)</span> and <span class="math notranslate nohighlight">\(Q_2\)</span> are the sums of squared errors (see the Introduction to Linear Regression section). The null hypothesis of this test is that the sums of squared errors are the same, i.e. the residuals are homoscedastic.</p>
 <p>Let’s test the homoscedasticity assumption for our ENSO and California precipitation data.</p>
@@ -395,8 +393,8 @@ F = \frac{\frac{Q_1}{(N_1 - 1}}{\frac{Q_2}{N_2 -1}}
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># ENSO Data:</span>
 <span class="c1"># unpickle NINO34 (units of degC)</span>
-<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;NINO34_NDJF.pickle&#39;</span><span class="p">,</span><span class="s1">&#39;rb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">fp</span><span class="p">:</span> <span class="c1">#.pickle files are a python file type</span>
-    <span class="n">nino34</span> <span class="o">=</span> <span class="n">pickle</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">fp</span><span class="p">,</span><span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;latin1&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;NINO34_NDJF_2021.pickle&#39;</span><span class="p">,</span><span class="s1">&#39;rb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">fp</span><span class="p">:</span> <span class="c1">#.pickle files are a python file type</span>
+    <span class="n">nino34</span> <span class="o">=</span> <span class="n">pickle</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">fp</span><span class="p">,</span><span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;latin1&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
