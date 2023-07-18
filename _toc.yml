@@ -6,8 +6,7 @@ chapters:
   sections:
   - file: chapters/introduction/aboutthisbook
   - file: chapters/introduction/howtousethisbook
-- file: chapters/Week1b/descriptivestats
+- file: chapters/Week1a/whatarestatsgoodfor
   sections:
-  - file: chapters/Week1a/whatarestatsgoodfor
   - file: chapters/Week1a/goodpractice
   - file: chapters/Week1a/pitfalls
