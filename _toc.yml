@@ -1,7 +1,6 @@
 format: jb-book
-- title: ""
-  root: chapters/index
-
+root: chapters/index
+title: ""
 # Divider for meta-pages and content page
 - divider: true
 
