@@ -1,8 +1,4 @@
----
-title: Climate and Geophysical Data Analysis
----
-
-# TEST
+# Climate and Geophysical Data Analysis
 =====================================
 
 ***A course in statistical data analysis for climate science and geophysics.***

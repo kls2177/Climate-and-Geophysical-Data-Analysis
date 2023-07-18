@@ -1,8 +1,14 @@
 format: jb-book
-root: chapters/index
+- title: ""
+  root: chapters/index
+
+# Divider for meta-pages and content page
+- divider: true
+
 parts:
 - caption: Week 1
-  chapters:
+
+chapters:
   - file: chapters/introduction/intro
     sections:
     - file: chapters/introduction/aboutthisbook
@@ -11,3 +17,6 @@ parts:
     sections:
     - file: chapters/Week1a/goodpractice
     - file: chapters/Week1a/pitfalls
+
+# Divider for meta-pages and content page
+- divider: true
