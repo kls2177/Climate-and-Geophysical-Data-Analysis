@@ -1,323 +1,392 @@
 
+
 <!DOCTYPE html>
 
-<html>
+
+<html >
+
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
     <title>Summary Statistics: Part I &#8212; Climate and Geophysical Data Analysis</title>
-    
-  <link rel="stylesheet" href="../../_static/css/index.73d71520a4ca3b99cfee5594769eaaae.css">
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
 
-    
-  <link rel="stylesheet"
-    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+  
+  <link href="../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
 
-    
-      
-  <link rel="stylesheet"
-    href="../../_static/vendor/open-sans_all/1.44.1/index.css">
-  <link rel="stylesheet"
-    href="../../_static/vendor/lato_latin-ext/1.44.1/index.css">
-
-    
-    <link rel="stylesheet" href="../../_static/sphinx-book-theme.2d2078699c18a0efb88233928e1cf6ed.css" type="text/css" />
-    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" href="../../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
-    
-  <link rel="preload" as="script" href="../../_static/js/index.3da636dd464baa7582d2.js">
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
 
-    <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
     <script src="../../_static/jquery.js"></script>
     <script src="../../_static/underscore.js"></script>
     <script src="../../_static/doctools.js"></script>
-    <script src="../../_static/language_data.js"></script>
-    <script src="../../_static/togglebutton.js"></script>
     <script src="../../_static/clipboard.min.js"></script>
     <script src="../../_static/copybutton.js"></script>
-    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="../../_static/sphinx-book-theme.be0a4a0c39cd630af62a2fcf693f3f06.js"></script>
-    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.18.0/dist/embed-amd.js"></script>
-    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
-    <script >
-        const thebe_selector = ".thebe,.cell"
-        const thebe_selector_input = "pre,.cell_input div.highlight"
-        const thebe_selector_output = ".output,.cell_output"
-    </script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
     <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script type="application/vnd.jupyter.widget-state+json">{"state": {"032b7783727b4af2bcb54cbc50e66236": {"model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "model_name": "LayoutModel", "state": {}}, "034cc1aa86b249dfa89f09511d868fbb": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "model_name": "ButtonStyleModel", "state": {}}, "059346708c5447ab85d7e51ab27cbd6f": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "model_name": "RadioButtonsModel", "state": {"_options_labels": ["blue", "white", "red"], "index": 0, "layout": "IPY_MODEL_4125b500d6ec44419afa0d24b068e918", "style": "IPY_MODEL_74793884b3084c19a073cda068e76984"}}, "09cfdf9e46094b23a40166adef876b81": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "model_name": "DescriptionStyleModel", "state": {"description_width": ""}}, "0bfa3a7debb6472ebad3ac34300230e0": {"model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "model_name": "LayoutModel", "state": {}}, "123696e7014a4752a3d3265e33444bca": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "model_name": "ButtonModel", "state": {"description": "submit", "layout": "IPY_MODEL_c5b3d26a75324c00ae56f5abdfdf7ab4", "style": "IPY_MODEL_a7dbb1dd04b94b15992a5e02a1187d6b"}}, "15ce81380df04787a2c94b25544b9a47": {"model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "model_name": "LayoutModel", "state": {}}, "17058b82d834415cb17fc49719267f40": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "model_name": "ButtonStyleModel", "state": {}}, "1a95adb17dfc46e89834eda4c4524d3f": {"model_module": "@jupyter-widgets/output", "model_module_version": "1.0.0", "model_name": "OutputModel", "state": {"layout": "IPY_MODEL_b8cc324ed40940bcb86c32ee9a1c4025"}}, "1a9a233894fc43788fa67fa53b020696": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "model_name": "ButtonStyleModel", "state": {}}, "208a467bbf2346cfab5f92c9617c16be": {"model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "model_name": "LayoutModel", "state": {}}, "216aefeadb8d4073bd8670dd866219b3": {"model_module": "@jupyter-widgets/output", "model_module_version": "1.0.0", "model_name": "OutputModel", "state": {"layout": "IPY_MODEL_b34a08a560ee4229a2e28022e47e4a16", "outputs": [{"name": "stdout", "output_type": "stream", "text": "lalalalal\n"}]}}, "223d0c25078745c6ba225cb131bb7d6e": {"model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "model_name": "LayoutModel", "state": {}}, "29b1a7ecabe14412b8e92a8eb3eb410c": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "model_name": "VBoxModel", "state": {"children": ["IPY_MODEL_216aefeadb8d4073bd8670dd866219b3", "IPY_MODEL_934cf691e2a14b42a6a664c704a335f7", "IPY_MODEL_9af61e642b4644a49673a2731261c59f", "IPY_MODEL_fe2de36d5b714017bd0b4225ac7289ed"], "layout": "IPY_MODEL_6f111f04a4a248b7bc79150e8db99253"}}, "2b115a10b840468e8dd573f6048f5b8c": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "model_name": "VBoxModel", "state": {"children": ["IPY_MODEL_3a1a02c7efcd474386cfe4a439ab5419", "IPY_MODEL_d5f79112fc844dfdb04e2bde563d0940", "IPY_MODEL_123696e7014a4752a3d3265e33444bca", "IPY_MODEL_a888793c5506416bb914954fd6cd9db1"], "layout": "IPY_MODEL_0bfa3a7debb6472ebad3ac34300230e0"}}, "2b83431b2c7d4cc0ad36a18bbaea62af": {"model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "model_name": "LayoutModel", "state": {}}, "2f081605612d4bc8b346c90faad7fe6c": {"model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "model_name": "LayoutModel", "state": {}}, "2fc0a68526ad4476a58708e309452c4e": {"model_module": "@jupyter-widgets/output", "model_module_version": "1.0.0", "model_name": "OutputModel", "state": {"layout": "IPY_MODEL_95c460fed1b1461189c4dadb05d32b81"}}, "30521cd4acca492aada2a36450d8f7d4": {"model_module": "@jupyter-widgets/output", "model_module_version": "1.0.0", "model_name": "OutputModel", "state": {"layout": "IPY_MODEL_7899163b196445ab8c6165321483b6a1", "outputs": [{"name": "stdout", "output_type": "stream", "text": "blablabla\n"}]}}, "308dac6189304b4aa8f6dd17fc907864": {"model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "model_name": "LayoutModel", "state": {}}, "359a02db424841dda24c227f3efd6aa5": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "model_name": "DescriptionStyleModel", "state": {"description_width": ""}}, "3a1a02c7efcd474386cfe4a439ab5419": {"model_module": "@jupyter-widgets/output", "model_module_version": "1.0.0", "model_name": "OutputModel", "state": {"layout": "IPY_MODEL_be0477d59c8642c0a776921aa58737c4", "outputs": [{"name": "stdout", "output_type": "stream", "text": "blablabla\n"}]}}, "3a7306c9aaa644078cd402cab8962e07": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "model_name": "ButtonStyleModel", "state": {}}, "3d05dcddcc0b40f79b33a0a7b51b1645": {"model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "model_name": "LayoutModel", "state": {}}, "3dc61db399d9444b8234891f03d35c9b": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "model_name": "VBoxModel", "state": {"children": ["IPY_MODEL_f519100d1fa44cb19086be10194e5e2b", "IPY_MODEL_3ee1291e943d4006a84e95db9698dde7", "IPY_MODEL_63be7b93392840908f93e16635cfb142", "IPY_MODEL_be39ae1c65d6483b80ecb87e7d5dbb64"], "layout": "IPY_MODEL_7bffb111d12f4edb9007edc4d7ff0ff9"}}, "3ee1291e943d4006a84e95db9698dde7": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "model_name": "RadioButtonsModel", "state": {"_options_labels": ["apple", "banana", "pear"], "index": 0, "layout": "IPY_MODEL_41edb5c9e835411291250be421467583", "style": "IPY_MODEL_a42917138dbb42298d0e94d541a64c9d"}}, "3fbc71fe7bbc4937b9d766a8b7632070": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "model_name": "RadioButtonsModel", "state": {"_options_labels": ["apple", "banana", "pear"], "index": 2, "layout": "IPY_MODEL_50c0fc1483834e6d84b26ebcf7f2c2a7", "style": "IPY_MODEL_09cfdf9e46094b23a40166adef876b81"}}, "4125b500d6ec44419afa0d24b068e918": {"model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "model_name": "LayoutModel", "state": {}}, "41edb5c9e835411291250be421467583": {"model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "model_name": "LayoutModel", "state": {}}, "420310cabf1849f38979abda5c45ac62": {"model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "model_name": "LayoutModel", "state": {}}, "43c8499d59ad49369d47e59fb5de117a": {"model_module": "@jupyter-widgets/output", "model_module_version": "1.0.0", "model_name": "OutputModel", "state": {"layout": "IPY_MODEL_5d321c695cf64b0cb900a6f639b26545"}}, "46348571108245a2b4769f2abca05e00": {"model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "model_name": "LayoutModel", "state": {}}, "487fac56d48640ad85421ef8f52dfc50": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "model_name": "DescriptionStyleModel", "state": {"description_width": ""}}, "4cd7ea1591754421b76ff772eb03a1bd": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "model_name": "ButtonModel", "state": {"description": "submit", "layout": "IPY_MODEL_a0d0985a1a5146fda9900aa522a172b9", "style": "IPY_MODEL_7579c379f305413f937bf670c36eb93b"}}, "50c0fc1483834e6d84b26ebcf7f2c2a7": {"model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "model_name": "LayoutModel", "state": {}}, "53c91900b70744ca836286d311679101": {"model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "model_name": "LayoutModel", "state": {}}, "59e8195c1d7f4b9ba1c877451d609d4d": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "model_name": "VBoxModel", "state": {"children": ["IPY_MODEL_83c38fd8fb2d43eba1d94fd1ea816411", "IPY_MODEL_059346708c5447ab85d7e51ab27cbd6f", "IPY_MODEL_923817faed4340289ed5f2a3a54c5733", "IPY_MODEL_1a95adb17dfc46e89834eda4c4524d3f"], "layout": "IPY_MODEL_c6ad632696d84cb3a8bd8da4c07ae021"}}, "5c9a00a2739047a98413eccec889b479": {"model_module": "@jupyter-widgets/output", "model_module_version": "1.0.0", "model_name": "OutputModel", "state": {"layout": "IPY_MODEL_032b7783727b4af2bcb54cbc50e66236", "outputs": [{"name": "stdout", "output_type": "stream", "text": "\u001b[1;30;42mCorrect!\u001b[0m\n\n"}]}}, "5d321c695cf64b0cb900a6f639b26545": {"model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "model_name": "LayoutModel", "state": {}}, "63be7b93392840908f93e16635cfb142": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "model_name": "ButtonModel", "state": {"description": "submit", "layout": "IPY_MODEL_46348571108245a2b4769f2abca05e00", "style": "IPY_MODEL_034cc1aa86b249dfa89f09511d868fbb"}}, "65247580849043a4b187d4e150f83f45": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "model_name": "VBoxModel", "state": {"children": ["IPY_MODEL_80cfebcb539745cebe293f82acc4eb0c", "IPY_MODEL_80eb8c2bc95148d5bdd0221ad1f7173a", "IPY_MODEL_4cd7ea1591754421b76ff772eb03a1bd", "IPY_MODEL_43c8499d59ad49369d47e59fb5de117a"], "layout": "IPY_MODEL_9424dfb196ed42deb301888d2bc53d9b"}}, "693b2afed3454eb39f256df4b2e25d6e": {"model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "model_name": "LayoutModel", "state": {}}, "6a754aabd07f466a8b1c6fcf979ffc1e": {"model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "model_name": "LayoutModel", "state": {}}, "6f111f04a4a248b7bc79150e8db99253": {"model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "model_name": "LayoutModel", "state": {}}, "7185e062728c4a3b81d8f7df68a92371": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "model_name": "VBoxModel", "state": {"children": ["IPY_MODEL_bc6e0cbbcb54408fbd6121387b8f9378", "IPY_MODEL_e3577669503841b7b3a8c0723ee91f41", "IPY_MODEL_ddf2306bc7514471b1d564e318161e96", "IPY_MODEL_2fc0a68526ad4476a58708e309452c4e"], "layout": "IPY_MODEL_693b2afed3454eb39f256df4b2e25d6e"}}, "74793884b3084c19a073cda068e76984": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "model_name": "DescriptionStyleModel", "state": {"description_width": ""}}, "7579c379f305413f937bf670c36eb93b": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "model_name": "ButtonStyleModel", "state": {}}, "76eadd1e6fe440e49aa958e93af41892": {"model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "model_name": "LayoutModel", "state": {}}, "7899163b196445ab8c6165321483b6a1": {"model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "model_name": "LayoutModel", "state": {}}, "7bffb111d12f4edb9007edc4d7ff0ff9": {"model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "model_name": "LayoutModel", "state": {}}, "80cfebcb539745cebe293f82acc4eb0c": {"model_module": "@jupyter-widgets/output", "model_module_version": "1.0.0", "model_name": "OutputModel", "state": {"layout": "IPY_MODEL_aae6f95f601548fa990985e199b270ef", "outputs": [{"name": "stdout", "output_type": "stream", "text": "lalalalal\n"}]}}, "80eb8c2bc95148d5bdd0221ad1f7173a": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "model_name": "RadioButtonsModel", "state": {"_options_labels": ["cat", "dog", "mouse"], "index": 0, "layout": "IPY_MODEL_c1246ca0e82a4e7c880cc2dca9a4e0cd", "style": "IPY_MODEL_9a1923850bde4d41af25c300d0969f47"}}, "83c38fd8fb2d43eba1d94fd1ea816411": {"model_module": "@jupyter-widgets/output", "model_module_version": "1.0.0", "model_name": "OutputModel", "state": {"layout": "IPY_MODEL_208a467bbf2346cfab5f92c9617c16be", "outputs": [{"name": "stdout", "output_type": "stream", "text": "jajajajaj\n"}]}}, "923817faed4340289ed5f2a3a54c5733": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "model_name": "ButtonModel", "state": {"description": "submit", "layout": "IPY_MODEL_9bea7ccc926a4e91a47f06693247d3fa", "style": "IPY_MODEL_3a7306c9aaa644078cd402cab8962e07"}}, "934cf691e2a14b42a6a664c704a335f7": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "model_name": "RadioButtonsModel", "state": {"_options_labels": ["cat", "dog", "mouse"], "index": 0, "layout": "IPY_MODEL_223d0c25078745c6ba225cb131bb7d6e", "style": "IPY_MODEL_af5d6edba11f438289c0ca69a891c9e1"}}, "9424dfb196ed42deb301888d2bc53d9b": {"model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "model_name": "LayoutModel", "state": {}}, "94a6a0a102a74b5f82c0356829e5c617": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "model_name": "ButtonStyleModel", "state": {}}, "95c460fed1b1461189c4dadb05d32b81": {"model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "model_name": "LayoutModel", "state": {}}, "9a1923850bde4d41af25c300d0969f47": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "model_name": "DescriptionStyleModel", "state": {"description_width": ""}}, "9af61e642b4644a49673a2731261c59f": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "model_name": "ButtonModel", "state": {"description": "submit", "layout": "IPY_MODEL_2f081605612d4bc8b346c90faad7fe6c", "style": "IPY_MODEL_17058b82d834415cb17fc49719267f40"}}, "9bea7ccc926a4e91a47f06693247d3fa": {"model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "model_name": "LayoutModel", "state": {}}, "a0d0985a1a5146fda9900aa522a172b9": {"model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "model_name": "LayoutModel", "state": {}}, "a0db61c994f94581bc024b49f61675e8": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "model_name": "ButtonModel", "state": {"description": "submit", "layout": "IPY_MODEL_308dac6189304b4aa8f6dd17fc907864", "style": "IPY_MODEL_94a6a0a102a74b5f82c0356829e5c617"}}, "a42917138dbb42298d0e94d541a64c9d": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "model_name": "DescriptionStyleModel", "state": {"description_width": ""}}, "a7dbb1dd04b94b15992a5e02a1187d6b": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "model_name": "ButtonStyleModel", "state": {}}, "a888793c5506416bb914954fd6cd9db1": {"model_module": "@jupyter-widgets/output", "model_module_version": "1.0.0", "model_name": "OutputModel", "state": {"layout": "IPY_MODEL_420310cabf1849f38979abda5c45ac62", "outputs": [{"name": "stdout", "output_type": "stream", "text": "\u001b[1;30;42mCorrect\u001b[0m\n\n"}]}}, "aae6f95f601548fa990985e199b270ef": {"model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "model_name": "LayoutModel", "state": {}}, "af5d6edba11f438289c0ca69a891c9e1": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "model_name": "DescriptionStyleModel", "state": {"description_width": ""}}, "b34a08a560ee4229a2e28022e47e4a16": {"model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "model_name": "LayoutModel", "state": {}}, "b8cc324ed40940bcb86c32ee9a1c4025": {"model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "model_name": "LayoutModel", "state": {}}, "bc6e0cbbcb54408fbd6121387b8f9378": {"model_module": "@jupyter-widgets/output", "model_module_version": "1.0.0", "model_name": "OutputModel", "state": {"layout": "IPY_MODEL_c436bd5cffc54a63866136b308a67fda", "outputs": [{"name": "stdout", "output_type": "stream", "text": "jajajajaj\n"}]}}, "be0477d59c8642c0a776921aa58737c4": {"model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "model_name": "LayoutModel", "state": {}}, "be39ae1c65d6483b80ecb87e7d5dbb64": {"model_module": "@jupyter-widgets/output", "model_module_version": "1.0.0", "model_name": "OutputModel", "state": {"layout": "IPY_MODEL_fd6ede0def0e4db28b64a8b3cb6c7e06"}}, "c1246ca0e82a4e7c880cc2dca9a4e0cd": {"model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "model_name": "LayoutModel", "state": {}}, "c436bd5cffc54a63866136b308a67fda": {"model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "model_name": "LayoutModel", "state": {}}, "c5b3d26a75324c00ae56f5abdfdf7ab4": {"model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "model_name": "LayoutModel", "state": {}}, "c6ad632696d84cb3a8bd8da4c07ae021": {"model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "model_name": "LayoutModel", "state": {}}, "cc904d14c19649feb7f181b09e757b96": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "model_name": "VBoxModel", "state": {"children": ["IPY_MODEL_30521cd4acca492aada2a36450d8f7d4", "IPY_MODEL_3fbc71fe7bbc4937b9d766a8b7632070", "IPY_MODEL_a0db61c994f94581bc024b49f61675e8", "IPY_MODEL_5c9a00a2739047a98413eccec889b479"], "layout": "IPY_MODEL_76eadd1e6fe440e49aa958e93af41892"}}, "d5f79112fc844dfdb04e2bde563d0940": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "model_name": "RadioButtonsModel", "state": {"_options_labels": ["apple", "banana", "pear"], "index": 2, "layout": "IPY_MODEL_15ce81380df04787a2c94b25544b9a47", "style": "IPY_MODEL_487fac56d48640ad85421ef8f52dfc50"}}, "ddf2306bc7514471b1d564e318161e96": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "model_name": "ButtonModel", "state": {"description": "submit", "layout": "IPY_MODEL_2b83431b2c7d4cc0ad36a18bbaea62af", "style": "IPY_MODEL_1a9a233894fc43788fa67fa53b020696"}}, "e3577669503841b7b3a8c0723ee91f41": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "model_name": "RadioButtonsModel", "state": {"_options_labels": ["blue", "white", "red"], "index": 0, "layout": "IPY_MODEL_53c91900b70744ca836286d311679101", "style": "IPY_MODEL_359a02db424841dda24c227f3efd6aa5"}}, "f519100d1fa44cb19086be10194e5e2b": {"model_module": "@jupyter-widgets/output", "model_module_version": "1.0.0", "model_name": "OutputModel", "state": {"layout": "IPY_MODEL_3d05dcddcc0b40f79b33a0a7b51b1645", "outputs": [{"name": "stdout", "output_type": "stream", "text": "blablabla\n"}]}}, "fd6ede0def0e4db28b64a8b3cb6c7e06": {"model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "model_name": "LayoutModel", "state": {}}, "fe2de36d5b714017bd0b4225ac7289ed": {"model_module": "@jupyter-widgets/output", "model_module_version": "1.0.0", "model_name": "OutputModel", "state": {"layout": "IPY_MODEL_6a754aabd07f466a8b1c6fcf979ffc1e"}}}, "version_major": 2, "version_minor": 0}</script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script crossorigin="anonymous" data-jupyter-widgets-cdn="https://cdn.jsdelivr.net/npm/" src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@1.0.6/dist/embed-amd.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'chapters/Week1b/summarystats';</script>
     <link rel="canonical" href="https://kls2177.github.io/Climate-and-Geophysical-Data-Analysis/chapters/index.html/chapters/Week1b/summarystats.html" />
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="Example: Sensitivity of Standard Deviation to Sampling" href="Variance_Example.html" />
-    <link rel="prev" title="Descriptive Statistics" href="descriptivestats.html" />
-
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="docsearch:language" content="en" />
-
-
-<!-- Opengraph tags -->
-<meta property="og:url"         content="https://kls2177.github.io/Climate-and-Geophysical-Data-Analysis/chapters/index.html/chapters/Week1b/summarystats.html" />
-<meta property="og:type"        content="article" />
-<meta property="og:title"       content="Summary Statistics: Part I" />
-<meta property="og:description" content="Summary Statistics: Part I  To get started, we will review several summary statistics that will likely be familiar to you: mean, median, standard deviation, ske" />
-<meta property="og:image"       content="https://kls2177.github.io/Climate-and-Geophysical-Data-Analysis/chapters/index.html/_static/gistemp.png" />
-
-<meta name="twitter:card" content="summary" />
-
-
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="None"/>
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
-    
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
 
-    <div class="container-xl">
-      <div class="row">
-          
-<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
     
-        <div class="navbar-brand-box">
-<a class="navbar-brand text-wrap" href="../../index.html">
+    
+    
+    
+  </div>
   
-  <img src="../../_static/gistemp.png" class="logo" alt="logo">
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="../index.html">
   
   
-  <h1 class="site-logo" id="site-title">Climate and Geophysical Data Analysis</h1>
   
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/gistemp.png" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="../../_static/gistemp.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../index.html">
+                    Climate and Geophysical Data Analysis
+                </a>
+            </li>
+        </ul>
+        <ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../introduction/intro.html">Introduction</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../introduction/aboutthisbook.html">About this book</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../introduction/howtousethisbook.html">How to use this book</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../Week1a/whatarestatsgoodfor.html">What are statistics good for?</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../Week1a/goodpractice.html">Statistics is the grammar of science…</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Week1a/pitfalls.html">Lies, damned lies and statistics…</a></li>
+</ul>
+</li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://mybinder.org/v2/gh/kls2177/Climate-and-Geophysical-Data-Analysis/master?urlpath=tree/chapters/Week1b/summarystats.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch onBinder"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img src="../../_static/images/logo_binder.svg">
+  </span>
+<span class="btn__text-container">Binder</span>
 </a>
-</div>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="initThebeSBT()"
+  class="btn btn-sm btn-launch-thebe dropdown-item"
+  title="Launch Thebe"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
 
-<form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
-  <i class="icon fas fa-search"></i>
-  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
-</form>
-
-<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
-  <ul class="nav sidenav_l1">
- <li class="toctree-l1">
-  <a class="reference internal" href="../index.html">
-   Climate and Geophysical Data Analysis
-  </a>
- </li>
-</ul>
-<ul class="current nav sidenav_l1">
- <li class="toctree-l1">
-  <a class="reference internal" href="../introduction/intro.html">
-   Introduction
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../Week1a/whatarestatsgoodfor.html">
-   What are statistics good for?
-  </a>
- </li>
- <li class="toctree-l1 current active">
-  <a class="reference internal" href="descriptivestats.html">
-   Descriptive Statistics
-  </a>
-  <ul class="current">
-   <li class="toctree-l2 current active">
-    <a class="current reference internal" href="#">
-     Summary Statistics: Part I
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="Variance_Example.html">
-     Example: Sensitivity of Standard Deviation to Sampling
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="what_is_pdf.html">
-     What is a distribution?
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="summarystats2.html">
-     Summary Statistics: Part II
-    </a>
-   </li>
+<span class="btn__icon-container">
+  <i class="fas fa-play"></i>
+  </span>
+<span class="btn__text-container">Live Code</span>
+</button>
+</li>
+      
   </ul>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../Week2/hypothesis_testing.html">
-   Statistical Hypothesis Testing
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../Week3/linreg.html">
-   Linear Regression
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../Week4/corr.html">
-   Correlation
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../Week5/persistence.html">
-   Persistence in Time Series
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../Week6/filt.html">
-   Time Series Analysis
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../Week7/pca.html">
-   Patterns in Multivariate Data
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../Week8/epilogue.html">
-   Epilogue
-  </a>
- </li>
-</ul>
-
-</nav>
-
- <!-- To handle the deprecated key -->
-
-<div class="navbar_extra_footer">
-  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
-</div>
-
 </div>
 
 
-          
 
 
-          
-<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
-    
-    <div class="row topbar fixed-top container-xl">
-    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
-    </div>
-    <div class="col pl-2 topbar-main">
-        
-        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
-            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
-            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
-            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
-            <i class="fas fa-bars"></i>
-            <i class="fas fa-arrow-left"></i>
-            <i class="fas fa-arrow-up"></i>
-        </button>
-        
-        <div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
-            class="fas fa-download"></i></button>
-
-    
-    <div class="dropdown-buttons">
-        <!-- ipynb file if we had a myst markdown file -->
-        
-        <!-- Download raw file -->
-        <a class="dropdown-buttons" href="../../_sources/chapters/Week1b/summarystats.ipynb"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
-                data-placement="left">.ipynb</button></a>
-        <!-- Download PDF via print -->
-        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
-            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
-    </div>
-    
-</div>
-        <!-- Source interaction buttons -->
 
 
-        <!-- Full screen (wrap in <a> to have style consistency -->
-        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
-                data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
-                title="Fullscreen mode"><i
-                    class="fas fa-expand"></i></button></a>
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/chapters/Week1b/summarystats.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
 
-        <!-- Launch buttons -->
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
 
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
-        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
-    <div class="dropdown-buttons">
-        
-        <a class="binder-button" href="https://mybinder.org/v2/gh/kls2177/Climate-and-Geophysical-Data-Analysis/master?urlpath=tree/chapters/Week1b/summarystats.ipynb"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
-                data-placement="left"><img class="binder-button-logo"
-                    src="../../_static/images/logo_binder.svg"
-                    alt="Interact on binder">Binder</button></a>
-        
-        
-        
-        <a class="colab-button" href="https://colab.research.google.com/github/kls2177/Climate-and-Geophysical-Data-Analysis/blob/master/chapters/Week1b/summarystats.ipynb"><button type="button" class="btn btn-secondary topbarbtn"
-                title="Launch Colab" data-toggle="tooltip" data-placement="left"><img class="colab-button-logo"
-                    src="../../_static/images/logo_colab.png"
-                    alt="Interact on Colab">Colab</button></a>
-        
-        <button type="button" class="btn btn-secondary topbarbtn"
-            onclick="initThebeSBT()" title="Launch Thebe" data-toggle="tooltip" data-placement="left"><i
-                class="fas fa-play"></i><span style="margin-left: .4em;">Live Code</span></button>
-        
-    </div>
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
 </div>
 
-    </div>
 
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Summary Statistics: Part I</h1>
     <!-- Table of contents -->
-    <div class="d-none d-md-block col-md-2 bd-toc show">
-        
-        <div class="tocsection onthispage pt-5 pb-3">
-            <i class="fas fa-list"></i> Contents
-        </div>
-        <nav id="bd-toc-nav">
-            <ul class="nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#first-a-few-definitions-and-a-bit-of-nomenclature">
-   1. First, a few definitions and a bit of nomenclature…
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#moments">
-   2. Moments
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#the-mean">
-     2.1 The Mean
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#variance-and-standard-deviation">
-     2.2 Variance and Standard Deviation
-    </a>
-   </li>
-  </ul>
- </li>
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#first-a-few-definitions-and-a-bit-of-nomenclature">1. First, a few definitions and a bit of nomenclature…</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#moments">2. Moments</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-mean">2.1 The Mean</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#variance-and-standard-deviation">2.2 Variance and Standard Deviation</a></li>
 </ul>
-
-        </nav>
-        
+</li>
+</ul>
+            </nav>
+        </div>
     </div>
 </div>
-    <div id="main-content" class="row">
-        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
-        
-              <div>
+
+              
                 
-  <div class="section" id="summary-statistics-part-i">
-<h1>Summary Statistics: Part I<a class="headerlink" href="#summary-statistics-part-i" title="Permalink to this headline">¶</a></h1>
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="summary-statistics-part-i">
+<h1>Summary Statistics: Part I<a class="headerlink" href="#summary-statistics-part-i" title="Permalink to this headline">#</a></h1>
 <p>To get started, we will review several summary statistics that will likely be familiar to you: mean, median, standard deviation, skewness and kurtosis.</p>
-<div class="section" id="first-a-few-definitions-and-a-bit-of-nomenclature">
-<h2>1. First, a few definitions and a bit of nomenclature…<a class="headerlink" href="#first-a-few-definitions-and-a-bit-of-nomenclature" title="Permalink to this headline">¶</a></h2>
+<section id="first-a-few-definitions-and-a-bit-of-nomenclature">
+<h2>1. First, a few definitions and a bit of nomenclature…<a class="headerlink" href="#first-a-few-definitions-and-a-bit-of-nomenclature" title="Permalink to this headline">#</a></h2>
 <p>Throughout the course, we will define <span class="math notranslate nohighlight">\(X\)</span> as a random variable (e.g. surface air temperature). The “population” of <span class="math notranslate nohighlight">\(X\)</span> represents all possible values of <span class="math notranslate nohighlight">\(X\)</span>. The true population mean and standard deviation of this variable are denoted as:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
@@ -334,12 +403,12 @@
 s &amp;= \text{sample standard deviation}
 \end{align}
 \end{split}\]</div>
-</div>
-<div class="section" id="moments">
-<h2>2. Moments<a class="headerlink" href="#moments" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="moments">
+<h2>2. Moments<a class="headerlink" href="#moments" title="Permalink to this headline">#</a></h2>
 <p>Moments are quantitative parameters that we will use to describe a sample of <span class="math notranslate nohighlight">\(X\)</span>.</p>
-<div class="section" id="the-mean">
-<h3>2.1 The Mean<a class="headerlink" href="#the-mean" title="Permalink to this headline">¶</a></h3>
+<section id="the-mean">
+<h3>2.1 The Mean<a class="headerlink" href="#the-mean" title="Permalink to this headline">#</a></h3>
 <p>The first moment is the <strong>mean</strong>. The sample mean is defined as:</p>
 <div class="math notranslate nohighlight">
 \[  
@@ -352,9 +421,9 @@ s &amp;= \text{sample standard deviation}
 <p>In other words, for an infinite number of samples from the same time series, the population mean of all of the sample means (<span class="math notranslate nohighlight">\(\mu_{\overline{x}}\)</span>) is equal to the population mean (<span class="math notranslate nohighlight">\(\mu\)</span>).</p>
 </div>
 <p>The <strong>median</strong> is the value in the centre of a population or sample. This is a useful statistic when there are large outliers in the population/sample (e.g. house prices, salaries, rain fall rate, earthquake magnitude)</p>
-</div>
-<div class="section" id="variance-and-standard-deviation">
-<h3>2.2 Variance and Standard Deviation<a class="headerlink" href="#variance-and-standard-deviation" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="variance-and-standard-deviation">
+<h3>2.2 Variance and Standard Deviation<a class="headerlink" href="#variance-and-standard-deviation" title="Permalink to this headline">#</a></h3>
 <p>The second moment of a sample <span class="math notranslate nohighlight">\(X\)</span> is the <strong>variance</strong>. As you can probably guess, the variance of a sample of <span class="math notranslate nohighlight">\(X\)</span> describes the <em>variability</em> of <span class="math notranslate nohighlight">\(X\)</span>. The sample variance is defined as:</p>
 <div class="math notranslate nohighlight">
 \[  
@@ -376,15 +445,9 @@ s = \sqrt{\overline{x^{\prime 2}}}
 <p>The sample variance is an <em>unbiased</em> estimate of the population variance, <span class="math notranslate nohighlight">\(\sigma^2\)</span>.</p>
 <p>But notice that we are dividing by <span class="math notranslate nohighlight">\(N-1\)</span> instead of <span class="math notranslate nohighlight">\(N\)</span>. Since the calculation of the sample variance depends on the sample mean (which is itself an approximation and introduces some bias), then we need to divide by <span class="math notranslate nohighlight">\(N-1\)</span> rather than <span class="math notranslate nohighlight">\(N\)</span> to remove this bias. You can find out more <a class="reference external" href="https://www.youtube.com/watch?v=D1hgiAla3KI">here</a>.</p>
 </div>
-</div>
-</div>
-</div>
-
-
-<script type="application/vnd.jupyter.widget-state+json">
-{"state": {"032b7783727b4af2bcb54cbc50e66236": {"model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "model_name": "LayoutModel", "state": {}}, "034cc1aa86b249dfa89f09511d868fbb": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "model_name": "ButtonStyleModel", "state": {}}, "059346708c5447ab85d7e51ab27cbd6f": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "model_name": "RadioButtonsModel", "state": {"_options_labels": ["blue", "white", "red"], "index": 0, "layout": "IPY_MODEL_4125b500d6ec44419afa0d24b068e918", "style": "IPY_MODEL_74793884b3084c19a073cda068e76984"}}, "09cfdf9e46094b23a40166adef876b81": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "model_name": "DescriptionStyleModel", "state": {"description_width": ""}}, "0bfa3a7debb6472ebad3ac34300230e0": {"model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "model_name": "LayoutModel", "state": {}}, "123696e7014a4752a3d3265e33444bca": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "model_name": "ButtonModel", "state": {"description": "submit", "layout": "IPY_MODEL_c5b3d26a75324c00ae56f5abdfdf7ab4", "style": "IPY_MODEL_a7dbb1dd04b94b15992a5e02a1187d6b"}}, "15ce81380df04787a2c94b25544b9a47": {"model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "model_name": "LayoutModel", "state": {}}, "17058b82d834415cb17fc49719267f40": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "model_name": "ButtonStyleModel", "state": {}}, "1a95adb17dfc46e89834eda4c4524d3f": {"model_module": "@jupyter-widgets/output", "model_module_version": "1.0.0", "model_name": "OutputModel", "state": {"layout": "IPY_MODEL_b8cc324ed40940bcb86c32ee9a1c4025"}}, "1a9a233894fc43788fa67fa53b020696": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "model_name": "ButtonStyleModel", "state": {}}, "208a467bbf2346cfab5f92c9617c16be": {"model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "model_name": "LayoutModel", "state": {}}, "216aefeadb8d4073bd8670dd866219b3": {"model_module": "@jupyter-widgets/output", "model_module_version": "1.0.0", "model_name": "OutputModel", "state": {"layout": "IPY_MODEL_b34a08a560ee4229a2e28022e47e4a16", "outputs": [{"name": "stdout", "output_type": "stream", "text": "lalalalal\n"}]}}, "223d0c25078745c6ba225cb131bb7d6e": {"model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "model_name": "LayoutModel", "state": {}}, "29b1a7ecabe14412b8e92a8eb3eb410c": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "model_name": "VBoxModel", "state": {"children": ["IPY_MODEL_216aefeadb8d4073bd8670dd866219b3", "IPY_MODEL_934cf691e2a14b42a6a664c704a335f7", "IPY_MODEL_9af61e642b4644a49673a2731261c59f", "IPY_MODEL_fe2de36d5b714017bd0b4225ac7289ed"], "layout": "IPY_MODEL_6f111f04a4a248b7bc79150e8db99253"}}, "2b115a10b840468e8dd573f6048f5b8c": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "model_name": "VBoxModel", "state": {"children": ["IPY_MODEL_3a1a02c7efcd474386cfe4a439ab5419", "IPY_MODEL_d5f79112fc844dfdb04e2bde563d0940", "IPY_MODEL_123696e7014a4752a3d3265e33444bca", "IPY_MODEL_a888793c5506416bb914954fd6cd9db1"], "layout": "IPY_MODEL_0bfa3a7debb6472ebad3ac34300230e0"}}, "2b83431b2c7d4cc0ad36a18bbaea62af": {"model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "model_name": "LayoutModel", "state": {}}, "2f081605612d4bc8b346c90faad7fe6c": {"model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "model_name": "LayoutModel", "state": {}}, "2fc0a68526ad4476a58708e309452c4e": {"model_module": "@jupyter-widgets/output", "model_module_version": "1.0.0", "model_name": "OutputModel", "state": {"layout": "IPY_MODEL_95c460fed1b1461189c4dadb05d32b81"}}, "30521cd4acca492aada2a36450d8f7d4": {"model_module": "@jupyter-widgets/output", "model_module_version": "1.0.0", "model_name": "OutputModel", "state": {"layout": "IPY_MODEL_7899163b196445ab8c6165321483b6a1", "outputs": [{"name": "stdout", "output_type": "stream", "text": "blablabla\n"}]}}, "308dac6189304b4aa8f6dd17fc907864": {"model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "model_name": "LayoutModel", "state": {}}, "359a02db424841dda24c227f3efd6aa5": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "model_name": "DescriptionStyleModel", "state": {"description_width": ""}}, "3a1a02c7efcd474386cfe4a439ab5419": {"model_module": "@jupyter-widgets/output", "model_module_version": "1.0.0", "model_name": "OutputModel", "state": {"layout": "IPY_MODEL_be0477d59c8642c0a776921aa58737c4", "outputs": [{"name": "stdout", "output_type": "stream", "text": "blablabla\n"}]}}, "3a7306c9aaa644078cd402cab8962e07": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "model_name": "ButtonStyleModel", "state": {}}, "3d05dcddcc0b40f79b33a0a7b51b1645": {"model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "model_name": "LayoutModel", "state": {}}, "3dc61db399d9444b8234891f03d35c9b": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "model_name": "VBoxModel", "state": {"children": ["IPY_MODEL_f519100d1fa44cb19086be10194e5e2b", "IPY_MODEL_3ee1291e943d4006a84e95db9698dde7", "IPY_MODEL_63be7b93392840908f93e16635cfb142", "IPY_MODEL_be39ae1c65d6483b80ecb87e7d5dbb64"], "layout": "IPY_MODEL_7bffb111d12f4edb9007edc4d7ff0ff9"}}, "3ee1291e943d4006a84e95db9698dde7": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "model_name": "RadioButtonsModel", "state": {"_options_labels": ["apple", "banana", "pear"], "index": 0, "layout": "IPY_MODEL_41edb5c9e835411291250be421467583", "style": "IPY_MODEL_a42917138dbb42298d0e94d541a64c9d"}}, "3fbc71fe7bbc4937b9d766a8b7632070": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "model_name": "RadioButtonsModel", "state": {"_options_labels": ["apple", "banana", "pear"], "index": 2, "layout": "IPY_MODEL_50c0fc1483834e6d84b26ebcf7f2c2a7", "style": "IPY_MODEL_09cfdf9e46094b23a40166adef876b81"}}, "4125b500d6ec44419afa0d24b068e918": {"model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "model_name": "LayoutModel", "state": {}}, "41edb5c9e835411291250be421467583": {"model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "model_name": "LayoutModel", "state": {}}, "420310cabf1849f38979abda5c45ac62": {"model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "model_name": "LayoutModel", "state": {}}, "43c8499d59ad49369d47e59fb5de117a": {"model_module": "@jupyter-widgets/output", "model_module_version": "1.0.0", "model_name": "OutputModel", "state": {"layout": "IPY_MODEL_5d321c695cf64b0cb900a6f639b26545"}}, "46348571108245a2b4769f2abca05e00": {"model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "model_name": "LayoutModel", "state": {}}, "487fac56d48640ad85421ef8f52dfc50": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "model_name": "DescriptionStyleModel", "state": {"description_width": ""}}, "4cd7ea1591754421b76ff772eb03a1bd": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "model_name": "ButtonModel", "state": {"description": "submit", "layout": "IPY_MODEL_a0d0985a1a5146fda9900aa522a172b9", "style": "IPY_MODEL_7579c379f305413f937bf670c36eb93b"}}, "50c0fc1483834e6d84b26ebcf7f2c2a7": {"model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "model_name": "LayoutModel", "state": {}}, "53c91900b70744ca836286d311679101": {"model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "model_name": "LayoutModel", "state": {}}, "59e8195c1d7f4b9ba1c877451d609d4d": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "model_name": "VBoxModel", "state": {"children": ["IPY_MODEL_83c38fd8fb2d43eba1d94fd1ea816411", "IPY_MODEL_059346708c5447ab85d7e51ab27cbd6f", "IPY_MODEL_923817faed4340289ed5f2a3a54c5733", "IPY_MODEL_1a95adb17dfc46e89834eda4c4524d3f"], "layout": "IPY_MODEL_c6ad632696d84cb3a8bd8da4c07ae021"}}, "5c9a00a2739047a98413eccec889b479": {"model_module": "@jupyter-widgets/output", "model_module_version": "1.0.0", "model_name": "OutputModel", "state": {"layout": "IPY_MODEL_032b7783727b4af2bcb54cbc50e66236", "outputs": [{"name": "stdout", "output_type": "stream", "text": "\u001b[1;30;42mCorrect!\u001b[0m\n\n"}]}}, "5d321c695cf64b0cb900a6f639b26545": {"model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "model_name": "LayoutModel", "state": {}}, "63be7b93392840908f93e16635cfb142": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "model_name": "ButtonModel", "state": {"description": "submit", "layout": "IPY_MODEL_46348571108245a2b4769f2abca05e00", "style": "IPY_MODEL_034cc1aa86b249dfa89f09511d868fbb"}}, "65247580849043a4b187d4e150f83f45": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "model_name": "VBoxModel", "state": {"children": ["IPY_MODEL_80cfebcb539745cebe293f82acc4eb0c", "IPY_MODEL_80eb8c2bc95148d5bdd0221ad1f7173a", "IPY_MODEL_4cd7ea1591754421b76ff772eb03a1bd", "IPY_MODEL_43c8499d59ad49369d47e59fb5de117a"], "layout": "IPY_MODEL_9424dfb196ed42deb301888d2bc53d9b"}}, "693b2afed3454eb39f256df4b2e25d6e": {"model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "model_name": "LayoutModel", "state": {}}, "6a754aabd07f466a8b1c6fcf979ffc1e": {"model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "model_name": "LayoutModel", "state": {}}, "6f111f04a4a248b7bc79150e8db99253": {"model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "model_name": "LayoutModel", "state": {}}, "7185e062728c4a3b81d8f7df68a92371": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "model_name": "VBoxModel", "state": {"children": ["IPY_MODEL_bc6e0cbbcb54408fbd6121387b8f9378", "IPY_MODEL_e3577669503841b7b3a8c0723ee91f41", "IPY_MODEL_ddf2306bc7514471b1d564e318161e96", "IPY_MODEL_2fc0a68526ad4476a58708e309452c4e"], "layout": "IPY_MODEL_693b2afed3454eb39f256df4b2e25d6e"}}, "74793884b3084c19a073cda068e76984": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "model_name": "DescriptionStyleModel", "state": {"description_width": ""}}, "7579c379f305413f937bf670c36eb93b": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "model_name": "ButtonStyleModel", "state": {}}, "76eadd1e6fe440e49aa958e93af41892": {"model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "model_name": "LayoutModel", "state": {}}, "7899163b196445ab8c6165321483b6a1": {"model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "model_name": "LayoutModel", "state": {}}, "7bffb111d12f4edb9007edc4d7ff0ff9": {"model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "model_name": "LayoutModel", "state": {}}, "80cfebcb539745cebe293f82acc4eb0c": {"model_module": "@jupyter-widgets/output", "model_module_version": "1.0.0", "model_name": "OutputModel", "state": {"layout": "IPY_MODEL_aae6f95f601548fa990985e199b270ef", "outputs": [{"name": "stdout", "output_type": "stream", "text": "lalalalal\n"}]}}, "80eb8c2bc95148d5bdd0221ad1f7173a": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "model_name": "RadioButtonsModel", "state": {"_options_labels": ["cat", "dog", "mouse"], "index": 0, "layout": "IPY_MODEL_c1246ca0e82a4e7c880cc2dca9a4e0cd", "style": "IPY_MODEL_9a1923850bde4d41af25c300d0969f47"}}, "83c38fd8fb2d43eba1d94fd1ea816411": {"model_module": "@jupyter-widgets/output", "model_module_version": "1.0.0", "model_name": "OutputModel", "state": {"layout": "IPY_MODEL_208a467bbf2346cfab5f92c9617c16be", "outputs": [{"name": "stdout", "output_type": "stream", "text": "jajajajaj\n"}]}}, "923817faed4340289ed5f2a3a54c5733": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "model_name": "ButtonModel", "state": {"description": "submit", "layout": "IPY_MODEL_9bea7ccc926a4e91a47f06693247d3fa", "style": "IPY_MODEL_3a7306c9aaa644078cd402cab8962e07"}}, "934cf691e2a14b42a6a664c704a335f7": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "model_name": "RadioButtonsModel", "state": {"_options_labels": ["cat", "dog", "mouse"], "index": 0, "layout": "IPY_MODEL_223d0c25078745c6ba225cb131bb7d6e", "style": "IPY_MODEL_af5d6edba11f438289c0ca69a891c9e1"}}, "9424dfb196ed42deb301888d2bc53d9b": {"model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "model_name": "LayoutModel", "state": {}}, "94a6a0a102a74b5f82c0356829e5c617": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "model_name": "ButtonStyleModel", "state": {}}, "95c460fed1b1461189c4dadb05d32b81": {"model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "model_name": "LayoutModel", "state": {}}, "9a1923850bde4d41af25c300d0969f47": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "model_name": "DescriptionStyleModel", "state": {"description_width": ""}}, "9af61e642b4644a49673a2731261c59f": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "model_name": "ButtonModel", "state": {"description": "submit", "layout": "IPY_MODEL_2f081605612d4bc8b346c90faad7fe6c", "style": "IPY_MODEL_17058b82d834415cb17fc49719267f40"}}, "9bea7ccc926a4e91a47f06693247d3fa": {"model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "model_name": "LayoutModel", "state": {}}, "a0d0985a1a5146fda9900aa522a172b9": {"model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "model_name": "LayoutModel", "state": {}}, "a0db61c994f94581bc024b49f61675e8": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "model_name": "ButtonModel", "state": {"description": "submit", "layout": "IPY_MODEL_308dac6189304b4aa8f6dd17fc907864", "style": "IPY_MODEL_94a6a0a102a74b5f82c0356829e5c617"}}, "a42917138dbb42298d0e94d541a64c9d": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "model_name": "DescriptionStyleModel", "state": {"description_width": ""}}, "a7dbb1dd04b94b15992a5e02a1187d6b": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "model_name": "ButtonStyleModel", "state": {}}, "a888793c5506416bb914954fd6cd9db1": {"model_module": "@jupyter-widgets/output", "model_module_version": "1.0.0", "model_name": "OutputModel", "state": {"layout": "IPY_MODEL_420310cabf1849f38979abda5c45ac62", "outputs": [{"name": "stdout", "output_type": "stream", "text": "\u001b[1;30;42mCorrect\u001b[0m\n\n"}]}}, "aae6f95f601548fa990985e199b270ef": {"model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "model_name": "LayoutModel", "state": {}}, "af5d6edba11f438289c0ca69a891c9e1": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "model_name": "DescriptionStyleModel", "state": {"description_width": ""}}, "b34a08a560ee4229a2e28022e47e4a16": {"model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "model_name": "LayoutModel", "state": {}}, "b8cc324ed40940bcb86c32ee9a1c4025": {"model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "model_name": "LayoutModel", "state": {}}, "bc6e0cbbcb54408fbd6121387b8f9378": {"model_module": "@jupyter-widgets/output", "model_module_version": "1.0.0", "model_name": "OutputModel", "state": {"layout": "IPY_MODEL_c436bd5cffc54a63866136b308a67fda", "outputs": [{"name": "stdout", "output_type": "stream", "text": "jajajajaj\n"}]}}, "be0477d59c8642c0a776921aa58737c4": {"model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "model_name": "LayoutModel", "state": {}}, "be39ae1c65d6483b80ecb87e7d5dbb64": {"model_module": "@jupyter-widgets/output", "model_module_version": "1.0.0", "model_name": "OutputModel", "state": {"layout": "IPY_MODEL_fd6ede0def0e4db28b64a8b3cb6c7e06"}}, "c1246ca0e82a4e7c880cc2dca9a4e0cd": {"model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "model_name": "LayoutModel", "state": {}}, "c436bd5cffc54a63866136b308a67fda": {"model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "model_name": "LayoutModel", "state": {}}, "c5b3d26a75324c00ae56f5abdfdf7ab4": {"model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "model_name": "LayoutModel", "state": {}}, "c6ad632696d84cb3a8bd8da4c07ae021": {"model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "model_name": "LayoutModel", "state": {}}, "cc904d14c19649feb7f181b09e757b96": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "model_name": "VBoxModel", "state": {"children": ["IPY_MODEL_30521cd4acca492aada2a36450d8f7d4", "IPY_MODEL_3fbc71fe7bbc4937b9d766a8b7632070", "IPY_MODEL_a0db61c994f94581bc024b49f61675e8", "IPY_MODEL_5c9a00a2739047a98413eccec889b479"], "layout": "IPY_MODEL_76eadd1e6fe440e49aa958e93af41892"}}, "d5f79112fc844dfdb04e2bde563d0940": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "model_name": "RadioButtonsModel", "state": {"_options_labels": ["apple", "banana", "pear"], "index": 2, "layout": "IPY_MODEL_15ce81380df04787a2c94b25544b9a47", "style": "IPY_MODEL_487fac56d48640ad85421ef8f52dfc50"}}, "ddf2306bc7514471b1d564e318161e96": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "model_name": "ButtonModel", "state": {"description": "submit", "layout": "IPY_MODEL_2b83431b2c7d4cc0ad36a18bbaea62af", "style": "IPY_MODEL_1a9a233894fc43788fa67fa53b020696"}}, "e3577669503841b7b3a8c0723ee91f41": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "model_name": "RadioButtonsModel", "state": {"_options_labels": ["blue", "white", "red"], "index": 0, "layout": "IPY_MODEL_53c91900b70744ca836286d311679101", "style": "IPY_MODEL_359a02db424841dda24c227f3efd6aa5"}}, "f519100d1fa44cb19086be10194e5e2b": {"model_module": "@jupyter-widgets/output", "model_module_version": "1.0.0", "model_name": "OutputModel", "state": {"layout": "IPY_MODEL_3d05dcddcc0b40f79b33a0a7b51b1645", "outputs": [{"name": "stdout", "output_type": "stream", "text": "blablabla\n"}]}}, "fd6ede0def0e4db28b64a8b3cb6c7e06": {"model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "model_name": "LayoutModel", "state": {}}, "fe2de36d5b714017bd0b4225ac7289ed": {"model_module": "@jupyter-widgets/output", "model_module_version": "1.0.0", "model_name": "OutputModel", "state": {"layout": "IPY_MODEL_6a754aabd07f466a8b1c6fcf979ffc1e"}}}, "version_major": 2, "version_minor": 0}
-</script>
-
+</section>
+</section>
+</section>
 
     <script type="text/x-thebe-config">
     {
@@ -398,7 +461,7 @@ s = \sqrt{\overline{x^{\prime 2}}}
             mode: "python"
         },
         kernelOptions: {
-            kernelName: "python3",
+            name: "python3",
             path: "./chapters/Week1b"
         },
         predefinedOutput: true
@@ -406,38 +469,92 @@ s = \sqrt{\overline{x^{\prime 2}}}
     </script>
     <script>kernelName = 'python3'</script>
 
-              </div>
+                </article>
               
-        </div>
-    </div>
-    
-    
-    <div class='prev-next-bottom'>
-        
-    <a class='left-prev' id="prev-link" href="descriptivestats.html" title="previous page">Descriptive Statistics</a>
-    <a class='right-next' id="next-link" href="Variance_Example.html" title="next page">Example: Sensitivity of Standard Deviation to Sampling</a>
 
-    </div>
-    <footer class="footer mt-5 mt-md-0">
-    <div class="container">
-      <p>
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#first-a-few-definitions-and-a-bit-of-nomenclature">1. First, a few definitions and a bit of nomenclature…</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#moments">2. Moments</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-mean">2.1 The Mean</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#variance-and-standard-deviation">2.2 Variance and Standard Deviation</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Karen Smith
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2020.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
         
-          By Karen Smith<br/>
-        
-            &copy; Copyright 2020.<br/>
-      </p>
+
+      </main>
     </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
   </footer>
-</main>
-
-
-      </div>
-    </div>
-
-    
-  <script src="../../_static/js/index.3da636dd464baa7582d2.js"></script>
-
-
-    
   </body>
 </html>

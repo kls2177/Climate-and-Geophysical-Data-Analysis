@@ -1,367 +1,394 @@
 
+
 <!DOCTYPE html>
 
-<html>
+
+<html >
+
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
     <title>Introduction to Principal Component Analysis &#8212; Climate and Geophysical Data Analysis</title>
-    
-  <link rel="stylesheet" href="../../_static/css/index.73d71520a4ca3b99cfee5594769eaaae.css">
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
 
-    
-  <link rel="stylesheet"
-    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+  
+  <link href="../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
 
-    
-      
-  <link rel="stylesheet"
-    href="../../_static/vendor/open-sans_all/1.44.1/index.css">
-  <link rel="stylesheet"
-    href="../../_static/vendor/lato_latin-ext/1.44.1/index.css">
-
-    
-    <link rel="stylesheet" href="../../_static/sphinx-book-theme.2d2078699c18a0efb88233928e1cf6ed.css" type="text/css" />
-    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" href="../../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
-    
-  <link rel="preload" as="script" href="../../_static/js/index.3da636dd464baa7582d2.js">
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
 
-    <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
     <script src="../../_static/jquery.js"></script>
     <script src="../../_static/underscore.js"></script>
     <script src="../../_static/doctools.js"></script>
-    <script src="../../_static/language_data.js"></script>
-    <script src="../../_static/togglebutton.js"></script>
     <script src="../../_static/clipboard.min.js"></script>
     <script src="../../_static/copybutton.js"></script>
-    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="../../_static/sphinx-book-theme.be0a4a0c39cd630af62a2fcf693f3f06.js"></script>
-    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.18.0/dist/embed-amd.js"></script>
-    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
-    <script >
-        const thebe_selector = ".thebe,.cell"
-        const thebe_selector_input = "pre,.cell_input div.highlight"
-        const thebe_selector_output = ".output,.cell_output"
-    </script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
     <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'chapters/Week7/Intro_to_PCA';</script>
     <link rel="canonical" href="https://kls2177.github.io/Climate-and-Geophysical-Data-Analysis/chapters/index.html/chapters/Week7/Intro_to_PCA.html" />
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="Review of Linear Algebra" href="linalg.html" />
-    <link rel="prev" title="Patterns in Multivariate Data" href="pca.html" />
-
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="docsearch:language" content="en" />
-
-
-<!-- Opengraph tags -->
-<meta property="og:url"         content="https://kls2177.github.io/Climate-and-Geophysical-Data-Analysis/chapters/index.html/chapters/Week7/Intro_to_PCA.html" />
-<meta property="og:type"        content="article" />
-<meta property="og:title"       content="Introduction to Principal Component Analysis" />
-<meta property="og:description" content="Introduction to Principal Component Analysis  In this section, we will begin exploring multivariate statistical analysis. But before we jump into the mathematic" />
-<meta property="og:image"       content="https://kls2177.github.io/Climate-and-Geophysical-Data-Analysis/chapters/index.html/_static/gistemp.png" />
-
-<meta name="twitter:card" content="summary" />
-
-
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="None"/>
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
-    
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
 
-    <div class="container-xl">
-      <div class="row">
-          
-<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
     
-        <div class="navbar-brand-box">
-<a class="navbar-brand text-wrap" href="../../index.html">
+    
+    
+    
+  </div>
   
-  <img src="../../_static/gistemp.png" class="logo" alt="logo">
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="../index.html">
   
   
-  <h1 class="site-logo" id="site-title">Climate and Geophysical Data Analysis</h1>
   
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/gistemp.png" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="../../_static/gistemp.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../index.html">
+                    Climate and Geophysical Data Analysis
+                </a>
+            </li>
+        </ul>
+        <ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../introduction/intro.html">Introduction</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../introduction/aboutthisbook.html">About this book</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../introduction/howtousethisbook.html">How to use this book</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../Week1a/whatarestatsgoodfor.html">What are statistics good for?</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../Week1a/goodpractice.html">Statistics is the grammar of science…</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Week1a/pitfalls.html">Lies, damned lies and statistics…</a></li>
+</ul>
+</li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://mybinder.org/v2/gh/kls2177/Climate-and-Geophysical-Data-Analysis/master?urlpath=tree/chapters/Week7/Intro_to_PCA.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch onBinder"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img src="../../_static/images/logo_binder.svg">
+  </span>
+<span class="btn__text-container">Binder</span>
 </a>
-</div>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="initThebeSBT()"
+  class="btn btn-sm btn-launch-thebe dropdown-item"
+  title="Launch Thebe"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
 
-<form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
-  <i class="icon fas fa-search"></i>
-  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
-</form>
-
-<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
-  <ul class="nav sidenav_l1">
- <li class="toctree-l1">
-  <a class="reference internal" href="../index.html">
-   Climate and Geophysical Data Analysis
-  </a>
- </li>
-</ul>
-<ul class="current nav sidenav_l1">
- <li class="toctree-l1">
-  <a class="reference internal" href="../introduction/intro.html">
-   Introduction
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../Week1a/whatarestatsgoodfor.html">
-   What are statistics good for?
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../Week1b/descriptivestats.html">
-   Descriptive Statistics
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../Week2/hypothesis_testing.html">
-   Statistical Hypothesis Testing
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../Week3/linreg.html">
-   Linear Regression
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../Week4/corr.html">
-   Correlation
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../Week5/persistence.html">
-   Persistence in Time Series
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../Week6/filt.html">
-   Time Series Analysis
-  </a>
- </li>
- <li class="toctree-l1 current active">
-  <a class="reference internal" href="pca.html">
-   Patterns in Multivariate Data
-  </a>
-  <ul class="current">
-   <li class="toctree-l2 current active">
-    <a class="current reference internal" href="#">
-     Introduction to Principal Component Analysis
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="linalg.html">
-     Review of Linear Algebra
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="eig.html">
-     Eigenanalysis
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="eofs.html">
-     EOFs via Eigenanalysis
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="naoeof.html">
-     EOFs with Real Data
-    </a>
-   </li>
+<span class="btn__icon-container">
+  <i class="fas fa-play"></i>
+  </span>
+<span class="btn__text-container">Live Code</span>
+</button>
+</li>
+      
   </ul>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../Week8/epilogue.html">
-   Epilogue
-  </a>
- </li>
-</ul>
-
-</nav>
-
- <!-- To handle the deprecated key -->
-
-<div class="navbar_extra_footer">
-  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
-</div>
-
 </div>
 
 
-          
 
 
-          
-<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
-    
-    <div class="row topbar fixed-top container-xl">
-    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
-    </div>
-    <div class="col pl-2 topbar-main">
-        
-        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
-            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
-            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
-            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
-            <i class="fas fa-bars"></i>
-            <i class="fas fa-arrow-left"></i>
-            <i class="fas fa-arrow-up"></i>
-        </button>
-        
-        <div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
-            class="fas fa-download"></i></button>
-
-    
-    <div class="dropdown-buttons">
-        <!-- ipynb file if we had a myst markdown file -->
-        
-        <!-- Download raw file -->
-        <a class="dropdown-buttons" href="../../_sources/chapters/Week7/Intro_to_PCA.ipynb"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
-                data-placement="left">.ipynb</button></a>
-        <!-- Download PDF via print -->
-        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
-            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
-    </div>
-    
-</div>
-        <!-- Source interaction buttons -->
 
 
-        <!-- Full screen (wrap in <a> to have style consistency -->
-        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
-                data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
-                title="Fullscreen mode"><i
-                    class="fas fa-expand"></i></button></a>
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/chapters/Week7/Intro_to_PCA.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
 
-        <!-- Launch buttons -->
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
 
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
-        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
-    <div class="dropdown-buttons">
-        
-        <a class="binder-button" href="https://mybinder.org/v2/gh/kls2177/Climate-and-Geophysical-Data-Analysis/master?urlpath=tree/chapters/Week7/Intro_to_PCA.ipynb"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
-                data-placement="left"><img class="binder-button-logo"
-                    src="../../_static/images/logo_binder.svg"
-                    alt="Interact on binder">Binder</button></a>
-        
-        
-        
-        <a class="colab-button" href="https://colab.research.google.com/github/kls2177/Climate-and-Geophysical-Data-Analysis/blob/master/chapters/Week7/Intro_to_PCA.ipynb"><button type="button" class="btn btn-secondary topbarbtn"
-                title="Launch Colab" data-toggle="tooltip" data-placement="left"><img class="colab-button-logo"
-                    src="../../_static/images/logo_colab.png"
-                    alt="Interact on Colab">Colab</button></a>
-        
-        <button type="button" class="btn btn-secondary topbarbtn"
-            onclick="initThebeSBT()" title="Launch Thebe" data-toggle="tooltip" data-placement="left"><i
-                class="fas fa-play"></i><span style="margin-left: .4em;">Live Code</span></button>
-        
-    </div>
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
 </div>
 
-    </div>
 
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Introduction to Principal Component Analysis</h1>
     <!-- Table of contents -->
-    <div class="d-none d-md-block col-md-2 bd-toc show">
-        
-        <div class="tocsection onthispage pt-5 pb-3">
-            <i class="fas fa-list"></i> Contents
-        </div>
-        <nav id="bd-toc-nav">
-            <ul class="nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#nino3-4-index">
-   Niño3.4 Index
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#step-1-isolate-nin3-4-region-and-compute-area-average">
-     Step 1: Isolate Niñ3.4 region and compute area average
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#step-2-compute-sst-anomaly">
-     Step 2: Compute SST anomaly
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#step-3-apply-5-month-running-mean">
-     Step 3: Apply 5-month running-mean
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#step-4-standardize-by-the-standard-deviation">
-     Step 4: Standardize by the standard deviation
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#pca-of-tropical-pacific-sst-setting-up-the-problem">
-   PCA of Tropical Pacific SST: Setting up the Problem
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#pca-step-by-step">
-   PCA: Step-by-step
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#step-1-missing-values">
-     Step 1: Missing values
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#step-2-standardize-data">
-     Step 2: Standardize data
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#step-3-convert-3d-array-to-2d-matrix">
-     Step 3: Convert 3D array to 2D matrix
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#step-4-calculate-covariance-matrix">
-     Step 4: Calculate covariance matrix
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#step-5-perform-eigenanalysis-of-covariance-matrix">
-     Step 5: Perform eigenanalysis of covariance matrix
-    </a>
-   </li>
-  </ul>
- </li>
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#nino3-4-index">Niño3.4 Index</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-1-isolate-nin3-4-region-and-compute-area-average">Step 1: Isolate Niñ3.4 region and compute area average</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-2-compute-sst-anomaly">Step 2: Compute SST anomaly</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-3-apply-5-month-running-mean">Step 3: Apply 5-month running-mean</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-4-standardize-by-the-standard-deviation">Step 4: Standardize by the standard deviation</a></li>
 </ul>
-
-        </nav>
-        
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pca-of-tropical-pacific-sst-setting-up-the-problem">PCA of Tropical Pacific SST: Setting up the Problem</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pca-step-by-step">PCA: Step-by-step</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-1-missing-values">Step 1: Missing values</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-2-standardize-data">Step 2: Standardize data</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-3-convert-3d-array-to-2d-matrix">Step 3: Convert 3D array to 2D matrix</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-4-calculate-covariance-matrix">Step 4: Calculate covariance matrix</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-5-perform-eigenanalysis-of-covariance-matrix">Step 5: Perform eigenanalysis of covariance matrix</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
     </div>
 </div>
-    <div id="main-content" class="row">
-        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
-        
-              <div>
+
+              
                 
-  <div class="section" id="introduction-to-principal-component-analysis">
-<h1>Introduction to Principal Component Analysis<a class="headerlink" href="#introduction-to-principal-component-analysis" title="Permalink to this headline">¶</a></h1>
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="introduction-to-principal-component-analysis">
+<h1>Introduction to Principal Component Analysis<a class="headerlink" href="#introduction-to-principal-component-analysis" title="Permalink to this headline">#</a></h1>
 <p>In this section, we will begin exploring multivariate statistical analysis. But before we jump into the mathematics of <strong>principal component analysis (PCA)</strong>, we will take a look at an example that will help familiar us with the fundamentals of PCA.</p>
 <p>The example that we will look at is an analysis of tropical Pacific sea surface temperature (SST) and what we will find  is that PCA reveals the signature of the <a class="reference external" href="http://iri.columbia.edu/our-expertise/climate/enso/">El Niño / Southern Oscillation (ENSO)</a> phenomenon without any prior knowledge of ENSO.</p>
 <div class="cell docutils container">
@@ -412,21 +439,21 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/Intro_to_PCA_5_0.png" src="../../_images/Intro_to_PCA_5_0.png" />
+<img alt="../../_images/503f26333d20195e6c32d3aa174f51a78372813e9f5934716c908fbbd1643898.png" src="../../_images/503f26333d20195e6c32d3aa174f51a78372813e9f5934716c908fbbd1643898.png" />
 </div>
 </div>
 <p>We see a clear pattern of warmer SSTs near the equator and cooler SSTs in the mid- to high-latitudes. The continents are not plotted as these grid points have missing values represented by “NaNs” (not-a-number).</p>
-<div class="section" id="nino3-4-index">
-<h2>Niño3.4 Index<a class="headerlink" href="#nino3-4-index" title="Permalink to this headline">¶</a></h2>
+<section id="nino3-4-index">
+<h2>Niño3.4 Index<a class="headerlink" href="#nino3-4-index" title="Permalink to this headline">#</a></h2>
 <p>In this example we are going to construct the ENSO index in two different ways. First, we will construct it following the <a class="reference external" href="http://www.cgd.ucar.edu/cas/catalog/climind/TNI_N34/index.html#Sec5">Niño3.4 Index</a> definition. The Niño3.4 Index is a commonly used metric of ENSO variability. The recipe for calculating it is:</p>
-<ol class="simple">
+<ol class="arabic simple">
 <li><p>Compute area averaged total SST from Niño3.4 region (5N-5S, 170W-120W).</p></li>
 <li><p>Compute monthly climatology (1950-1979) for area averaged total SST from Niño 3.4 region, and subtract climatology from area averaged total SST time series to obtain anomalies.</p></li>
 <li><p>Smooth the anomalies with a 5-month running mean.</p></li>
 <li><p>Standardize the smoothed Niño3.4 by its standard deviation over the climatological period 1950-1979.</p></li>
 </ol>
-<div class="section" id="step-1-isolate-nin3-4-region-and-compute-area-average">
-<h3>Step 1: Isolate Niñ3.4 region and compute area average<a class="headerlink" href="#step-1-isolate-nin3-4-region-and-compute-area-average" title="Permalink to this headline">¶</a></h3>
+<section id="step-1-isolate-nin3-4-region-and-compute-area-average">
+<h3>Step 1: Isolate Niñ3.4 region and compute area average<a class="headerlink" href="#step-1-isolate-nin3-4-region-and-compute-area-average" title="Permalink to this headline">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># The Niño3.4 Region is bounded by 170°W-120°W (190-240°E) and 5°S- 5°N.</span>
@@ -437,9 +464,9 @@
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="step-2-compute-sst-anomaly">
-<h3>Step 2: Compute SST anomaly<a class="headerlink" href="#step-2-compute-sst-anomaly" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="step-2-compute-sst-anomaly">
+<h3>Step 2: Compute SST anomaly<a class="headerlink" href="#step-2-compute-sst-anomaly" title="Permalink to this headline">#</a></h3>
 <p>The SST anomaly that we want is relative to the 1950-1979 climatology. So, first we compute this 12-month climatology…</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -470,9 +497,9 @@
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="step-3-apply-5-month-running-mean">
-<h3>Step 3: Apply 5-month running-mean<a class="headerlink" href="#step-3-apply-5-month-running-mean" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="step-3-apply-5-month-running-mean">
+<h3>Step 3: Apply 5-month running-mean<a class="headerlink" href="#step-3-apply-5-month-running-mean" title="Permalink to this headline">#</a></h3>
 <p>The next step is to apply a 5-month running-mean smoothing. We will use the <code class="docutils literal notranslate"><span class="pre">np.convolve</span></code> function to do this.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -482,9 +509,9 @@
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="step-4-standardize-by-the-standard-deviation">
-<h3>Step 4: Standardize by the standard deviation<a class="headerlink" href="#step-4-standardize-by-the-standard-deviation" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="step-4-standardize-by-the-standard-deviation">
+<h3>Step 4: Standardize by the standard deviation<a class="headerlink" href="#step-4-standardize-by-the-standard-deviation" title="Permalink to this headline">#</a></h3>
 <p>Finally, we standardize the smoothed time series by the standard deviation of the 1950-1979 climatology.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -521,13 +548,13 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/Intro_to_PCA_17_0.png" src="../../_images/Intro_to_PCA_17_0.png" />
+<img alt="../../_images/17bb5ba522122c9a96f744a2f140d65b2ee98fb1507d14c9494b626f57607756.png" src="../../_images/17bb5ba522122c9a96f744a2f140d65b2ee98fb1507d14c9494b626f57607756.png" />
 </div>
 </div>
-</div>
-</div>
-<div class="section" id="pca-of-tropical-pacific-sst-setting-up-the-problem">
-<h2>PCA of Tropical Pacific SST: Setting up the Problem<a class="headerlink" href="#pca-of-tropical-pacific-sst-setting-up-the-problem" title="Permalink to this headline">¶</a></h2>
+</section>
+</section>
+<section id="pca-of-tropical-pacific-sst-setting-up-the-problem">
+<h2>PCA of Tropical Pacific SST: Setting up the Problem<a class="headerlink" href="#pca-of-tropical-pacific-sst-setting-up-the-problem" title="Permalink to this headline">#</a></h2>
 <p>Now we will perform a principal component analysis (PCA) on the tropical Pacific SST. Our goal is to see if we can recreate the Niñ3.4 Index time series above through PCA. Some of the code is hidden because at this stage we are not going to worry about how to do PCA, but rather, what PCA represents.</p>
 <p>Before we do the PCA, we will take a look at the spatial structure of the data. Let’s pick a larger region so that we can more easily see what is going on.</p>
 <div class="cell docutils container">
@@ -561,10 +588,10 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.colorbar.Colorbar at 0x7f9e4fe880d0&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.colorbar.Colorbar at 0x7ff5d44e7940&gt;
 </pre></div>
 </div>
-<img alt="../../_images/Intro_to_PCA_23_1.png" src="../../_images/Intro_to_PCA_23_1.png" />
+<img alt="../../_images/f59a3efb3b42167727bd65f46dee99bdfa45d489d728ecb6687a876ce18f9086.png" src="../../_images/f59a3efb3b42167727bd65f46dee99bdfa45d489d728ecb6687a876ce18f9086.png" />
 </div>
 </div>
 <p>Note that I haven’t labelled the x- and y-axes appropriately here. The x- and y-tick labels just show the number of elements. In subsequent sections, we will use a python package called <code class="docutils literal notranslate"><span class="pre">cartopy</span></code> to plot nice maps.</p>
@@ -601,7 +628,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/Intro_to_PCA_26_0.png" src="../../_images/Intro_to_PCA_26_0.png" />
+<img alt="../../_images/f892ae788d55d7b766ca2790277cca9efddac5509dfc5d066047daa46d6722f3.png" src="../../_images/f892ae788d55d7b766ca2790277cca9efddac5509dfc5d066047daa46d6722f3.png" />
 </div>
 </div>
 <p>We see some similar features between the two plots, but we also see that the warm southern hemisphere and the cold northern hemisphere is reduced, suggesting that this part of the pattern is associated with the seasonal cycle.</p>
@@ -636,16 +663,16 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/Intro_to_PCA_30_0.png" src="../../_images/Intro_to_PCA_30_0.png" />
+<img alt="../../_images/6203b92fec09f22727e03b624370ac7f46f4aae93ca50025d07797dd58f9264b.png" src="../../_images/6203b92fec09f22727e03b624370ac7f46f4aae93ca50025d07797dd58f9264b.png" />
 </div>
 </div>
 <p>Notice that the patterns look quite different (I have also set different colorbar limits in the different panels). Panel (a) shows low values for standard deviation in the tropics while in panel (b) the largest vales of standard deviation are in the tropics.</p>
-</div>
-<div class="section" id="pca-step-by-step">
-<h2>PCA: Step-by-step<a class="headerlink" href="#pca-step-by-step" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="pca-step-by-step">
+<h2>PCA: Step-by-step<a class="headerlink" href="#pca-step-by-step" title="Permalink to this headline">#</a></h2>
 <p>Now, that we have our SST anomaly as a function of time, latitude and longitude for our region of interest, there are a few more steps that we have to go through to prepare the data for PCA.</p>
-<div class="section" id="step-1-missing-values">
-<h3>Step 1: Missing values<a class="headerlink" href="#step-1-missing-values" title="Permalink to this headline">¶</a></h3>
+<section id="step-1-missing-values">
+<h3>Step 1: Missing values<a class="headerlink" href="#step-1-missing-values" title="Permalink to this headline">#</a></h3>
 <p>The python PCA function will not work with “NaN” values, so we are going to fill these with zeros. When we fill these with zeros, these will not contribute to the variance as the mean of our <em>anomaly</em> data is also zero.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -655,9 +682,9 @@
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="step-2-standardize-data">
-<h3>Step 2: Standardize data<a class="headerlink" href="#step-2-standardize-data" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="step-2-standardize-data">
+<h3>Step 2: Standardize data<a class="headerlink" href="#step-2-standardize-data" title="Permalink to this headline">#</a></h3>
 <p>Sometimes, we will want to standardize our data before beginning our EOF analysis. This step is not required and whether or not we include this step depends on our data. We will discuss this in more detail later in this section. For now, we will standardize our data.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -674,24 +701,46 @@
 </div>
 </div>
 <p>The next few cells of code will be hidden. We will focus on the output of PCA. But, come back to this page after you have worked through the next two sections to revisit what is going on.</p>
-</div>
-<div class="section" id="step-3-convert-3d-array-to-2d-matrix">
-<h3>Step 3: Convert 3D array to 2D matrix<a class="headerlink" href="#step-3-convert-3d-array-to-2d-matrix" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="step-3-convert-3d-array-to-2d-matrix">
+<h3>Step 3: Convert 3D array to 2D matrix<a class="headerlink" href="#step-3-convert-3d-array-to-2d-matrix" title="Permalink to this headline">#</a></h3>
 <p>The next step is to convert our 3D array into a 2D matrix, so that we can perform matrix operations. We do this by combining all the spatial dimensions together.</p>
 <p>Let’s remind ourselves of the shape of our data.</p>
 <div class="cell tag_hide-input tag_hide-output docutils container">
-<div class="cell_input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input above-output-prompt docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
+</details>
+<details class="hide below-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell output</span>
+<span class="expanded">Hide code cell output</span>
+</summary>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(840, 30, 90)
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="o">&lt;</span><span class="n">ipython</span><span class="o">-</span><span class="nb">input</span><span class="o">-</span><span class="mi">1</span><span class="o">-</span><span class="mi">048</span><span class="n">a17e25bce</span><span class="o">&gt;</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+
+<span class="ne">NameError</span>: name &#39;a&#39; is not defined
 </pre></div>
 </div>
 </div>
+</details>
 </div>
 <div class="cell tag_hide-input tag_hide-output docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># We have a 3-D array. We need to convert it to 2-D. </span>
 <span class="c1"># So, we combine the two spatial dimensions into one.</span>
@@ -702,51 +751,87 @@
 </pre></div>
 </div>
 </div>
+</details>
 </div>
 <p>Let’s check the shape of our data now.</p>
 <div class="cell tag_hide-input tag_hide-output docutils container">
-<div class="cell_input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input above-output-prompt docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
+</details>
+<details class="hide below-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell output</span>
+<span class="expanded">Hide code cell output</span>
+</summary>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(840, 2700)
 </pre></div>
 </div>
 </div>
+</details>
 </div>
-</div>
-<div class="section" id="step-4-calculate-covariance-matrix">
-<h3>Step 4: Calculate covariance matrix<a class="headerlink" href="#step-4-calculate-covariance-matrix" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="step-4-calculate-covariance-matrix">
+<h3>Step 4: Calculate covariance matrix<a class="headerlink" href="#step-4-calculate-covariance-matrix" title="Permalink to this headline">#</a></h3>
 <p>Now, we can calculate the covariance matrix. Since our data is standardized, we will actually be computing the correlation matrix.</p>
 <div class="cell tag_hide-input tag_hide-output docutils container">
-<div class="cell_input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input above-output-prompt docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># calculate covariance matrix</span>
 <span class="n">C</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">cov</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">rowvar</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">C</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
+</details>
+<details class="hide below-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell output</span>
+<span class="expanded">Hide code cell output</span>
+</summary>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(2700, 2700)
 </pre></div>
 </div>
 </div>
+</details>
 </div>
-</div>
-<div class="section" id="step-5-perform-eigenanalysis-of-covariance-matrix">
-<h3>Step 5: Perform eigenanalysis of covariance matrix<a class="headerlink" href="#step-5-perform-eigenanalysis-of-covariance-matrix" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="step-5-perform-eigenanalysis-of-covariance-matrix">
+<h3>Step 5: Perform eigenanalysis of covariance matrix<a class="headerlink" href="#step-5-perform-eigenanalysis-of-covariance-matrix" title="Permalink to this headline">#</a></h3>
 <div class="cell tag_hide-input tag_hide-output docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># eigenanalysis</span>
 <span class="n">LAM</span><span class="p">,</span> <span class="n">E</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">eig</span><span class="p">(</span><span class="n">C</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
+</details>
 </div>
 <p>The output of the eigenanalysis is a set of spatial patterns (EOFs). We then calculate the corresponding time series’ (PCs). Here, we will just take a look at the first two pairs of EOFs and PCs.</p>
 <div class="cell tag_hide-input tag_hide-output docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># extract and reshape spatial patterns and calculate PCs</span>
 <span class="n">sst_pat1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">real</span><span class="p">(</span><span class="n">E</span><span class="p">[:,</span><span class="mi">0</span><span class="p">]),</span> <span class="p">(</span><span class="n">Ny</span><span class="p">,</span><span class="n">Nx</span><span class="p">))</span>
@@ -762,6 +847,7 @@
 </pre></div>
 </div>
 </div>
+</details>
 </div>
 <p>Once we have calculated our set of pairs of spatial patterns (EOFs) and time series’ (PCs), we can plot them to visualize what is going on.</p>
 <p>Recall that we hypothesized that the first EOF and PC should correspond to the seasonal cycle? Is this what we see below?</p>
@@ -786,7 +872,7 @@
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(0.0, 840.0)
 </pre></div>
 </div>
-<img alt="../../_images/Intro_to_PCA_49_1.png" src="../../_images/Intro_to_PCA_49_1.png" />
+<img alt="../../_images/c4ba3aa1745745637aae515ebe9d4b539fde1c5c68f31355e47cac8429c2849d.png" src="../../_images/c4ba3aa1745745637aae515ebe9d4b539fde1c5c68f31355e47cac8429c2849d.png" />
 </div>
 </div>
 <p>The plot of the time series clearly shows the seasonal cycle emerge from the data. In plot of the spatial pattern, red colours correspond to positive anomalies and blue colours correspond to negative anomalies. Thus, it looks like the spatial pattern is showing us summer in the southern hemisphere and winter in the northern hemisphere.</p>
@@ -813,7 +899,7 @@
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(0.0, 840.0)
 </pre></div>
 </div>
-<img alt="../../_images/Intro_to_PCA_51_1.png" src="../../_images/Intro_to_PCA_51_1.png" />
+<img alt="../../_images/14c966ac7f1108ab836361c1b466a71d8872b90e45bedb088ca64c982f783b7d.png" src="../../_images/14c966ac7f1108ab836361c1b466a71d8872b90e45bedb088ca64c982f783b7d.png" />
 </div>
 </div>
 <p>What do you see? Compare the time series here with that of the Niño3.4 Index we calculated at the beginning of the page. They should look fairly similar. Thus, the second pattern corresponds to the SST anomaly pattern associated with ENSO. In particular, the pattern is showing the El Niño pattern. This pattern should look somewhat similar to the standard deviation of the SST anomaly with the monthly climatology removed.</p>
@@ -835,14 +921,14 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/Intro_to_PCA_53_0.png" src="../../_images/Intro_to_PCA_53_0.png" />
+<img alt="../../_images/41cdf7f8147e6b45537899d41e1405c94a9352c316bc771e3482dfbaf2325caa.png" src="../../_images/41cdf7f8147e6b45537899d41e1405c94a9352c316bc771e3482dfbaf2325caa.png" />
 </div>
 </div>
 <p>They look pretty similar, although the Niño3.4 Index is smoother due to the 5-month running-mean that we applied.</p>
 <p>Although the results of the PCA of tropical Pacific SST may not be entirely surprising, the beauty of PCA is that with a single operation, we simultaneously generate spatial patterns and their corresponding time series. And for large, noisy data sets, these patterns may not be quite as obvious as they were for tropical Pacific SST.</p>
-</div>
-</div>
-</div>
+</section>
+</section>
+</section>
 
     <script type="text/x-thebe-config">
     {
@@ -856,7 +942,7 @@
             mode: "python"
         },
         kernelOptions: {
-            kernelName: "python3",
+            name: "python3",
             path: "./chapters/Week7"
         },
         predefinedOutput: true
@@ -864,38 +950,102 @@
     </script>
     <script>kernelName = 'python3'</script>
 
-              </div>
+                </article>
               
-        </div>
-    </div>
-    
-    
-    <div class='prev-next-bottom'>
-        
-    <a class='left-prev' id="prev-link" href="pca.html" title="previous page">Patterns in Multivariate Data</a>
-    <a class='right-next' id="next-link" href="linalg.html" title="next page">Review of Linear Algebra</a>
 
-    </div>
-    <footer class="footer mt-5 mt-md-0">
-    <div class="container">
-      <p>
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#nino3-4-index">Niño3.4 Index</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-1-isolate-nin3-4-region-and-compute-area-average">Step 1: Isolate Niñ3.4 region and compute area average</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-2-compute-sst-anomaly">Step 2: Compute SST anomaly</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-3-apply-5-month-running-mean">Step 3: Apply 5-month running-mean</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-4-standardize-by-the-standard-deviation">Step 4: Standardize by the standard deviation</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pca-of-tropical-pacific-sst-setting-up-the-problem">PCA of Tropical Pacific SST: Setting up the Problem</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pca-step-by-step">PCA: Step-by-step</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-1-missing-values">Step 1: Missing values</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-2-standardize-data">Step 2: Standardize data</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-3-convert-3d-array-to-2d-matrix">Step 3: Convert 3D array to 2D matrix</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-4-calculate-covariance-matrix">Step 4: Calculate covariance matrix</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-5-perform-eigenanalysis-of-covariance-matrix">Step 5: Perform eigenanalysis of covariance matrix</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Karen Smith
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2020.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
         
-          By Karen Smith<br/>
-        
-            &copy; Copyright 2020.<br/>
-      </p>
+
+      </main>
     </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
   </footer>
-</main>
-
-
-      </div>
-    </div>
-
-    
-  <script src="../../_static/js/index.3da636dd464baa7582d2.js"></script>
-
-
-    
   </body>
 </html>
