@@ -1,7 +1,8 @@
 format: jb-book
 root: chapters/index
+title: ""
 parts:
-- caption: Test 1
+- caption: Week 1
   chapters:
   - file: chapters/introduction/intro
     sections:
