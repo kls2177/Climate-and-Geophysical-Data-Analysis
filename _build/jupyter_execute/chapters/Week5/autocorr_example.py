@@ -13,7 +13,7 @@
 # 
 # Since Santer et al. (2000) was published some adjustments have been made to the satellite retrievals for the 1979-1993 time period (you can read a brief discussion about these corrections in this [blog post](http://www.realclimate.org/index.php/archives/2005/08/et-tu-lt/)) and corrections to the more recent part of the TLT record have also been made (you can read a brief discussion of these corrections in this [blog post](https://www.carbonbrief.org/major-correction-to-satellite-data-shows-140-faster-warming-since-1998)).
 # 
-# Let's start by reading in the data.
+# Let's start by reading in the [data](https://github.com/kls2177/ccia_files/blob/master/TLT_19792019.csv?raw=0).
 
 # In[1]:
 
