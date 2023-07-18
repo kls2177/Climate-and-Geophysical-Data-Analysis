@@ -1,11 +1,13 @@
 format: jb-book
 root: chapters/index
-chapters:
-- file: chapters/introduction/intro
-  sections:
-  - file: chapters/introduction/aboutthisbook
-  - file: chapters/introduction/howtousethisbook
-- file: chapters/Week1a/whatarestatsgoodfor
-  sections:
-  - file: chapters/Week1a/goodpractice
-  - file: chapters/Week1a/pitfalls
+parts:
+- caption: Test 1
+  chapters:
+  - file: chapters/introduction/intro
+    sections:
+    - file: chapters/introduction/aboutthisbook
+    - file: chapters/introduction/howtousethisbook
+  - file: chapters/Week1a/whatarestatsgoodfor
+    sections:
+    - file: chapters/Week1a/goodpractice
+    - file: chapters/Week1a/pitfalls
