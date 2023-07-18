@@ -1,0 +1,1047 @@
+
+
+<!DOCTYPE html>
+
+
+<html >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Introduction to Principal Component Analysis &#8212; Climate and Geophysical Data Analysis</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" href="../../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'chapters/Week7/Intro_to_PCA';</script>
+    <link rel="canonical" href="https://kls2177.github.io/Climate-and-Geophysical-Data-Analysis/chapters/index.html/chapters/Week7/Intro_to_PCA.html" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="None"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/gistemp.png" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="../../_static/gistemp.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../index.html">
+                    Climate and Geophysical Data Analysis
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Week 1</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../introduction/intro.html">Introduction</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../Week1a/goodpractice.html">Statistics is the grammar of science…</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Week1a/pitfalls.html">Lies, damned lies and statistics…</a></li>
+</ul>
+</li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://mybinder.org/v2/gh/kls2177/Climate-and-Geophysical-Data-Analysis/master?urlpath=tree/chapters/Week7/Intro_to_PCA.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch onBinder"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img src="../../_static/images/logo_binder.svg">
+  </span>
+<span class="btn__text-container">Binder</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="initThebeSBT()"
+  class="btn btn-sm btn-launch-thebe dropdown-item"
+  title="Launch Thebe"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-play"></i>
+  </span>
+<span class="btn__text-container">Live Code</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/chapters/Week7/Intro_to_PCA.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Introduction to Principal Component Analysis</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#nino3-4-index">Niño3.4 Index</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-1-isolate-nin3-4-region-and-compute-area-average">Step 1: Isolate Niñ3.4 region and compute area average</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-2-compute-sst-anomaly">Step 2: Compute SST anomaly</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-3-apply-5-month-running-mean">Step 3: Apply 5-month running-mean</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-4-standardize-by-the-standard-deviation">Step 4: Standardize by the standard deviation</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pca-of-tropical-pacific-sst-setting-up-the-problem">PCA of Tropical Pacific SST: Setting up the Problem</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pca-step-by-step">PCA: Step-by-step</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-1-missing-values">Step 1: Missing values</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-2-standardize-data">Step 2: Standardize data</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-3-convert-3d-array-to-2d-matrix">Step 3: Convert 3D array to 2D matrix</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-4-calculate-covariance-matrix">Step 4: Calculate covariance matrix</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-5-perform-eigenanalysis-of-covariance-matrix">Step 5: Perform eigenanalysis of covariance matrix</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="introduction-to-principal-component-analysis">
+<h1>Introduction to Principal Component Analysis<a class="headerlink" href="#introduction-to-principal-component-analysis" title="Permalink to this headline">#</a></h1>
+<p>In this section, we will begin exploring multivariate statistical analysis. But before we jump into the mathematics of <strong>principal component analysis (PCA)</strong>, we will take a look at an example that will help familiar us with the fundamentals of PCA.</p>
+<p>The example that we will look at is an analysis of tropical Pacific sea surface temperature (SST) and what we will find  is that PCA reveals the signature of the <a class="reference external" href="http://iri.columbia.edu/our-expertise/climate/enso/">El Niño / Southern Oscillation (ENSO)</a> phenomenon without any prior knowledge of ENSO.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># import packages</span>
+<span class="kn">from</span> <span class="nn">netCDF4</span> <span class="kn">import</span> <span class="n">Dataset</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+<span class="kn">import</span> <span class="nn">matplotlib</span> <span class="k">as</span> <span class="nn">mpl</span>
+<span class="n">mpl</span><span class="o">.</span><span class="n">rc</span><span class="p">(</span><span class="s1">&#39;font&#39;</span><span class="p">,</span><span class="n">size</span><span class="o">=</span><span class="mi">14</span><span class="p">)</span> <span class="c1">#set default font size and weight for plots</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now, let’s read in some SST data. Here we are using the <a class="reference external" href="https://www.ncdc.noaa.gov/data-access/marineocean-data/extended-reconstructed-sea-surface-temperature-ersst-v4">Extended Reconstructed Sea Surface Temperature data set</a>. We will access it using the <a class="reference external" href="https://earthdata.nasa.gov/collaborate/open-data-services-and-software/api/opendap">OpenDAP data server architecture</a>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># the data we will use is described here</span>
+<span class="c1"># http://www.ncdc.noaa.gov/data-access/marineocean-data/extended-reconstructed-sea-surface-temperature-ersst-v5</span>
+<span class="c1"># It is stored in the IRI data library</span>
+<span class="n">iri_url</span> <span class="o">=</span> <span class="s2">&quot;http://iridl.ldeo.columbia.edu/SOURCES/.NOAA/.NCDC/.ERSST/.version5/.sst/&quot;</span>
+<span class="n">T_convert</span> <span class="o">=</span> <span class="s2">&quot;T/[(days)(since)(1960-01-01)]sconcat/streamgridunitconvert/&quot;</span>
+
+<span class="c1"># complete url</span>
+<span class="n">url</span> <span class="o">=</span> <span class="n">iri_url</span> <span class="o">+</span> <span class="n">T_convert</span> <span class="o">+</span> <span class="s2">&quot;dods&quot;</span>
+
+<span class="n">nc</span> <span class="o">=</span> <span class="n">Dataset</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+<span class="n">sst</span> <span class="o">=</span> <span class="n">nc</span><span class="o">.</span><span class="n">variables</span><span class="p">[</span><span class="s1">&#39;sst&#39;</span><span class="p">][:]</span>
+<span class="n">lat</span> <span class="o">=</span> <span class="n">nc</span><span class="o">.</span><span class="n">variables</span><span class="p">[</span><span class="s1">&#39;Y&#39;</span><span class="p">][:]</span>
+<span class="n">lon</span> <span class="o">=</span> <span class="n">nc</span><span class="o">.</span><span class="n">variables</span><span class="p">[</span><span class="s1">&#39;X&#39;</span><span class="p">][:]</span>
+<span class="n">time</span> <span class="o">=</span> <span class="n">nc</span><span class="o">.</span><span class="n">variables</span><span class="p">[</span><span class="s1">&#39;T&#39;</span><span class="p">][:]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Note that the dimensions are: <code class="docutils literal notranslate"><span class="pre">T</span></code> = time, <code class="docutils literal notranslate"><span class="pre">X</span></code> = longitude, <code class="docutils literal notranslate"><span class="pre">Y</span></code> = latitude and <code class="docutils literal notranslate"><span class="pre">zlev</span></code> = depth and the variable is <code class="docutils literal notranslate"><span class="pre">sst</span></code>.</p>
+<p>Note that there is a depth dimension, <code class="docutils literal notranslate"><span class="pre">zlev</span></code>; however this only has one element, the surface.</p>
+<p>So, we have a 4-dimensional (3 if we don’t count <code class="docutils literal notranslate"><span class="pre">zlev</span></code>) <code class="docutils literal notranslate"><span class="pre">sst</span></code> variable on an evenly-spaced horizontal grid and each grid has a corresponding time series of length 2002.</p>
+<p>Let’s make a plot of SST for <code class="docutils literal notranslate"><span class="pre">zlev</span> <span class="pre">=</span> <span class="pre">0</span></code> and <code class="docutils literal notranslate"><span class="pre">T</span> <span class="pre">=</span> <span class="pre">0</span></code>, just to get a sense of what the data looks like.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># make an exploratory plot</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span><span class="mi">8</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">pcolormesh</span><span class="p">(</span><span class="n">sst</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,:,:],</span><span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;RdBu_r&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/503f26333d20195e6c32d3aa174f51a78372813e9f5934716c908fbbd1643898.png" src="../../_images/503f26333d20195e6c32d3aa174f51a78372813e9f5934716c908fbbd1643898.png" />
+</div>
+</div>
+<p>We see a clear pattern of warmer SSTs near the equator and cooler SSTs in the mid- to high-latitudes. The continents are not plotted as these grid points have missing values represented by “NaNs” (not-a-number).</p>
+<section id="nino3-4-index">
+<h2>Niño3.4 Index<a class="headerlink" href="#nino3-4-index" title="Permalink to this headline">#</a></h2>
+<p>In this example we are going to construct the ENSO index in two different ways. First, we will construct it following the <a class="reference external" href="http://www.cgd.ucar.edu/cas/catalog/climind/TNI_N34/index.html#Sec5">Niño3.4 Index</a> definition. The Niño3.4 Index is a commonly used metric of ENSO variability. The recipe for calculating it is:</p>
+<ol class="arabic simple">
+<li><p>Compute area averaged total SST from Niño3.4 region (5N-5S, 170W-120W).</p></li>
+<li><p>Compute monthly climatology (1950-1979) for area averaged total SST from Niño 3.4 region, and subtract climatology from area averaged total SST time series to obtain anomalies.</p></li>
+<li><p>Smooth the anomalies with a 5-month running mean.</p></li>
+<li><p>Standardize the smoothed Niño3.4 by its standard deviation over the climatological period 1950-1979.</p></li>
+</ol>
+<section id="step-1-isolate-nin3-4-region-and-compute-area-average">
+<h3>Step 1: Isolate Niñ3.4 region and compute area average<a class="headerlink" href="#step-1-isolate-nin3-4-region-and-compute-area-average" title="Permalink to this headline">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># The Niño3.4 Region is bounded by 170°W-120°W (190-240°E) and 5°S- 5°N.</span>
+<span class="c1"># extract this region and compute area average</span>
+<span class="n">sst_n34</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">sst</span><span class="p">[:,</span><span class="mi">0</span><span class="p">,</span><span class="mi">41</span><span class="p">:</span><span class="mi">48</span><span class="p">,</span><span class="mi">95</span><span class="p">:</span><span class="mi">121</span><span class="p">],</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">sst_n34</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">sst_n34</span><span class="p">,</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="step-2-compute-sst-anomaly">
+<h3>Step 2: Compute SST anomaly<a class="headerlink" href="#step-2-compute-sst-anomaly" title="Permalink to this headline">#</a></h3>
+<p>The SST anomaly that we want is relative to the 1950-1979 climatology. So, first we compute this 12-month climatology…</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># compute 1950-1979 monthly climatology</span>
+<span class="n">sst_n34_clim</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">sst_n34</span><span class="p">[</span><span class="mi">96</span><span class="o">*</span><span class="mi">12</span><span class="p">:</span><span class="mi">126</span><span class="o">*</span><span class="mi">12</span><span class="p">],(</span><span class="mi">30</span><span class="p">,</span><span class="mi">12</span><span class="p">))</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">sst_n34_clim</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(12,)
+</pre></div>
+</div>
+</div>
+</div>
+<p>…and then we substract it.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># reshape to compute anomaly (drop the last 10 months so that we have an integer number of years)</span>
+<span class="n">sst_n34_reshape</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">sst_n34</span><span class="p">[:</span><span class="o">-</span><span class="mi">10</span><span class="p">],(</span><span class="mi">166</span><span class="p">,</span><span class="mi">12</span><span class="p">))</span>
+
+<span class="c1"># calculate monthly anomaly</span>
+<span class="n">sst_n34_anom</span> <span class="o">=</span> <span class="n">sst_n34_reshape</span> <span class="o">-</span> <span class="n">sst_n34_clim</span>
+
+<span class="c1"># reshape anomaly back to long time series</span>
+<span class="n">sst_n34_anom</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">sst_n34_anom</span><span class="p">,(</span><span class="mi">166</span><span class="o">*</span><span class="mi">12</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="step-3-apply-5-month-running-mean">
+<h3>Step 3: Apply 5-month running-mean<a class="headerlink" href="#step-3-apply-5-month-running-mean" title="Permalink to this headline">#</a></h3>
+<p>The next step is to apply a 5-month running-mean smoothing. We will use the <code class="docutils literal notranslate"><span class="pre">np.convolve</span></code> function to do this.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># smooth with 5-month running mean</span>
+<span class="n">sst_n34_smooth</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">convolve</span><span class="p">(</span><span class="n">sst_n34_anom</span><span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span><span class="o">/</span><span class="mf">5.0</span><span class="p">,</span><span class="s1">&#39;same&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="step-4-standardize-by-the-standard-deviation">
+<h3>Step 4: Standardize by the standard deviation<a class="headerlink" href="#step-4-standardize-by-the-standard-deviation" title="Permalink to this headline">#</a></h3>
+<p>Finally, we standardize the smoothed time series by the standard deviation of the 1950-1979 climatology.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># now normalize by standard deviation fo 1950-1979 climatology</span>
+<span class="n">n34_index</span> <span class="o">=</span> <span class="n">sst_n34_smooth</span> <span class="o">/</span> <span class="n">sst_n34_smooth</span><span class="p">[</span><span class="mi">96</span><span class="o">*</span><span class="mi">12</span><span class="p">:</span><span class="mi">126</span><span class="o">*</span><span class="mi">12</span><span class="p">]</span><span class="o">.</span><span class="n">std</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let’s plot the time series.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## plot the Nino 3.4 Index</span>
+
+<span class="c1"># First we just plot the fist 70 years</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">211</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">n34_index</span><span class="p">[</span><span class="mi">96</span><span class="o">*</span><span class="mi">12</span><span class="p">:])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Niño3.4 Index&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">852</span><span class="p">,</span><span class="mi">10</span><span class="o">*</span><span class="mi">12</span><span class="p">),[</span><span class="s1">&#39;1950&#39;</span><span class="p">,</span><span class="s1">&#39;1960&#39;</span><span class="p">,</span><span class="s1">&#39;1970&#39;</span><span class="p">,</span><span class="s1">&#39;1980&#39;</span><span class="p">,</span><span class="s1">&#39;1990&#39;</span><span class="p">,</span><span class="s1">&#39;2000&#39;</span><span class="p">,</span><span class="s1">&#39;2010&#39;</span><span class="p">,</span><span class="s1">&#39;2020&#39;</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">840</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;(a) Niño3.4 Index (1950-2019)&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+
+<span class="c1"># Next we just plot the entire time series</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">212</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">n34_index</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Niño3.4 Index&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1992</span><span class="p">,</span><span class="mi">20</span><span class="o">*</span><span class="mi">12</span><span class="p">),[</span><span class="s1">&#39;1854&#39;</span><span class="p">,</span><span class="s1">&#39;1874&#39;</span><span class="p">,</span><span class="s1">&#39;1894&#39;</span><span class="p">,</span><span class="s1">&#39;1914&#39;</span><span class="p">,</span><span class="s1">&#39;1934&#39;</span><span class="p">,</span><span class="s1">&#39;1954&#39;</span><span class="p">,</span><span class="s1">&#39;1974&#39;</span><span class="p">,</span><span class="s1">&#39;1994&#39;</span><span class="p">,</span><span class="s1">&#39;2014&#39;</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1992</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;(b) Niño3.4 Index (1854-2019)&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/17bb5ba522122c9a96f744a2f140d65b2ee98fb1507d14c9494b626f57607756.png" src="../../_images/17bb5ba522122c9a96f744a2f140d65b2ee98fb1507d14c9494b626f57607756.png" />
+</div>
+</div>
+</section>
+</section>
+<section id="pca-of-tropical-pacific-sst-setting-up-the-problem">
+<h2>PCA of Tropical Pacific SST: Setting up the Problem<a class="headerlink" href="#pca-of-tropical-pacific-sst-setting-up-the-problem" title="Permalink to this headline">#</a></h2>
+<p>Now we will perform a principal component analysis (PCA) on the tropical Pacific SST. Our goal is to see if we can recreate the Niñ3.4 Index time series above through PCA. Some of the code is hidden because at this stage we are not going to worry about how to do PCA, but rather, what PCA represents.</p>
+<p>Before we do the PCA, we will take a look at the spatial structure of the data. Let’s pick a larger region so that we can more easily see what is going on.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># extract a slightly larger spatial region in space (-30S-30N, 120E-300E) and a restricted time interval (1950-2019)</span>
+<span class="n">sst_pac</span> <span class="o">=</span> <span class="n">sst</span><span class="p">[</span><span class="mi">12</span><span class="o">*</span><span class="mi">96</span><span class="p">:</span><span class="o">-</span><span class="mi">10</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">29</span><span class="p">:</span><span class="mi">59</span><span class="p">,</span><span class="mi">60</span><span class="p">:</span><span class="mi">150</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The output of PCA is a set of pairs of spatial patterns (EOFs) and time series (PCs). The size of the set depends on the size of the original data. The pairs are ordered in terms of variance explained, i.e. the first pair explains the largest fraction of variance in the data, the second pair explains the second largest fraction of variance, and so on.</p>
+<p>If we leave the seasonal cycle in our data, the seasonal cycle will likely emerge as the largest source of variance. Let’s see if this is what we get.</p>
+<p>First, we will compute an anomaly. We will NOT subtract a monthly climatology (we want to see the seasonal cycle emerge from our analysis) - instead just subtract the time mean.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># compute an anomaly</span>
+<span class="n">ssta_pac</span> <span class="o">=</span> <span class="n">sst_pac</span> <span class="o">-</span> <span class="n">sst_pac</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>To visualize these anomalies, we can plot the data on a map by slicing just one one element in time.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># visualize the region we&#39;re working with</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">pcolormesh</span><span class="p">(</span><span class="n">ssta_pac</span><span class="p">[</span><span class="mi">0</span><span class="p">,:,:],</span><span class="n">cmap</span> <span class="o">=</span> <span class="s2">&quot;RdBu_r&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">clim</span><span class="p">(</span><span class="o">-</span><span class="mi">4</span><span class="p">,</span><span class="mi">4</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.colorbar.Colorbar at 0x7ff5d44e7940&gt;
+</pre></div>
+</div>
+<img alt="../../_images/f59a3efb3b42167727bd65f46dee99bdfa45d489d728ecb6687a876ce18f9086.png" src="../../_images/f59a3efb3b42167727bd65f46dee99bdfa45d489d728ecb6687a876ce18f9086.png" />
+</div>
+</div>
+<p>Note that I haven’t labelled the x- and y-axes appropriately here. The x- and y-tick labels just show the number of elements. In subsequent sections, we will use a python package called <code class="docutils literal notranslate"><span class="pre">cartopy</span></code> to plot nice maps.</p>
+<p>If we do remove the monthly climatology, how does the above anomaly plot change?</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Just to compare, let&#39;s subtract the seasonal cycle</span>
+<span class="n">sst_pac_clim</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">sst_pac</span><span class="p">,(</span><span class="mi">70</span><span class="p">,</span><span class="mi">12</span><span class="p">,</span><span class="n">sst_pac</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="n">sst_pac</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">2</span><span class="p">]))</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">ssta_pac_noseasons</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">sst_pac</span><span class="p">,(</span><span class="mi">70</span><span class="p">,</span><span class="mi">12</span><span class="p">,</span><span class="n">sst_pac</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="n">sst_pac</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">2</span><span class="p">]))</span> <span class="o">-</span> <span class="n">sst_pac_clim</span>
+
+<span class="c1"># reshape back to time series</span>
+<span class="n">ssta_pac_noseasons</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">ssta_pac_noseasons</span><span class="p">,(</span><span class="mi">70</span><span class="o">*</span><span class="mi">12</span><span class="p">,</span><span class="n">sst_pac</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="n">sst_pac</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">2</span><span class="p">]))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># visualize the region we&#39;re working with</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">18</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">pcolormesh</span><span class="p">(</span><span class="n">ssta_pac</span><span class="p">[</span><span class="mi">0</span><span class="p">,:,:],</span><span class="n">cmap</span> <span class="o">=</span> <span class="s2">&quot;RdBu_r&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">clim</span><span class="p">(</span><span class="o">-</span><span class="mi">4</span><span class="p">,</span><span class="mi">4</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;(a) SST Anomaly with Time Mean Removed&quot;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">pcolormesh</span><span class="p">(</span><span class="n">ssta_pac_noseasons</span><span class="p">[</span><span class="mi">0</span><span class="p">,:,:],</span><span class="n">cmap</span> <span class="o">=</span> <span class="s2">&quot;RdBu_r&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">clim</span><span class="p">(</span><span class="o">-</span><span class="mi">4</span><span class="p">,</span><span class="mi">4</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;(b) SST Anomaly with Monthly Climatology Removed&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/f892ae788d55d7b766ca2790277cca9efddac5509dfc5d066047daa46d6722f3.png" src="../../_images/f892ae788d55d7b766ca2790277cca9efddac5509dfc5d066047daa46d6722f3.png" />
+</div>
+</div>
+<p>We see some similar features between the two plots, but we also see that the warm southern hemisphere and the cold northern hemisphere is reduced, suggesting that this part of the pattern is associated with the seasonal cycle.</p>
+<p>PCA should identify sources of variance, so a good place to start to explore the variance in our data is to plot the standard deviation for each grid point.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Now, let&#39;s look at the standard deviation of our data as a function of lat and lon</span>
+<span class="n">ssta_pac_std</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">ssta_pac</span><span class="p">,</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">ssta_pac_std_noseasons</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">ssta_pac_noseasons</span><span class="p">,</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We can plot the standard deviation on a map.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># visualize the variability of the region we&#39;re working with</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">18</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">pcolormesh</span><span class="p">(</span><span class="n">ssta_pac_std</span><span class="p">,</span><span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;Reds&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;(a) STDEV of SST Anomaly (Time Mean Removed)&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">clim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">5</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">()</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">pcolormesh</span><span class="p">(</span><span class="n">ssta_pac_std_noseasons</span><span class="p">,</span><span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;Reds&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;(b) STDEV of SST Anomaly (Monthly Climatology Removed)&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">clim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mf">1.5</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/6203b92fec09f22727e03b624370ac7f46f4aae93ca50025d07797dd58f9264b.png" src="../../_images/6203b92fec09f22727e03b624370ac7f46f4aae93ca50025d07797dd58f9264b.png" />
+</div>
+</div>
+<p>Notice that the patterns look quite different (I have also set different colorbar limits in the different panels). Panel (a) shows low values for standard deviation in the tropics while in panel (b) the largest vales of standard deviation are in the tropics.</p>
+</section>
+<section id="pca-step-by-step">
+<h2>PCA: Step-by-step<a class="headerlink" href="#pca-step-by-step" title="Permalink to this headline">#</a></h2>
+<p>Now, that we have our SST anomaly as a function of time, latitude and longitude for our region of interest, there are a few more steps that we have to go through to prepare the data for PCA.</p>
+<section id="step-1-missing-values">
+<h3>Step 1: Missing values<a class="headerlink" href="#step-1-missing-values" title="Permalink to this headline">#</a></h3>
+<p>The python PCA function will not work with “NaN” values, so we are going to fill these with zeros. When we fill these with zeros, these will not contribute to the variance as the mean of our <em>anomaly</em> data is also zero.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># fill in missing values with zeros</span>
+<span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ma</span><span class="o">.</span><span class="n">masked_invalid</span><span class="p">(</span><span class="n">ssta_pac</span><span class="p">)</span><span class="o">.</span><span class="n">filled</span><span class="p">(</span><span class="mf">0.</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="step-2-standardize-data">
+<h3>Step 2: Standardize data<a class="headerlink" href="#step-2-standardize-data" title="Permalink to this headline">#</a></h3>
+<p>Sometimes, we will want to standardize our data before beginning our EOF analysis. This step is not required and whether or not we include this step depends on our data. We will discuss this in more detail later in this section. For now, we will standardize our data.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># standardize the anomalies</span>
+<span class="n">a</span> <span class="o">=</span> <span class="p">(</span><span class="n">a</span> <span class="o">-</span> <span class="n">a</span><span class="o">.</span><span class="n">mean</span><span class="p">())</span><span class="o">/</span><span class="n">a</span><span class="o">.</span><span class="n">std</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span> <span class="n">a</span><span class="o">.</span><span class="n">std</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>7.739527224081797e-17 1.0
+</pre></div>
+</div>
+</div>
+</div>
+<p>The next few cells of code will be hidden. We will focus on the output of PCA. But, come back to this page after you have worked through the next two sections to revisit what is going on.</p>
+</section>
+<section id="step-3-convert-3d-array-to-2d-matrix">
+<h3>Step 3: Convert 3D array to 2D matrix<a class="headerlink" href="#step-3-convert-3d-array-to-2d-matrix" title="Permalink to this headline">#</a></h3>
+<p>The next step is to convert our 3D array into a 2D matrix, so that we can perform matrix operations. We do this by combining all the spatial dimensions together.</p>
+<p>Let’s remind ourselves of the shape of our data.</p>
+<div class="cell tag_hide-input tag_hide-output docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input above-output-prompt docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</details>
+<details class="hide below-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell output</span>
+<span class="expanded">Hide code cell output</span>
+</summary>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="o">&lt;</span><span class="n">ipython</span><span class="o">-</span><span class="nb">input</span><span class="o">-</span><span class="mi">1</span><span class="o">-</span><span class="mi">048</span><span class="n">a17e25bce</span><span class="o">&gt;</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+
+<span class="ne">NameError</span>: name &#39;a&#39; is not defined
+</pre></div>
+</div>
+</div>
+</details>
+</div>
+<div class="cell tag_hide-input tag_hide-output docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># We have a 3-D array. We need to convert it to 2-D. </span>
+<span class="c1"># So, we combine the two spatial dimensions into one.</span>
+
+<span class="c1"># Reshape the array to have one time dimension, one space dimension</span>
+<span class="n">Nt</span><span class="p">,</span> <span class="n">Ny</span><span class="p">,</span> <span class="n">Nx</span> <span class="o">=</span> <span class="n">a</span><span class="o">.</span><span class="n">shape</span>
+<span class="n">a</span><span class="o">.</span><span class="n">shape</span> <span class="o">=</span> <span class="p">(</span><span class="n">Nt</span><span class="p">,</span> <span class="n">Ny</span><span class="o">*</span><span class="n">Nx</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</details>
+</div>
+<p>Let’s check the shape of our data now.</p>
+<div class="cell tag_hide-input tag_hide-output docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input above-output-prompt docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</details>
+<details class="hide below-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell output</span>
+<span class="expanded">Hide code cell output</span>
+</summary>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(840, 2700)
+</pre></div>
+</div>
+</div>
+</details>
+</div>
+</section>
+<section id="step-4-calculate-covariance-matrix">
+<h3>Step 4: Calculate covariance matrix<a class="headerlink" href="#step-4-calculate-covariance-matrix" title="Permalink to this headline">#</a></h3>
+<p>Now, we can calculate the covariance matrix. Since our data is standardized, we will actually be computing the correlation matrix.</p>
+<div class="cell tag_hide-input tag_hide-output docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input above-output-prompt docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># calculate covariance matrix</span>
+<span class="n">C</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">cov</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">rowvar</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">C</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</details>
+<details class="hide below-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell output</span>
+<span class="expanded">Hide code cell output</span>
+</summary>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(2700, 2700)
+</pre></div>
+</div>
+</div>
+</details>
+</div>
+</section>
+<section id="step-5-perform-eigenanalysis-of-covariance-matrix">
+<h3>Step 5: Perform eigenanalysis of covariance matrix<a class="headerlink" href="#step-5-perform-eigenanalysis-of-covariance-matrix" title="Permalink to this headline">#</a></h3>
+<div class="cell tag_hide-input tag_hide-output docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># eigenanalysis</span>
+<span class="n">LAM</span><span class="p">,</span> <span class="n">E</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">eig</span><span class="p">(</span><span class="n">C</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</details>
+</div>
+<p>The output of the eigenanalysis is a set of spatial patterns (EOFs). We then calculate the corresponding time series’ (PCs). Here, we will just take a look at the first two pairs of EOFs and PCs.</p>
+<div class="cell tag_hide-input tag_hide-output docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># extract and reshape spatial patterns and calculate PCs</span>
+<span class="n">sst_pat1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">real</span><span class="p">(</span><span class="n">E</span><span class="p">[:,</span><span class="mi">0</span><span class="p">]),</span> <span class="p">(</span><span class="n">Ny</span><span class="p">,</span><span class="n">Nx</span><span class="p">))</span>
+<span class="n">sst_ts1</span>  <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">real</span><span class="p">(</span><span class="n">E</span><span class="p">[:,</span><span class="mi">0</span><span class="p">]))</span>
+<span class="c1">#standardize PC time series</span>
+<span class="n">sst_ts1</span> <span class="o">=</span> <span class="p">(</span><span class="n">sst_ts1</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">sst_ts1</span><span class="p">))</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">sst_ts1</span><span class="p">)</span>
+
+
+<span class="n">sst_pat2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">real</span><span class="p">(</span><span class="n">E</span><span class="p">[:,</span><span class="mi">1</span><span class="p">]),</span> <span class="p">(</span><span class="n">Ny</span><span class="p">,</span><span class="n">Nx</span><span class="p">))</span>
+<span class="n">sst_ts2</span>  <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">real</span><span class="p">(</span><span class="n">E</span><span class="p">[:,</span><span class="mi">1</span><span class="p">]))</span>
+<span class="c1">#standardize PC time series</span>
+<span class="n">sst_ts2</span> <span class="o">=</span> <span class="p">(</span><span class="n">sst_ts2</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">sst_ts2</span><span class="p">))</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">sst_ts2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</details>
+</div>
+<p>Once we have calculated our set of pairs of spatial patterns (EOFs) and time series’ (PCs), we can plot them to visualize what is going on.</p>
+<p>Recall that we hypothesized that the first EOF and PC should correspond to the seasonal cycle? Is this what we see below?</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># look at first EOF patterns and PC time series</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">211</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">pcolormesh</span><span class="p">(</span><span class="n">sst_pat1</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;RdBu_r&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">clim</span><span class="p">(</span><span class="o">-</span><span class="mf">0.05</span><span class="p">,</span><span class="mf">0.05</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;EOF 1&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">212</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">sst_ts1</span><span class="p">,</span><span class="s1">&#39;r&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">clim</span><span class="p">(</span><span class="o">-</span><span class="mf">0.05</span><span class="p">,</span><span class="mf">0.05</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;PC 1&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">840</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(0.0, 840.0)
+</pre></div>
+</div>
+<img alt="../../_images/c4ba3aa1745745637aae515ebe9d4b539fde1c5c68f31355e47cac8429c2849d.png" src="../../_images/c4ba3aa1745745637aae515ebe9d4b539fde1c5c68f31355e47cac8429c2849d.png" />
+</div>
+</div>
+<p>The plot of the time series clearly shows the seasonal cycle emerge from the data. In plot of the spatial pattern, red colours correspond to positive anomalies and blue colours correspond to negative anomalies. Thus, it looks like the spatial pattern is showing us summer in the southern hemisphere and winter in the northern hemisphere.</p>
+<p>If we compare this spatial pattern to the standard deviation of the SST anomaly with the time mean removed, we see some similar features, but the standard deviation is a squared quantity, so we are missing some important aspects of the pattern - that when the SST is anomalously warm in the south, it is anomalously cold in the north.</p>
+<p>And there is a specific connection between the spatial pattern and the time series: the spatial pattern corresponds to the positive phase of the time series, i.e. when the time series equals a value of +1, the spatial pattern looks like that in the above plot; when the time series equals a value of -1, the spatial pattern looks like -1 times the spatial pattern in the above plot.</p>
+<p>Let’s move on to the second pair of EOFs and PCs.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># look at second EOF patterns and PC time series</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">211</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">pcolormesh</span><span class="p">(</span><span class="n">sst_pat2</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;RdBu_r&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">clim</span><span class="p">(</span><span class="o">-</span><span class="mf">0.05</span><span class="p">,</span><span class="mf">0.05</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;EOF 2&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">212</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">sst_ts2</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;PC 2&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">840</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(0.0, 840.0)
+</pre></div>
+</div>
+<img alt="../../_images/14c966ac7f1108ab836361c1b466a71d8872b90e45bedb088ca64c982f783b7d.png" src="../../_images/14c966ac7f1108ab836361c1b466a71d8872b90e45bedb088ca64c982f783b7d.png" />
+</div>
+</div>
+<p>What do you see? Compare the time series here with that of the Niño3.4 Index we calculated at the beginning of the page. They should look fairly similar. Thus, the second pattern corresponds to the SST anomaly pattern associated with ENSO. In particular, the pattern is showing the El Niño pattern. This pattern should look somewhat similar to the standard deviation of the SST anomaly with the monthly climatology removed.</p>
+<p>A value of +1 in the PC time series corresponds to a pattern of the magnitude and sign shown above, El Niño. A value of -1 corresponds approximately to a La Niña pattern, which is -1 times the spatial pattern above.</p>
+<p>Note that in nature each El Niño and La Niña event are different - they do not always look like the above pattern. These EOFs and PC time series are statistical, but often describe physical phenomena.</p>
+<p>To convince ourselves that our statistical PCA is giving us something resembling the Niño3.4 Index, let’s plot the PC time series and the Niño3.4 Index together.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># plot second PC time series and Niño3.4 Index</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span><span class="mi">4</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">n34_index</span><span class="p">[</span><span class="mi">96</span><span class="o">*</span><span class="mi">12</span><span class="p">:],</span><span class="s1">&#39;r&#39;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;Niño3.4 Index&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">sst_ts2</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;2$^</span><span class="si">{nd}</span><span class="s1">$ PC Time Series&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">852</span><span class="p">,</span><span class="mi">10</span><span class="o">*</span><span class="mi">12</span><span class="p">),[</span><span class="s1">&#39;1950&#39;</span><span class="p">,</span><span class="s1">&#39;1960&#39;</span><span class="p">,</span><span class="s1">&#39;1970&#39;</span><span class="p">,</span><span class="s1">&#39;1980&#39;</span><span class="p">,</span><span class="s1">&#39;1990&#39;</span><span class="p">,</span><span class="s1">&#39;2000&#39;</span><span class="p">,</span><span class="s1">&#39;2010&#39;</span><span class="p">,</span><span class="s1">&#39;2020&#39;</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Niño3.4 Index and 2nd PC Time Series(1950-2019)&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">840</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/41cdf7f8147e6b45537899d41e1405c94a9352c316bc771e3482dfbaf2325caa.png" src="../../_images/41cdf7f8147e6b45537899d41e1405c94a9352c316bc771e3482dfbaf2325caa.png" />
+</div>
+</div>
+<p>They look pretty similar, although the Niño3.4 Index is smoother due to the 5-month running-mean that we applied.</p>
+<p>Although the results of the PCA of tropical Pacific SST may not be entirely surprising, the beauty of PCA is that with a single operation, we simultaneously generate spatial patterns and their corresponding time series. And for large, noisy data sets, these patterns may not be quite as obvious as they were for tropical Pacific SST.</p>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "kls2177/Climate-and-Geophysical-Data-Analysis",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./chapters/Week7"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#nino3-4-index">Niño3.4 Index</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-1-isolate-nin3-4-region-and-compute-area-average">Step 1: Isolate Niñ3.4 region and compute area average</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-2-compute-sst-anomaly">Step 2: Compute SST anomaly</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-3-apply-5-month-running-mean">Step 3: Apply 5-month running-mean</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-4-standardize-by-the-standard-deviation">Step 4: Standardize by the standard deviation</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pca-of-tropical-pacific-sst-setting-up-the-problem">PCA of Tropical Pacific SST: Setting up the Problem</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pca-step-by-step">PCA: Step-by-step</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-1-missing-values">Step 1: Missing values</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-2-standardize-data">Step 2: Standardize data</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-3-convert-3d-array-to-2d-matrix">Step 3: Convert 3D array to 2D matrix</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-4-calculate-covariance-matrix">Step 4: Calculate covariance matrix</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-5-perform-eigenanalysis-of-covariance-matrix">Step 5: Perform eigenanalysis of covariance matrix</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Karen Smith
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

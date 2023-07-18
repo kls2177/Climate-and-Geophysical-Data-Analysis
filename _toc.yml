@@ -1,21 +1,13 @@
 format: jb-book
 root: chapters/index
 title: ""
-# Divider for meta-pages and content page
-- divider: true
-
-parts:
-- caption: Week 1
-
 chapters:
-  - file: chapters/introduction/intro
-    sections:
-    - file: chapters/introduction/aboutthisbook
-    - file: chapters/introduction/howtousethisbook
+- file: chapters/introduction/intro
+  sections:
+  - file: chapters/introduction/aboutthisbook
+  - file: chapters/introduction/howtousethisbook
+- file: chapters/Week1b/descriptivestats
+  sections:
   - file: chapters/Week1a/whatarestatsgoodfor
-    sections:
-    - file: chapters/Week1a/goodpractice
-    - file: chapters/Week1a/pitfalls
-
-# Divider for meta-pages and content page
-- divider: true
+  - file: chapters/Week1a/goodpractice
+  - file: chapters/Week1a/pitfalls

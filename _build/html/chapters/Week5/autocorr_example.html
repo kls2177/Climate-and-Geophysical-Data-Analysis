@@ -1,0 +1,745 @@
+
+
+<!DOCTYPE html>
+
+
+<html >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Autocorrelation in Climate and Geophysical Data &#8212; Climate and Geophysical Data Analysis</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" href="../../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'chapters/Week5/autocorr_example';</script>
+    <link rel="canonical" href="https://kls2177.github.io/Climate-and-Geophysical-Data-Analysis/chapters/index.html/chapters/Week5/autocorr_example.html" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="None"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/gistemp.png" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="../../_static/gistemp.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../index.html">
+                    Climate and Geophysical Data Analysis
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Week 1</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../introduction/intro.html">Introduction</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../Week1a/goodpractice.html">Statistics is the grammar of science…</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Week1a/pitfalls.html">Lies, damned lies and statistics…</a></li>
+</ul>
+</li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://mybinder.org/v2/gh/kls2177/Climate-and-Geophysical-Data-Analysis/master?urlpath=tree/chapters/Week5/autocorr_example.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch onBinder"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img src="../../_static/images/logo_binder.svg">
+  </span>
+<span class="btn__text-container">Binder</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="initThebeSBT()"
+  class="btn btn-sm btn-launch-thebe dropdown-item"
+  title="Launch Thebe"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-play"></i>
+  </span>
+<span class="btn__text-container">Live Code</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/chapters/Week5/autocorr_example.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Autocorrelation in Climate and Geophysical Data</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-lower-tropospheric-temperature-data">Example: Lower Tropospheric Temperature Data</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#best-fit-line-and-the-95-confidence-interval">Best-Fit Line and the 95% Confidence Interval</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#autocorrelation">Autocorrelation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#why-does-this-matter">Why does this matter?</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="autocorrelation-in-climate-and-geophysical-data">
+<h1>Autocorrelation in Climate and Geophysical Data<a class="headerlink" href="#autocorrelation-in-climate-and-geophysical-data" title="Permalink to this headline">#</a></h1>
+<p>As we have seen in previous examples, periodic variability and secular trends in time series can lead to autocorrelation at non-zero lags - something that we don’t want. There are often ways to remove or adjust time series to handle this type of autocorrelation. However, sometimes, autocorrelation remains and in this section we will explore one technique to adjust statistical tests to account for dependence in time series.</p>
+<p>We will explore this technique using an updated example from the climate science literature. <a class="reference external" href="https://agupubs.onlinelibrary.wiley.com/doi/pdf/10.1029/1999JD901105">Santer et al. 2000</a> published a paper on trend analysis of satellite temperature time series using this technique and this paper has now been cited 573 times (at least on of those citations is in one of my papers)!</p>
+<section id="example-lower-tropospheric-temperature-data">
+<h2>Example: Lower Tropospheric Temperature Data<a class="headerlink" href="#example-lower-tropospheric-temperature-data" title="Permalink to this headline">#</a></h2>
+<p>Here, we will revisit the study of Santer et al. (2000) which examines trends in the lower tropospheric temperature (TLT) channel of the Microwave Sounding Unit (MSU) satellite instrument from 1979-1993. Details about the updated TLT data set that we will be working with can be found <a class="reference external" href="http://www.remss.com/measurements/upper-air-temperature/">here</a>.</p>
+<p>Since Santer et al. (2000) was published some adjustments have been made to the satellite retrievals for the 1979-1993 time period (you can read a brief discussion about these corrections in this <a class="reference external" href="http://www.realclimate.org/index.php/archives/2005/08/et-tu-lt/">blog post</a>) and corrections to the more recent part of the TLT record have also been made (you can read a brief discussion of these corrections in this <a class="reference external" href="https://www.carbonbrief.org/major-correction-to-satellite-data-shows-140-faster-warming-since-1998">blog post</a>).</p>
+<p>Let’s start by reading in the <a class="reference external" href="https://github.com/kls2177/ccia_files/blob/master/TLT_19792019.csv?raw=0">data</a>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Load packages</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">scipy.stats</span> <span class="k">as</span> <span class="nn">stats</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">matplotlib</span> <span class="k">as</span> <span class="nn">mpl</span>
+<span class="n">mpl</span><span class="o">.</span><span class="n">rc</span><span class="p">(</span><span class="s1">&#39;font&#39;</span><span class="p">,</span><span class="n">size</span><span class="o">=</span><span class="mi">14</span><span class="p">,</span><span class="n">weight</span><span class="o">=</span><span class="s1">&#39;bold&#39;</span><span class="p">)</span> <span class="c1">#set default font size and weight for plots</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Read in monthly TLT data starting in Jan. 1979 - Dec. 2019.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">filename</span> <span class="o">=</span> <span class="s1">&#39;TLT_19792019.csv&#39;</span>
+<span class="n">T</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">squeeze</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">genfromtxt</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span><span class="n">delimiter</span><span class="o">=</span><span class="s1">&#39;,&#39;</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>What does the data look like?</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># check data shape</span>
+<span class="n">T</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(492, 3)
+</pre></div>
+</div>
+</div>
+</div>
+<p>There are 492 months (12 months x 41 years) and the three columns correspond to the years, months and temperature data.</p>
+<p>To be consistent with the methods of Santer et al. (2000), we will compute seasonal averages. The typical seasons used in climate data analysis are December-January-February (boreal winter), March-April-May (boreal spring), June-July-August (boreal summer) and September-October-November (boreal fall).</p>
+<p>To keep things simple, let’s only use years with four complete seasons, so we will extract our data starting in December 1979 and ending in November 2019 and then compute 3-month averages.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Extract Dec. 1979 - November 2019 and just extract last column (temperature data)</span>
+<span class="n">T</span> <span class="o">=</span> <span class="n">T</span><span class="p">[</span><span class="mi">11</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>To compute 3-month averages we will do a little loop.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Calculate seasonal averages (DJF, MAM, JJA, SON)</span>
+<span class="n">T_seasons</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">T</span><span class="p">)</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">):</span>
+    <span class="n">tmp</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">T</span><span class="p">[</span><span class="n">i</span><span class="p">:</span><span class="n">i</span><span class="o">+</span><span class="mi">3</span><span class="p">])</span> <span class="c1">#3-month averages, extract every 3-months and take the mean</span>
+    <span class="n">T_seasons</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">tmp</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>This loop illustrates what we are trying to accomplish, but there are simpler ways of doing the same thing. If you are not sure what is going on in the line below, print out <code class="docutils literal notranslate"><span class="pre">T</span></code> and print out <code class="docutils literal notranslate"><span class="pre">T.reshape(-1,</span> <span class="pre">3)</span></code> to investigate.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Alternative way to compute the seasonal averages</span>
+<span class="n">T_seasons</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">T</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="best-fit-line-and-the-95-confidence-interval">
+<h3>Best-Fit Line and the 95% Confidence Interval<a class="headerlink" href="#best-fit-line-and-the-95-confidence-interval" title="Permalink to this headline">#</a></h3>
+<p>Let’s plot the seasonal TLT data and add the best-fit line.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create time index for plotting and for regression</span>
+<span class="n">time</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">T_seasons</span><span class="p">),</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#  Plot the data (update to Fig. 3 of Santer et al. 2000)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">6</span><span class="p">))</span>
+
+<span class="c1"># plot time series</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">time</span><span class="p">,</span><span class="n">T_seasons</span><span class="p">,</span><span class="s1">&#39;k&#39;</span><span class="p">,</span><span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="c1"># calculate best-fit line</span>
+<span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">polyfit</span><span class="p">(</span><span class="n">time</span><span class="p">,</span><span class="n">T_seasons</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">T_hat</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">polyval</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">time</span><span class="p">)</span>
+
+<span class="c1"># plot best-fit line</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">time</span><span class="p">,</span><span class="n">T_hat</span><span class="p">,</span><span class="s1">&#39;k&#39;</span><span class="p">,</span><span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">)</span>
+
+<span class="c1"># ticks, labels, etc.</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">time</span><span class="p">),</span><span class="mi">20</span><span class="p">),[</span><span class="s2">&quot;1980&quot;</span><span class="p">,</span><span class="s2">&quot;1985&quot;</span><span class="p">,</span><span class="s2">&quot;1990&quot;</span><span class="p">,</span><span class="s2">&quot;1995&quot;</span><span class="p">,</span><span class="s2">&quot;2000&quot;</span><span class="p">,</span><span class="s2">&quot;2005&quot;</span><span class="p">,</span><span class="s2">&quot;2010&quot;</span><span class="p">,</span><span class="s2">&quot;2015&quot;</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">time</span><span class="p">))</span> 
+<span class="n">plt</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mf">0.4</span><span class="p">,</span> <span class="mf">0.925</span><span class="p">,</span><span class="s1">&#39;LS trend = &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="mi">40</span><span class="p">,</span><span class="mi">3</span><span class="p">))</span> <span class="o">+</span> <span class="s1">&#39;$^o$C/decade&#39;</span><span class="p">,</span> <span class="n">ha</span><span class="o">=</span><span class="s1">&#39;right&#39;</span><span class="p">,</span> 
+         <span class="n">transform</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span><span class="o">.</span><span class="n">transAxes</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;k&#39;</span><span class="p">)</span> <span class="c1">#we multiply by 40 because our unit of time is seasons but we</span>
+                                                        <span class="c1">#want to report the trend in deg C per decade</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;TLT Anomaly&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Year&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Seasonal TLT Time Series (1980-2019)&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0.5, 1.0, &#39;Seasonal TLT Time Series (1980-2019)&#39;)
+</pre></div>
+</div>
+<img alt="../../_images/eee1b9698a7b0f94eef391a9f7ffc5542cce2f376399ee7d84014df7ecfcbbe7.png" src="../../_images/eee1b9698a7b0f94eef391a9f7ffc5542cce2f376399ee7d84014df7ecfcbbe7.png" />
+</div>
+</div>
+<p>Let’s determine if the trend is significantly different from zero, i.e. whether we have a positive trend. Recall that we can use the <code class="docutils literal notranslate"><span class="pre">st.linregress()</span></code> to get the standard error of the slope, which we can use to calculate the 95% confidence interval on the slope.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#use the alternate way to calculate the best fit parameters</span>
+<span class="n">slope</span><span class="p">,</span> <span class="n">intercept</span><span class="p">,</span> <span class="n">r_value</span><span class="p">,</span> <span class="n">p_value</span><span class="p">,</span> <span class="n">std_err</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">linregress</span><span class="p">(</span><span class="n">time</span><span class="p">,</span><span class="n">T_seasons</span><span class="p">)</span>
+
+<span class="c1">#find t_crit for our 95% confidence intervals on our slope</span>
+<span class="n">t_crit</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">t</span><span class="o">.</span><span class="n">ppf</span><span class="p">(</span><span class="mf">0.975</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">time</span><span class="p">)</span><span class="o">-</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">confidence_interval</span> <span class="o">=</span> <span class="n">t_crit</span><span class="o">*</span><span class="n">std_err</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The true value of the slope is then&quot;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">slope</span><span class="o">*</span><span class="mi">40</span><span class="p">,</span><span class="mi">3</span><span class="p">),</span> <span class="s2">&quot;+/-&quot;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">confidence_interval</span><span class="o">*</span><span class="mi">40</span><span class="p">,</span><span class="mi">3</span><span class="p">),</span> <span class="s2">&quot;degC/decade&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The true value of the slope is then 0.212 +/- 0.021 degC/decade
+</pre></div>
+</div>
+</div>
+</div>
+<p>Thus, we have a positive trend that is statistically significant.</p>
+</section>
+<section id="autocorrelation">
+<h3>Autocorrelation<a class="headerlink" href="#autocorrelation" title="Permalink to this headline">#</a></h3>
+<p>We’re done, right? Not yet. From the plot, it looks like our data set has substantial autocorrelation (a secular trend, but also other non-random variability). Let’s check:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#np.correlate actually gives the covariance. We need to find the covariance of the deviations from the mean and then</span>
+<span class="c1">#divide the the tau=0 covariance, i.e., the variance to get the correlation</span>
+
+<span class="n">Tcorr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">correlate</span><span class="p">((</span><span class="n">T_seasons</span><span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">T_seasons</span><span class="p">)),(</span><span class="n">T_seasons</span><span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">T_seasons</span><span class="p">))</span><span class="o">/</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">T_seasons</span><span class="p">)</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">var</span><span class="p">(</span><span class="n">T_seasons</span><span class="p">)),</span><span class="s1">&#39;same&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We can plot the autocorrelation function for seasonal TLT to see whether we have substantial autocorrelation.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#plot the autocorrelation function</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
+
+<span class="c1"># x-value for plotting</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">T_seasons</span><span class="p">),</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">series</span> <span class="o">=</span> <span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="nb">len</span><span class="p">(</span><span class="n">T_seasons</span><span class="p">)</span><span class="o">/</span><span class="mf">2.0</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">x</span><span class="p">]</span>
+
+<span class="c1">#plot series</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">series</span><span class="p">,</span><span class="n">Tcorr</span><span class="p">,</span><span class="s1">&#39;k&#39;</span><span class="p">,</span><span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="o">-</span><span class="mi">80</span><span class="p">,</span><span class="mi">80</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="o">-</span><span class="mf">0.4</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Correlation Coefficient&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Lag&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0.5, 0, &#39;Lag&#39;)
+</pre></div>
+</div>
+<img alt="../../_images/976797b9280fb6a2e20f3618a2b5517f24853af268070834cfff8025c7e7f720.png" src="../../_images/976797b9280fb6a2e20f3618a2b5517f24853af268070834cfff8025c7e7f720.png" />
+</div>
+</div>
+<p>What do you see? We clearly have high autocorrelation at non-zero lags. This autocorrelation in the temperatures ends up in our residuals:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># calculate residuals</span>
+<span class="n">resids</span> <span class="o">=</span> <span class="n">T_seasons</span> <span class="o">-</span> <span class="n">T_hat</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># calculate autocorrelation of residuals</span>
+<span class="n">rcorr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">correlate</span><span class="p">(</span><span class="n">resids</span><span class="o">/</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">resids</span><span class="p">)),</span><span class="n">resids</span><span class="o">/</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">resids</span><span class="p">)</span><span class="o">*</span><span class="nb">len</span><span class="p">(</span><span class="n">resids</span><span class="p">)),</span><span class="s1">&#39;same&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let’s add the autocorrelation of our residuals to the above plot. For simplicity and so we can zoom in on the non-zero lags, let’s just plot the positive lags.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#plot the autocorrelation function</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
+
+<span class="c1"># x-value for plotting</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">T_seasons</span><span class="p">),</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">series</span> <span class="o">=</span> <span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="nb">len</span><span class="p">(</span><span class="n">T_seasons</span><span class="p">)</span><span class="o">/</span><span class="mf">2.0</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">x</span><span class="p">]</span>
+
+<span class="c1">#plot series</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">series</span><span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">T_seasons</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="p">):],</span><span class="n">Tcorr</span><span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">T_seasons</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="p">):],</span><span class="s1">&#39;k&#39;</span><span class="p">,</span><span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s2">&quot;TLT&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">series</span><span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">T_seasons</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="p">):],</span><span class="n">rcorr</span><span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">T_seasons</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="p">):],</span><span class="s1">&#39;k--&#39;</span><span class="p">,</span><span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s2">&quot;Residuals&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">80</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="o">-</span><span class="mf">0.4</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Correlation Coefficient&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Lag&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s1">&#39;upper right&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x175b17310&gt;
+</pre></div>
+</div>
+<img alt="../../_images/9bc48eb5ce0f18249275be83bba879ac7d46066eb96faf24b04d794f966db98e.png" src="../../_images/9bc48eb5ce0f18249275be83bba879ac7d46066eb96faf24b04d794f966db98e.png" />
+</div>
+</div>
+<p>We can definitely see that removing the trend in the data (<code class="docutils literal notranslate"><span class="pre">T_seasons</span> <span class="pre">-</span> <span class="pre">T_hat</span></code>) has weakened the autocorrelation at non-zero lags. However, the autocorrelation function is clearly not zero - some autocorrelation remains.</p>
+<p>Let’s perform a Durbin-Watson test to see whether are residuals violate the independence assumption. Recall that a value of close to 2 indicates no autcorrelation, a value between 0 and 2 indicates positive autocorrelation and a value between 2 and 4 indicates negative autocorrelation.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#  test for autocorrelation of residuals</span>
+<span class="kn">from</span> <span class="nn">statsmodels.stats.stattools</span> <span class="kn">import</span> <span class="n">durbin_watson</span>
+
+<span class="n">dw</span> <span class="o">=</span> <span class="n">durbin_watson</span><span class="p">(</span><span class="n">resids</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">dw</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.522534424626424
+</pre></div>
+</div>
+</div>
+</div>
+<p>We get a value that is definitely closer to zero than it is to 2. The residuals are positively autocorrelated.</p>
+</section>
+<section id="why-does-this-matter">
+<h3>Why does this matter?<a class="headerlink" href="#why-does-this-matter" title="Permalink to this headline">#</a></h3>
+<p>So, why does this matter? If the residuals are autocorrelated, then we have violated an assumption of linear regression. Thus, the question becomes: how much can we trust the result of our significance test that we performed on the slope above?</p>
+<p>Many, <em>many</em> climate and geophysical time series contain autocorrelation - we often can’t avoid it - and, thus techniques have been developed to account for this autocorrelation. The technique that we will discuss involves accounting for the persistence (another word for positive autocorrelation) in our time series by decreasing our sample size, <span class="math notranslate nohighlight">\(N\)</span>. Persistence/autocorrelation in a data set means that our sample size is actually an overestimate, because each data point is not independent of those around it. So, we can decrease <span class="math notranslate nohighlight">\(N\)</span> in order to reflect the degree of autocorrelation in our data.</p>
+<p>This technique seems relatively logical and straight-forward, but in order to establish by <strong>how much</strong> we need to decrease <span class="math notranslate nohighlight">\(N\)</span>, we need to introduce the concept of <strong>red-noise</strong>.</p>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "kls2177/Climate-and-Geophysical-Data-Analysis",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./chapters/Week5"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-lower-tropospheric-temperature-data">Example: Lower Tropospheric Temperature Data</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#best-fit-line-and-the-95-confidence-interval">Best-Fit Line and the 95% Confidence Interval</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#autocorrelation">Autocorrelation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#why-does-this-matter">Why does this matter?</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Karen Smith
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
