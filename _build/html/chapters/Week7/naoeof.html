@@ -1,358 +1,395 @@
 
+
 <!DOCTYPE html>
 
-<html>
+
+<html >
+
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EOFs with Real Data &#8212; Climate and Geophysical Data Analysis</title>
-    
-  <link rel="stylesheet" href="../../_static/css/index.73d71520a4ca3b99cfee5594769eaaae.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    
-  <link rel="stylesheet"
-    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+    <title>EOFs with Real Data</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
 
-    
-      
-  <link rel="stylesheet"
-    href="../../_static/vendor/open-sans_all/1.44.1/index.css">
-  <link rel="stylesheet"
-    href="../../_static/vendor/lato_latin-ext/1.44.1/index.css">
+  
+  <link href="../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
 
-    
-    <link rel="stylesheet" href="../../_static/sphinx-book-theme.2d2078699c18a0efb88233928e1cf6ed.css" type="text/css" />
-    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" href="../../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
-    
-  <link rel="preload" as="script" href="../../_static/js/index.3da636dd464baa7582d2.js">
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
 
-    <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
     <script src="../../_static/jquery.js"></script>
     <script src="../../_static/underscore.js"></script>
     <script src="../../_static/doctools.js"></script>
-    <script src="../../_static/language_data.js"></script>
-    <script src="../../_static/togglebutton.js"></script>
     <script src="../../_static/clipboard.min.js"></script>
     <script src="../../_static/copybutton.js"></script>
-    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="../../_static/sphinx-book-theme.be0a4a0c39cd630af62a2fcf693f3f06.js"></script>
-    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.18.0/dist/embed-amd.js"></script>
-    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
-    <script >
-        const thebe_selector = ".thebe,.cell"
-        const thebe_selector_input = "pre,.cell_input div.highlight"
-        const thebe_selector_output = ".output,.cell_output"
-    </script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
     <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'chapters/Week7/naoeof';</script>
     <link rel="canonical" href="https://kls2177.github.io/Climate-and-Geophysical-Data-Analysis/chapters/index.html/chapters/Week7/naoeof.html" />
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="Epilogue" href="../Week8/epilogue.html" />
-    <link rel="prev" title="EOFs via Eigenanalysis" href="eofs.html" />
-
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="docsearch:language" content="en" />
-
-
-<!-- Opengraph tags -->
-<meta property="og:url"         content="https://kls2177.github.io/Climate-and-Geophysical-Data-Analysis/chapters/index.html/chapters/Week7/naoeof.html" />
-<meta property="og:type"        content="article" />
-<meta property="og:title"       content="EOFs with Real Data" />
-<meta property="og:description" content="EOFs with Real Data  We have now established how we can use PCA to extract the dominant patterns (aka “leading modes”) of variability in a multi-dimensional var" />
-<meta property="og:image"       content="https://kls2177.github.io/Climate-and-Geophysical-Data-Analysis/chapters/index.html/_static/gistemp.png" />
-
-<meta name="twitter:card" content="summary" />
-
-
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="None"/>
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
-    
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
 
-    <div class="container-xl">
-      <div class="row">
-          
-<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
     
-        <div class="navbar-brand-box">
-<a class="navbar-brand text-wrap" href="../../index.html">
+    
+    
+    
+  </div>
   
-  <img src="../../_static/gistemp.png" class="logo" alt="logo">
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="../index.html">
   
   
-  <h1 class="site-logo" id="site-title">Climate and Geophysical Data Analysis</h1>
   
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/gistemp.png" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="../../_static/gistemp.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../index.html">
+                    Climate and Geophysical Data Analysis
+                </a>
+            </li>
+        </ul>
+        <ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../introduction/intro.html">Introduction</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../introduction/aboutthisbook.html">About this book</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../introduction/howtousethisbook.html">How to use this book</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../Week1a/whatarestatsgoodfor.html">What are statistics good for?</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../Week1a/goodpractice.html">Statistics is the grammar of science…</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Week1a/pitfalls.html">Lies, damned lies and statistics…</a></li>
+</ul>
+</li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://mybinder.org/v2/gh/kls2177/Climate-and-Geophysical-Data-Analysis/master?urlpath=tree/chapters/Week7/naoeof.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch onBinder"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img src="../../_static/images/logo_binder.svg">
+  </span>
+<span class="btn__text-container">Binder</span>
 </a>
-</div>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="initThebeSBT()"
+  class="btn btn-sm btn-launch-thebe dropdown-item"
+  title="Launch Thebe"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
 
-<form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
-  <i class="icon fas fa-search"></i>
-  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
-</form>
-
-<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
-  <ul class="nav sidenav_l1">
- <li class="toctree-l1">
-  <a class="reference internal" href="../index.html">
-   Climate and Geophysical Data Analysis
-  </a>
- </li>
-</ul>
-<ul class="current nav sidenav_l1">
- <li class="toctree-l1">
-  <a class="reference internal" href="../introduction/intro.html">
-   Introduction
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../Week1a/whatarestatsgoodfor.html">
-   What are statistics good for?
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../Week1b/descriptivestats.html">
-   Descriptive Statistics
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../Week2/hypothesis_testing.html">
-   Statistical Hypothesis Testing
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../Week3/linreg.html">
-   Linear Regression
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../Week4/corr.html">
-   Correlation
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../Week5/persistence.html">
-   Persistence in Time Series
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../Week6/filt.html">
-   Time Series Analysis
-  </a>
- </li>
- <li class="toctree-l1 current active">
-  <a class="reference internal" href="pca.html">
-   Patterns in Multivariate Data
-  </a>
-  <ul class="current">
-   <li class="toctree-l2">
-    <a class="reference internal" href="Intro_to_PCA.html">
-     Introduction to Principal Component Analysis
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="linalg.html">
-     Review of Linear Algebra
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="eig.html">
-     Eigenanalysis
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="eofs.html">
-     EOFs via Eigenanalysis
-    </a>
-   </li>
-   <li class="toctree-l2 current active">
-    <a class="current reference internal" href="#">
-     EOFs with Real Data
-    </a>
-   </li>
+<span class="btn__icon-container">
+  <i class="fas fa-play"></i>
+  </span>
+<span class="btn__text-container">Live Code</span>
+</button>
+</li>
+      
   </ul>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../Week8/epilogue.html">
-   Epilogue
-  </a>
- </li>
-</ul>
-
-</nav>
-
- <!-- To handle the deprecated key -->
-
-<div class="navbar_extra_footer">
-  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
-</div>
-
 </div>
 
 
-          
 
 
-          
-<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
-    
-    <div class="row topbar fixed-top container-xl">
-    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
-    </div>
-    <div class="col pl-2 topbar-main">
-        
-        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
-            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
-            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
-            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
-            <i class="fas fa-bars"></i>
-            <i class="fas fa-arrow-left"></i>
-            <i class="fas fa-arrow-up"></i>
-        </button>
-        
-        <div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
-            class="fas fa-download"></i></button>
-
-    
-    <div class="dropdown-buttons">
-        <!-- ipynb file if we had a myst markdown file -->
-        
-        <!-- Download raw file -->
-        <a class="dropdown-buttons" href="../../_sources/chapters/Week7/naoeof.ipynb"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
-                data-placement="left">.ipynb</button></a>
-        <!-- Download PDF via print -->
-        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
-            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
-    </div>
-    
-</div>
-        <!-- Source interaction buttons -->
 
 
-        <!-- Full screen (wrap in <a> to have style consistency -->
-        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
-                data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
-                title="Fullscreen mode"><i
-                    class="fas fa-expand"></i></button></a>
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/chapters/Week7/naoeof.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
 
-        <!-- Launch buttons -->
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
 
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
-        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
-    <div class="dropdown-buttons">
-        
-        <a class="binder-button" href="https://mybinder.org/v2/gh/kls2177/Climate-and-Geophysical-Data-Analysis/master?urlpath=tree/chapters/Week7/naoeof.ipynb"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
-                data-placement="left"><img class="binder-button-logo"
-                    src="../../_static/images/logo_binder.svg"
-                    alt="Interact on binder">Binder</button></a>
-        
-        
-        
-        <a class="colab-button" href="https://colab.research.google.com/github/kls2177/Climate-and-Geophysical-Data-Analysis/blob/master/chapters/Week7/naoeof.ipynb"><button type="button" class="btn btn-secondary topbarbtn"
-                title="Launch Colab" data-toggle="tooltip" data-placement="left"><img class="colab-button-logo"
-                    src="../../_static/images/logo_colab.png"
-                    alt="Interact on Colab">Colab</button></a>
-        
-        <button type="button" class="btn btn-secondary topbarbtn"
-            onclick="initThebeSBT()" title="Launch Thebe" data-toggle="tooltip" data-placement="left"><i
-                class="fas fa-play"></i><span style="margin-left: .4em;">Live Code</span></button>
-        
-    </div>
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
 </div>
 
-    </div>
 
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>EOFs with Real Data</h1>
     <!-- Table of contents -->
-    <div class="d-none d-md-block col-md-2 bd-toc show">
-        
-        <div class="tocsection onthispage pt-5 pb-3">
-            <i class="fas fa-list"></i> Contents
-        </div>
-        <nav id="bd-toc-nav">
-            <ul class="nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#case-study-north-atlantic-oscillation-nao">
-   Case Study: North Atlantic Oscillation (NAO)
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#a-note-about-missing-data">
-     A Note about Missing Data
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#step-1-remove-the-mean">
-     Step 1: Remove the mean
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#step-2-standardizing-the-data-optional">
-     Step 2: Standardizing the data (optional)
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#step-3-weighting-gridded-data">
-     Step 3: Weighting gridded data
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#step-4-convert-3d-array-to-2d-matrix">
-     Step 4: Convert 3D array to 2D matrix
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#step-5-calculate-the-covariance-matrix">
-     Step 5: Calculate the covariance matrix
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#step-6-perform-eigenanalysis-of-the-covariance-matrix">
-     Step 6: Perform eigenanalysis of the covariance matrix
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#presenting-eofs-pcs">
-   Presenting EOFs/PCs
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#how-many-eofs-pcs-are-meaningful">
-   How many EOFs/PCs are meaningful?
-  </a>
- </li>
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#case-study-north-atlantic-oscillation-nao">Case Study: North Atlantic Oscillation (NAO)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a-note-about-missing-data">A Note about Missing Data</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-1-remove-the-mean">Step 1: Remove the mean</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-2-standardizing-the-data-optional">Step 2: Standardizing the data (optional)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-3-weighting-gridded-data">Step 3: Weighting gridded data</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-4-convert-3d-array-to-2d-matrix">Step 4: Convert 3D array to 2D matrix</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-5-calculate-the-covariance-matrix">Step 5: Calculate the covariance matrix</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-6-perform-eigenanalysis-of-the-covariance-matrix">Step 6: Perform eigenanalysis of the covariance matrix</a></li>
 </ul>
-
-        </nav>
-        
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#presenting-eofs-pcs">Presenting EOFs/PCs</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#how-many-eofs-pcs-are-meaningful">How many EOFs/PCs are meaningful?</a></li>
+</ul>
+            </nav>
+        </div>
     </div>
 </div>
-    <div id="main-content" class="row">
-        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
-        
-              <div>
+
+              
                 
-  <div class="section" id="eofs-with-real-data">
-<h1>EOFs with Real Data<a class="headerlink" href="#eofs-with-real-data" title="Permalink to this headline">¶</a></h1>
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="eofs-with-real-data">
+<h1>EOFs with Real Data<a class="headerlink" href="#eofs-with-real-data" title="Permalink to this headline">#</a></h1>
 <p>We have now established how we can use PCA to extract the dominant patterns (aka “leading modes”) of variability in a multi-dimensional variable of interest. Now, we are going to work through an example and discuss some of the practicalities of PCA when working with climate and geophysical data sets.</p>
-<div class="section" id="case-study-north-atlantic-oscillation-nao">
-<h2>Case Study: North Atlantic Oscillation (NAO)<a class="headerlink" href="#case-study-north-atlantic-oscillation-nao" title="Permalink to this headline">¶</a></h2>
+<section id="case-study-north-atlantic-oscillation-nao">
+<h2>Case Study: North Atlantic Oscillation (NAO)<a class="headerlink" href="#case-study-north-atlantic-oscillation-nao" title="Permalink to this headline">#</a></h2>
 <p>The example that we are going to look at is the North Atlantic Oscillation (NAO). The NAO is a weather and climate mode of variability in the North Atlantic region. It is characterized by fluctuations in the difference in anomalous sea-level pressure (SLP) between the Icelandic low and the Azores high. Fluctuations in the difference between SLP within the Icelandic low and Azores high, reflects fluctuations in the strength and position of westerly jet stream and storm tracks across the North Atlantic. The NAO is the leading mode of atmospheric variability via PCA in the North Atlantic extratropical region and is most active during the winter season.</p>
 <p>Let’s begin by reading in some gridded, reanalysis SLP data. Reanalysis data products are quasi-observational data products that provide global coverage of atmospheric and surface variables. We will use SLP from the <a class="reference external" href="https://www.ecmwf.int/en/forecasts/datasets/reanalysis-datasets/era-interim">ERA-Interim</a> reanalysis product. You can download the netcdf file <a class="reference external" href="https://www.dropbox.com/s/brssg2g5m2tzn6y/ERAI_PSL_1980_2017.nc?dl=0">here</a>.</p>
 <div class="cell docutils container">
@@ -447,7 +484,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/naoeof_9_0.png" src="../../_images/naoeof_9_0.png" />
+<img alt="../../_images/059d1ecf7a3cf7ebaf39389d68e2e9dbd552fda2bed77ccc4b9c2bb22e6cee44.png" src="../../_images/059d1ecf7a3cf7ebaf39389d68e2e9dbd552fda2bed77ccc4b9c2bb22e6cee44.png" />
 </div>
 </div>
 <p>This looks reasonable. We see higher SLP in the hot sub-tropical regions and lower SLP in the storm track regions.</p>
@@ -604,16 +641,16 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/naoeof_21_0.png" src="../../_images/naoeof_21_0.png" />
+<img alt="../../_images/1eb6f724184b51171e4fc42e11adff3d1874986312ac45232104ed7f91cafa06.png" src="../../_images/1eb6f724184b51171e4fc42e11adff3d1874986312ac45232104ed7f91cafa06.png" />
 </div>
 </div>
-<div class="section" id="a-note-about-missing-data">
-<h3>A Note about Missing Data<a class="headerlink" href="#a-note-about-missing-data" title="Permalink to this headline">¶</a></h3>
+<section id="a-note-about-missing-data">
+<h3>A Note about Missing Data<a class="headerlink" href="#a-note-about-missing-data" title="Permalink to this headline">#</a></h3>
 <p>Most statistical algorithms for eigenanalysis with not work with missing values or NaNs. These missing values will have to be filled with something. In the introduction section, we filled them with zeros. In the NAO example that we are working on, there are no missing values in our data.</p>
 <p>This now brings us to the first step of EOF analysis.</p>
-</div>
-<div class="section" id="step-1-remove-the-mean">
-<h3>Step 1: Remove the mean<a class="headerlink" href="#step-1-remove-the-mean" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="step-1-remove-the-mean">
+<h3>Step 1: Remove the mean<a class="headerlink" href="#step-1-remove-the-mean" title="Permalink to this headline">#</a></h3>
 <p>It is typical to remove the sampling dimension mean, which is usually the time dimension. This will result in your principal component time series having a mean of zero. You may also want to remove the seasonal or diurnal cycle if this is not of interest to you.</p>
 <p>It is less common to remove the spatial mean. For example, suppose you are interested in the gradients in temperature, not the full temperature field itself or you are interested in the “wavy” component of the field, so you might remove the zonal mean.</p>
 <div class="cell docutils container">
@@ -624,18 +661,18 @@
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="step-2-standardizing-the-data-optional">
-<h3>Step 2: Standardizing the data (optional)<a class="headerlink" href="#step-2-standardizing-the-data-optional" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="step-2-standardizing-the-data-optional">
+<h3>Step 2: Standardizing the data (optional)<a class="headerlink" href="#step-2-standardizing-the-data-optional" title="Permalink to this headline">#</a></h3>
 <p>Sometimes, it is desirable to take the amplitude of the variability out of the data before doing EOF analysis. For example, you may want to do this if</p>
 <ul class="simple">
 <li><p>your data is made of a combination of parameters with different units, and you don’t want the parameter with the biggest units to dominate the variance</p></li>
 <li><p>if the variance of the data varies greatly in space (and this is not of interest to you)</p></li>
 </ul>
 <p>In order to do this, you divide your anomaly data by its standard deviation as well (now your data is in units of <span class="math notranslate nohighlight">\(\sigma\)</span>). For the NAO example, we will not standardize the data as we are interested in capturing the spatial the magnitude of the variability.</p>
-</div>
-<div class="section" id="step-3-weighting-gridded-data">
-<h3>Step 3: Weighting gridded data<a class="headerlink" href="#step-3-weighting-gridded-data" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="step-3-weighting-gridded-data">
+<h3>Step 3: Weighting gridded data<a class="headerlink" href="#step-3-weighting-gridded-data" title="Permalink to this headline">#</a></h3>
 <p>If the data is gridded, you need to weight the data according to the grid box area. For example, if the data is on a rectangular grid on a sphere (like in our example), the size of the grid boxes decreases as you move from the equator to the poles. There are two considerations with doing area weighting on a sphere:</p>
 <ul class="simple">
 <li><p>if you are calculating EOFs using the covariance matrix and you are analyzing the <em>temporal covariance matrix</em> (i.e., your covariance matrix is <span class="math notranslate nohighlight">\(\mathbf{C} = \mathbf{XX^T}\)</span> <span class="math notranslate nohighlight">\([M x M]\)</span>, where <span class="math notranslate nohighlight">\(M\)</span> is the time dimension), you weight by <span class="math notranslate nohighlight">\(\sqrt{\text{cos}(\theta)}\)</span>. We use the square-root since when you multiply the grid points by each other you will get your full <span class="math notranslate nohighlight">\(\text{cos}(\theta)\)</span> in your covariance matrix (where <span class="math notranslate nohighlight">\(\theta\)</span> is latitude in radians)</p></li>
@@ -657,9 +694,9 @@
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="step-4-convert-3d-array-to-2d-matrix">
-<h3>Step 4: Convert 3D array to 2D matrix<a class="headerlink" href="#step-4-convert-3d-array-to-2d-matrix" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="step-4-convert-3d-array-to-2d-matrix">
+<h3>Step 4: Convert 3D array to 2D matrix<a class="headerlink" href="#step-4-convert-3d-array-to-2d-matrix" title="Permalink to this headline">#</a></h3>
 <p>The next step is to convert our 3D array into a 2D matrix, so that we can perform matrix operations, specifically so that we can calculate the covariance matrix. We do this by combining all the spatial dimensions together.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -683,9 +720,9 @@
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="step-5-calculate-the-covariance-matrix">
-<h3>Step 5: Calculate the covariance matrix<a class="headerlink" href="#step-5-calculate-the-covariance-matrix" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="step-5-calculate-the-covariance-matrix">
+<h3>Step 5: Calculate the covariance matrix<a class="headerlink" href="#step-5-calculate-the-covariance-matrix" title="Permalink to this headline">#</a></h3>
 <p>Our data is now ready for us to calculate the covariance matrix. Remember that we are going to calculate the temporal covariance matrix due to the slow computation speed associated with calculating the spatial dispersion matrix.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -701,9 +738,9 @@
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="step-6-perform-eigenanalysis-of-the-covariance-matrix">
-<h3>Step 6: Perform eigenanalysis of the covariance matrix<a class="headerlink" href="#step-6-perform-eigenanalysis-of-the-covariance-matrix" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="step-6-perform-eigenanalysis-of-the-covariance-matrix">
+<h3>Step 6: Perform eigenanalysis of the covariance matrix<a class="headerlink" href="#step-6-perform-eigenanalysis-of-the-covariance-matrix" title="Permalink to this headline">#</a></h3>
 <p>The next step is the eigenanalysis. Note that because we are eigenanalyzing the temporal covariance matrix, which is <span class="math notranslate nohighlight">\([M x M]\)</span>, the eigenvectors will be <span class="math notranslate nohighlight">\([M x 1]\)</span>, not <span class="math notranslate nohighlight">\([N x 1]\)</span> as in the conceptual example in the last section. The implications of this are that the eigenvectors correspond to the principal component time series and we will calculate the spatial patterns, the EOFs, by performing a linear transformation.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -764,13 +801,13 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/naoeof_37_0.png" src="../../_images/naoeof_37_0.png" />
+<img alt="../../_images/b476a41b7e104a80d1a3abc28fab5a5cc2bb3f38d6a465a20e856c327044d4e6.png" src="../../_images/b476a41b7e104a80d1a3abc28fab5a5cc2bb3f38d6a465a20e856c327044d4e6.png" />
 </div>
 </div>
-</div>
-</div>
-<div class="section" id="presenting-eofs-pcs">
-<h2>Presenting EOFs/PCs<a class="headerlink" href="#presenting-eofs-pcs" title="Permalink to this headline">¶</a></h2>
+</section>
+</section>
+<section id="presenting-eofs-pcs">
+<h2>Presenting EOFs/PCs<a class="headerlink" href="#presenting-eofs-pcs" title="Permalink to this headline">#</a></h2>
 <p>The EOFs <span class="math notranslate nohighlight">\(\mathbf{E}\)</span> and PC time series <span class="math notranslate nohighlight">\(\mathbf{Z}\)</span> that result from eigenanalysis of <span class="math notranslate nohighlight">\(\mathbf{C}\)</span> are typically not in physical units. Recall that we have cosine-weighted our data and that the eigenvectors are unit vectors. Thus, there are a few post-processing steps that we need to go through in order to present our EOFs/PCs in a meaningful way.</p>
 <p>Let <span class="math notranslate nohighlight">\(\mathbf{X}\)</span> have dimensions <span class="math notranslate nohighlight">\([M x N]\)</span> such that <span class="math notranslate nohighlight">\(M\)</span> is the number of observations and <span class="math notranslate nohighlight">\(N\)</span> is the number spatial locations. From now on, to make notation a bit easier, we will only write equations using EOF 1 and PC 1. The steps can be repeated for EOF 2 and PC 2, EOF 3 and PC 3, etc.</p>
 <p>Typically, we convert the PC time series to units of standard deviation. So, we simply need to standardize <span class="math notranslate nohighlight">\(\mathbf{Z}\)</span> to create an index.</p>
@@ -848,7 +885,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/naoeof_43_0.png" src="../../_images/naoeof_43_0.png" />
+<img alt="../../_images/07542051533e84677fc6bf9b16dd809c6e7df257518170428b309a507e70a2ed.png" src="../../_images/07542051533e84677fc6bf9b16dd809c6e7df257518170428b309a507e70a2ed.png" />
 </div>
 </div>
 <p>So, this is our NAO pattern and NAO Index. The pattern that we get shows a dipole in SLP. A +1 standard deviation value of our PC time series corresponds to exactly this pattern, while a -1 standard deviation corresponds to exactly -1 x this pattern. The standard definition of the NAO is actually opposite to what we are seeing above. Recall that eigenvectors can span either the positive part or the negative part of a particular dimension. What we are seeing above is actually the negative phase of the NAO. If we multiply both the NAO pattern and NAO Index by -1, we get the standard definition of the NAO.</p>
@@ -924,12 +961,12 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/naoeof_50_0.png" src="../../_images/naoeof_50_0.png" />
+<img alt="../../_images/88fe93176e2735885b1bb07024ad0b4bc7b0923a18a712a39008fd4d0f94c7ce.png" src="../../_images/88fe93176e2735885b1bb07024ad0b4bc7b0923a18a712a39008fd4d0f94c7ce.png" />
 </div>
 </div>
-</div>
-<div class="section" id="how-many-eofs-pcs-are-meaningful">
-<h2>How many EOFs/PCs are meaningful?<a class="headerlink" href="#how-many-eofs-pcs-are-meaningful" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="how-many-eofs-pcs-are-meaningful">
+<h2>How many EOFs/PCs are meaningful?<a class="headerlink" href="#how-many-eofs-pcs-are-meaningful" title="Permalink to this headline">#</a></h2>
 <p>Eigenanalysis of the covariance matrix will always give you an answer. The orthogonality of the eigenvectors/EOFs imposes a constraint on their pattern. Higher order EOFs are often trying to represent the noise while still being orthogonal to the other EOFs and, consequently, these patterns can become spurious statistical constructs rather than physically meaningful modes of variability.</p>
 <p><a class="reference external" href="https://journals.ametsoc.org/mwr/article/110/7/699/62757/Sampling-Errors-in-the-Estimation-of-Empirical">North et al. (1982)</a> argues that the significance or robustness of an EOF is a function of the degree of separation between eigenvalues, where the 95% confidence bounds on the eigenvalues is,</p>
 <div class="math notranslate nohighlight">
@@ -962,7 +999,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/naoeof_52_0.png" src="../../_images/naoeof_52_0.png" />
+<img alt="../../_images/8a72fa7877ea7764bc7150369bcb085ed90b486e133a9b72f049b70c00014783.png" src="../../_images/8a72fa7877ea7764bc7150369bcb085ed90b486e133a9b72f049b70c00014783.png" />
 </div>
 </div>
 <p>The first three EOFs are clearly separable and, therefore, likely physically meaningful, but the error bars start to overlap beyond that.</p>
@@ -973,8 +1010,8 @@
 <li><p>are your results sensitive to the size of the spatial domain?</p></li>
 </ul>
 <p>Remember that EOFs/PCs are statistical, not physical. There is often a physical explanation behind the statistical patterns obtained through PCA, but not always.</p>
-</div>
-</div>
+</section>
+</section>
 
     <script type="text/x-thebe-config">
     {
@@ -988,7 +1025,7 @@
             mode: "python"
         },
         kernelOptions: {
-            kernelName: "python3",
+            name: "python3",
             path: "./chapters/Week7"
         },
         predefinedOutput: true
@@ -996,38 +1033,98 @@
     </script>
     <script>kernelName = 'python3'</script>
 
-              </div>
+                </article>
               
-        </div>
-    </div>
-    
-    
-    <div class='prev-next-bottom'>
-        
-    <a class='left-prev' id="prev-link" href="eofs.html" title="previous page">EOFs via Eigenanalysis</a>
-    <a class='right-next' id="next-link" href="../Week8/epilogue.html" title="next page">Epilogue</a>
 
-    </div>
-    <footer class="footer mt-5 mt-md-0">
-    <div class="container">
-      <p>
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#case-study-north-atlantic-oscillation-nao">Case Study: North Atlantic Oscillation (NAO)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a-note-about-missing-data">A Note about Missing Data</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-1-remove-the-mean">Step 1: Remove the mean</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-2-standardizing-the-data-optional">Step 2: Standardizing the data (optional)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-3-weighting-gridded-data">Step 3: Weighting gridded data</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-4-convert-3d-array-to-2d-matrix">Step 4: Convert 3D array to 2D matrix</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-5-calculate-the-covariance-matrix">Step 5: Calculate the covariance matrix</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-6-perform-eigenanalysis-of-the-covariance-matrix">Step 6: Perform eigenanalysis of the covariance matrix</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#presenting-eofs-pcs">Presenting EOFs/PCs</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#how-many-eofs-pcs-are-meaningful">How many EOFs/PCs are meaningful?</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Karen Smith
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
         
-          By Karen Smith<br/>
-        
-            &copy; Copyright 2020.<br/>
-      </p>
+
+      </main>
     </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
   </footer>
-</main>
-
-
-      </div>
-    </div>
-
-    
-  <script src="../../_static/js/index.3da636dd464baa7582d2.js"></script>
-
-
-    
   </body>
 </html>
