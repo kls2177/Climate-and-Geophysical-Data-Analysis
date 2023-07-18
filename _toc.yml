@@ -7,56 +7,56 @@
   sections:
     - file: chapters/Week1a/goodpractice
     - file: chapters/Week1a/pitfalls
-#- file: chapters/Week1b/descriptivestats
-#  sections:
-#    - file: chapters/Week1b/summarystats
-#    - file: chapters/Week1b/Variance_Example
-#    - file: chapters/Week1b/what_is_pdf
-#    - file: chapters/Week1b/summarystats2
-#- file: chapters/Week2/hypothesis_testing
-#  sections:
-#    - file: chapters/Week2/probability
-#    - file: chapters/Week2/normdist
-#    - file: chapters/Week2/zstat
-#    - file: chapters/Week2/signal2noise
-#    - file: chapters/Week2/central_limit_theorem
-#    - file: chapters/Week2/statistical_significance
-#    - file: chapters/Week2/tstat
-#    - file: chapters/Week2/resampling
-#- file: chapters/Week3/linreg
-#  sections:
-#    - file: chapters/Week3/basics_linreg
-#    - file: chapters/Week3/confidence_intervals
-#    - file: chapters/Week3/goodness
-#    - file: chapters/Week3/assumptions
-#    - file: chapters/Week3/composites
-#    - file: chapters/Week3/filtering
-#- file: chapters/Week4/corr
-#  sections:
-#    - file: chapters/Week4/corr_rev
-#    - file: chapters/Week4/stat_corr
-#    - file: chapters/Week4/nonpar_corr
-#    - file: chapters/Week4/autocorr
-#- file: chapters/Week5/persistence
-#  sections:
-#    - file: chapters/Week5/autocorr_example
-#    - file: chapters/Week5/red_noise
-#    - file: chapters/Week5/autocorr_implications
-#    - file: chapters/Week5/n_eff
-#- file: chapters/Week6/filt
-#  sections:
-#    - file: chapters/Week6/filtering_in_time
-#    - file: chapters/Week6/Harmonics
-#    - file: chapters/Week6/filtering_in_freq1
-#    - file: chapters/Week6/filtering_in_freq2
-#    - file: chapters/Week6/filtering_in_freq3
-#    - file: chapters/Week6/leak
-#    - file: chapters/Week6/convolution_filters_in_time
-#- file: chapters/Week7/pca
-#  sections:
-#    - file: chapters/Week7/Intro_to_PCA
-#    - file: chapters/Week7/linalg
-#    - file: chapters/Week7/eig
-#    - file: chapters/Week7/eofs
-#    - file: chapters/Week7/naoeof
-#- file: chapters/Week8/epilogue
+%- file: chapters/Week1b/descriptivestats
+%  sections:
+%    - file: chapters/Week1b/summarystats
+%    - file: chapters/Week1b/Variance_Example
+%    - file: chapters/Week1b/what_is_pdf
+%    - file: chapters/Week1b/summarystats2
+%- file: chapters/Week2/hypothesis_testing
+%  sections:
+%    - file: chapters/Week2/probability
+%    - file: chapters/Week2/normdist
+%    - file: chapters/Week2/zstat
+%    - file: chapters/Week2/signal2noise
+%    - file: chapters/Week2/central_limit_theorem
+%    - file: chapters/Week2/statistical_significance
+%    - file: chapters/Week2/tstat
+%    - file: chapters/Week2/resampling
+%- file: chapters/Week3/linreg
+%  sections:
+%    - file: chapters/Week3/basics_linreg
+%    - file: chapters/Week3/confidence_intervals
+%    - file: chapters/Week3/goodness
+%    - file: chapters/Week3/assumptions
+%    - file: chapters/Week3/composites
+%    - file: chapters/Week3/filtering
+%- file: chapters/Week4/corr
+%  sections:
+%    - file: chapters/Week4/corr_rev
+%    - file: chapters/Week4/stat_corr
+%    - file: chapters/Week4/nonpar_corr
+%    - file: chapters/Week4/autocorr
+%- file: chapters/Week5/persistence
+%  sections:
+%    - file: chapters/Week5/autocorr_example
+%    - file: chapters/Week5/red_noise
+%    - file: chapters/Week5/autocorr_implications
+%    - file: chapters/Week5/n_eff
+%- file: chapters/Week6/filt
+%  sections:
+%    - file: chapters/Week6/filtering_in_time
+%    - file: chapters/Week6/Harmonics
+%    - file: chapters/Week6/filtering_in_freq1
+%    - file: chapters/Week6/filtering_in_freq2
+%    - file: chapters/Week6/filtering_in_freq3
+%    - file: chapters/Week6/leak
+%    - file: chapters/Week6/convolution_filters_in_time
+%- file: chapters/Week7/pca
+%  sections:
+%    - file: chapters/Week7/Intro_to_PCA
+%    - file: chapters/Week7/linalg
+%    - file: chapters/Week7/eig
+%    - file: chapters/Week7/eofs
+%    - file: chapters/Week7/naoeof
+%- file: chapters/Week8/epilogue
