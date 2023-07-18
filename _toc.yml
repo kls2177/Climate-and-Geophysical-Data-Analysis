@@ -1,6 +1,5 @@
 format: jb-book
 root: chapters/index
-title: ""
 parts:
 - caption: Week 1
   chapters:
