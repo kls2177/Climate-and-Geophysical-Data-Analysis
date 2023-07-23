@@ -58,5 +58,5 @@ Stop global warming, become a pirate! [image source here][pirateurl]
 [quote]: https://en.wikipedia.org/wiki/Lies,_damned_lies,_and_statistics
 [xckd]: https://xkcd.com/882/
 [pirateurl]: https://commons.wikimedia.org/wiki/File:PiratesVsTemp(en).svg
-[ustc_stn]: https://weather.utsc.utoronto.ca/data/
+[utsc_stn]: https://weather.utsc.utoronto.ca/data/
 [jet]: https://www.climate-lab-book.ac.uk/2014/end-of-the-rainbow/
