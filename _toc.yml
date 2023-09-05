@@ -20,7 +20,7 @@ chapters:
   sections:
   - file: chapters/Week2/probability
   - file: chapters/Week2/normdist
-  - file: chapters/Week2/ENSO
+  - file: chapters/Week2/enso
   - file: chapters/Week2/zstat
   - file: chapters/Week2/signal2noise
   - file: chapters/Week2/central_limit_theorem
