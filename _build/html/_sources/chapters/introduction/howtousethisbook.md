@@ -1,6 +1,6 @@
 # How to use this book
 
-This courseware uses [Jupyter Notebooks][jupyter] to display python code and it uses [binder][https://mybinder.org/] and [Thebe][thebe] to allow users to interact with the code.
+This courseware uses [Jupyter Notebooks][jupyter] to display python code and it uses [binder][bndr] and [Thebe][thebe] to allow users to interact with the code.
 
 *Note that Google Chrome or Safari are* ***compatible browsers.***
 
@@ -21,7 +21,7 @@ Look for this "Live Code" button on the section pages to interact with the code 
 ```
 
 [jupyter]: https://jupyter.org/
-[binder]: https://mybinder.org/
+[bndr]: https://mybinder.org/
 [thebe]: https://thebe.readthedocs.io/en/latest/index.html
 [anaconda]: https://www.anaconda.com/
 [install]: https://docs.anaconda.com/anaconda/install/

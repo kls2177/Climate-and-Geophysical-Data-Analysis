@@ -4,7 +4,7 @@
 As we have seen, statistics are an invaluable way to support hypotheses, inform scientific experimental design and extract signal from noisy data. Yet, statistics can often be misused. Here is what statistics are not good for:
 - Replacing good scientific thinking
   - statistics cannot “prove” anything and all statistical tests have a chance of being wrong.
-- Being blindly applied
+- Fishing for a desired result
   - performing statistical analysis means carefully considering the right tools to use for each unique situation.
 - Making-up for a lack of data
   - statistical analysis cannot replace sufficient, high-quality data.
@@ -25,13 +25,13 @@ name: rainfall
 Non-zero Hourly Rainfall at [UTSC Weather Station][utsc_stn]
 ```
 ### Small sample sizes
-- sometimes you simply do not have enough data to perform any analysis
+- sometimes you simply do not have enough data to perform any analysis.
 
 ### Biased data
 - sometimes you do have enough data, but the data is biased. Explore potential biases, acknowledge these biases and avoid generalizing your results if you know your data is biased.
 
 ### Data mining
-- a large data set might show that there is a statistically significant probability that X is related to Y if you look long enough.
+- a large data set might show that there is a statistically significant probability that $X$ is related to $Y$ if you look long enough.
 ```{figure} green_jelly_beans.png
 ---
 scale: 75%
@@ -51,7 +51,7 @@ Stop global warming, become a pirate! [image source here][pirateurl]
 ```
 
 ### Plots that mislead
-- be mindful that we humans make quantitative assumptions based on how data is presented. Be objective in your data presentation. [Read more about how the choice of colour is so important, especially for those with red-green colour-blindness][jet]
+- be mindful that we humans make quantitative assumptions based on how data is presented. Be objective in your data presentation. [Read more about how the choice of colour is so important, especially for those with red-green colour-blindness][jet].
 
 
 
