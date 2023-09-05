@@ -66,6 +66,8 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="canonical" href="https://kls2177.github.io/Climate-and-Geophysical-Data-Analysis/chapters/index.html/chapters/Week2/resampling.html" />
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Linear Regression" href="../Week3/linreg.html" />
+    <link rel="prev" title="The t-Statistic" href="tstat.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="None"/>
   </head>
@@ -148,7 +150,7 @@ const thebe_selector_output = ".output, .cell_output"
 </a></div>
         <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
-        <ul class="nav bd-sidenav">
+        <ul class="current nav bd-sidenav">
 <li class="toctree-l1 has-children"><a class="reference internal" href="../introduction/intro.html">Introduction</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../introduction/aboutthisbook.html">About this book</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../introduction/howtousethisbook.html">How to use this book</a></li>
@@ -159,6 +161,66 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="../Week1a/pitfalls.html">Lies, damned lies and statistics…</a></li>
 </ul>
 </li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../Week1b/descriptivestats.html">Descriptive Statistics</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../Week1b/summarystats.html">Summary Statistics: Part I</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Week1b/Variance_Example.html">Example: Sensitivity of Standard Deviation to Sampling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Week1b/what_is_pdf.html">What is a distribution?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Week1b/summarystats2.html">Summary Statistics: Part II</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="hypothesis_testing.html">Statistical Hypothesis Testing</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="probability.html">Basic Probability</a></li>
+<li class="toctree-l2"><a class="reference internal" href="normdist.html">The Standard Normal Distribution</a></li>
+<li class="toctree-l2"><a class="reference internal" href="zstat.html">The <em>z</em>-Statistic</a></li>
+<li class="toctree-l2"><a class="reference internal" href="signal2noise.html">Signal-to-Noise</a></li>
+<li class="toctree-l2"><a class="reference internal" href="central_limit_theorem.html">The Central Limit Theorem</a></li>
+<li class="toctree-l2"><a class="reference internal" href="statistical_significance.html">Estimating Statistical Significance with a <em>z</em>-test</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tstat.html">The <em>t</em>-Statistic</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Resampling Techniques</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../Week3/linreg.html">Linear Regression</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../Week3/basics_linreg.html">Introduction to Linear Regression</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Week3/confidence_intervals.html">Confidence Intervals</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Week3/goodness.html">Goodness of Fit</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Week3/assumptions.html">Assumptions of Linear Regression</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Week3/composites.html">Compositing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Week3/filtering.html">Filtering or Detrending using Regression</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../Week4/corr.html">Correlation</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-6"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../Week4/corr_rev.html">Review of Correlation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Week4/stat_corr.html">Statistical Significance of Correlation Coefficients</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Week4/nonpar_corr.html">Non-parametric Correlations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Week4/autocorr.html">Autocorrelation</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../Week5/persistence.html">Persistence in Time Series</a><input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-7"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../Week5/autocorr_example.html">Autocorrelation in Climate and Geophysical Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Week5/red_noise.html">Introduction to Red Noise</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Week5/autocorr_implications.html">Example: Correlation with Memory</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Week5/n_eff.html">Accounting for Autocorrelation: Effective Sample Size</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../Week6/filt.html">Time Series Analysis</a><input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-8"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../Week6/filtering_in_time.html">Filtering in the Time Domain: Part I</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Week6/Harmonics.html">Filtering in the Time Domain: Part II</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Week6/filtering_in_freq1.html">Filtering in the Frequency Domain: Discrete Fourier Transform</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Week6/filtering_in_freq2.html">Fast Fourier Transform</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Week6/filtering_in_freq3.html">Continuous Power Spectrum and the Significance of Spectral Peaks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Week6/leak.html">Spectral Leakage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Week6/convolution_filters_in_time.html">Convolution and Filtering in the Time Domain</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../Week7/pca.html">Patterns in Multivariate Data</a><input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-9"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../Week7/Intro_to_PCA.html">Introduction to Principal Component Analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Week7/linalg.html">Review of Linear Algebra</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Week7/eig.html">Eigenanalysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Week7/eofs.html">EOFs via Eigenanalysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Week7/naoeof.html">EOFs with Real Data</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../Week8/epilogue.html">Epilogue</a></li>
 </ul>
 
     </div>
@@ -441,7 +503,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.lines.Line2D at 0x1794eea40&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.lines.Line2D at 0x17525aad0&gt;
 </pre></div>
 </div>
 <img alt="../../_images/eaaa1ca2aa02ba27ce76db8f58090765c952cb28acbd7b88dbc1c278aa64e6b9.png" src="../../_images/eaaa1ca2aa02ba27ce76db8f58090765c952cb28acbd7b88dbc1c278aa64e6b9.png" />
@@ -500,7 +562,7 @@ The difference is 1.249
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/var/folders/m0/hylw02j53db4s63gklflxs800000gn/T/ipykernel_67503/2136107204.py:2: DeprecationWarning: `np.int` is a deprecated alias for the builtin `int`. To silence this warning, use `int` by itself. Doing this will not modify any behavior and is safe. When replacing `np.int`, you may wish to use e.g. `np.int64` or `np.int32` to specify the precision. If you wish to review your current use, check the release note link for additional information.
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/var/folders/m0/hylw02j53db4s63gklflxs800000gn/T/ipykernel_62091/2136107204.py:2: DeprecationWarning: `np.int` is a deprecated alias for the builtin `int`. To silence this warning, use `int` by itself. Doing this will not modify any behavior and is safe. When replacing `np.int`, you may wish to use e.g. `np.int64` or `np.int32` to specify the precision. If you wish to review your current use, check the release note link for additional information.
 Deprecated in NumPy 1.20; for more details and guidance: https://numpy.org/devdocs/release/1.20.0-notes.html#deprecations
   bins = np.linspace(np.min(NAO_diff_bootstrap),np.max(NAO_diff_bootstrap),np.int((np.max(NAO_diff_bootstrap)-np.min(NAO_diff_bootstrap))/0.01))
 </pre></div>
@@ -528,7 +590,7 @@ Deprecated in NumPy 1.20; for more details and guidance: https://numpy.org/devdo
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/8a40903036a015bb456b7111bcb26ce6aec4d570fb3c30ff71954b66e62bbfc2.png" src="../../_images/8a40903036a015bb456b7111bcb26ce6aec4d570fb3c30ff71954b66e62bbfc2.png" />
+<img alt="../../_images/0a5665b42f93df7227dd4968288edc6a4f4d49da8afc7c88163ccefb0c2df69e.png" src="../../_images/0a5665b42f93df7227dd4968288edc6a4f4d49da8afc7c88163ccefb0c2df69e.png" />
 </div>
 </div>
 <p>Now, we can clearly visualize that our observed difference is in the very tail of our bootstrapped sampling distribution, indicating that the probability of obtaining such a large difference is very low. How low? Let’s see.</p>
@@ -540,7 +602,7 @@ Deprecated in NumPy 1.20; for more details and guidance: https://numpy.org/devdo
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>4.999999999999449e-05
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>9.999999999987796e-05
 </pre></div>
 </div>
 </div>
@@ -572,7 +634,7 @@ Deprecated in NumPy 1.20; for more details and guidance: https://numpy.org/devdo
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.lines.Line2D at 0x179d93d00&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.lines.Line2D at 0x175b019c0&gt;
 </pre></div>
 </div>
 <img alt="../../_images/2b17ec8a82bb97360352f3eb854ea92448f28a673b7c079ab96a8ae79d9a36af.png" src="../../_images/2b17ec8a82bb97360352f3eb854ea92448f28a673b7c079ab96a8ae79d9a36af.png" />
@@ -627,7 +689,7 @@ Deprecated in NumPy 1.20; for more details and guidance: https://numpy.org/devdo
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/d4097c1392306bbe4b8aaa10483c2fb1b3a2f8c700d8fee6ab1f39845fee24f4.png" src="../../_images/d4097c1392306bbe4b8aaa10483c2fb1b3a2f8c700d8fee6ab1f39845fee24f4.png" />
+<img alt="../../_images/13429645cb5308bb7c28a6f6f7e3c4f67ec4e1fcf96f1d0429ff87e74031b135.png" src="../../_images/13429645cb5308bb7c28a6f6f7e3c4f67ec4e1fcf96f1d0429ff87e74031b135.png" />
 </div>
 </div>
 <p>As you can see we get a slightly different slope and y-intercept each time we remove a data point.</p>
@@ -732,6 +794,24 @@ CI&#39;s for y-intercept: -25.381890617345103 -32.50697006559629
   
     <div class="footer-article-item"><!-- Previous / next buttons -->
 <div class="prev-next-area">
+    <a class="left-prev"
+       href="tstat.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">The <em>t</em>-Statistic</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="../Week3/linreg.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Linear Regression</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
 </div></div>
   
 </div>
