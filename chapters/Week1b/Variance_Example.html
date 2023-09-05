@@ -455,13 +455,11 @@ document.write(`
 <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Temperature ($^{\circ}$C)&quot;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Time Step&quot;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Hourly SAT, UTSC (2015-2020)&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0.5, 1.0, &#39;Hourly SAT, UTSC (2015-2020)&#39;)
-</pre></div>
-</div>
 <img alt="../../_images/e9303cc843b4cddfe32436a953a4751df5e258b7af0eb2f2f20a31a8379b9e75.png" src="../../_images/e9303cc843b4cddfe32436a953a4751df5e258b7af0eb2f2f20a31a8379b9e75.png" />
 </div>
 </div>
@@ -544,7 +542,7 @@ document.write(`
 <span class="c1"># plot data using a simple plt.plot() command, but now using our x-axis variable, xindex</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xindex</span><span class="p">,</span><span class="n">X</span><span class="p">,</span><span class="s1">&#39;r&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">)</span> <span class="c1"># add zero line</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="n">avg</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Mean&quot;</span><span class="p">)</span> <span class="c1"># horizontal line for the mean</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="n">avg</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;lightgray&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Mean&quot;</span><span class="p">)</span> <span class="c1"># horizontal line for the mean</span>
 
 <span class="c1"># add standard deviation as text</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mf">0.95</span><span class="p">,</span> <span class="mf">0.925</span><span class="p">,</span><span class="s1">&#39;$s = $&#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">v</span><span class="p">,</span><span class="mi">2</span><span class="p">))</span> <span class="o">+</span> <span class="s1">&#39;$^o$C&#39;</span><span class="p">,</span> <span class="n">ha</span><span class="o">=</span><span class="s1">&#39;right&#39;</span><span class="p">,</span> 
@@ -561,14 +559,12 @@ document.write(`
 
 <span class="c1"># add legend</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s2">&quot;lower right&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x115a6b2e0&gt;
-</pre></div>
-</div>
-<img alt="../../_images/57523f4a267989191626c7405763dbdfd6c44eee550c262426e12dcddeec788b.png" src="../../_images/57523f4a267989191626c7405763dbdfd6c44eee550c262426e12dcddeec788b.png" />
+<img alt="../../_images/10882c3493668fa631e85edf6ab53f3b752a518fb68ed928296a0870aab08072.png" src="../../_images/10882c3493668fa631e85edf6ab53f3b752a518fb68ed928296a0870aab08072.png" />
 </div>
 </div>
 <p>Now, let’s imagine that instead of hourly data, we only sample the temperature once per month. How does this change the standard deviation?</p>
@@ -598,7 +594,7 @@ document.write(`
 <span class="c1"># plot only data sampled once-per-month</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xindex</span><span class="p">[::</span><span class="mi">720</span><span class="p">],</span><span class="n">X</span><span class="p">[::</span><span class="mi">720</span><span class="p">],</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> 
 <span class="n">plt</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">)</span> <span class="c1"># add zero line</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="n">avg_mnth</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Mean&quot;</span><span class="p">)</span> <span class="c1"># horizontal line for the mean</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="n">avg_mnth</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;lightgray&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Mean&quot;</span><span class="p">)</span> <span class="c1"># horizontal line for the mean</span>
 
 <span class="c1"># add standard deviation as text</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mf">0.95</span><span class="p">,</span> <span class="mf">0.925</span><span class="p">,</span><span class="s1">&#39;$s = $&#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">v_mnth</span><span class="p">,</span><span class="mi">2</span><span class="p">))</span> <span class="o">+</span> <span class="s1">&#39;$^o$C&#39;</span><span class="p">,</span> <span class="n">ha</span><span class="o">=</span><span class="s1">&#39;right&#39;</span><span class="p">,</span> 
@@ -615,14 +611,12 @@ document.write(`
 
 <span class="c1"># add legend</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s2">&quot;lower right&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x115bc3f40&gt;
-</pre></div>
-</div>
-<img alt="../../_images/f7632cc4674140d9fb277448ecdac993175fa6d860b0a002b0dbb9e5d82385bb.png" src="../../_images/f7632cc4674140d9fb277448ecdac993175fa6d860b0a002b0dbb9e5d82385bb.png" />
+<img alt="../../_images/80b1a88b1ec06d40cd274495a8d896c5026575b35f69196ad79ccf8258dc3495.png" src="../../_images/80b1a88b1ec06d40cd274495a8d896c5026575b35f69196ad79ccf8258dc3495.png" />
 </div>
 </div>
 <p>Now, let’s imagine that we only have one month of hourly data. Let’s choose the last month of our record (December 2020). How does this change the standard deviation?</p>
@@ -652,7 +646,7 @@ document.write(`
 <span class="c1"># plot only last month of data, December 2018</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xindex</span><span class="p">[</span><span class="o">-</span><span class="mi">720</span><span class="p">:],</span><span class="n">X</span><span class="p">[</span><span class="o">-</span><span class="mi">720</span><span class="p">:],</span> <span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;red&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">)</span> <span class="c1"># add zero line</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="n">avg_dec</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Mean&quot;</span><span class="p">)</span> <span class="c1"># horizontal line for the mean</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="n">avg_dec</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;lightgray&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Mean&quot;</span><span class="p">)</span> <span class="c1"># horizontal line for the mean</span>
 
 <span class="c1"># add standard deviation as text</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mf">0.95</span><span class="p">,</span> <span class="mf">0.925</span><span class="p">,</span><span class="s1">&#39;$\sigma = $&#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">v_dec</span><span class="p">,</span><span class="mi">2</span><span class="p">))</span> <span class="o">+</span> <span class="s1">&#39;$^o$C&#39;</span><span class="p">,</span> <span class="n">ha</span><span class="o">=</span><span class="s1">&#39;right&#39;</span><span class="p">,</span> 
@@ -669,14 +663,12 @@ document.write(`
 
 <span class="c1"># add legend</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s2">&quot;lower right&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x1157f6ec0&gt;
-</pre></div>
-</div>
-<img alt="../../_images/f9b04ef7d1b97358bdc2df50f2adb6531c6dcbb11f8958e79d90736135063ae6.png" src="../../_images/f9b04ef7d1b97358bdc2df50f2adb6531c6dcbb11f8958e79d90736135063ae6.png" />
+<img alt="../../_images/bd0ce7b60cc5d5eae524308051f23931ee32fc835ba81de0bb34e8b9b870b7d7.png" src="../../_images/bd0ce7b60cc5d5eae524308051f23931ee32fc835ba81de0bb34e8b9b870b7d7.png" />
 </div>
 </div>
 </section>

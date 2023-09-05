@@ -468,7 +468,7 @@ s &amp;= \text{sample standard deviation}
 \[  
 \overline{x} = \frac{1}{N}\sum_{i=1}^{N}x_i 
 \]</div>
-<p>If we assume that our sample is a measurement taken at a fixed location but at a certain frequency in time (aka, a time series), then the overbar denotes the sample time mean and the subscript i denotes the time step.</p>
+<p>If we assume that our sample is a measurement taken at a fixed location but at a certain frequency in time (aka, a time series), then the overbar denotes the sample time mean and the subscript <span class="math notranslate nohighlight">\(i\)</span> denotes the time step.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>The sample mean is an <em>unbiased</em> estimate of the population mean, <span class="math notranslate nohighlight">\(\mu\)</span>.</p>
@@ -488,7 +488,7 @@ s &amp;= \text{sample standard deviation}
 \[
 x^{\prime}_i = x_i - \overline{x}
 \]</div>
-<p>Again, assuming that our sample is a time series, then <span class="math notranslate nohighlight">\(x^{\prime}_i\)</span> represents the deviations about the sample mean.</p>
+<p>Again, assuming that our sample is a time series, then <span class="math notranslate nohighlight">\(x^{\prime}_i\)</span> represents the deviations about the time mean.</p>
 <p>The variance is in squared units for whatever our variable <span class="math notranslate nohighlight">\(X\)</span> is. To get an estimate of the variability of <span class="math notranslate nohighlight">\(X\)</span> from our sample in the correct units, we use the sample <strong>standard deviation</strong>:</p>
 <div class="math notranslate nohighlight">
 \[
@@ -497,7 +497,7 @@ s = \sqrt{\overline{x^{\prime 2}}}
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>The sample variance is an <em>unbiased</em> estimate of the population variance, <span class="math notranslate nohighlight">\(\sigma^2\)</span>.</p>
-<p>But notice that we are dividing by <span class="math notranslate nohighlight">\(N-1\)</span> instead of <span class="math notranslate nohighlight">\(N\)</span>. Since the calculation of the sample variance depends on the sample mean (which is itself an approximation and introduces some bias), then we need to divide by <span class="math notranslate nohighlight">\(N-1\)</span> rather than <span class="math notranslate nohighlight">\(N\)</span> to remove this bias. You can find out more <a class="reference external" href="https://www.youtube.com/watch?v=D1hgiAla3KI">here</a>.</p>
+<p>Notice that we are dividing by <span class="math notranslate nohighlight">\(N-1\)</span> instead of <span class="math notranslate nohighlight">\(N\)</span>. Since the calculation of the sample variance depends on the sample mean (which is itself an approximation and introduces some bias), then we need to divide by <span class="math notranslate nohighlight">\(N-1\)</span> rather than <span class="math notranslate nohighlight">\(N\)</span> to remove this bias. You can find out more <a class="reference external" href="https://www.youtube.com/watch?v=D1hgiAla3KI">here</a>.</p>
 </div>
 </section>
 </section>
