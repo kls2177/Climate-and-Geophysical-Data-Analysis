@@ -1,8 +1,6 @@
 Statistical Hypothesis Testing
 =======================
 
-(under construction)
+In this section, we will explore the basic concepts of statistical hypothesis testing and how we apply simple statistical tests to accept or reject a *null* hypothesis (more on this later). Suppose you hypothesize that winters in Toronto are shorter now than they were a generation ago. How would you test this hypothesis? 
 
-In this section, we will explore the basic concepts of statistical hypothesis testing and how we apply simple statistical tests to accept or reject the *null* hypothesis (more on this later).
-
-Let's take a look at an example from the climate science literature to get us started.
+Key to hypothesis testing is an understanding of probability. Let's start with this.

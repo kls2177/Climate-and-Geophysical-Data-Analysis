@@ -450,43 +450,8 @@ document.write(`
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># load data: UTSC air temperature data for the years 2015-2018. in deg C. Data are collected hourly.</span>
-<span class="n">filename</span> <span class="o">=</span> <span class="s1">&#39;UTSC_TC_20152018.csv&#39;</span>
+<span class="n">filename</span> <span class="o">=</span> <span class="s1">&#39;UTSC_TC_20152020.csv&#39;</span>
 <span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">genfromtxt</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">delimiter</span> <span class="o">=</span> <span class="s1">&#39;,&#39;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">FileNotFoundError</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">line</span> <span class="mi">3</span>
-<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="c1"># load data: UTSC air temperature data for the years 2015-2018. in deg C. Data are collected hourly.</span>
-<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="n">filename</span> <span class="o">=</span> <span class="s1">&#39;UTSC_TC_20152018.csv&#39;</span>
-<span class="ne">----&gt; </span><span class="mi">3</span> <span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">genfromtxt</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">delimiter</span> <span class="o">=</span> <span class="s1">&#39;,&#39;</span><span class="p">)</span>
-
-<span class="nn">File /opt/anaconda3/envs/ccia/lib/python3.10/site-packages/numpy/lib/npyio.py:1934,</span> in <span class="ni">genfromtxt</span><span class="nt">(fname, dtype, comments, delimiter, skip_header, skip_footer, converters, missing_values, filling_values, usecols, names, excludelist, deletechars, replace_space, autostrip, case_sensitive, defaultfmt, unpack, usemask, loose, invalid_raise, max_rows, encoding, ndmin, like)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1932</span>     <span class="n">fname</span> <span class="o">=</span> <span class="n">os_fspath</span><span class="p">(</span><span class="n">fname</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1933</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">fname</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
-<span class="ne">-&gt; </span><span class="mi">1934</span>     <span class="n">fid</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">lib</span><span class="o">.</span><span class="n">_datasource</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">fname</span><span class="p">,</span> <span class="s1">&#39;rt&#39;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="n">encoding</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1935</span>     <span class="n">fid_ctx</span> <span class="o">=</span> <span class="n">contextlib</span><span class="o">.</span><span class="n">closing</span><span class="p">(</span><span class="n">fid</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1936</span> <span class="k">else</span><span class="p">:</span>
-
-<span class="nn">File /opt/anaconda3/envs/ccia/lib/python3.10/site-packages/numpy/lib/_datasource.py:193,</span> in <span class="ni">open</span><span class="nt">(path, mode, destpath, encoding, newline)</span>
-<span class="g g-Whitespace">    </span><span class="mi">156</span><span class="w"> </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="g g-Whitespace">    </span><span class="mi">157</span><span class="sd"> Open `path` with `mode` and return the file object.</span>
-<span class="g g-Whitespace">    </span><span class="mi">158</span><span class="sd"> </span>
-<span class="sd">   (...)</span>
-<span class="g g-Whitespace">    </span><span class="mi">189</span><span class="sd"> </span>
-<span class="g g-Whitespace">    </span><span class="mi">190</span><span class="sd"> &quot;&quot;&quot;</span>
-<span class="g g-Whitespace">    </span><span class="mi">192</span> <span class="n">ds</span> <span class="o">=</span> <span class="n">DataSource</span><span class="p">(</span><span class="n">destpath</span><span class="p">)</span>
-<span class="ne">--&gt; </span><span class="mi">193</span> <span class="k">return</span> <span class="n">ds</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">mode</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="n">encoding</span><span class="p">,</span> <span class="n">newline</span><span class="o">=</span><span class="n">newline</span><span class="p">)</span>
-
-<span class="nn">File /opt/anaconda3/envs/ccia/lib/python3.10/site-packages/numpy/lib/_datasource.py:533,</span> in <span class="ni">DataSource.open</span><span class="nt">(self, path, mode, encoding, newline)</span>
-<span class="g g-Whitespace">    </span><span class="mi">530</span>     <span class="k">return</span> <span class="n">_file_openers</span><span class="p">[</span><span class="n">ext</span><span class="p">](</span><span class="n">found</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="n">mode</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">531</span>                               <span class="n">encoding</span><span class="o">=</span><span class="n">encoding</span><span class="p">,</span> <span class="n">newline</span><span class="o">=</span><span class="n">newline</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">532</span> <span class="k">else</span><span class="p">:</span>
-<span class="ne">--&gt; </span><span class="mi">533</span>     <span class="k">raise</span> <span class="ne">FileNotFoundError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">path</span><span class="si">}</span><span class="s2"> not found.&quot;</span><span class="p">)</span>
-
-<span class="ne">FileNotFoundError</span>: UTSC_TC_20152018.csv not found.
 </pre></div>
 </div>
 </div>
@@ -524,9 +489,9 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[  3.296   5.958   0.031  -6.661   4.382   6.745  21.94   19.31  -11.06
-  -5.976  17.6    20.33   11.15    1.199  14.84   23.29   -2.393   1.442
-   1.401 -10.36   21.4    18.59    6.123   2.861  -2.786]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[-1.862 -0.973 22.02  31.61   0.579 20.62  -2.415  4.722 10.63  18.09
+  3.809 20.89   5.176  6.284 -1.191  7.161 25.39   3.047 -0.721 29.35
+  2.768  2.143 -3.905 18.6    4.422]
 </pre></div>
 </div>
 </div>
@@ -541,7 +506,7 @@ document.write(`
 <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;SAT&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Arbitrary&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">([])</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Values drawn from UTSC SAT data (2015-2018)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Values drawn from UTSC SAT data (2015-2020)&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="o">-</span><span class="mi">25</span><span class="p">,</span><span class="mi">35</span><span class="p">)</span>
 
 <span class="c1"># now, plot x along the x-axis</span>
@@ -565,7 +530,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/ca604255e464a731d5f4b48e2eed1764c6bd93ab9a639052764983d449418b08.png" src="../../_images/ca604255e464a731d5f4b48e2eed1764c6bd93ab9a639052764983d449418b08.png" />
+<img alt="../../_images/5cb6cab6d7708283ea21b5f810da6b711952d52cf131073bb217afa10547c8c6.png" src="../../_images/5cb6cab6d7708283ea21b5f810da6b711952d52cf131073bb217afa10547c8c6.png" />
 </div>
 </div>
 <p>We can see from the plot above that there are more points clustered in certain regions.</p>
@@ -592,7 +557,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(array([0, 0, 2, 2, 2, 7, 3, 2, 3, 4, 0, 0]), array([-25, -20, -15, -10,  -5,   0,   5,  10,  15,  20,  25,  30,  35]))
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(array([0, 0, 0, 0, 6, 7, 3, 1, 2, 3, 2, 1]), array([-25, -20, -15, -10,  -5,   0,   5,  10,  15,  20,  25,  30,  35]))
 </pre></div>
 </div>
 </div>
@@ -624,10 +589,10 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(-30, 35)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(-30.0, 35.0)
 </pre></div>
 </div>
-<img alt="../../_images/727e89d2311ede55c18196acd77b7c3228a630da0b00e732561dc6d30b746310.png" src="../../_images/727e89d2311ede55c18196acd77b7c3228a630da0b00e732561dc6d30b746310.png" />
+<img alt="../../_images/2ba3aa116e217975690eb505b6fc45f23808734afe4ee479340e1fc40bdf6b31.png" src="../../_images/2ba3aa116e217975690eb505b6fc45f23808734afe4ee479340e1fc40bdf6b31.png" />
 </div>
 </div>
 <p>What happened? Why do the two histograms look so different even though they are both drawn from the same distribution?</p>
@@ -659,10 +624,10 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(-30, 35)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(-30.0, 35.0)
 </pre></div>
 </div>
-<img alt="../../_images/89b00c6db9c2f5b8394b5b3f1708e152cfe33a67e1b54d9803e312038a4a4077.png" src="../../_images/89b00c6db9c2f5b8394b5b3f1708e152cfe33a67e1b54d9803e312038a4a4077.png" />
+<img alt="../../_images/1e3583425c16b01fdbacbe07673e279bc1141cbed5b19f95971066a2ca9ae92f.png" src="../../_images/1e3583425c16b01fdbacbe07673e279bc1141cbed5b19f95971066a2ca9ae92f.png" />
 </div>
 </div>
 <p>Notice that summing over the frequencies of each bin equals 1 or 100%. Another way to express this is by the <strong>cumulative probability distribution</strong>, which is simply the cumulative sum over the probability distribution.</p>
@@ -676,7 +641,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[   3    9   41   97  206  383  516  635  800  946  993 1000]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[  3   6  27  78 181 351 499 621 787 922 983 990]
 </pre></div>
 </div>
 </div>
@@ -712,10 +677,10 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(-30, 35)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(-30.0, 35.0)
 </pre></div>
 </div>
-<img alt="../../_images/16199c18409cfa992a1c09dddb0559a6f7c4d2d759541b5567fb17035ad3069c.png" src="../../_images/16199c18409cfa992a1c09dddb0559a6f7c4d2d759541b5567fb17035ad3069c.png" />
+<img alt="../../_images/81d0a5336433f697cfe1d968d19940a854d926df1d40b7fe85d28989836908d3.png" src="../../_images/81d0a5336433f697cfe1d968d19940a854d926df1d40b7fe85d28989836908d3.png" />
 </div>
 </div>
 <p>As we can see in the figure above, the cumulative distribution will always sum to 1. The gray horizontal lines are plotted for a value of 0.5. This indicates that 50% of the sample data values fall within bins below this line and 50% fall within the bins above this line. Note that the 50% cut-off likely lies somewhere within the width of the intersecting bin.</p>
