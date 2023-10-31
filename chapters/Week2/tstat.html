@@ -450,7 +450,7 @@ document.write(`
 z &amp;= \frac{\overline{x} - \mu}{\frac{\sigma}{\sqrt{N}}}
 \end{align}
 \]</div>
-<p>To use this equation, we need to know the population standard deviation, <span class="math notranslate nohighlight">\(\sigma\)</span>, i.e. the standard deviation from the underlying distribution from which the sample is drawn. But often, we don’t know what the underlying distribution. If we have a large enough sample, the sample standard deviation <span class="math notranslate nohighlight">\(s\)</span> is a good approximation of the true population <span class="math notranslate nohighlight">\(\sigma\)</span>.</p>
+<p>To use this equation, we need to know the population standard deviation, <span class="math notranslate nohighlight">\(\sigma\)</span>, i.e. the standard deviation from the underlying distribution from which the sample is drawn. But often, we don’t know what the underlying distribution is. If we have a large enough sample, the sample standard deviation <span class="math notranslate nohighlight">\(s\)</span> is a good approximation of the true population <span class="math notranslate nohighlight">\(\sigma\)</span>.</p>
 <p>However, if <span class="math notranslate nohighlight">\(N\)</span> &lt; 30, this is not the case, and the <span class="math notranslate nohighlight">\(z\)</span>-statistic does not apply!</p>
 <p>In this case, one must use the <strong>Student’s <span class="math notranslate nohighlight">\(t\)</span>-statistic.</strong></p>
 <p>The <span class="math notranslate nohighlight">\(t\)</span>-statistic is analogous to the <span class="math notranslate nohighlight">\(z\)</span>-statistic, except that the probabilities are associated with the <span class="math notranslate nohighlight">\(t\)</span>-distribution rather than the standard normal distribution. The shape of the <span class="math notranslate nohighlight">\(t\)</span>-distribution depends on the <a class="reference external" href="https://blog.minitab.com/blog/statistics-and-quality-data-analysis/what-are-degrees-of-freedom-in-statistics">degrees of freedom</a>.</p>
@@ -507,7 +507,7 @@ z &amp;= \frac{\overline{x} - \mu}{\frac{\sigma}{\sqrt{N}}}
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.lines.Line2D at 0x179ad3b20&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.lines.Line2D at 0x178bcbb20&gt;
 </pre></div>
 </div>
 <img alt="../../_images/b00546d3a8fa94723fe538d38b68f32c34e24ba5037ebfd655c4bf6a2ef8ef24.png" src="../../_images/b00546d3a8fa94723fe538d38b68f32c34e24ba5037ebfd655c4bf6a2ef8ef24.png" />
@@ -623,7 +623,7 @@ t &amp;= \frac{\overline{x} - \mu}{\frac{s}{\sqrt{N}}} \\
 <p class="admonition-title">Question #6</p>
 <p>You have 5 years of monthly-mean temperature data derived from the MSU4 satellite (upper stratosphere). The mean temperature along 60°N during January is -60°C and the standard deviation is 8°C. What are the 95% confidence limits on the true population mean?</p>
 </div>
-<p><strong>The z-Statistic:</strong></p>
+<p><strong>The <em>z</em>-Statistic:</strong></p>
 <p>The critical value <span class="math notranslate nohighlight">\(z_c\)</span> = <span class="math notranslate nohighlight">\(\pm\)</span> 1.96 for 95% confidence. Here, we must assume that the standard deviation provided represents the population standard deviation. Thus, the population mean <span class="math notranslate nohighlight">\(\mu\)</span> is expected to lie within:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
@@ -636,7 +636,7 @@ t &amp;= \frac{\overline{x} - \mu}{\frac{s}{\sqrt{N}}} \\
 \[
 -67.0^{\circ}C \leq \mu \leq -53^{\circ}C
 \]</div>
-<p><strong>The t-Statistic:</strong></p>
+<p><strong>The <em>t</em>-Statistic:</strong></p>
 <p>Assuming that the data is normally distributed, the critical value <span class="math notranslate nohighlight">\(t_c\)</span> = 2.78 for <span class="math notranslate nohighlight">\(\nu\)</span> = 5 - 1 = 4. Thus, the population mean <span class="math notranslate nohighlight">\(\mu\)</span> is expected to lie within:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}

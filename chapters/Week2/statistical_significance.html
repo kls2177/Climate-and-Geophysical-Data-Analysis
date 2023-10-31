@@ -437,7 +437,7 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="estimating-statistical-significance-with-a-z-test">
 <h1>Estimating Statistical Significance with a <em>z</em>-test<a class="headerlink" href="#estimating-statistical-significance-with-a-z-test" title="Permalink to this headline">#</a></h1>
-<p>So, how do we test whether the mean of the sample is different from the mean of the population? We can use the z-statistic!</p>
+<p>So, how do we test whether the mean of the sample is different from the mean of the population? We can use the <span class="math notranslate nohighlight">\(z\)</span>-statistic!</p>
 <p>Again, recall that the <span class="math notranslate nohighlight">\(z\)</span>-statistic is defined as,</p>
 <div class="math notranslate nohighlight">
 \[
@@ -461,7 +461,7 @@ z &amp;= \frac{\overline{x} - \mu}{\sigma_{\overline{x}}}\\
 &amp;= \frac{\overline{x} - \mu}{\frac{\sigma}{\sqrt{N}}}
 \end{align}
 \end{split}\]</div>
-<p>The z-statistic is now the number of standard errors that the sample mean deviates from the population mean.</p>
+<p>The <span class="math notranslate nohighlight">\(z\)</span>-statistic is now the number of standard errors that the sample mean deviates from the population mean.</p>
 <p>We can easily manipulate the above equation for the <span class="math notranslate nohighlight">\(z\)</span>-statistic to obtain an equation for the difference of two means, <span class="math notranslate nohighlight">\(x_1\)</span> and <span class="math notranslate nohighlight">\(x_2\)</span> (as opposed to the difference between a sample mean and the population), where <span class="math notranslate nohighlight">\(\sigma_1\)</span> can be different from <span class="math notranslate nohighlight">\(\sigma_2\)</span>:</p>
 <div class="math notranslate nohighlight">
 \[
@@ -553,7 +553,7 @@ z &amp;= \frac{\overline{x} - \mu}{\frac{\sigma}{\sqrt{N}}}\\
 </figure>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p><a class="reference internal" href="#onetwoside"><span class="std std-ref">Figure 8</span></a> depicts the critical value, <span class="math notranslate nohighlight">\(z_c\)</span> and the significance level, <span class="math notranslate nohighlight">\(\alpha\)</span>, for a one-sided and two-sided <span class="math notranslate nohighlight">\(z\)</span>-test. In practice, you will almost always perform a two-sided test. This means that we are testing whether there is a signal but we do not know the sign of the signal, e.g. the alternative hypothesis is that the sample mean is different from the population mean, but we don’t know whether it’s greater than or less than the population mean. This is a more conservative test. In specific cases, a one-sided test may be appropriate (follow this <a class="reference external" href="https://stats.idre.ucla.edu/other/mult-pkg/faq/general/faq-what-are-the-differences-between-one-tailed-and-two-tailed-tests/">link</a> to learn more).</p>
+<p><a class="reference internal" href="#onetwoside"><span class="std std-ref">Figure 9</span></a> depicts the critical value, <span class="math notranslate nohighlight">\(z_c\)</span> and the significance level, <span class="math notranslate nohighlight">\(\alpha\)</span>, for a one-sided and two-sided <span class="math notranslate nohighlight">\(z\)</span>-test. In practice, you will almost always perform a two-sided test. This means that we are testing whether there is a signal but we do not know the sign of the signal, e.g. the alternative hypothesis is that the sample mean is different from the population mean, but we don’t know whether it’s greater than or less than the population mean. This is a more conservative test. In specific cases, a one-sided test may be appropriate (follow this <a class="reference external" href="https://stats.idre.ucla.edu/other/mult-pkg/faq/general/faq-what-are-the-differences-between-one-tailed-and-two-tailed-tests/">link</a> to learn more).</p>
 </div>
 </section>
 <section id="five-simple-steps">
@@ -620,7 +620,7 @@ z &amp;= \frac{\overline{x} - \mu}{\frac{\sigma}{\sqrt{N}}}\\
 <h3>Errors in Hypothesis Testing<a class="headerlink" href="#errors-in-hypothesis-testing" title="Permalink to this headline">#</a></h3>
 <p>You may be familiar with the terms “false positive” and “false negative”, but you may not realize that these are statistical terms and are used to categorize possible errors in statistical tests.</p>
 <p>For example, when you reject a null hypothesis, there is a chance that you are making a mistake. The null hypothesis might in fact be true, and it may be that your data deviate from the null hypothesis purely by chance. This is an example of a <em>false positive</em>. A <em>false positive</em> (also called a Type I error) occurs when the null hypothesis <span class="math notranslate nohighlight">\(H_0\)</span> is in fact true, but we reject it based on our data. A <em>false negative</em> (also called a Type II error) occurs when the null hypothesis <span class="math notranslate nohighlight">\(H_0\)</span> is in fact false, but we do not reject it based on our test.</p>
-<p><a class="reference internal" href="#errors"><span class="std std-ref">Figure 9</span></a> illustrates the matrix of possible outcomes of statistical tests. Although it is not possible to know if, for example, your rejection of your null hypothesis is in error, it is important to keep this matrix in mind. This matrix also illustrates why we can never say that a statistical test “proves” our hypothesis; there’s always a small chance that our data are anomalous and differ from the null hypothesis purely by chance.</p>
+<p><a class="reference internal" href="#errors"><span class="std std-ref">Figure 10</span></a> illustrates the matrix of possible outcomes of statistical tests. Although it is not possible to know if, for example, your rejection of your null hypothesis is in error, it is important to keep this matrix in mind. This matrix also illustrates why we can never say that a statistical test “proves” our hypothesis; there’s always a small chance that our data are anomalous and differ from the null hypothesis purely by chance.</p>
 <figure class="align-default" id="errors">
 <a class="reference internal image-reference" href="../../_images/errors.png"><img alt="../../_images/errors.png" src="../../_images/errors.png" style="width: 544.0px; height: 308.0px;" /></a>
 <figcaption>
