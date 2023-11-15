@@ -171,6 +171,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1 has-children"><a class="reference internal" href="../Week2/hypothesis_testing.html">Statistical Hypothesis Testing</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../Week2/probability.html">Basic Probability</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../Week2/normdist.html">The Standard Normal Distribution</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Week2/ENSO.html">What is ENSO?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../Week2/zstat.html">The <em>z</em>-Statistic</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../Week2/signal2noise.html">Signal-to-Noise</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../Week2/central_limit_theorem.html">The Central Limit Theorem</a></li>
@@ -475,18 +476,18 @@ document.write(`
 <p>In order to satisfy matrix multiplication rules, this can be re-written as:</p>
 <div class="math notranslate nohighlight">
 \[
-\frac{1}{M-1} \mathbf{e_1^TX^TXe_1}
+\frac{1}{M-1} \mathbf{e_1^T X^T Xe_1}
 \]</div>
 <p>This is equivalent to maximizing,</p>
 <div class="math notranslate nohighlight">
 \[
-\mathbf{e_1^TCe_1}
+\mathbf{e_1^T Ce_1}
 \]</div>
 <p>subject to the constraint that <span class="math notranslate nohighlight">\(\mathbf{e_1}\)</span> is a unit vector.</p>
 <p>If we assume the maximum value of this squared resemblance is <span class="math notranslate nohighlight">\(\lambda_1\)</span>,</p>
 <div class="math notranslate nohighlight">
 \[
-\mathbf{e_1^TCe_1} = \lambda_1
+\mathbf{e_1^T Ce_1} = \lambda_1
 \]</div>
 <p>we find that the above equation has the same form as the eigenvalue problem we discussed in the previous section. That is, this equation becomes,</p>
 <div class="math notranslate nohighlight">
