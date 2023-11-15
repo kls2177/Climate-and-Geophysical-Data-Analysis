@@ -171,6 +171,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1 has-children"><a class="reference internal" href="../Week2/hypothesis_testing.html">Statistical Hypothesis Testing</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../Week2/probability.html">Basic Probability</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../Week2/normdist.html">The Standard Normal Distribution</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Week2/ENSO.html">What is ENSO?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../Week2/zstat.html">The <em>z</em>-Statistic</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../Week2/signal2noise.html">Signal-to-Noise</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../Week2/central_limit_theorem.html">The Central Limit Theorem</a></li>
@@ -645,7 +646,7 @@ document.write(`
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># plotting parameters</span>
 <span class="n">FS</span> <span class="o">=</span> <span class="mi">14</span>
 <span class="n">inc</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
-<span class="n">mult_fac</span> <span class="o">=</span> <span class="mi">15</span>
+<span class="n">mult_fact</span> <span class="o">=</span> <span class="mi">15</span>
 
 <span class="c1"># plot columns of A on 2-D plane</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">12</span><span class="p">))</span>
@@ -677,19 +678,7 @@ document.write(`
 </div>
 </details>
 <div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">8</span><span class="p">],</span> <span class="n">line</span> <span class="mi">22</span>
-<span class="g g-Whitespace">     </span><span class="mi">19</span> <span class="n">plt</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">linewidth</span> <span class="o">=</span> <span class="mi">2</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">20</span> <span class="n">plt</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">linewidth</span> <span class="o">=</span> <span class="mi">2</span><span class="p">)</span>
-<span class="ne">---&gt; </span><span class="mi">22</span> <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="n">E</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span><span class="o">*-</span><span class="n">mult_fact</span><span class="p">,</span> <span class="n">E</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="n">mult_fact</span><span class="p">],[</span><span class="n">E</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span><span class="o">*-</span><span class="n">mult_fact</span><span class="p">,</span> <span class="n">E</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="n">mult_fact</span><span class="p">],</span><span class="n">linestyle</span> <span class="o">=</span> <span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">linewidth</span> <span class="o">=</span> <span class="mi">2</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;k&#39;</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">24</span> <span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="o">-</span><span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">25</span> <span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="o">-</span><span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
-
-<span class="ne">NameError</span>: name &#39;mult_fact&#39; is not defined
-</pre></div>
-</div>
-<img alt="../../_images/e3f9b4cb66276db15dcefb964c08bb64151a0fb3e58b267a92afac63e56c3eb5.png" src="../../_images/e3f9b4cb66276db15dcefb964c08bb64151a0fb3e58b267a92afac63e56c3eb5.png" />
+<img alt="../../_images/ab4e07e94d6cc6a571f7011529fbfb3af1d2ab0cb7a65a26a89389f9cdd260ff.png" src="../../_images/ab4e07e94d6cc6a571f7011529fbfb3af1d2ab0cb7a65a26a89389f9cdd260ff.png" />
 </div>
 </div>
 <p>The dashed black line in the plot above, delineates the line for which our eigenvector forms a basis. Any point along this line can be expressed using the eigenvector. Thus, all the variance in <strong>A</strong> can be explained by this one eigenvector.</p>
@@ -703,9 +692,8 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[-0.18480123  1.4020872 ]
- [ 0.18480123 -1.4020872 ]
- [-0.34449733 -2.25639571]]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[ 1.41421356e+00 -2.22044605e-16]
+ [-1.41421356e+00  2.22044605e-16]]
 </pre></div>
 </div>
 </div>
@@ -720,7 +708,7 @@ document.write(`
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># plotting parameters</span>
 <span class="n">FS</span> <span class="o">=</span> <span class="mi">14</span>
 <span class="n">inc</span> <span class="o">=</span> <span class="o">-</span><span class="mf">1.2</span>
-<span class="n">mult_fac</span> <span class="o">=</span> <span class="mi">15</span>
+<span class="n">mult_fact</span> <span class="o">=</span> <span class="mi">15</span>
 
 <span class="c1"># plot columns of A on 2-D plane</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">12</span><span class="p">))</span>
@@ -761,10 +749,10 @@ document.write(`
 </div>
 </details>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.lines.Line2D at 0x7fb9a2883a60&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.lines.Line2D at 0x112289030&gt;
 </pre></div>
 </div>
-<img alt="../../_images/e6ca7d01b858c3f3a762aa03438b296e0dac40b248f44a0ee397503ab662759b.png" src="../../_images/e6ca7d01b858c3f3a762aa03438b296e0dac40b248f44a0ee397503ab662759b.png" />
+<img alt="../../_images/569725df8aa999373c5554fa215f7efdf65f318819e74f8317e95319190e6f6d.png" src="../../_images/569725df8aa999373c5554fa215f7efdf65f318819e74f8317e95319190e6f6d.png" />
 </div>
 </div>
 <p>Before we move on, let’s talk a bit more about how eigenanalysis is actually done (without python). Using our example of the covariance matrix, the eigenvectors and eigenvalues are solved for in the following way:</p>
@@ -910,7 +898,7 @@ e_{21} \end{bmatrix} &amp; = 0\\
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># plotting parameters</span>
 <span class="n">FS</span> <span class="o">=</span> <span class="mi">14</span>
 <span class="n">inc</span> <span class="o">=</span> <span class="o">-</span><span class="mf">1.2</span>
-<span class="n">mult_fac</span> <span class="o">=</span> <span class="mi">15</span>
+<span class="n">mult_fact</span> <span class="o">=</span> <span class="mi">15</span>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">12</span><span class="p">))</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">A</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">],</span><span class="n">A</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">],</span> <span class="n">marker</span> <span class="o">=</span> <span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="n">linestyle</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">markersize</span> <span class="o">=</span> <span class="mi">10</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;r&#39;</span><span class="p">,</span><span class="n">markeredgecolor</span> <span class="o">=</span> <span class="s1">&#39;lightgray&#39;</span><span class="p">)</span>
@@ -966,10 +954,10 @@ e_{21} \end{bmatrix} &amp; = 0\\
 </div>
 </details>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.lines.Line2D at 0x7fb9a3dae730&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.lines.Line2D at 0x11237e3b0&gt;
 </pre></div>
 </div>
-<img alt="../../_images/9112487a871d86f0101a4ca6911c9ead285b6b7b9aa0dc963a0622356d0123a2.png" src="../../_images/9112487a871d86f0101a4ca6911c9ead285b6b7b9aa0dc963a0622356d0123a2.png" />
+<img alt="../../_images/de6ed938a164ee32b6f853d027cd7011bedeb9351f5f87651c59199d6d6d943b.png" src="../../_images/de6ed938a164ee32b6f853d027cd7011bedeb9351f5f87651c59199d6d6d943b.png" />
 </div>
 </div>
 <p>We can see that most of the variance in <strong>A</strong> is explained by the first eigenvector, 98%, while the second eigenvector only explains 2% of the variance.</p>
