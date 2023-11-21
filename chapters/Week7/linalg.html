@@ -587,7 +587,7 @@ a_{m1} &amp; a_{m2} &amp; a_{m3} &amp; ... &amp; a_{mn}
 <p>Now, suppose you have a matrix <strong>X</strong> of dimensions <span class="math notranslate nohighlight">\(M x N\)</span>. If the columns of <strong>X</strong> have mean zero (you can think of each column as an anomaly time series), then</p>
 <div class="math notranslate nohighlight">
 \[
-\mathbf{C} = \frac{1}{M-1} \mathbf{X^TX}
+\mathbf{C} = \frac{1}{M-1} \mathbf{X^T X}
 \]</div>
 <p>where <strong>C</strong> is the <strong>covariance matrix</strong> of dimensions <span class="math notranslate nohighlight">\(N x N\)</span>. If the columns of <strong>X</strong> are standardized, then <strong>C</strong> is the <em>correlation matrix</em>.</p>
 <p>Let’s take a closer look at what the covariance matrix is using a 2<span class="math notranslate nohighlight">\(x\)</span>2 matrix where each colunm has a mean of zero:</p>
