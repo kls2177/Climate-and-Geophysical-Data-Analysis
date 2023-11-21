@@ -171,6 +171,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1 has-children"><a class="reference internal" href="../Week2/hypothesis_testing.html">Statistical Hypothesis Testing</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../Week2/probability.html">Basic Probability</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../Week2/normdist.html">The Standard Normal Distribution</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Week2/ENSO.html">What is ENSO?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../Week2/zstat.html">The <em>z</em>-Statistic</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../Week2/signal2noise.html">Signal-to-Noise</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../Week2/central_limit_theorem.html">The Central Limit Theorem</a></li>
@@ -551,7 +552,7 @@ a_{m1} &amp; a_{m2} &amp; a_{m3} &amp; ... &amp; a_{mn}
 <p>and</p>
 <div class="math notranslate nohighlight">
 \[
-\mathbf{X}^T\mathbf{Y} = \mathbf{W}
+\mathbf{X}^T \mathbf{Y} = \mathbf{W}
 \]</div>
 <p>where the corresponding sizes of the vectors/matrices are,</p>
 <div class="math notranslate nohighlight">
@@ -566,7 +567,7 @@ a_{m1} &amp; a_{m2} &amp; a_{m3} &amp; ... &amp; a_{mn}
 <div class="math notranslate nohighlight">
 \[\begin{split}
 \begin{align}
-\mathbf{X^TX} &amp;= \sum_{n=1}^{M} x_i^{\prime}x_i^{\prime}\\
+\mathbf{X^T X} &amp;= \sum_{n=1}^{M} x_i^{\prime}x_i^{\prime}\\
 &amp;= \sum_{n=1}^{M} x_i^{\prime2}\\
 &amp; = \text{scalar quantity}
 \end{align}
@@ -576,7 +577,7 @@ a_{m1} &amp; a_{m2} &amp; a_{m3} &amp; ... &amp; a_{mn}
 <div class="math notranslate nohighlight">
 \[\begin{split}
 \begin{align}
-\mathbf{X^TY} &amp;= \sum_{n=1}^{M} x_i^{\prime}y_i^{\prime}\\
+\mathbf{X^T Y} &amp;= \sum_{n=1}^{M} x_i^{\prime}y_i^{\prime}\\
 &amp; = \text{scalar quantity}
 \end{align}
 \end{split}\]</div>
@@ -601,7 +602,7 @@ x_{21}^{\prime} &amp; x_{22}^{\prime}
 <div class="math notranslate nohighlight">
 \[\begin{split}
 \begin{align}
-\frac{1}{M-1} \mathbf{X^TX} &amp;= \begin{bmatrix}
+\frac{1}{M-1} \mathbf{X^T X} &amp;= \begin{bmatrix}
 x_{11}^{\prime} &amp; x_{21}^{\prime} \\
 x_{12}^{\prime} &amp; x_{22}^{\prime}
 \end{bmatrix} \cdot
