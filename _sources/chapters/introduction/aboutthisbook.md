@@ -1,5 +1,7 @@
 # About this book
 
+The content in this book is inspired by similar courses taught by Elizabeth Barnes (Colorado State University) and Dennis Hartmann (University of Washington). Some examples presented in this book have been adapted from their courses.
+
 This book is powered by [JupyterBook][jupyterbook], and provides:
 - **interactive** and **step-by-step** examples (integration with Binder allows readers to run and modify code examples)
 - **free** and **open** access (permissive license, sources and content available through GitHub)

@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 
 
-<html >
+<html lang="en" data-content_root="" >
 
   <head>
     <meta charset="utf-8" />
@@ -15,19 +15,19 @@
   
   <script data-cfasync="false">
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
-    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
-<link href="../../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
-<link href="../../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link href="../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
 
   
-  <link href="../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+  <link href="../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
 
     <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
     <link rel="stylesheet" href="../../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
@@ -38,12 +38,14 @@
     <link rel="stylesheet" type="text/css" href="../../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
-<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
     <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
     <script src="../../_static/jquery.js"></script>
     <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../../_static/doctools.js"></script>
     <script src="../../_static/clipboard.min.js"></script>
     <script src="../../_static/copybutton.js"></script>
@@ -69,7 +71,7 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="next" title="Filtering in the Time Domain: Part II" href="Harmonics.html" />
     <link rel="prev" title="Time Series Analysis" href="filt.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <meta name="docsearch:language" content="None"/>
+  <meta name="docsearch:language" content="en"/>
   </head>
   
   
@@ -77,19 +79,23 @@ const thebe_selector_output = ".output, .cell_output"
 
   
   
-  <a class="skip-link" href="#main-content">Skip to main content</a>
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
   
   <input type="checkbox"
           class="sidebar-toggle"
-          name="__primary"
-          id="__primary"/>
-  <label class="overlay overlay-primary" for="__primary"></label>
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
   
   <input type="checkbox"
           class="sidebar-toggle"
-          name="__secondary"
-          id="__secondary"/>
-  <label class="overlay overlay-secondary" for="__secondary"></label>
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
   
   <div class="search-button__wrapper">
     <div class="search-button__overlay"></div>
@@ -111,12 +117,20 @@ const thebe_selector_output = ".output, .cell_output"
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
 </form></div>
   </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
   
-    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
-    </nav>
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
   
+
   <div class="bd-container">
     <div class="bd-container__inner bd-page-width">
+      
+      
       
       <div class="bd-sidebar-primary bd-sidebar">
         
@@ -131,9 +145,13 @@ const thebe_selector_output = ".output, .cell_output"
   
     <div class="sidebar-primary-items__start sidebar-primary__section">
         <div class="sidebar-primary-item">
+
+  
+    
   
 
 <a class="navbar-brand logo" href="../index.html">
+  
   
   
   
@@ -143,34 +161,35 @@ const thebe_selector_output = ".output, .cell_output"
       
     
     
-    <img src="../../_static/landing_page.png" class="logo__image only-light" alt="Logo image"/>
-    <script>document.write(`<img src="../../_static/landing_page.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
+    <img src="../../_static/landing_page.png" class="logo__image only-light" alt="Climate and Geophysical Data Analysis - Home"/>
+    <script>document.write(`<img src="../../_static/landing_page.png" class="logo__image only-dark" alt="Climate and Geophysical Data Analysis - Home"/>`);</script>
   
   
 </a></div>
         <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         <ul class="current nav bd-sidenav">
-<li class="toctree-l1 has-children"><a class="reference internal" href="../introduction/intro.html">Introduction</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../introduction/intro.html">Introduction</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="../introduction/aboutthisbook.html">About this book</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../introduction/howtousethisbook.html">How to use this book</a></li>
 </ul>
-</li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../Week1a/whatarestatsgoodfor.html">What are statistics good for?</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../Week1a/whatarestatsgoodfor.html">What are statistics good for?</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="../Week1a/goodpractice.html">Statistics is the grammar of science…</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../Week1a/pitfalls.html">Lies, damned lies and statistics…</a></li>
 </ul>
-</li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../Week1b/descriptivestats.html">Descriptive Statistics</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../Week1b/descriptivestats.html">Descriptive Statistics</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="../Week1b/summarystats.html">Summary Statistics: Part I</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../Week1b/Variance_Example.html">Example: Sensitivity of Standard Deviation to Sampling</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../Week1b/what_is_pdf.html">What is a distribution?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../Week1b/summarystats2.html">Summary Statistics: Part II</a></li>
 </ul>
-</li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../Week2/hypothesis_testing.html">Statistical Hypothesis Testing</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../Week2/hypothesis_testing.html">Statistical Hypothesis Testing</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="../Week2/probability.html">Basic Probability</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../Week2/normdist.html">The Standard Normal Distribution</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Week2/ENSO.html">What is ENSO?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../Week2/zstat.html">The <em>z</em>-Statistic</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../Week2/signal2noise.html">Signal-to-Noise</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../Week2/central_limit_theorem.html">The Central Limit Theorem</a></li>
@@ -178,8 +197,8 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="../Week2/tstat.html">The <em>t</em>-Statistic</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../Week2/resampling.html">Resampling Techniques</a></li>
 </ul>
-</li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../Week3/linreg.html">Linear Regression</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../Week3/linreg.html">Linear Regression</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="../Week3/basics_linreg.html">Introduction to Linear Regression</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../Week3/confidence_intervals.html">Confidence Intervals</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../Week3/goodness.html">Goodness of Fit</a></li>
@@ -187,22 +206,22 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="../Week3/composites.html">Compositing</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../Week3/filtering.html">Filtering or Detrending using Regression</a></li>
 </ul>
-</li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../Week4/corr.html">Correlation</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-6"><i class="fa-solid fa-chevron-down"></i></label><ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../Week4/corr.html">Correlation</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="../Week4/corr_rev.html">Review of Correlation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../Week4/stat_corr.html">Statistical Significance of Correlation Coefficients</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../Week4/nonpar_corr.html">Non-parametric Correlations</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../Week4/autocorr.html">Autocorrelation</a></li>
 </ul>
-</li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../Week5/persistence.html">Persistence in Time Series</a><input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-7"><i class="fa-solid fa-chevron-down"></i></label><ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../Week5/persistence.html">Persistence in Time Series</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="../Week5/autocorr_example.html">Autocorrelation in Climate and Geophysical Data</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../Week5/red_noise.html">Introduction to Red Noise</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../Week5/autocorr_implications.html">Example: Correlation with Memory</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../Week5/n_eff.html">Accounting for Autocorrelation: Effective Sample Size</a></li>
 </ul>
-</li>
-<li class="toctree-l1 current active has-children"><a class="reference internal" href="filt.html">Time Series Analysis</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-8"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+</details></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="filt.html">Time Series Analysis</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
 <li class="toctree-l2 current active"><a class="current reference internal" href="#">Filtering in the Time Domain: Part I</a></li>
 <li class="toctree-l2"><a class="reference internal" href="Harmonics.html">Filtering in the Time Domain: Part II</a></li>
 <li class="toctree-l2"><a class="reference internal" href="filtering_in_freq1.html">Filtering in the Frequency Domain: Discrete Fourier Transform</a></li>
@@ -211,15 +230,15 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="leak.html">Spectral Leakage</a></li>
 <li class="toctree-l2"><a class="reference internal" href="convolution_filters_in_time.html">Convolution and Filtering in the Time Domain</a></li>
 </ul>
-</li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../Week7/pca.html">Patterns in Multivariate Data</a><input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-9"><i class="fa-solid fa-chevron-down"></i></label><ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../Week7/pca.html">Patterns in Multivariate Data</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="../Week7/Intro_to_PCA.html">Introduction to Principal Component Analysis</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../Week7/linalg.html">Review of Linear Algebra</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../Week7/eig.html">Eigenanalysis</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../Week7/eofs.html">EOFs via Eigenanalysis</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../Week7/naoeof.html">EOFs with Real Data</a></li>
 </ul>
-</li>
+</details></li>
 <li class="toctree-l1"><a class="reference internal" href="../Week8/epilogue.html">Epilogue</a></li>
 </ul>
 
@@ -236,7 +255,7 @@ const thebe_selector_output = ".output, .cell_output"
 
       </div>
       
-      <main id="main-content" class="bd-main">
+      <main id="main-content" class="bd-main" role="main">
         
         
 
@@ -245,7 +264,7 @@ const thebe_selector_output = ".output, .cell_output"
           <div class="bd-content">
             <div class="bd-article-container">
               
-              <div class="bd-header-article">
+              <div class="bd-header-article d-print-none">
 <div class="header-article-items header-article__inner">
   
     <div class="header-article-items__start">
@@ -376,20 +395,22 @@ const thebe_selector_output = ".output, .cell_output"
 </button>
 
 
+
 <script>
 document.write(`
-  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
-    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
-    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
   </button>
 `);
 </script>
 
+
 <script>
 document.write(`
-  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass"></i>
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
   </button>
 `);
 </script>
@@ -435,13 +456,13 @@ document.write(`
               
                 
 <div id="searchbox"></div>
-                <article class="bd-article" role="main">
+                <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="filtering-in-the-time-domain-part-i">
-<h1>Filtering in the Time Domain: Part I<a class="headerlink" href="#filtering-in-the-time-domain-part-i" title="Permalink to this headline">#</a></h1>
+<h1>Filtering in the Time Domain: Part I<a class="headerlink" href="#filtering-in-the-time-domain-part-i" title="Permalink to this heading">#</a></h1>
 <p>In this section, we will explore some simple techniques to filter time series in the <em>time domain</em>. To familiarize ourselves with the concept of filtering, we will take a look at a two common examples of filtering in the fields of climate science and geophysics.</p>
 <section id="example-1-filtering-out-the-long-term-trend">
-<h2>Example 1: Filtering out the Long-term Trend<a class="headerlink" href="#example-1-filtering-out-the-long-term-trend" title="Permalink to this headline">#</a></h2>
+<h2>Example 1: Filtering out the Long-term Trend<a class="headerlink" href="#example-1-filtering-out-the-long-term-trend" title="Permalink to this heading">#</a></h2>
 <p>As we discussed in the previous section, autocorrelation in a time series means that the data are not indepedent and that the sample size is an overestimate. Autocorrelation is often the result of a <em>long-term trend</em>. So, one way around this is to remove the long-term trend.</p>
 <p>Let’s start by returning to our TLT temperature time series example in the <a class="reference external" href="https://kls2177.github.io/Climate-and-Geophysical-Data-Analysis/chapters/Week5/autocorr_example.html">previous section</a> to examine filtering of the long-term trend.</p>
 <div class="cell docutils container">
@@ -563,7 +584,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x177be4640&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x179cba800&gt;
 </pre></div>
 </div>
 <img alt="../../_images/9a8178e734754786b12c12e9ae6c19f433fb8fe7e7d68aa248f004ffbed94d14.png" src="../../_images/9a8178e734754786b12c12e9ae6c19f433fb8fe7e7d68aa248f004ffbed94d14.png" />
@@ -573,7 +594,7 @@ document.write(`
 <p>Although this tends to be the primary reason that we detrend time series, there may be reasons you may want to detrend. For example, you may want to test specific scientific hypotheses that are not associated with the long-term trend, e.g. you may want to examine the year-to-year relationship between two variables.</p>
 </section>
 <section id="example-2-filtering-out-the-seasonal-cycle">
-<h2>Example 2: Filtering out the Seasonal Cycle<a class="headerlink" href="#example-2-filtering-out-the-seasonal-cycle" title="Permalink to this headline">#</a></h2>
+<h2>Example 2: Filtering out the Seasonal Cycle<a class="headerlink" href="#example-2-filtering-out-the-seasonal-cycle" title="Permalink to this heading">#</a></h2>
 <p>One feature of many climate and geophysical variables that results in autocorrelation is the <strong>seasonal cycle</strong>. In the following example, we will explore different methods to remove the seasonal cycle in order to reduce the autocorrelation. Again, reducing the autocorrelation, may not be the only reason to do this, but it is often the primary reason.</p>
 <p>To look at this problem, we will load in some Arctic sea ice extent (SIE) data from a pre-industrial integration of a global climate model (GCM). I have chosen to use data from a <em>pre-industrial</em> integration in order to focus on the seasonal cycle rather than the long-term trend that is evident in historical (GCM) integrations. The file is <a class="reference external" href="https://github.com/kls2177/ccia_files/blob/master/SIE_Total.pickle?raw=true">here</a>.</p>
 <div class="cell docutils container">
@@ -631,7 +652,7 @@ document.write(`
 </div>
 </div>
 <section id="method-1-filtering-out-the-climatological-seasonal-cycle">
-<h3>Method 1: Filtering out the Climatological Seasonal Cycle<a class="headerlink" href="#method-1-filtering-out-the-climatological-seasonal-cycle" title="Permalink to this headline">#</a></h3>
+<h3>Method 1: Filtering out the Climatological Seasonal Cycle<a class="headerlink" href="#method-1-filtering-out-the-climatological-seasonal-cycle" title="Permalink to this heading">#</a></h3>
 <p>Previously, we have defined anomalies in the following way:</p>
 <div class="math notranslate nohighlight">
 \[
@@ -719,7 +740,7 @@ x_{ij}^\prime(t) = x_{ij}(t) - \overline{x_j}
 <p>The above method for removing the seasonal cycle is the most common in the climate science literature, but may not always be appropriate, for example if the magnitude of the seasonal cycle consistently changes as a function of time.</p>
 </section>
 <section id="method-2-filtering-out-the-running-mean-seasonal-cycle">
-<h3>Method 2: Filtering out the Running-Mean Seasonal Cycle<a class="headerlink" href="#method-2-filtering-out-the-running-mean-seasonal-cycle" title="Permalink to this headline">#</a></h3>
+<h3>Method 2: Filtering out the Running-Mean Seasonal Cycle<a class="headerlink" href="#method-2-filtering-out-the-running-mean-seasonal-cycle" title="Permalink to this heading">#</a></h3>
 <p><strong>Running-mean</strong> filters are filters that <em>low-pass</em> filter the data by averaging over specific time interval of interest, <span class="math notranslate nohighlight">\(L\)</span>. Here is an example of a running-mean filter for <span class="math notranslate nohighlight">\(L\)</span> = 3:</p>
 <div class="math notranslate nohighlight">
 \[
@@ -824,12 +845,12 @@ y(t)_{band-pass}  = y(t)_{L\geq T_1} - y(t)_{L\geq T_2}
 \]</div>
 <p>where <span class="math notranslate nohighlight">\(T_1\)</span> <span class="math notranslate nohighlight">\(\leq\)</span> <span class="math notranslate nohighlight">\(T_2\)</span>.</p>
 <section id="variations-on-running-mean-filters">
-<h4>Variations on Running-Mean Filters<a class="headerlink" href="#variations-on-running-mean-filters" title="Permalink to this headline">#</a></h4>
+<h4>Variations on Running-Mean Filters<a class="headerlink" href="#variations-on-running-mean-filters" title="Permalink to this heading">#</a></h4>
 <p>Note that running-mean filters assume that each point in <span class="math notranslate nohighlight">\(L\)</span> is weighted equally; however, running-mean filters can be improved on by altering this assumption. For example, a <em>Gaussian</em> filter assumes that the points in <span class="math notranslate nohighlight">\(L\)</span> are weighted following a <em>Guassian</em> distribution.</p>
 </section>
 </section>
 <section id="method-3-filtering-using-local-regression">
-<h3>Method 3: Filtering using Local Regression<a class="headerlink" href="#method-3-filtering-using-local-regression" title="Permalink to this headline">#</a></h3>
+<h3>Method 3: Filtering using Local Regression<a class="headerlink" href="#method-3-filtering-using-local-regression" title="Permalink to this heading">#</a></h3>
 <p>The idea of <strong>Local Regression</strong> (e.g., methods such as <a class="reference external" href="https://en.wikipedia.org/wiki/Local_regression#Advantages">LOESS or LOWESS</a>) is that for a point <span class="math notranslate nohighlight">\(x\)</span> in a time series, the regression can be <em>locally</em> approximated by the value of a function in some specified parametric class (polynomial). The local approximation is obtained by fitting a regression function to the data points within a chosen “neighbourhood” of the point <span class="math notranslate nohighlight">\(x\)</span>.</p>
 <p>The biggest advantage of local regression techniques over other methods is that it does not require the specification of a universal function to fit to all of the data in the sample. The biggest disadvantage is that it requires fairly large, densely sampled data sets in order to produce good models and is computationally intensive.</p>
 <p>Smoothing out of low-fequency ENSO variability in the NASA GISTEMP time series is accomplished using the LOWESS technique (see <a class="reference internal" href="filt.html#gistemp"><span class="std std-ref">Figure 16</span></a>).</p>
@@ -909,11 +930,10 @@ y(t)_{band-pass}  = y(t)_{L\geq T_1} - y(t)_{L\geq T_2}
 
               
               
-                <footer class="bd-footer-article">
+              
+              
+                <footer class="prev-next-footer d-print-none">
                   
-<div class="footer-article-items footer-article__inner">
-  
-    <div class="footer-article-item"><!-- Previous / next buttons -->
 <div class="prev-next-area">
     <a class="left-prev"
        href="filt.html"
@@ -933,10 +953,7 @@ y(t)_{band-pass}  = y(t)_{L\geq T_1} - y(t)_{L\geq T_2}
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
-</div></div>
-  
 </div>
-
                 </footer>
               
             </div>
@@ -944,6 +961,7 @@ y(t)_{band-pass}  = y(t)_{L\geq T_1} - y(t)_{L\geq T_2}
             
               
                 <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
 
   <div class="sidebar-secondary-item">
   <div class="page-toc tocsection onthispage">
@@ -982,6 +1000,7 @@ By Karen Smith
   
   <div class="footer-item">
     
+
   <p class="copyright">
     
       © Copyright 2023.
@@ -1008,8 +1027,8 @@ By Karen Smith
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
-<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+  <script src="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
 
   <footer class="bd-footer">
   </footer>

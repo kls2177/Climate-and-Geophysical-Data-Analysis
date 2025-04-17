@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 
 
-<html >
+<html lang="en" data-content_root="" >
 
   <head>
     <meta charset="utf-8" />
@@ -15,19 +15,19 @@
   
   <script data-cfasync="false">
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
-    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
-<link href="../../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
-<link href="../../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link href="../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
 
   
-  <link href="../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+  <link href="../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
 
     <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
     <link rel="stylesheet" href="../../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
@@ -38,12 +38,14 @@
     <link rel="stylesheet" type="text/css" href="../../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
-<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
     <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
     <script src="../../_static/jquery.js"></script>
     <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../../_static/doctools.js"></script>
     <script src="../../_static/clipboard.min.js"></script>
     <script src="../../_static/copybutton.js"></script>
@@ -69,7 +71,7 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="next" title="Linear Regression" href="../Week3/linreg.html" />
     <link rel="prev" title="The t-Statistic" href="tstat.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <meta name="docsearch:language" content="None"/>
+  <meta name="docsearch:language" content="en"/>
   </head>
   
   
@@ -77,19 +79,23 @@ const thebe_selector_output = ".output, .cell_output"
 
   
   
-  <a class="skip-link" href="#main-content">Skip to main content</a>
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
   
   <input type="checkbox"
           class="sidebar-toggle"
-          name="__primary"
-          id="__primary"/>
-  <label class="overlay overlay-primary" for="__primary"></label>
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
   
   <input type="checkbox"
           class="sidebar-toggle"
-          name="__secondary"
-          id="__secondary"/>
-  <label class="overlay overlay-secondary" for="__secondary"></label>
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
   
   <div class="search-button__wrapper">
     <div class="search-button__overlay"></div>
@@ -111,12 +117,20 @@ const thebe_selector_output = ".output, .cell_output"
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
 </form></div>
   </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
   
-    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
-    </nav>
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
   
+
   <div class="bd-container">
     <div class="bd-container__inner bd-page-width">
+      
+      
       
       <div class="bd-sidebar-primary bd-sidebar">
         
@@ -131,9 +145,13 @@ const thebe_selector_output = ".output, .cell_output"
   
     <div class="sidebar-primary-items__start sidebar-primary__section">
         <div class="sidebar-primary-item">
+
+  
+    
   
 
 <a class="navbar-brand logo" href="../index.html">
+  
   
   
   
@@ -143,32 +161,32 @@ const thebe_selector_output = ".output, .cell_output"
       
     
     
-    <img src="../../_static/landing_page.png" class="logo__image only-light" alt="Logo image"/>
-    <script>document.write(`<img src="../../_static/landing_page.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
+    <img src="../../_static/landing_page.png" class="logo__image only-light" alt="Climate and Geophysical Data Analysis - Home"/>
+    <script>document.write(`<img src="../../_static/landing_page.png" class="logo__image only-dark" alt="Climate and Geophysical Data Analysis - Home"/>`);</script>
   
   
 </a></div>
         <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         <ul class="current nav bd-sidenav">
-<li class="toctree-l1 has-children"><a class="reference internal" href="../introduction/intro.html">Introduction</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../introduction/intro.html">Introduction</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="../introduction/aboutthisbook.html">About this book</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../introduction/howtousethisbook.html">How to use this book</a></li>
 </ul>
-</li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../Week1a/whatarestatsgoodfor.html">What are statistics good for?</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../Week1a/whatarestatsgoodfor.html">What are statistics good for?</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="../Week1a/goodpractice.html">Statistics is the grammar of science…</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../Week1a/pitfalls.html">Lies, damned lies and statistics…</a></li>
 </ul>
-</li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../Week1b/descriptivestats.html">Descriptive Statistics</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../Week1b/descriptivestats.html">Descriptive Statistics</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="../Week1b/summarystats.html">Summary Statistics: Part I</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../Week1b/Variance_Example.html">Example: Sensitivity of Standard Deviation to Sampling</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../Week1b/what_is_pdf.html">What is a distribution?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../Week1b/summarystats2.html">Summary Statistics: Part II</a></li>
 </ul>
-</li>
-<li class="toctree-l1 current active has-children"><a class="reference internal" href="hypothesis_testing.html">Statistical Hypothesis Testing</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+</details></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="hypothesis_testing.html">Statistical Hypothesis Testing</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="probability.html">Basic Probability</a></li>
 <li class="toctree-l2"><a class="reference internal" href="normdist.html">The Standard Normal Distribution</a></li>
 <li class="toctree-l2"><a class="reference internal" href="ENSO.html">What is ENSO?</a></li>
@@ -179,8 +197,8 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="tstat.html">The <em>t</em>-Statistic</a></li>
 <li class="toctree-l2 current active"><a class="current reference internal" href="#">Resampling Techniques</a></li>
 </ul>
-</li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../Week3/linreg.html">Linear Regression</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../Week3/linreg.html">Linear Regression</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="../Week3/basics_linreg.html">Introduction to Linear Regression</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../Week3/confidence_intervals.html">Confidence Intervals</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../Week3/goodness.html">Goodness of Fit</a></li>
@@ -188,22 +206,22 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="../Week3/composites.html">Compositing</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../Week3/filtering.html">Filtering or Detrending using Regression</a></li>
 </ul>
-</li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../Week4/corr.html">Correlation</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-6"><i class="fa-solid fa-chevron-down"></i></label><ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../Week4/corr.html">Correlation</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="../Week4/corr_rev.html">Review of Correlation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../Week4/stat_corr.html">Statistical Significance of Correlation Coefficients</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../Week4/nonpar_corr.html">Non-parametric Correlations</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../Week4/autocorr.html">Autocorrelation</a></li>
 </ul>
-</li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../Week5/persistence.html">Persistence in Time Series</a><input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-7"><i class="fa-solid fa-chevron-down"></i></label><ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../Week5/persistence.html">Persistence in Time Series</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="../Week5/autocorr_example.html">Autocorrelation in Climate and Geophysical Data</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../Week5/red_noise.html">Introduction to Red Noise</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../Week5/autocorr_implications.html">Example: Correlation with Memory</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../Week5/n_eff.html">Accounting for Autocorrelation: Effective Sample Size</a></li>
 </ul>
-</li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../Week6/filt.html">Time Series Analysis</a><input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-8"><i class="fa-solid fa-chevron-down"></i></label><ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../Week6/filt.html">Time Series Analysis</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="../Week6/filtering_in_time.html">Filtering in the Time Domain: Part I</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../Week6/Harmonics.html">Filtering in the Time Domain: Part II</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../Week6/filtering_in_freq1.html">Filtering in the Frequency Domain: Discrete Fourier Transform</a></li>
@@ -212,15 +230,15 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="../Week6/leak.html">Spectral Leakage</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../Week6/convolution_filters_in_time.html">Convolution and Filtering in the Time Domain</a></li>
 </ul>
-</li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../Week7/pca.html">Patterns in Multivariate Data</a><input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-9"><i class="fa-solid fa-chevron-down"></i></label><ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../Week7/pca.html">Patterns in Multivariate Data</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="../Week7/Intro_to_PCA.html">Introduction to Principal Component Analysis</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../Week7/linalg.html">Review of Linear Algebra</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../Week7/eig.html">Eigenanalysis</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../Week7/eofs.html">EOFs via Eigenanalysis</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../Week7/naoeof.html">EOFs with Real Data</a></li>
 </ul>
-</li>
+</details></li>
 <li class="toctree-l1"><a class="reference internal" href="../Week8/epilogue.html">Epilogue</a></li>
 </ul>
 
@@ -237,7 +255,7 @@ const thebe_selector_output = ".output, .cell_output"
 
       </div>
       
-      <main id="main-content" class="bd-main">
+      <main id="main-content" class="bd-main" role="main">
         
         
 
@@ -246,7 +264,7 @@ const thebe_selector_output = ".output, .cell_output"
           <div class="bd-content">
             <div class="bd-article-container">
               
-              <div class="bd-header-article">
+              <div class="bd-header-article d-print-none">
 <div class="header-article-items header-article__inner">
   
     <div class="header-article-items__start">
@@ -377,20 +395,22 @@ const thebe_selector_output = ".output, .cell_output"
 </button>
 
 
+
 <script>
 document.write(`
-  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
-    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
-    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
   </button>
 `);
 </script>
 
+
 <script>
 document.write(`
-  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass"></i>
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
   </button>
 `);
 </script>
@@ -428,15 +448,15 @@ document.write(`
               
                 
 <div id="searchbox"></div>
-                <article class="bd-article" role="main">
+                <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="resampling-techniques">
-<h1>Resampling Techniques<a class="headerlink" href="#resampling-techniques" title="Permalink to this headline">#</a></h1>
+<h1>Resampling Techniques<a class="headerlink" href="#resampling-techniques" title="Permalink to this heading">#</a></h1>
 <p>Resampling techniques have not been as commonly discussed or used in scientific analysis because of the computational constraints. However, computer time is pretty cheap now, so, these techniques can be found more regularly in the peer reviewed literature.</p>
 <p>These are useful techniques to be aware of as they can be useful when we have small sample sizes but, the underlying distribution is <em>not</em> normal.</p>
 <p>These types of techniques are best understood by looking at examples.</p>
 <section id="bootstrapping">
-<h2>Bootstrapping<a class="headerlink" href="#bootstrapping" title="Permalink to this headline">#</a></h2>
+<h2>Bootstrapping<a class="headerlink" href="#bootstrapping" title="Permalink to this heading">#</a></h2>
 <p>Let’s start with an example of a resampling technique called <strong>“bootstrap”</strong> resampling. Bootstrap resampling or <em>bootstrapping</em> is one of the most common resampling techniques and involves random resampling with replacement (this means that you can resample the same data more than once). There are many different ways to use bootstrapping, here are a couple:</p>
 <ul class="simple">
 <li><p><em>Bootstrapping for hypothesis testing</em> involves constructing a large number of resamples of the original dataset. These resamples should be of equal size to a specific sample of interest (which is itself drawn from the original dataset) and be drawn by random sampling with replacement from the original dataset. In this way, you can construct a sampling distribution and you never need to assume anything about the underlying distribution of the data as it is already built-in to the original dataset. This approach can be used for small sample sizes and is often done when you have a long observational climatology or climate model control integration to draw samples from.</p></li>
@@ -504,7 +524,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.lines.Line2D at 0x17525aad0&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.lines.Line2D at 0x17ac3ab90&gt;
 </pre></div>
 </div>
 <img alt="../../_images/eaaa1ca2aa02ba27ce76db8f58090765c952cb28acbd7b88dbc1c278aa64e6b9.png" src="../../_images/eaaa1ca2aa02ba27ce76db8f58090765c952cb28acbd7b88dbc1c278aa64e6b9.png" />
@@ -563,7 +583,7 @@ The difference is 1.249
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/var/folders/m0/hylw02j53db4s63gklflxs800000gn/T/ipykernel_62091/2136107204.py:2: DeprecationWarning: `np.int` is a deprecated alias for the builtin `int`. To silence this warning, use `int` by itself. Doing this will not modify any behavior and is safe. When replacing `np.int`, you may wish to use e.g. `np.int64` or `np.int32` to specify the precision. If you wish to review your current use, check the release note link for additional information.
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/var/folders/m0/hylw02j53db4s63gklflxs800000gn/T/ipykernel_50428/2136107204.py:2: DeprecationWarning: `np.int` is a deprecated alias for the builtin `int`. To silence this warning, use `int` by itself. Doing this will not modify any behavior and is safe. When replacing `np.int`, you may wish to use e.g. `np.int64` or `np.int32` to specify the precision. If you wish to review your current use, check the release note link for additional information.
 Deprecated in NumPy 1.20; for more details and guidance: https://numpy.org/devdocs/release/1.20.0-notes.html#deprecations
   bins = np.linspace(np.min(NAO_diff_bootstrap),np.max(NAO_diff_bootstrap),np.int((np.max(NAO_diff_bootstrap)-np.min(NAO_diff_bootstrap))/0.01))
 </pre></div>
@@ -591,7 +611,7 @@ Deprecated in NumPy 1.20; for more details and guidance: https://numpy.org/devdo
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/0a5665b42f93df7227dd4968288edc6a4f4d49da8afc7c88163ccefb0c2df69e.png" src="../../_images/0a5665b42f93df7227dd4968288edc6a4f4d49da8afc7c88163ccefb0c2df69e.png" />
+<img alt="../../_images/e50751177acf917df7af176f4a9801f7c225e460332f3b32ad1230df6ab189a8.png" src="../../_images/e50751177acf917df7af176f4a9801f7c225e460332f3b32ad1230df6ab189a8.png" />
 </div>
 </div>
 <p>Now, we can clearly visualize that our observed difference is in the very tail of our bootstrapped sampling distribution, indicating that the probability of obtaining such a large difference is very low. How low? Let’s see.</p>
@@ -603,7 +623,7 @@ Deprecated in NumPy 1.20; for more details and guidance: https://numpy.org/devdo
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>9.999999999987796e-05
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2.999999999997449e-05
 </pre></div>
 </div>
 </div>
@@ -611,7 +631,7 @@ Deprecated in NumPy 1.20; for more details and guidance: https://numpy.org/devdo
 <p>Really low! This means that the difference between these two 18-year segments is quite anomalous. Note that here we are assuming that each year in our 18-year segments is independent, but in reality this is often not the case. We will discuss how to deal with this issue later in the course.</p>
 </section>
 <section id="jackknifing">
-<h2>Jackknifing<a class="headerlink" href="#jackknifing" title="Permalink to this headline">#</a></h2>
+<h2>Jackknifing<a class="headerlink" href="#jackknifing" title="Permalink to this heading">#</a></h2>
 <p><strong>Jackknife</strong> resampling is very similar to bootstrapping except that you systematically remove one value from your sample, and calculate the statistic, then put the value back into the sample and remove the next value, calculate the statistics…and on and on.</p>
 <p>Let’s take a look at an example of this using the NAO index data from above.</p>
 <p>Suppose we are interested in examining the trend in this data (we will talk about trends and regression analysis in more detail next week).</p>
@@ -635,10 +655,10 @@ Deprecated in NumPy 1.20; for more details and guidance: https://numpy.org/devdo
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.lines.Line2D at 0x175b019c0&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.lines.Line2D at 0x17b56ef80&gt;
 </pre></div>
 </div>
-<img alt="../../_images/2b17ec8a82bb97360352f3eb854ea92448f28a673b7c079ab96a8ae79d9a36af.png" src="../../_images/2b17ec8a82bb97360352f3eb854ea92448f28a673b7c079ab96a8ae79d9a36af.png" />
+<img alt="../../_images/357d230f7963dd2eaba46580fe68650fdb3b423bb3373be064860d6f3f2627a6.png" src="../../_images/357d230f7963dd2eaba46580fe68650fdb3b423bb3373be064860d6f3f2627a6.png" />
 </div>
 </div>
 <p><strong>How do we determine the 95% confidence levels on this trend line?</strong></p>
@@ -690,7 +710,7 @@ Deprecated in NumPy 1.20; for more details and guidance: https://numpy.org/devdo
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/13429645cb5308bb7c28a6f6f7e3c4f67ec4e1fcf96f1d0429ff87e74031b135.png" src="../../_images/13429645cb5308bb7c28a6f6f7e3c4f67ec4e1fcf96f1d0429ff87e74031b135.png" />
+<img alt="../../_images/d348cc4ca2dba4c566fcfe413b50ecc2ec80b5acdbe3d6e844d33add90eb293a.png" src="../../_images/d348cc4ca2dba4c566fcfe413b50ecc2ec80b5acdbe3d6e844d33add90eb293a.png" />
 </div>
 </div>
 <p>As you can see we get a slightly different slope and y-intercept each time we remove a data point.</p>
@@ -716,8 +736,8 @@ Deprecated in NumPy 1.20; for more details and guidance: https://numpy.org/devdo
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CI&#39;s for slope: 0.01643790387102834 0.01284390850334221
-CI&#39;s for y-intercept: -25.381890617345103 -32.50697006559629
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CI&#39;s for slope: 0.016437903871028208 0.012843908503342081
+CI&#39;s for y-intercept: -25.381890617344844 -32.50697006559596
 </pre></div>
 </div>
 </div>
@@ -789,11 +809,10 @@ CI&#39;s for y-intercept: -25.381890617345103 -32.50697006559629
 
               
               
-                <footer class="bd-footer-article">
+              
+              
+                <footer class="prev-next-footer d-print-none">
                   
-<div class="footer-article-items footer-article__inner">
-  
-    <div class="footer-article-item"><!-- Previous / next buttons -->
 <div class="prev-next-area">
     <a class="left-prev"
        href="tstat.html"
@@ -813,10 +832,7 @@ CI&#39;s for y-intercept: -25.381890617345103 -32.50697006559629
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
-</div></div>
-  
 </div>
-
                 </footer>
               
             </div>
@@ -824,6 +840,7 @@ CI&#39;s for y-intercept: -25.381890617345103 -32.50697006559629
             
               
                 <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
 
   <div class="sidebar-secondary-item">
   <div class="page-toc tocsection onthispage">
@@ -854,6 +871,7 @@ By Karen Smith
   
   <div class="footer-item">
     
+
   <p class="copyright">
     
       © Copyright 2023.
@@ -880,8 +898,8 @@ By Karen Smith
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
-<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+  <script src="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
 
   <footer class="bd-footer">
   </footer>

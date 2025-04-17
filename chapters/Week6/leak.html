@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 
 
-<html >
+<html lang="en" data-content_root="" >
 
   <head>
     <meta charset="utf-8" />
@@ -15,19 +15,19 @@
   
   <script data-cfasync="false">
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
-    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
-<link href="../../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
-<link href="../../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link href="../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
 
   
-  <link href="../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+  <link href="../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
 
     <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
     <link rel="stylesheet" href="../../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
@@ -38,12 +38,14 @@
     <link rel="stylesheet" type="text/css" href="../../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
-<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
     <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
     <script src="../../_static/jquery.js"></script>
     <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../../_static/doctools.js"></script>
     <script src="../../_static/clipboard.min.js"></script>
     <script src="../../_static/copybutton.js"></script>
@@ -69,7 +71,7 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="next" title="Convolution and Filtering in the Time Domain" href="convolution_filters_in_time.html" />
     <link rel="prev" title="Continuous Power Spectrum and the Significance of Spectral Peaks" href="filtering_in_freq3.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <meta name="docsearch:language" content="None"/>
+  <meta name="docsearch:language" content="en"/>
   </head>
   
   
@@ -77,19 +79,23 @@ const thebe_selector_output = ".output, .cell_output"
 
   
   
-  <a class="skip-link" href="#main-content">Skip to main content</a>
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
   
   <input type="checkbox"
           class="sidebar-toggle"
-          name="__primary"
-          id="__primary"/>
-  <label class="overlay overlay-primary" for="__primary"></label>
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
   
   <input type="checkbox"
           class="sidebar-toggle"
-          name="__secondary"
-          id="__secondary"/>
-  <label class="overlay overlay-secondary" for="__secondary"></label>
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
   
   <div class="search-button__wrapper">
     <div class="search-button__overlay"></div>
@@ -111,12 +117,20 @@ const thebe_selector_output = ".output, .cell_output"
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
 </form></div>
   </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
   
-    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
-    </nav>
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
   
+
   <div class="bd-container">
     <div class="bd-container__inner bd-page-width">
+      
+      
       
       <div class="bd-sidebar-primary bd-sidebar">
         
@@ -131,9 +145,13 @@ const thebe_selector_output = ".output, .cell_output"
   
     <div class="sidebar-primary-items__start sidebar-primary__section">
         <div class="sidebar-primary-item">
+
+  
+    
   
 
 <a class="navbar-brand logo" href="../index.html">
+  
   
   
   
@@ -143,32 +161,32 @@ const thebe_selector_output = ".output, .cell_output"
       
     
     
-    <img src="../../_static/landing_page.png" class="logo__image only-light" alt="Logo image"/>
-    <script>document.write(`<img src="../../_static/landing_page.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
+    <img src="../../_static/landing_page.png" class="logo__image only-light" alt="Climate and Geophysical Data Analysis - Home"/>
+    <script>document.write(`<img src="../../_static/landing_page.png" class="logo__image only-dark" alt="Climate and Geophysical Data Analysis - Home"/>`);</script>
   
   
 </a></div>
         <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         <ul class="current nav bd-sidenav">
-<li class="toctree-l1 has-children"><a class="reference internal" href="../introduction/intro.html">Introduction</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../introduction/intro.html">Introduction</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="../introduction/aboutthisbook.html">About this book</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../introduction/howtousethisbook.html">How to use this book</a></li>
 </ul>
-</li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../Week1a/whatarestatsgoodfor.html">What are statistics good for?</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../Week1a/whatarestatsgoodfor.html">What are statistics good for?</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="../Week1a/goodpractice.html">Statistics is the grammar of science…</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../Week1a/pitfalls.html">Lies, damned lies and statistics…</a></li>
 </ul>
-</li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../Week1b/descriptivestats.html">Descriptive Statistics</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../Week1b/descriptivestats.html">Descriptive Statistics</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="../Week1b/summarystats.html">Summary Statistics: Part I</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../Week1b/Variance_Example.html">Example: Sensitivity of Standard Deviation to Sampling</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../Week1b/what_is_pdf.html">What is a distribution?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../Week1b/summarystats2.html">Summary Statistics: Part II</a></li>
 </ul>
-</li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../Week2/hypothesis_testing.html">Statistical Hypothesis Testing</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../Week2/hypothesis_testing.html">Statistical Hypothesis Testing</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="../Week2/probability.html">Basic Probability</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../Week2/normdist.html">The Standard Normal Distribution</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../Week2/ENSO.html">What is ENSO?</a></li>
@@ -179,8 +197,8 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="../Week2/tstat.html">The <em>t</em>-Statistic</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../Week2/resampling.html">Resampling Techniques</a></li>
 </ul>
-</li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../Week3/linreg.html">Linear Regression</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../Week3/linreg.html">Linear Regression</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="../Week3/basics_linreg.html">Introduction to Linear Regression</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../Week3/confidence_intervals.html">Confidence Intervals</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../Week3/goodness.html">Goodness of Fit</a></li>
@@ -188,22 +206,22 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="../Week3/composites.html">Compositing</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../Week3/filtering.html">Filtering or Detrending using Regression</a></li>
 </ul>
-</li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../Week4/corr.html">Correlation</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-6"><i class="fa-solid fa-chevron-down"></i></label><ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../Week4/corr.html">Correlation</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="../Week4/corr_rev.html">Review of Correlation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../Week4/stat_corr.html">Statistical Significance of Correlation Coefficients</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../Week4/nonpar_corr.html">Non-parametric Correlations</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../Week4/autocorr.html">Autocorrelation</a></li>
 </ul>
-</li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../Week5/persistence.html">Persistence in Time Series</a><input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-7"><i class="fa-solid fa-chevron-down"></i></label><ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../Week5/persistence.html">Persistence in Time Series</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="../Week5/autocorr_example.html">Autocorrelation in Climate and Geophysical Data</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../Week5/red_noise.html">Introduction to Red Noise</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../Week5/autocorr_implications.html">Example: Correlation with Memory</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../Week5/n_eff.html">Accounting for Autocorrelation: Effective Sample Size</a></li>
 </ul>
-</li>
-<li class="toctree-l1 current active has-children"><a class="reference internal" href="filt.html">Time Series Analysis</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-8"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+</details></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="filt.html">Time Series Analysis</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="filtering_in_time.html">Filtering in the Time Domain: Part I</a></li>
 <li class="toctree-l2"><a class="reference internal" href="Harmonics.html">Filtering in the Time Domain: Part II</a></li>
 <li class="toctree-l2"><a class="reference internal" href="filtering_in_freq1.html">Filtering in the Frequency Domain: Discrete Fourier Transform</a></li>
@@ -212,15 +230,15 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2 current active"><a class="current reference internal" href="#">Spectral Leakage</a></li>
 <li class="toctree-l2"><a class="reference internal" href="convolution_filters_in_time.html">Convolution and Filtering in the Time Domain</a></li>
 </ul>
-</li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../Week7/pca.html">Patterns in Multivariate Data</a><input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-9"><i class="fa-solid fa-chevron-down"></i></label><ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../Week7/pca.html">Patterns in Multivariate Data</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="../Week7/Intro_to_PCA.html">Introduction to Principal Component Analysis</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../Week7/linalg.html">Review of Linear Algebra</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../Week7/eig.html">Eigenanalysis</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../Week7/eofs.html">EOFs via Eigenanalysis</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../Week7/naoeof.html">EOFs with Real Data</a></li>
 </ul>
-</li>
+</details></li>
 <li class="toctree-l1"><a class="reference internal" href="../Week8/epilogue.html">Epilogue</a></li>
 </ul>
 
@@ -237,7 +255,7 @@ const thebe_selector_output = ".output, .cell_output"
 
       </div>
       
-      <main id="main-content" class="bd-main">
+      <main id="main-content" class="bd-main" role="main">
         
         
 
@@ -246,7 +264,7 @@ const thebe_selector_output = ".output, .cell_output"
           <div class="bd-content">
             <div class="bd-article-container">
               
-              <div class="bd-header-article">
+              <div class="bd-header-article d-print-none">
 <div class="header-article-items header-article__inner">
   
     <div class="header-article-items__start">
@@ -377,20 +395,22 @@ const thebe_selector_output = ".output, .cell_output"
 </button>
 
 
+
 <script>
 document.write(`
-  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
-    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
-    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
   </button>
 `);
 </script>
 
+
 <script>
 document.write(`
-  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass"></i>
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
   </button>
 `);
 </script>
@@ -437,10 +457,10 @@ document.write(`
               
                 
 <div id="searchbox"></div>
-                <article class="bd-article" role="main">
+                <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="spectral-leakage">
-<h1>Spectral Leakage<a class="headerlink" href="#spectral-leakage" title="Permalink to this headline">#</a></h1>
+<h1>Spectral Leakage<a class="headerlink" href="#spectral-leakage" title="Permalink to this heading">#</a></h1>
 <p>Two key problems arise when conducting spectral analysis of finite, discrete time series (not an infinite time series):</p>
 <ol class="arabic simple">
 <li><p><strong>Aliasing:</strong> we only resolve frequencies lower than the Nyquist frequency (<span class="math notranslate nohighlight">\(\frac{1}{2\Delta t}\)</span>), and frequencies higher than this get aliased to lower frequencies.</p></li>
@@ -448,7 +468,7 @@ document.write(`
 </ol>
 <p>In this section, we will address the second problem, <strong>spectral leakage</strong> and how to reduce it.</p>
 <section id="setting-up-the-problem">
-<h2>Setting up the problem<a class="headerlink" href="#setting-up-the-problem" title="Permalink to this headline">#</a></h2>
+<h2>Setting up the problem<a class="headerlink" href="#setting-up-the-problem" title="Permalink to this heading">#</a></h2>
 <p>Suppose we have a time series, <span class="math notranslate nohighlight">\(y(t)\)</span>, that is defined on -<span class="math notranslate nohighlight">\(\infty \leq t \leq \infty\)</span>.</p>
 <p>Another way to conceptualize this time series would be to write it as, <span class="math notranslate nohighlight">\(y(t)g(t)\)</span>, where <span class="math notranslate nohighlight">\(g(t)\)</span> is a function with a value of 1 for all <span class="math notranslate nohighlight">\(t\)</span>, -<span class="math notranslate nohighlight">\(\infty \leq t \leq \infty\)</span>, as illustrated in the left panel in <a class="reference internal" href="#window"><span class="std std-ref">Figure 23</span></a>.</p>
 <figure class="align-default" id="window">
@@ -624,7 +644,7 @@ document.write(`
 <p>What happened? Our Fourier Transform is not able to clearly isolate the sine wave frequency as the only frequency. This is the essense of spectral leakage and it is problematic because it can introduce frequencies in time series that are not actually there. In order to better understand how windowing can result in spectral leakage, we need learn a bit about <strong>convolution</strong>.</p>
 </section>
 <section id="convolution">
-<h2>Convolution<a class="headerlink" href="#convolution" title="Permalink to this headline">#</a></h2>
+<h2>Convolution<a class="headerlink" href="#convolution" title="Permalink to this heading">#</a></h2>
 <p>We can minimize spectral leakage by applying different <em>windows</em> to our data, i.e., by creating different functional forms for <span class="math notranslate nohighlight">\(g(t)\)</span>. To understand how applying different windows can help, we first need to define something called <strong>convolution</strong>.</p>
 <p>The convolution of two functions <span class="math notranslate nohighlight">\(y(t)\)</span> and <span class="math notranslate nohighlight">\(g(t)\)</span> is:</p>
 <div class="math notranslate nohighlight">
@@ -756,7 +776,7 @@ Y(\omega) = \int_{-\infty}^{\infty} y(t)e^{-i\omega t} \,dt
 <p>We see that we can recover the windowed discrete power spectrum of <code class="docutils literal notranslate"><span class="pre">y2</span></code> when we convolve the Fourier Transforms of the individual time series, <code class="docutils literal notranslate"><span class="pre">y1</span></code> and <code class="docutils literal notranslate"><span class="pre">bxcr</span></code>.</p>
 </section>
 <section id="response-functions">
-<h2>Response Functions<a class="headerlink" href="#response-functions" title="Permalink to this headline">#</a></h2>
+<h2>Response Functions<a class="headerlink" href="#response-functions" title="Permalink to this heading">#</a></h2>
 <p>The function <span class="math notranslate nohighlight">\(\mathcal{G}(\omega-\omega_0)\)</span> is called the response function of window <span class="math notranslate nohighlight">\(g(t)\)</span> that acts on the original time series (where <span class="math notranslate nohighlight">\(g(t)\)</span> is a window in time, not in frequency).</p>
 <p><em>Ideal Case (no window):</em></p>
 <p>In an ideal world, we would like our window <span class="math notranslate nohighlight">\(g(t)\)</span> to give us a response function of <span class="math notranslate nohighlight">\(\mathcal{G}(\omega-\omega_0)\)</span> such that,</p>
@@ -824,7 +844,7 @@ sinc(x) = \frac{\text{sin}(\pi x)}{\pi x}
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x178246080&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x177be3b80&gt;
 </pre></div>
 </div>
 <img alt="../../_images/9ef6ff0576db61c375ac32fe366c231f958ddf117a047cd15a8292cfec44a6d5.png" src="../../_images/9ef6ff0576db61c375ac32fe366c231f958ddf117a047cd15a8292cfec44a6d5.png" />
@@ -833,7 +853,7 @@ sinc(x) = \frac{\text{sin}(\pi x)}{\pi x}
 <p>Recall why we are looking at this: The Fourier Transform of a windowed time series corresponds to the convolution of the individual Fourier Transforms (convolution theorem!). Thus, the above plot shows the function that is being <em>convolved</em> with the pure periodic signal in our time series leading to spectral leakage. Remember that a convolution can be thought of as a sliding weighted average.</p>
 <p>So, what do you see? The ideal response function, as described above, should just be a step function, i.e. it should have a value of 1 at lag = 0 (in this plot, <span class="math notranslate nohighlight">\(\omega\)</span> = 0) and a value of 0 everywhere else. This is not what we see for the boxcar window. We do see a value of 1 at lag = 0, but we see many other non-zero values at higher lags. Notice the large negative side lobe and their rather slow, oscillatory decay. We also see that as <span class="math notranslate nohighlight">\(T\)</span> gets larger, the boxcar function approaches a step function, but never truly gets there.</p>
 <section id="characteristics-of-the-boxcar-window-response-function">
-<h3>Characteristics of the Boxcar Window Response Function:<a class="headerlink" href="#characteristics-of-the-boxcar-window-response-function" title="Permalink to this headline">#</a></h3>
+<h3>Characteristics of the Boxcar Window Response Function:<a class="headerlink" href="#characteristics-of-the-boxcar-window-response-function" title="Permalink to this heading">#</a></h3>
 <ul class="simple">
 <li><p><strong>smoothing:</strong> when the spectrum is calculated through a boxcar, the window acts to smooth and distort the true spectrum.</p></li>
 <li><p><strong>side lobes:</strong> note the side lobes, these can be a real problem as they add frequencies to your spectrum that may not have been present in your original data - the reason for the side lobe is that these are the higher frequency harmonics needed to try and fit the sharp corners of the boxcar window.</p></li>
@@ -843,7 +863,7 @@ sinc(x) = \frac{\text{sin}(\pi x)}{\pi x}
 </section>
 </section>
 <section id="alternative-windows-for-minimizing-spectral-leakage">
-<h2>Alternative Windows for Minimizing Spectral Leakage<a class="headerlink" href="#alternative-windows-for-minimizing-spectral-leakage" title="Permalink to this headline">#</a></h2>
+<h2>Alternative Windows for Minimizing Spectral Leakage<a class="headerlink" href="#alternative-windows-for-minimizing-spectral-leakage" title="Permalink to this heading">#</a></h2>
 <p>As we have seen, the boxcar window causes spectral leakage, thus, alternative <em>windows</em> have been developed in order to reduce this problem. Here, we will focus on one called the <strong>Hanning Window</strong>.</p>
 <p>The Hanning window is one of many windows that acts to taper the end of the time series, rather than have a sharp rectangular corner, like a boxcar window. The functional form of the Hanning window is:</p>
 <div class="math notranslate nohighlight">
@@ -892,14 +912,14 @@ h(t) = \frac{1}{2}\left(1-\text{cos}(\frac{2\pi t}{T})\right) \quad \text{when $
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x1783362c0&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x177cd33d0&gt;
 </pre></div>
 </div>
 <img alt="../../_images/bc3045eb1c6a3360e04f8aa1dcefc84c253571c404688bc0154b38bf418ff26d.png" src="../../_images/bc3045eb1c6a3360e04f8aa1dcefc84c253571c404688bc0154b38bf418ff26d.png" />
 </div>
 </div>
 <section id="windows-and-degress-of-freedom">
-<h3>Windows and Degress of Freedom<a class="headerlink" href="#windows-and-degress-of-freedom" title="Permalink to this headline">#</a></h3>
+<h3>Windows and Degress of Freedom<a class="headerlink" href="#windows-and-degress-of-freedom" title="Permalink to this heading">#</a></h3>
 <p>Note that this additional smoothing isn’t considered in your degrees of freedom (D.O.F.) calculation, and thus, there is an additional factor added into the D.O.F. calculation to account for the smoothing by the window:</p>
 <div class="math notranslate nohighlight">
 \[
@@ -909,7 +929,7 @@ DOF = \frac{N}{M^*}f_w
 </section>
 </section>
 <section id="welch-s-overlapping-segment-analysis-method">
-<h2>Welch’s Overlapping Segment Analysis Method<a class="headerlink" href="#welch-s-overlapping-segment-analysis-method" title="Permalink to this headline">#</a></h2>
+<h2>Welch’s Overlapping Segment Analysis Method<a class="headerlink" href="#welch-s-overlapping-segment-analysis-method" title="Permalink to this heading">#</a></h2>
 <p>One of the problems with the Hanning window, is that if you have a short time series, you will end up using very little of the data at the edges of your time series due to the tapered window But, this data is just as important as the data in the center of the time series! This is not only a problem for short time series, but it can also, be a problem when you split your time series into smaller chunks to construct a continuous power spectrum and increase your degrees of freedom.</p>
 <p>For example, we might want to split our time series into 2 chunks (see <a class="reference internal" href="#wosa"><span class="std std-ref">Figure 25</span></a> below). To reduce tapering at the edges, often one will apply the window to one chunk of data, and include a 50% overlap with that data when calculating the second chunk of data. In this case, you will have more than 2 chunks (you will have 3 chunks). It turns out that even though it may feel like you are double counting data, you actually gain 2 degrees of freedom per chunk (including those overlapping) if you are using a Hanning window. That is, if you use a 50% overlap with a Hanning window you will have 3 x 2 x 1.2 = 7.2 degrees of freedom per spectral estimate!</p>
 <figure class="align-default" id="wosa">
@@ -988,7 +1008,7 @@ DOF = \frac{N}{M^*}f_w
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/720bd097d839dfd651f264fe390fdb890a696c3e07de8af5cea482da61a8ca70.png" src="../../_images/720bd097d839dfd651f264fe390fdb890a696c3e07de8af5cea482da61a8ca70.png" />
+<img alt="../../_images/3be8c950907bda4299c155c95ae30f1e70d8c1b9e55f65eaf280f97dc6ed37cf.png" src="../../_images/3be8c950907bda4299c155c95ae30f1e70d8c1b9e55f65eaf280f97dc6ed37cf.png" />
 </div>
 </div>
 <p>You should notice that the spectral peak gets wider as we increase the number of chunks. This is because we are losing information as the time segments get shorter; however, the WOSA method is still able to identify the correct frequency for the peak and as we increase the number of chunks, the peak corresponding to the periodic frequency in our data emerges as the only significant one - reducing spectral leakage.</p>
@@ -1020,11 +1040,10 @@ DOF = \frac{N}{M^*}f_w
 
               
               
-                <footer class="bd-footer-article">
+              
+              
+                <footer class="prev-next-footer d-print-none">
                   
-<div class="footer-article-items footer-article__inner">
-  
-    <div class="footer-article-item"><!-- Previous / next buttons -->
 <div class="prev-next-area">
     <a class="left-prev"
        href="filtering_in_freq3.html"
@@ -1044,10 +1063,7 @@ DOF = \frac{N}{M^*}f_w
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
-</div></div>
-  
 </div>
-
                 </footer>
               
             </div>
@@ -1055,6 +1071,7 @@ DOF = \frac{N}{M^*}f_w
             
               
                 <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
 
   <div class="sidebar-secondary-item">
   <div class="page-toc tocsection onthispage">
@@ -1094,6 +1111,7 @@ By Karen Smith
   
   <div class="footer-item">
     
+
   <p class="copyright">
     
       © Copyright 2023.
@@ -1120,8 +1138,8 @@ By Karen Smith
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
-<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+  <script src="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
 
   <footer class="bd-footer">
   </footer>

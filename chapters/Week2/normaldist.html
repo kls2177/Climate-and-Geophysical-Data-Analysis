@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 
 
-<html >
+<html lang="en" data-content_root="" >
 
   <head>
     <meta charset="utf-8" />
@@ -15,19 +15,19 @@
   
   <script data-cfasync="false">
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
-    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
-<link href="../../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
-<link href="../../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link href="../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
 
   
-  <link href="../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+  <link href="../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
 
     <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
     <link rel="stylesheet" href="../../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
@@ -38,12 +38,14 @@
     <link rel="stylesheet" type="text/css" href="../../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
-<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
     <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
     <script src="../../_static/jquery.js"></script>
     <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../../_static/doctools.js"></script>
     <script src="../../_static/clipboard.min.js"></script>
     <script src="../../_static/copybutton.js"></script>
@@ -67,7 +69,7 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <meta name="docsearch:language" content="None"/>
+  <meta name="docsearch:language" content="en"/>
   </head>
   
   
@@ -75,19 +77,23 @@ const thebe_selector_output = ".output, .cell_output"
 
   
   
-  <a class="skip-link" href="#main-content">Skip to main content</a>
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
   
   <input type="checkbox"
           class="sidebar-toggle"
-          name="__primary"
-          id="__primary"/>
-  <label class="overlay overlay-primary" for="__primary"></label>
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
   
   <input type="checkbox"
           class="sidebar-toggle"
-          name="__secondary"
-          id="__secondary"/>
-  <label class="overlay overlay-secondary" for="__secondary"></label>
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
   
   <div class="search-button__wrapper">
     <div class="search-button__overlay"></div>
@@ -109,12 +115,22 @@ const thebe_selector_output = ".output, .cell_output"
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
 </form></div>
   </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
   
-    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
-    </nav>
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
   
+
   <div class="bd-container">
     <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
       
       <div class="bd-sidebar-primary bd-sidebar">
         
@@ -129,9 +145,13 @@ const thebe_selector_output = ".output, .cell_output"
   
     <div class="sidebar-primary-items__start sidebar-primary__section">
         <div class="sidebar-primary-item">
+
+  
+    
   
 
 <a class="navbar-brand logo" href="../index.html">
+  
   
   
   
@@ -141,24 +161,85 @@ const thebe_selector_output = ".output, .cell_output"
       
     
     
-    <img src="../../_static/landing_page.png" class="logo__image only-light" alt="Logo image"/>
-    <script>document.write(`<img src="../../_static/landing_page.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
+    <img src="../../_static/landing_page.png" class="logo__image only-light" alt="Climate and Geophysical Data Analysis - Home"/>
+    <script>document.write(`<img src="../../_static/landing_page.png" class="logo__image only-dark" alt="Climate and Geophysical Data Analysis - Home"/>`);</script>
   
   
 </a></div>
         <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         <ul class="nav bd-sidenav">
-<li class="toctree-l1 has-children"><a class="reference internal" href="../introduction/intro.html">Introduction</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../introduction/intro.html">Introduction</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="../introduction/aboutthisbook.html">About this book</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../introduction/howtousethisbook.html">How to use this book</a></li>
 </ul>
-</li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../Week1a/whatarestatsgoodfor.html">What are statistics good for?</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../Week1a/whatarestatsgoodfor.html">What are statistics good for?</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="../Week1a/goodpractice.html">Statistics is the grammar of science…</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../Week1a/pitfalls.html">Lies, damned lies and statistics…</a></li>
 </ul>
-</li>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../Week1b/descriptivestats.html">Descriptive Statistics</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../Week1b/summarystats.html">Summary Statistics: Part I</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Week1b/Variance_Example.html">Example: Sensitivity of Standard Deviation to Sampling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Week1b/what_is_pdf.html">What is a distribution?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Week1b/summarystats2.html">Summary Statistics: Part II</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="hypothesis_testing.html">Statistical Hypothesis Testing</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="probability.html">Basic Probability</a></li>
+<li class="toctree-l2"><a class="reference internal" href="normdist.html">The Standard Normal Distribution</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ENSO.html">What is ENSO?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="zstat.html">The <em>z</em>-Statistic</a></li>
+<li class="toctree-l2"><a class="reference internal" href="signal2noise.html">Signal-to-Noise</a></li>
+<li class="toctree-l2"><a class="reference internal" href="central_limit_theorem.html">The Central Limit Theorem</a></li>
+<li class="toctree-l2"><a class="reference internal" href="statistical_significance.html">Estimating Statistical Significance with a <em>z</em>-test</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tstat.html">The <em>t</em>-Statistic</a></li>
+<li class="toctree-l2"><a class="reference internal" href="resampling.html">Resampling Techniques</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../Week3/linreg.html">Linear Regression</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../Week3/basics_linreg.html">Introduction to Linear Regression</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Week3/confidence_intervals.html">Confidence Intervals</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Week3/goodness.html">Goodness of Fit</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Week3/assumptions.html">Assumptions of Linear Regression</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Week3/composites.html">Compositing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Week3/filtering.html">Filtering or Detrending using Regression</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../Week4/corr.html">Correlation</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../Week4/corr_rev.html">Review of Correlation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Week4/stat_corr.html">Statistical Significance of Correlation Coefficients</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Week4/nonpar_corr.html">Non-parametric Correlations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Week4/autocorr.html">Autocorrelation</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../Week5/persistence.html">Persistence in Time Series</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../Week5/autocorr_example.html">Autocorrelation in Climate and Geophysical Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Week5/red_noise.html">Introduction to Red Noise</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Week5/autocorr_implications.html">Example: Correlation with Memory</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Week5/n_eff.html">Accounting for Autocorrelation: Effective Sample Size</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../Week6/filt.html">Time Series Analysis</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../Week6/filtering_in_time.html">Filtering in the Time Domain: Part I</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Week6/Harmonics.html">Filtering in the Time Domain: Part II</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Week6/filtering_in_freq1.html">Filtering in the Frequency Domain: Discrete Fourier Transform</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Week6/filtering_in_freq2.html">Fast Fourier Transform</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Week6/filtering_in_freq3.html">Continuous Power Spectrum and the Significance of Spectral Peaks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Week6/leak.html">Spectral Leakage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Week6/convolution_filters_in_time.html">Convolution and Filtering in the Time Domain</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../Week7/pca.html">Patterns in Multivariate Data</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../Week7/Intro_to_PCA.html">Introduction to Principal Component Analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Week7/linalg.html">Review of Linear Algebra</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Week7/eig.html">Eigenanalysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Week7/eofs.html">EOFs via Eigenanalysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Week7/naoeof.html">EOFs with Real Data</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../Week8/epilogue.html">Epilogue</a></li>
 </ul>
 
     </div>
@@ -174,7 +255,7 @@ const thebe_selector_output = ".output, .cell_output"
 
       </div>
       
-      <main id="main-content" class="bd-main">
+      <main id="main-content" class="bd-main" role="main">
         
         
 
@@ -183,7 +264,7 @@ const thebe_selector_output = ".output, .cell_output"
           <div class="bd-content">
             <div class="bd-article-container">
               
-              <div class="bd-header-article">
+              <div class="bd-header-article d-print-none">
 <div class="header-article-items header-article__inner">
   
     <div class="header-article-items__start">
@@ -265,20 +346,22 @@ const thebe_selector_output = ".output, .cell_output"
 </button>
 
 
+
 <script>
 document.write(`
-  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
-    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
-    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
   </button>
 `);
 </script>
 
+
 <script>
 document.write(`
-  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass"></i>
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
   </button>
 `);
 </script>
@@ -319,13 +402,13 @@ document.write(`
               
                 
 <div id="searchbox"></div>
-                <article class="bd-article" role="main">
+                <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="the-standard-normal-distribution">
-<h1>The Standard Normal Distribution<a class="headerlink" href="#the-standard-normal-distribution" title="Permalink to this headline">#</a></h1>
+<h1>The Standard Normal Distribution<a class="headerlink" href="#the-standard-normal-distribution" title="Permalink to this heading">#</a></h1>
 <p>In statistical analysis, we use probability to describe how likely a particular result (e.g. a sample mean) is relative to something else (e.g. the population mean). To do this, we will return to the concept of distributions. Many climate and geophysical variables have distributions with similar characteristics, so in this course, we will focus on this type of distribution, the <strong>normal distribution</strong>.</p>
 <section id="probability-density-functions">
-<h2>Probability Density Functions<a class="headerlink" href="#probability-density-functions" title="Permalink to this headline">#</a></h2>
+<h2>Probability Density Functions<a class="headerlink" href="#probability-density-functions" title="Permalink to this heading">#</a></h2>
 <p>In the previous section on distributions, we used histograms to visualize the <em>discrete</em> probability distributions of surface air temperature data at the UTSC weather station. However, most variables that we will be working with are not discrete, they are <em>continuous</em>, and thus, we need a way to describe continuous probability distributions (see the <a class="reference external" href="https://www.themathdoctors.org/from-histograms-to-probability-distribution-functions/">following</a> for more on discrete versus continuous probability distributions).</p>
 <p>Let’s define a <em>probability density function</em> (PDF), a function that describes a probability distribution for a continuous variable, as <span class="math notranslate nohighlight">\(f(x)\)</span>.</p>
 <p>The probability of an event <span class="math notranslate nohighlight">\(x\)</span> occurring between values <span class="math notranslate nohighlight">\(a\)</span> and <span class="math notranslate nohighlight">\(b\)</span> is then,</p>
@@ -340,7 +423,7 @@ Pr(a \leq x \leq b) = \int_{a}^b f(x)dx
 </ul>
 <p>Note the similarities between the relative frequency plotted in our histograms and the PDF, both are always greater than or equal to zero and the area under both curves sums to 1 (Note that for our histograms, an unstated assumption was that each bin had a width of 1).</p>
 <section id="cumulative-density-functions">
-<h3>Cumulative Density Functions<a class="headerlink" href="#cumulative-density-functions" title="Permalink to this headline">#</a></h3>
+<h3>Cumulative Density Functions<a class="headerlink" href="#cumulative-density-functions" title="Permalink to this heading">#</a></h3>
 <p>The <strong>cumulative density function</strong> (CDF) is analogous to the <em>discrete</em> cumulative probability distribution. The CDF at value <span class="math notranslate nohighlight">\(b\)</span>, denoted <span class="math notranslate nohighlight">\(F(b)\)</span>, is the probability that <span class="math notranslate nohighlight">\(x\)</span> assumes a value less than <span class="math notranslate nohighlight">\(b\)</span></p>
 <div class="math notranslate nohighlight">
 \[
@@ -356,7 +439,7 @@ Pr(a \leq x \leq b) = F(b) - F(a)
 </section>
 </section>
 <section id="the-normal-distribution">
-<h2>The Normal Distribution<a class="headerlink" href="#the-normal-distribution" title="Permalink to this headline">#</a></h2>
+<h2>The Normal Distribution<a class="headerlink" href="#the-normal-distribution" title="Permalink to this heading">#</a></h2>
 <p>So far, we have described probability density functions in general terms. Now, we will take a closer look at the <strong>normal distribution</strong>.</p>
 <p>The PDF of a variable <span class="math notranslate nohighlight">\(x\)</span> that is <em>normally</em> distributed about its mean value is given by</p>
 <div class="math notranslate nohighlight">
@@ -402,16 +485,12 @@ F(b) - F(a) = \int_{a}^{b} \frac{1}{\sigma\sqrt{2\pi}}e^{\frac{-(x-\mu)^2}{2\sig
 
               
               
-                <footer class="bd-footer-article">
+              
+              
+                <footer class="prev-next-footer d-print-none">
                   
-<div class="footer-article-items footer-article__inner">
-  
-    <div class="footer-article-item"><!-- Previous / next buttons -->
 <div class="prev-next-area">
-</div></div>
-  
 </div>
-
                 </footer>
               
             </div>
@@ -419,6 +498,7 @@ F(b) - F(a) = \int_{a}^{b} \frac{1}{\sigma\sqrt{2\pi}}e^{\frac{-(x-\mu)^2}{2\sig
             
               
                 <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
 
   <div class="sidebar-secondary-item">
   <div class="page-toc tocsection onthispage">
@@ -452,6 +532,7 @@ By Karen Smith
   
   <div class="footer-item">
     
+
   <p class="copyright">
     
       © Copyright 2023.
@@ -478,8 +559,8 @@ By Karen Smith
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
-<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+  <script src="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
 
   <footer class="bd-footer">
   </footer>

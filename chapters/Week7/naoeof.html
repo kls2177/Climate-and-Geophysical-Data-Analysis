@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 
 
-<html >
+<html lang="en" data-content_root="" >
 
   <head>
     <meta charset="utf-8" />
@@ -15,19 +15,19 @@
   
   <script data-cfasync="false">
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
-    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
-<link href="../../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
-<link href="../../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link href="../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
 
   
-  <link href="../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+  <link href="../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
 
     <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
     <link rel="stylesheet" href="../../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
@@ -38,12 +38,14 @@
     <link rel="stylesheet" type="text/css" href="../../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
-<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
     <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
     <script src="../../_static/jquery.js"></script>
     <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../../_static/doctools.js"></script>
     <script src="../../_static/clipboard.min.js"></script>
     <script src="../../_static/copybutton.js"></script>
@@ -69,7 +71,7 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="next" title="Epilogue" href="../Week8/epilogue.html" />
     <link rel="prev" title="EOFs via Eigenanalysis" href="eofs.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <meta name="docsearch:language" content="None"/>
+  <meta name="docsearch:language" content="en"/>
   </head>
   
   
@@ -77,19 +79,23 @@ const thebe_selector_output = ".output, .cell_output"
 
   
   
-  <a class="skip-link" href="#main-content">Skip to main content</a>
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
   
   <input type="checkbox"
           class="sidebar-toggle"
-          name="__primary"
-          id="__primary"/>
-  <label class="overlay overlay-primary" for="__primary"></label>
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
   
   <input type="checkbox"
           class="sidebar-toggle"
-          name="__secondary"
-          id="__secondary"/>
-  <label class="overlay overlay-secondary" for="__secondary"></label>
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
   
   <div class="search-button__wrapper">
     <div class="search-button__overlay"></div>
@@ -111,12 +117,20 @@ const thebe_selector_output = ".output, .cell_output"
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
 </form></div>
   </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
   
-    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
-    </nav>
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
   
+
   <div class="bd-container">
     <div class="bd-container__inner bd-page-width">
+      
+      
       
       <div class="bd-sidebar-primary bd-sidebar">
         
@@ -131,9 +145,13 @@ const thebe_selector_output = ".output, .cell_output"
   
     <div class="sidebar-primary-items__start sidebar-primary__section">
         <div class="sidebar-primary-item">
+
+  
+    
   
 
 <a class="navbar-brand logo" href="../index.html">
+  
   
   
   
@@ -143,32 +161,32 @@ const thebe_selector_output = ".output, .cell_output"
       
     
     
-    <img src="../../_static/landing_page.png" class="logo__image only-light" alt="Logo image"/>
-    <script>document.write(`<img src="../../_static/landing_page.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
+    <img src="../../_static/landing_page.png" class="logo__image only-light" alt="Climate and Geophysical Data Analysis - Home"/>
+    <script>document.write(`<img src="../../_static/landing_page.png" class="logo__image only-dark" alt="Climate and Geophysical Data Analysis - Home"/>`);</script>
   
   
 </a></div>
         <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         <ul class="current nav bd-sidenav">
-<li class="toctree-l1 has-children"><a class="reference internal" href="../introduction/intro.html">Introduction</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../introduction/intro.html">Introduction</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="../introduction/aboutthisbook.html">About this book</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../introduction/howtousethisbook.html">How to use this book</a></li>
 </ul>
-</li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../Week1a/whatarestatsgoodfor.html">What are statistics good for?</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../Week1a/whatarestatsgoodfor.html">What are statistics good for?</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="../Week1a/goodpractice.html">Statistics is the grammar of science…</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../Week1a/pitfalls.html">Lies, damned lies and statistics…</a></li>
 </ul>
-</li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../Week1b/descriptivestats.html">Descriptive Statistics</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../Week1b/descriptivestats.html">Descriptive Statistics</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="../Week1b/summarystats.html">Summary Statistics: Part I</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../Week1b/Variance_Example.html">Example: Sensitivity of Standard Deviation to Sampling</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../Week1b/what_is_pdf.html">What is a distribution?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../Week1b/summarystats2.html">Summary Statistics: Part II</a></li>
 </ul>
-</li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../Week2/hypothesis_testing.html">Statistical Hypothesis Testing</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../Week2/hypothesis_testing.html">Statistical Hypothesis Testing</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="../Week2/probability.html">Basic Probability</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../Week2/normdist.html">The Standard Normal Distribution</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../Week2/ENSO.html">What is ENSO?</a></li>
@@ -179,8 +197,8 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="../Week2/tstat.html">The <em>t</em>-Statistic</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../Week2/resampling.html">Resampling Techniques</a></li>
 </ul>
-</li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../Week3/linreg.html">Linear Regression</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../Week3/linreg.html">Linear Regression</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="../Week3/basics_linreg.html">Introduction to Linear Regression</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../Week3/confidence_intervals.html">Confidence Intervals</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../Week3/goodness.html">Goodness of Fit</a></li>
@@ -188,22 +206,22 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="../Week3/composites.html">Compositing</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../Week3/filtering.html">Filtering or Detrending using Regression</a></li>
 </ul>
-</li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../Week4/corr.html">Correlation</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-6"><i class="fa-solid fa-chevron-down"></i></label><ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../Week4/corr.html">Correlation</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="../Week4/corr_rev.html">Review of Correlation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../Week4/stat_corr.html">Statistical Significance of Correlation Coefficients</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../Week4/nonpar_corr.html">Non-parametric Correlations</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../Week4/autocorr.html">Autocorrelation</a></li>
 </ul>
-</li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../Week5/persistence.html">Persistence in Time Series</a><input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-7"><i class="fa-solid fa-chevron-down"></i></label><ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../Week5/persistence.html">Persistence in Time Series</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="../Week5/autocorr_example.html">Autocorrelation in Climate and Geophysical Data</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../Week5/red_noise.html">Introduction to Red Noise</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../Week5/autocorr_implications.html">Example: Correlation with Memory</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../Week5/n_eff.html">Accounting for Autocorrelation: Effective Sample Size</a></li>
 </ul>
-</li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../Week6/filt.html">Time Series Analysis</a><input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-8"><i class="fa-solid fa-chevron-down"></i></label><ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../Week6/filt.html">Time Series Analysis</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="../Week6/filtering_in_time.html">Filtering in the Time Domain: Part I</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../Week6/Harmonics.html">Filtering in the Time Domain: Part II</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../Week6/filtering_in_freq1.html">Filtering in the Frequency Domain: Discrete Fourier Transform</a></li>
@@ -212,15 +230,15 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="../Week6/leak.html">Spectral Leakage</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../Week6/convolution_filters_in_time.html">Convolution and Filtering in the Time Domain</a></li>
 </ul>
-</li>
-<li class="toctree-l1 current active has-children"><a class="reference internal" href="pca.html">Patterns in Multivariate Data</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-9"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+</details></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="pca.html">Patterns in Multivariate Data</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="Intro_to_PCA.html">Introduction to Principal Component Analysis</a></li>
 <li class="toctree-l2"><a class="reference internal" href="linalg.html">Review of Linear Algebra</a></li>
 <li class="toctree-l2"><a class="reference internal" href="eig.html">Eigenanalysis</a></li>
 <li class="toctree-l2"><a class="reference internal" href="eofs.html">EOFs via Eigenanalysis</a></li>
 <li class="toctree-l2 current active"><a class="current reference internal" href="#">EOFs with Real Data</a></li>
 </ul>
-</li>
+</details></li>
 <li class="toctree-l1"><a class="reference internal" href="../Week8/epilogue.html">Epilogue</a></li>
 </ul>
 
@@ -237,7 +255,7 @@ const thebe_selector_output = ".output, .cell_output"
 
       </div>
       
-      <main id="main-content" class="bd-main">
+      <main id="main-content" class="bd-main" role="main">
         
         
 
@@ -246,7 +264,7 @@ const thebe_selector_output = ".output, .cell_output"
           <div class="bd-content">
             <div class="bd-article-container">
               
-              <div class="bd-header-article">
+              <div class="bd-header-article d-print-none">
 <div class="header-article-items header-article__inner">
   
     <div class="header-article-items__start">
@@ -377,20 +395,22 @@ const thebe_selector_output = ".output, .cell_output"
 </button>
 
 
+
 <script>
 document.write(`
-  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
-    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
-    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
   </button>
 `);
 </script>
 
+
 <script>
 document.write(`
-  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass"></i>
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
   </button>
 `);
 </script>
@@ -438,13 +458,13 @@ document.write(`
               
                 
 <div id="searchbox"></div>
-                <article class="bd-article" role="main">
+                <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="eofs-with-real-data">
-<h1>EOFs with Real Data<a class="headerlink" href="#eofs-with-real-data" title="Permalink to this headline">#</a></h1>
+<h1>EOFs with Real Data<a class="headerlink" href="#eofs-with-real-data" title="Permalink to this heading">#</a></h1>
 <p>We have now established how we can use PCA to extract the dominant patterns (aka “leading modes”) of variability in a multi-dimensional variable of interest. Now, we are going to work through an example and discuss some of the practicalities of PCA when working with climate and geophysical data sets.</p>
 <section id="case-study-north-atlantic-oscillation-nao">
-<h2>Case Study: North Atlantic Oscillation (NAO)<a class="headerlink" href="#case-study-north-atlantic-oscillation-nao" title="Permalink to this headline">#</a></h2>
+<h2>Case Study: North Atlantic Oscillation (NAO)<a class="headerlink" href="#case-study-north-atlantic-oscillation-nao" title="Permalink to this heading">#</a></h2>
 <p>The example that we are going to look at is the North Atlantic Oscillation (NAO). The NAO is a weather and climate mode of variability in the North Atlantic region. It is characterized by fluctuations in the difference in anomalous sea-level pressure (SLP) between the Icelandic low and the Azores high. Fluctuations in the difference between SLP within the Icelandic low and Azores high, reflects fluctuations in the strength and position of westerly jet stream and storm tracks across the North Atlantic. The NAO is the leading mode of atmospheric variability via PCA in the North Atlantic extratropical region and is most active during the winter season.</p>
 <p>Let’s begin by reading in some gridded, reanalysis SLP data. Reanalysis data products are quasi-observational data products that provide global coverage of atmospheric and surface variables. We will use SLP from the <a class="reference external" href="https://www.ecmwf.int/en/forecasts/datasets/reanalysis-datasets/era-interim">ERA-Interim</a> reanalysis product. You can download the netcdf file <a class="reference external" href="https://www.dropbox.com/s/brssg2g5m2tzn6y/ERAI_PSL_1980_2017.nc?dl=0">here</a>.</p>
 <div class="cell docutils container">
@@ -539,7 +559,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/059d1ecf7a3cf7ebaf39389d68e2e9dbd552fda2bed77ccc4b9c2bb22e6cee44.png" src="../../_images/059d1ecf7a3cf7ebaf39389d68e2e9dbd552fda2bed77ccc4b9c2bb22e6cee44.png" />
+<img alt="../../_images/37a1d70b97037ba1c4e679a828a51b771f938c23516ea3612ed0ad5f361d03c6.png" src="../../_images/37a1d70b97037ba1c4e679a828a51b771f938c23516ea3612ed0ad5f361d03c6.png" />
 </div>
 </div>
 <p>This looks reasonable. We see higher SLP in the hot sub-tropical regions and lower SLP in the storm track regions.</p>
@@ -696,16 +716,16 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/1eb6f724184b51171e4fc42e11adff3d1874986312ac45232104ed7f91cafa06.png" src="../../_images/1eb6f724184b51171e4fc42e11adff3d1874986312ac45232104ed7f91cafa06.png" />
+<img alt="../../_images/cc1be14c641cae27444a03a5adc8cdcd1d53fc6542d6b9dd1f4f17127b262248.png" src="../../_images/cc1be14c641cae27444a03a5adc8cdcd1d53fc6542d6b9dd1f4f17127b262248.png" />
 </div>
 </div>
 <section id="a-note-about-missing-data">
-<h3>A Note about Missing Data<a class="headerlink" href="#a-note-about-missing-data" title="Permalink to this headline">#</a></h3>
+<h3>A Note about Missing Data<a class="headerlink" href="#a-note-about-missing-data" title="Permalink to this heading">#</a></h3>
 <p>Most statistical algorithms for eigenanalysis with not work with missing values or NaNs. These missing values will have to be filled with something. In the introduction section, we filled them with zeros. In the NAO example that we are working on, there are no missing values in our data.</p>
 <p>This now brings us to the first step of EOF analysis.</p>
 </section>
 <section id="step-1-remove-the-mean">
-<h3>Step 1: Remove the mean<a class="headerlink" href="#step-1-remove-the-mean" title="Permalink to this headline">#</a></h3>
+<h3>Step 1: Remove the mean<a class="headerlink" href="#step-1-remove-the-mean" title="Permalink to this heading">#</a></h3>
 <p>It is typical to remove the sampling dimension mean, which is usually the time dimension. This will result in your principal component time series having a mean of zero. You may also want to remove the seasonal or diurnal cycle if this is not of interest to you.</p>
 <p>It is less common to remove the spatial mean. For example, suppose you are interested in the gradients in temperature, not the full temperature field itself or you are interested in the “wavy” component of the field, so you might remove the zonal mean.</p>
 <div class="cell docutils container">
@@ -718,7 +738,7 @@ document.write(`
 </div>
 </section>
 <section id="step-2-standardizing-the-data-optional">
-<h3>Step 2: Standardizing the data (optional)<a class="headerlink" href="#step-2-standardizing-the-data-optional" title="Permalink to this headline">#</a></h3>
+<h3>Step 2: Standardizing the data (optional)<a class="headerlink" href="#step-2-standardizing-the-data-optional" title="Permalink to this heading">#</a></h3>
 <p>Sometimes, it is desirable to take the amplitude of the variability out of the data before doing EOF analysis. For example, you may want to do this if</p>
 <ul class="simple">
 <li><p>your data is made of a combination of parameters with different units, and you don’t want the parameter with the biggest units to dominate the variance</p></li>
@@ -727,7 +747,7 @@ document.write(`
 <p>In order to do this, you divide your anomaly data by its standard deviation as well (now your data is in units of <span class="math notranslate nohighlight">\(\sigma\)</span>). For the NAO example, we will not standardize the data as we are interested in capturing the spatial the magnitude of the variability.</p>
 </section>
 <section id="step-3-weighting-gridded-data">
-<h3>Step 3: Weighting gridded data<a class="headerlink" href="#step-3-weighting-gridded-data" title="Permalink to this headline">#</a></h3>
+<h3>Step 3: Weighting gridded data<a class="headerlink" href="#step-3-weighting-gridded-data" title="Permalink to this heading">#</a></h3>
 <p>If the data is gridded, you need to weight the data according to the grid box area. For example, if the data is on a rectangular grid on a sphere (like in our example), the size of the grid boxes decreases as you move from the equator to the poles. There are two considerations with doing area weighting on a sphere:</p>
 <ul class="simple">
 <li><p>if you are calculating EOFs using the covariance matrix and you are analyzing the <em>temporal covariance matrix</em> (i.e., your covariance matrix is <span class="math notranslate nohighlight">\(\mathbf{C} = \mathbf{XX^T}\)</span> <span class="math notranslate nohighlight">\([M x M]\)</span>, where <span class="math notranslate nohighlight">\(M\)</span> is the time dimension), you weight by <span class="math notranslate nohighlight">\(\sqrt{\text{cos}(\theta)}\)</span>. We use the square-root since when you multiply the grid points by each other you will get your full <span class="math notranslate nohighlight">\(\text{cos}(\theta)\)</span> in your covariance matrix (where <span class="math notranslate nohighlight">\(\theta\)</span> is latitude in radians)</p></li>
@@ -751,7 +771,7 @@ document.write(`
 </div>
 </section>
 <section id="step-4-convert-3d-array-to-2d-matrix">
-<h3>Step 4: Convert 3D array to 2D matrix<a class="headerlink" href="#step-4-convert-3d-array-to-2d-matrix" title="Permalink to this headline">#</a></h3>
+<h3>Step 4: Convert 3D array to 2D matrix<a class="headerlink" href="#step-4-convert-3d-array-to-2d-matrix" title="Permalink to this heading">#</a></h3>
 <p>The next step is to convert our 3D array into a 2D matrix, so that we can perform matrix operations, specifically so that we can calculate the covariance matrix. We do this by combining all the spatial dimensions together.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -777,7 +797,7 @@ document.write(`
 </div>
 </section>
 <section id="step-5-calculate-the-covariance-matrix">
-<h3>Step 5: Calculate the covariance matrix<a class="headerlink" href="#step-5-calculate-the-covariance-matrix" title="Permalink to this headline">#</a></h3>
+<h3>Step 5: Calculate the covariance matrix<a class="headerlink" href="#step-5-calculate-the-covariance-matrix" title="Permalink to this heading">#</a></h3>
 <p>Our data is now ready for us to calculate the covariance matrix. Remember that we are going to calculate the temporal covariance matrix due to the slow computation speed associated with calculating the spatial dispersion matrix.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -795,7 +815,7 @@ document.write(`
 </div>
 </section>
 <section id="step-6-perform-eigenanalysis-of-the-covariance-matrix">
-<h3>Step 6: Perform eigenanalysis of the covariance matrix<a class="headerlink" href="#step-6-perform-eigenanalysis-of-the-covariance-matrix" title="Permalink to this headline">#</a></h3>
+<h3>Step 6: Perform eigenanalysis of the covariance matrix<a class="headerlink" href="#step-6-perform-eigenanalysis-of-the-covariance-matrix" title="Permalink to this heading">#</a></h3>
 <p>The next step is the eigenanalysis. Note that because we are eigenanalyzing the temporal covariance matrix, which is <span class="math notranslate nohighlight">\([M x M]\)</span>, the eigenvectors will be <span class="math notranslate nohighlight">\([M x 1]\)</span>, not <span class="math notranslate nohighlight">\([N x 1]\)</span> as in the conceptual example in the last section. The implications of this are that the eigenvectors correspond to the principal component time series and we will calculate the spatial patterns, the EOFs, by performing a linear transformation.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -856,13 +876,13 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/b476a41b7e104a80d1a3abc28fab5a5cc2bb3f38d6a465a20e856c327044d4e6.png" src="../../_images/b476a41b7e104a80d1a3abc28fab5a5cc2bb3f38d6a465a20e856c327044d4e6.png" />
+<img alt="../../_images/f4360028e97864e4c5a6ede13e76868e16b0d5fc8b98ab01f97f7edf432f8206.png" src="../../_images/f4360028e97864e4c5a6ede13e76868e16b0d5fc8b98ab01f97f7edf432f8206.png" />
 </div>
 </div>
 </section>
 </section>
 <section id="presenting-eofs-pcs">
-<h2>Presenting EOFs/PCs<a class="headerlink" href="#presenting-eofs-pcs" title="Permalink to this headline">#</a></h2>
+<h2>Presenting EOFs/PCs<a class="headerlink" href="#presenting-eofs-pcs" title="Permalink to this heading">#</a></h2>
 <p>The EOFs <span class="math notranslate nohighlight">\(\mathbf{E}\)</span> and PC time series <span class="math notranslate nohighlight">\(\mathbf{Z}\)</span> that result from eigenanalysis of <span class="math notranslate nohighlight">\(\mathbf{C}\)</span> are typically not in physical units. Recall that we have cosine-weighted our data and that the eigenvectors are unit vectors. Thus, there are a few post-processing steps that we need to go through in order to present our EOFs/PCs in a meaningful way.</p>
 <p>Let <span class="math notranslate nohighlight">\(\mathbf{X}\)</span> have dimensions <span class="math notranslate nohighlight">\([M x N]\)</span> such that <span class="math notranslate nohighlight">\(M\)</span> is the number of observations and <span class="math notranslate nohighlight">\(N\)</span> is the number spatial locations. From now on, to make notation a bit easier, we will only write equations using EOF 1 and PC 1. The steps can be repeated for EOF 2 and PC 2, EOF 3 and PC 3, etc.</p>
 <p>Typically, we convert the PC time series to units of standard deviation. So, we simply need to standardize <span class="math notranslate nohighlight">\(\mathbf{Z}\)</span> to create an index.</p>
@@ -940,7 +960,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/07542051533e84677fc6bf9b16dd809c6e7df257518170428b309a507e70a2ed.png" src="../../_images/07542051533e84677fc6bf9b16dd809c6e7df257518170428b309a507e70a2ed.png" />
+<img alt="../../_images/bcbb06c7d7b82f96fd8021fe39dc8094aa22d00de5183606e080a733de08b950.png" src="../../_images/bcbb06c7d7b82f96fd8021fe39dc8094aa22d00de5183606e080a733de08b950.png" />
 </div>
 </div>
 <p>So, this is our NAO pattern and NAO Index. The pattern that we get shows a dipole in SLP. A +1 standard deviation value of our PC time series corresponds to exactly this pattern, while a -1 standard deviation corresponds to exactly -1 x this pattern. The standard definition of the NAO is actually opposite to what we are seeing above. Recall that eigenvectors can span either the positive part or the negative part of a particular dimension. What we are seeing above is actually the negative phase of the NAO. If we multiply both the NAO pattern and NAO Index by -1, we get the standard definition of the NAO.</p>
@@ -1016,12 +1036,12 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/88fe93176e2735885b1bb07024ad0b4bc7b0923a18a712a39008fd4d0f94c7ce.png" src="../../_images/88fe93176e2735885b1bb07024ad0b4bc7b0923a18a712a39008fd4d0f94c7ce.png" />
+<img alt="../../_images/d07d8486a96a03a8fe39a74a040788c73ac9b27c9cd31c1b6668980a222253f4.png" src="../../_images/d07d8486a96a03a8fe39a74a040788c73ac9b27c9cd31c1b6668980a222253f4.png" />
 </div>
 </div>
 </section>
 <section id="how-many-eofs-pcs-are-meaningful">
-<h2>How many EOFs/PCs are meaningful?<a class="headerlink" href="#how-many-eofs-pcs-are-meaningful" title="Permalink to this headline">#</a></h2>
+<h2>How many EOFs/PCs are meaningful?<a class="headerlink" href="#how-many-eofs-pcs-are-meaningful" title="Permalink to this heading">#</a></h2>
 <p>Eigenanalysis of the covariance matrix will always give you an answer. The orthogonality of the eigenvectors/EOFs imposes a constraint on their pattern. Higher order EOFs are often trying to represent the noise while still being orthogonal to the other EOFs and, consequently, these patterns can become spurious statistical constructs rather than physically meaningful modes of variability.</p>
 <p><a class="reference external" href="https://journals.ametsoc.org/mwr/article/110/7/699/62757/Sampling-Errors-in-the-Estimation-of-Empirical">North et al. (1982)</a> argues that the significance or robustness of an EOF is a function of the degree of separation between eigenvalues, where the 95% confidence bounds on the eigenvalues is,</p>
 <div class="math notranslate nohighlight">
@@ -1093,11 +1113,10 @@ document.write(`
 
               
               
-                <footer class="bd-footer-article">
+              
+              
+                <footer class="prev-next-footer d-print-none">
                   
-<div class="footer-article-items footer-article__inner">
-  
-    <div class="footer-article-item"><!-- Previous / next buttons -->
 <div class="prev-next-area">
     <a class="left-prev"
        href="eofs.html"
@@ -1117,10 +1136,7 @@ document.write(`
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
-</div></div>
-  
 </div>
-
                 </footer>
               
             </div>
@@ -1128,6 +1144,7 @@ document.write(`
             
               
                 <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
 
   <div class="sidebar-secondary-item">
   <div class="page-toc tocsection onthispage">
@@ -1168,6 +1185,7 @@ By Karen Smith
   
   <div class="footer-item">
     
+
   <p class="copyright">
     
       © Copyright 2023.
@@ -1194,8 +1212,8 @@ By Karen Smith
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
-<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+  <script src="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
 
   <footer class="bd-footer">
   </footer>
