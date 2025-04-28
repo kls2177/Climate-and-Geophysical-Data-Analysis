@@ -1,13 +1,12 @@
 
-
 <!DOCTYPE html>
 
 
-<html lang="en" data-content_root="" >
+<html lang="en" data-content_root="../../" >
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>Introduction to Linear Regression &#8212; Climate and Geophysical Data Analysis</title>
   
@@ -29,47 +28,41 @@
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
-    <link rel="stylesheet" href="../../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
   <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
 <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
   <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
-    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
-    <script src="../../_static/jquery.js"></script>
-    <script src="../../_static/underscore.js"></script>
-    <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
-    <script src="../../_static/doctools.js"></script>
-    <script src="../../_static/clipboard.min.js"></script>
-    <script src="../../_static/copybutton.js"></script>
-    <script src="../../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script src="../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="../../_static/togglebutton.js"></script>
+    <script src="../../_static/togglebutton.js?v=4a39c7ea"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
-    <script src="../../_static/design-tabs.js"></script>
-    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
-const thebe_selector = ".thebe,.cell"
-const thebe_selector_input = "pre"
-const thebe_selector_output = ".output, .cell_output"
-</script>
-    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <script src="../../_static/design-tabs.js?v=36754332"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'chapters/Week3/basics_linreg';</script>
     <link rel="canonical" href="https://kls2177.github.io/Climate-and-Geophysical-Data-Analysis/chapters/index.html/chapters/Week3/basics_linreg.html" />
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="Confidence Intervals" href="confidence_intervals.html" />
-    <link rel="prev" title="Linear Regression" href="linreg.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -132,6 +125,8 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
+        
+      
       <div class="bd-sidebar-primary bd-sidebar">
         
 
@@ -166,80 +161,24 @@ const thebe_selector_output = ".output, .cell_output"
   
   
 </a></div>
-        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
-        <ul class="current nav bd-sidenav">
+        <ul class="nav bd-sidenav">
 <li class="toctree-l1 has-children"><a class="reference internal" href="../introduction/intro.html">Introduction</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="../introduction/aboutthisbook.html">About this book</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../introduction/howtousethisbook.html">How to use this book</a></li>
 </ul>
 </details></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../Week1a/whatarestatsgoodfor.html">What are statistics good for?</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l2"><a class="reference internal" href="../Week1a/goodpractice.html">Statistics is the grammar of science…</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../Week1a/pitfalls.html">Lies, damned lies and statistics…</a></li>
-</ul>
-</details></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../Week1b/descriptivestats.html">Descriptive Statistics</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l2"><a class="reference internal" href="../Week1b/summarystats.html">Summary Statistics: Part I</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../Week1b/Variance_Example.html">Example: Sensitivity of Standard Deviation to Sampling</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../Week1b/what_is_pdf.html">What is a distribution?</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../Week1b/summarystats2.html">Summary Statistics: Part II</a></li>
-</ul>
-</details></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../Week2/hypothesis_testing.html">Statistical Hypothesis Testing</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l2"><a class="reference internal" href="../Week2/probability.html">Basic Probability</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../Week2/normdist.html">The Standard Normal Distribution</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../Week2/ENSO.html">What is ENSO?</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../Week2/zstat.html">The <em>z</em>-Statistic</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../Week2/signal2noise.html">Signal-to-Noise</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../Week2/central_limit_theorem.html">The Central Limit Theorem</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../Week2/statistical_significance.html">Estimating Statistical Significance with a <em>z</em>-test</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../Week2/tstat.html">The <em>t</em>-Statistic</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../Week2/resampling.html">Resampling Techniques</a></li>
-</ul>
-</details></li>
-<li class="toctree-l1 current active has-children"><a class="reference internal" href="linreg.html">Linear Regression</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
-<li class="toctree-l2 current active"><a class="current reference internal" href="#">Introduction to Linear Regression</a></li>
-<li class="toctree-l2"><a class="reference internal" href="confidence_intervals.html">Confidence Intervals</a></li>
-<li class="toctree-l2"><a class="reference internal" href="goodness.html">Goodness of Fit</a></li>
-<li class="toctree-l2"><a class="reference internal" href="assumptions.html">Assumptions of Linear Regression</a></li>
-<li class="toctree-l2"><a class="reference internal" href="composites.html">Compositing</a></li>
-<li class="toctree-l2"><a class="reference internal" href="filtering.html">Filtering or Detrending using Regression</a></li>
-</ul>
-</details></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../Week4/corr.html">Correlation</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l2"><a class="reference internal" href="../Week4/corr_rev.html">Review of Correlation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../Week4/stat_corr.html">Statistical Significance of Correlation Coefficients</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../Week4/nonpar_corr.html">Non-parametric Correlations</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../Week4/autocorr.html">Autocorrelation</a></li>
-</ul>
-</details></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../Week5/persistence.html">Persistence in Time Series</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l2"><a class="reference internal" href="../Week5/autocorr_example.html">Autocorrelation in Climate and Geophysical Data</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../Week5/red_noise.html">Introduction to Red Noise</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../Week5/autocorr_implications.html">Example: Correlation with Memory</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../Week5/n_eff.html">Accounting for Autocorrelation: Effective Sample Size</a></li>
-</ul>
-</details></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../Week6/filt.html">Time Series Analysis</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l2"><a class="reference internal" href="../Week6/filtering_in_time.html">Filtering in the Time Domain: Part I</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../Week6/Harmonics.html">Filtering in the Time Domain: Part II</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../Week6/filtering_in_freq1.html">Filtering in the Frequency Domain: Discrete Fourier Transform</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../Week6/filtering_in_freq2.html">Fast Fourier Transform</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../Week6/filtering_in_freq3.html">Continuous Power Spectrum and the Significance of Spectral Peaks</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../Week6/leak.html">Spectral Leakage</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../Week6/convolution_filters_in_time.html">Convolution and Filtering in the Time Domain</a></li>
-</ul>
-</details></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../Week7/pca.html">Patterns in Multivariate Data</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l2"><a class="reference internal" href="../Week7/Intro_to_PCA.html">Introduction to Principal Component Analysis</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../Week7/linalg.html">Review of Linear Algebra</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../Week7/eig.html">Eigenanalysis</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../Week7/eofs.html">EOFs via Eigenanalysis</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../Week7/naoeof.html">EOFs with Real Data</a></li>
-</ul>
-</details></li>
-<li class="toctree-l1"><a class="reference internal" href="../Week8/epilogue.html">Epilogue</a></li>
 </ul>
 
     </div>
@@ -269,9 +208,9 @@ const thebe_selector_output = ".output, .cell_output"
   
     <div class="header-article-items__start">
       
-        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
   <span class="fa-solid fa-bars"></span>
-</label></div>
+</button></div>
       
     </div>
   
@@ -296,14 +235,14 @@ const thebe_selector_output = ".output, .cell_output"
       
       <li><a href="https://mybinder.org/v2/gh/kls2177/Climate-and-Geophysical-Data-Analysis/master?urlpath=tree/chapters/Week3/basics_linreg.ipynb" target="_blank"
    class="btn btn-sm dropdown-item"
-   title="Launch onBinder"
+   title="Launch on Binder"
    data-bs-placement="left" data-bs-toggle="tooltip"
 >
   
 
 <span class="btn__icon-container">
   
-    <img src="../../_static/images/logo_binder.svg">
+    <img alt="Binder logo" src="../../_static/images/logo_binder.svg">
   </span>
 <span class="btn__text-container">Binder</span>
 </a>
@@ -414,9 +353,9 @@ document.write(`
   </button>
 `);
 </script>
-<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <span class="fa-solid fa-list"></span>
-</label>
+</button>
 </div></div>
       
     </div>
@@ -460,7 +399,7 @@ document.write(`
                 <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="introduction-to-linear-regression">
-<h1>Introduction to Linear Regression<a class="headerlink" href="#introduction-to-linear-regression" title="Permalink to this heading">#</a></h1>
+<h1>Introduction to Linear Regression<a class="headerlink" href="#introduction-to-linear-regression" title="Link to this heading">#</a></h1>
 <p>In linear regression, we seek to determine:</p>
 <ul class="simple">
 <li><p>the linear relationship between two variables <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(y\)</span></p></li>
@@ -468,17 +407,17 @@ document.write(`
 </ul>
 <p>As we will see, regression is simple, but powerful.</p>
 <section id="regression-by-example-enso-and-california-precipitation">
-<h2>Regression by Example: ENSO and California Precipitation<a class="headerlink" href="#regression-by-example-enso-and-california-precipitation" title="Permalink to this heading">#</a></h2>
+<h2>Regression by Example: ENSO and California Precipitation<a class="headerlink" href="#regression-by-example-enso-and-california-precipitation" title="Link to this heading">#</a></h2>
 <p>I lived in California for a while and California is typically known for it’s warm and <em>dry</em> climate. But, California can experience substantial rainfall in winter and this is related to the phase of the El-Niño Southern Oscillation (ENSO). When there is an El Niño event (anomalously warm sea surface temperatures in the Eastern tropical Pacific), California typically gets more winter rainfall and vice versa when there is a La Niña event.</p>
 <p>So, let’s take a look at the relationship between ENSO and California precipitation using 1,100 years of output from a global climate model.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># load packages</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">pickle</span> <span class="k">as</span> <span class="nn">pickle</span>
-<span class="kn">import</span> <span class="nn">scipy.stats</span> <span class="k">as</span> <span class="nn">st</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="kn">import</span> <span class="nn">matplotlib</span> <span class="k">as</span> <span class="nn">mpl</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pickle</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pickle</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">scipy.stats</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">st</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">mpl</span>
 <span class="n">mpl</span><span class="o">.</span><span class="n">rc</span><span class="p">(</span><span class="s1">&#39;font&#39;</span><span class="p">,</span><span class="n">size</span><span class="o">=</span><span class="mi">16</span><span class="p">,</span><span class="n">weight</span><span class="o">=</span><span class="s1">&#39;bold&#39;</span><span class="p">)</span> <span class="c1">#set default font size and weight for plots</span>
 </pre></div>
 </div>
@@ -572,7 +511,7 @@ document.write(`
 </div>
 <p>Based on this scatter plot, it looks like California precipitation increases as the NINO3.4 index increases. This suggests that we should be able to construct a linear relationship between these two variables.</p>
 <section id="aside-data-visualization">
-<h3>Aside: Data Visualization<a class="headerlink" href="#aside-data-visualization" title="Permalink to this heading">#</a></h3>
+<h3>Aside: Data Visualization<a class="headerlink" href="#aside-data-visualization" title="Link to this heading">#</a></h3>
 <p>Before, we get into the mathematics of linear regression, let’s take a brief detour into <strong>data visualization</strong>. Effective data visualization is not trivial and it is an extremely important part of science communication. Details in diagrams and plots are often simple but can help to convey meaning. For example, we can make our plot more meaningful by highlighting the El Niño and La Niña events.</p>
 <p>SST anomalies in the NINO3.4 region are considered El Niño events if they exceed 0.5<span class="math notranslate nohighlight">\(^\circ\)</span>C and La Niña events if they fall below -0.5<span class="math notranslate nohighlight">\(^\circ\)</span>C. Small magnitude SST anomalies are simply considered neutral ENSO years. Let’s use load a file that identifies these events (<a class="reference external" href="https://github.com/kls2177/ccia_files/blob/master/ENSO_NDJF_years_rev.pickle?raw=true">here</a>).</p>
 <div class="cell docutils container">
@@ -610,7 +549,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x1778a11e0&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x17b8338b0&gt;
 </pre></div>
 </div>
 <img alt="../../_images/fc5a55647a6fedcf6729cea4841c4dfb15a5a5bb870200ae77b494034908a27a.png" src="../../_images/fc5a55647a6fedcf6729cea4841c4dfb15a5a5bb870200ae77b494034908a27a.png" />
@@ -620,12 +559,12 @@ document.write(`
 </section>
 </section>
 <section id="ordinary-least-squares-ols-linear-regression">
-<h2>Ordinary Least-Squares (OLS) Linear Regression<a class="headerlink" href="#ordinary-least-squares-ols-linear-regression" title="Permalink to this heading">#</a></h2>
+<h2>Ordinary Least-Squares (OLS) Linear Regression<a class="headerlink" href="#ordinary-least-squares-ols-linear-regression" title="Link to this heading">#</a></h2>
 <p>How do we find the slope and y-intercept of a line that best fits the relationship between the NINO3.4 index and California precipitation?</p>
 <p>Let’s assume <span class="math notranslate nohighlight">\(x(t)\)</span> and <span class="math notranslate nohighlight">\(y(t)\)</span> are time series of size <span class="math notranslate nohighlight">\(N\)</span> (i.e., the data is sampled at <span class="math notranslate nohighlight">\(N\)</span> time steps). The goal of linear regression is to be able to reconstruct or predict <span class="math notranslate nohighlight">\(y(t)\)</span> using <span class="math notranslate nohighlight">\(x(t)\)</span>. Thus, we denote <span class="math notranslate nohighlight">\(x(t)\)</span> as the <strong>predictor</strong> and <span class="math notranslate nohighlight">\(y(t)\)</span> as the <strong>predictand</strong>. Sometimes <span class="math notranslate nohighlight">\(x(t)\)</span> is termed the <strong>independent variable</strong> and <span class="math notranslate nohighlight">\(y(t)\)</span> the <strong>dependent variable</strong>.</p>
 <p>To begin, we have to define what <strong>“best-fit”</strong> means. We will use the conventional OLS definition which defines best-fit as the line that <em>reduces the sum of the squared errors of <span class="math notranslate nohighlight">\(y\)</span></em>.</p>
 <section id="terminology">
-<h3>Terminology<a class="headerlink" href="#terminology" title="Permalink to this heading">#</a></h3>
+<h3>Terminology<a class="headerlink" href="#terminology" title="Link to this heading">#</a></h3>
 <p>We will define the equation for the best-fit line as,</p>
 <div class="math notranslate nohighlight">
 \[
@@ -639,15 +578,16 @@ document.write(`
 </ul>
 <p><a class="reference internal" href="#ols-schematic"><span class="std std-ref">Figure 11</span></a> shows what the best-fit line, <span class="math notranslate nohighlight">\(\hat{y(t)}\)</span>, between <span class="math notranslate nohighlight">\(y(t)\)</span> and <span class="math notranslate nohighlight">\(x(t)\)</span> looks like for some made-up data. <span class="math notranslate nohighlight">\(a_1\)</span> is the slope of this line and tells us the magnitude of the best-fit relationship between <span class="math notranslate nohighlight">\(y(t)\)</span> and <span class="math notranslate nohighlight">\(x(t)\)</span>. The y-intercept, <span class="math notranslate nohighlight">\(a_0\)</span> tells us the best-fit value for <span class="math notranslate nohighlight">\(\hat{y(t)}\)</span> when <span class="math notranslate nohighlight">\(x(t)\)</span> is zero.</p>
 <figure class="align-default" id="ols-schematic">
-<a class="reference internal image-reference" href="../../_images/OLS_schematic.png"><img alt="../../_images/OLS_schematic.png" src="../../_images/OLS_schematic.png" style="width: 502.0px; height: 328.0px;" /></a>
+<a class="reference internal image-reference" href="../../_images/OLS_schematic.png"><img alt="../../_images/OLS_schematic.png" src="../../_images/OLS_schematic.png" style="width: 502.0px; height: 328.0px;" />
+</a>
 <figcaption>
-<p><span class="caption-number">Fig. 11 </span><span class="caption-text">Scatter plot of <span class="math notranslate nohighlight">\(y(t)\)</span> versus <span class="math notranslate nohighlight">\(x(t)\)</span> (blue dots) and the OLS best-fit line (red line). The distances in the y-direction from a blue dots to the red line are defined as the residuals.</span><a class="headerlink" href="#ols-schematic" title="Permalink to this image">#</a></p>
+<p><span class="caption-text">Scatter plot of <span class="math notranslate nohighlight">\(y(t)\)</span> versus <span class="math notranslate nohighlight">\(x(t)\)</span> (blue dots) and the OLS best-fit line (red line). The distances in the y-direction from a blue dots to the red line are defined as the residuals.</span><a class="headerlink" href="#ols-schematic" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 <p>The <strong>residuals</strong> are differences between the fitted values, <span class="math notranslate nohighlight">\(\hat{y_i(t)}\)</span> and the actual values, <span class="math notranslate nohighlight">\(y_i(t)\)</span> as illustrated in <a class="reference internal" href="#ols-schematic"><span class="std std-ref">Figure 11</span></a>. The residuals describe the error in the linear fit - the smaller the residuals, the better the fit.</p>
 </section>
 <section id="sum-of-squared-errors">
-<h3>Sum of Squared Errors<a class="headerlink" href="#sum-of-squared-errors" title="Permalink to this heading">#</a></h3>
+<h3>Sum of Squared Errors<a class="headerlink" href="#sum-of-squared-errors" title="Link to this heading">#</a></h3>
 <p>As noted above, the best-fit line is the line that minimized the sum of squared errors, <span class="math notranslate nohighlight">\(Q\)</span>. But, what is <span class="math notranslate nohighlight">\(Q\)</span>? <span class="math notranslate nohighlight">\(Q\)</span> is sum of the squared residuals (aka the errors),</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
@@ -664,7 +604,7 @@ Q &amp;= \sum\limits_{i=1}^N(\hat{y_i(t)} - y_i(t))^2\\
 </ul>
 </section>
 <section id="the-best-fit-line-minimizing-q">
-<h3>The Best-Fit Line: Minimizing <em>Q</em><a class="headerlink" href="#the-best-fit-line-minimizing-q" title="Permalink to this heading">#</a></h3>
+<h3>The Best-Fit Line: Minimizing <em>Q</em><a class="headerlink" href="#the-best-fit-line-minimizing-q" title="Link to this heading">#</a></h3>
 <p>We are now ready to find <span class="math notranslate nohighlight">\(a_0\)</span> and <span class="math notranslate nohighlight">\(a_1\)</span> that minimize <span class="math notranslate nohighlight">\(Q\)</span>. To do this, we take the derivative of <span class="math notranslate nohighlight">\(Q\)</span> with respect to <span class="math notranslate nohighlight">\(a_0\)</span> and <span class="math notranslate nohighlight">\(a_1\)</span>, separately and then solve for these coefficients. This involves a bit of calculus (painless, I promise!).</p>
 <p>Let’s start by minimizing <span class="math notranslate nohighlight">\(Q\)</span> with respect to <span class="math notranslate nohighlight">\(a_0\)</span>.</p>
 <div class="math notranslate nohighlight">
@@ -740,7 +680,7 @@ a_0 &amp;= \overline{y} - a_1\overline{x}
 </section>
 </section>
 <section id="example-revisited">
-<h2>Example Revisited<a class="headerlink" href="#example-revisited" title="Permalink to this heading">#</a></h2>
+<h2>Example Revisited<a class="headerlink" href="#example-revisited" title="Link to this heading">#</a></h2>
 <p>We will learn two ways to calculate the best-fit line using python. The first way is using the numpy function called <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.polyfit.html">“polyfit”</a>. This function can be used to fit a polynomial of degree, <span class="math notranslate nohighlight">\(n\)</span>, but we will simply use it to fit a polynomial of degree 1 (which is a straight line).</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -815,7 +755,7 @@ a_0 &amp;= \overline{y} - a_1\overline{x}
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x17779fc10&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x17b6edc30&gt;
 </pre></div>
 </div>
 <img alt="../../_images/76016f653015ac9c87926eeb5b9ddd045a8407134297ea07da861f27f8b715f1.png" src="../../_images/76016f653015ac9c87926eeb5b9ddd045a8407134297ea07da861f27f8b715f1.png" />
@@ -854,24 +794,6 @@ a_0 &amp;= \overline{y} - a_1\overline{x}
                 <footer class="prev-next-footer d-print-none">
                   
 <div class="prev-next-area">
-    <a class="left-prev"
-       href="linreg.html"
-       title="previous page">
-      <i class="fa-solid fa-angle-left"></i>
-      <div class="prev-next-info">
-        <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Linear Regression</p>
-      </div>
-    </a>
-    <a class="right-next"
-       href="confidence_intervals.html"
-       title="next page">
-      <div class="prev-next-info">
-        <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Confidence Intervals</p>
-      </div>
-      <i class="fa-solid fa-angle-right"></i>
-    </a>
 </div>
                 </footer>
               

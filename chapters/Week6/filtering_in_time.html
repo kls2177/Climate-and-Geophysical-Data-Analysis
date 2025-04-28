@@ -1,13 +1,12 @@
 
-
 <!DOCTYPE html>
 
 
-<html lang="en" data-content_root="" >
+<html lang="en" data-content_root="../../" >
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>Filtering in the Time Domain: Part I &#8212; Climate and Geophysical Data Analysis</title>
   
@@ -29,47 +28,41 @@
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
-    <link rel="stylesheet" href="../../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
   <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
 <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
   <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
-    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
-    <script src="../../_static/jquery.js"></script>
-    <script src="../../_static/underscore.js"></script>
-    <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
-    <script src="../../_static/doctools.js"></script>
-    <script src="../../_static/clipboard.min.js"></script>
-    <script src="../../_static/copybutton.js"></script>
-    <script src="../../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script src="../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="../../_static/togglebutton.js"></script>
+    <script src="../../_static/togglebutton.js?v=4a39c7ea"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
-    <script src="../../_static/design-tabs.js"></script>
-    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
-const thebe_selector = ".thebe,.cell"
-const thebe_selector_input = "pre"
-const thebe_selector_output = ".output, .cell_output"
-</script>
-    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <script src="../../_static/design-tabs.js?v=36754332"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'chapters/Week6/filtering_in_time';</script>
     <link rel="canonical" href="https://kls2177.github.io/Climate-and-Geophysical-Data-Analysis/chapters/index.html/chapters/Week6/filtering_in_time.html" />
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="Filtering in the Time Domain: Part II" href="Harmonics.html" />
-    <link rel="prev" title="Time Series Analysis" href="filt.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -132,6 +125,8 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
+        
+      
       <div class="bd-sidebar-primary bd-sidebar">
         
 
@@ -166,80 +161,24 @@ const thebe_selector_output = ".output, .cell_output"
   
   
 </a></div>
-        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
-        <ul class="current nav bd-sidenav">
+        <ul class="nav bd-sidenav">
 <li class="toctree-l1 has-children"><a class="reference internal" href="../introduction/intro.html">Introduction</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="../introduction/aboutthisbook.html">About this book</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../introduction/howtousethisbook.html">How to use this book</a></li>
 </ul>
 </details></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../Week1a/whatarestatsgoodfor.html">What are statistics good for?</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l2"><a class="reference internal" href="../Week1a/goodpractice.html">Statistics is the grammar of science…</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../Week1a/pitfalls.html">Lies, damned lies and statistics…</a></li>
-</ul>
-</details></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../Week1b/descriptivestats.html">Descriptive Statistics</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l2"><a class="reference internal" href="../Week1b/summarystats.html">Summary Statistics: Part I</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../Week1b/Variance_Example.html">Example: Sensitivity of Standard Deviation to Sampling</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../Week1b/what_is_pdf.html">What is a distribution?</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../Week1b/summarystats2.html">Summary Statistics: Part II</a></li>
-</ul>
-</details></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../Week2/hypothesis_testing.html">Statistical Hypothesis Testing</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l2"><a class="reference internal" href="../Week2/probability.html">Basic Probability</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../Week2/normdist.html">The Standard Normal Distribution</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../Week2/ENSO.html">What is ENSO?</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../Week2/zstat.html">The <em>z</em>-Statistic</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../Week2/signal2noise.html">Signal-to-Noise</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../Week2/central_limit_theorem.html">The Central Limit Theorem</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../Week2/statistical_significance.html">Estimating Statistical Significance with a <em>z</em>-test</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../Week2/tstat.html">The <em>t</em>-Statistic</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../Week2/resampling.html">Resampling Techniques</a></li>
-</ul>
-</details></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../Week3/linreg.html">Linear Regression</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l2"><a class="reference internal" href="../Week3/basics_linreg.html">Introduction to Linear Regression</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../Week3/confidence_intervals.html">Confidence Intervals</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../Week3/goodness.html">Goodness of Fit</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../Week3/assumptions.html">Assumptions of Linear Regression</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../Week3/composites.html">Compositing</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../Week3/filtering.html">Filtering or Detrending using Regression</a></li>
-</ul>
-</details></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../Week4/corr.html">Correlation</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l2"><a class="reference internal" href="../Week4/corr_rev.html">Review of Correlation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../Week4/stat_corr.html">Statistical Significance of Correlation Coefficients</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../Week4/nonpar_corr.html">Non-parametric Correlations</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../Week4/autocorr.html">Autocorrelation</a></li>
-</ul>
-</details></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../Week5/persistence.html">Persistence in Time Series</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l2"><a class="reference internal" href="../Week5/autocorr_example.html">Autocorrelation in Climate and Geophysical Data</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../Week5/red_noise.html">Introduction to Red Noise</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../Week5/autocorr_implications.html">Example: Correlation with Memory</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../Week5/n_eff.html">Accounting for Autocorrelation: Effective Sample Size</a></li>
-</ul>
-</details></li>
-<li class="toctree-l1 current active has-children"><a class="reference internal" href="filt.html">Time Series Analysis</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
-<li class="toctree-l2 current active"><a class="current reference internal" href="#">Filtering in the Time Domain: Part I</a></li>
-<li class="toctree-l2"><a class="reference internal" href="Harmonics.html">Filtering in the Time Domain: Part II</a></li>
-<li class="toctree-l2"><a class="reference internal" href="filtering_in_freq1.html">Filtering in the Frequency Domain: Discrete Fourier Transform</a></li>
-<li class="toctree-l2"><a class="reference internal" href="filtering_in_freq2.html">Fast Fourier Transform</a></li>
-<li class="toctree-l2"><a class="reference internal" href="filtering_in_freq3.html">Continuous Power Spectrum and the Significance of Spectral Peaks</a></li>
-<li class="toctree-l2"><a class="reference internal" href="leak.html">Spectral Leakage</a></li>
-<li class="toctree-l2"><a class="reference internal" href="convolution_filters_in_time.html">Convolution and Filtering in the Time Domain</a></li>
-</ul>
-</details></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../Week7/pca.html">Patterns in Multivariate Data</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l2"><a class="reference internal" href="../Week7/Intro_to_PCA.html">Introduction to Principal Component Analysis</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../Week7/linalg.html">Review of Linear Algebra</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../Week7/eig.html">Eigenanalysis</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../Week7/eofs.html">EOFs via Eigenanalysis</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../Week7/naoeof.html">EOFs with Real Data</a></li>
-</ul>
-</details></li>
-<li class="toctree-l1"><a class="reference internal" href="../Week8/epilogue.html">Epilogue</a></li>
 </ul>
 
     </div>
@@ -269,9 +208,9 @@ const thebe_selector_output = ".output, .cell_output"
   
     <div class="header-article-items__start">
       
-        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
   <span class="fa-solid fa-bars"></span>
-</label></div>
+</button></div>
       
     </div>
   
@@ -296,14 +235,14 @@ const thebe_selector_output = ".output, .cell_output"
       
       <li><a href="https://mybinder.org/v2/gh/kls2177/Climate-and-Geophysical-Data-Analysis/master?urlpath=tree/chapters/Week6/filtering_in_time.ipynb" target="_blank"
    class="btn btn-sm dropdown-item"
-   title="Launch onBinder"
+   title="Launch on Binder"
    data-bs-placement="left" data-bs-toggle="tooltip"
 >
   
 
 <span class="btn__icon-container">
   
-    <img src="../../_static/images/logo_binder.svg">
+    <img alt="Binder logo" src="../../_static/images/logo_binder.svg">
   </span>
 <span class="btn__text-container">Binder</span>
 </a>
@@ -414,9 +353,9 @@ document.write(`
   </button>
 `);
 </script>
-<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <span class="fa-solid fa-list"></span>
-</label>
+</button>
 </div></div>
       
     </div>
@@ -459,21 +398,21 @@ document.write(`
                 <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="filtering-in-the-time-domain-part-i">
-<h1>Filtering in the Time Domain: Part I<a class="headerlink" href="#filtering-in-the-time-domain-part-i" title="Permalink to this heading">#</a></h1>
+<h1>Filtering in the Time Domain: Part I<a class="headerlink" href="#filtering-in-the-time-domain-part-i" title="Link to this heading">#</a></h1>
 <p>In this section, we will explore some simple techniques to filter time series in the <em>time domain</em>. To familiarize ourselves with the concept of filtering, we will take a look at a two common examples of filtering in the fields of climate science and geophysics.</p>
 <section id="example-1-filtering-out-the-long-term-trend">
-<h2>Example 1: Filtering out the Long-term Trend<a class="headerlink" href="#example-1-filtering-out-the-long-term-trend" title="Permalink to this heading">#</a></h2>
+<h2>Example 1: Filtering out the Long-term Trend<a class="headerlink" href="#example-1-filtering-out-the-long-term-trend" title="Link to this heading">#</a></h2>
 <p>As we discussed in the previous section, autocorrelation in a time series means that the data are not indepedent and that the sample size is an overestimate. Autocorrelation is often the result of a <em>long-term trend</em>. So, one way around this is to remove the long-term trend.</p>
 <p>Let’s start by returning to our TLT temperature time series example in the <a class="reference external" href="https://kls2177.github.io/Climate-and-Geophysical-Data-Analysis/chapters/Week5/autocorr_example.html">previous section</a> to examine filtering of the long-term trend.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Load packages</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">scipy.stats</span> <span class="k">as</span> <span class="nn">st</span>
-<span class="kn">import</span> <span class="nn">scipy.signal</span> <span class="k">as</span> <span class="nn">signal</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="kn">import</span> <span class="nn">matplotlib</span> <span class="k">as</span> <span class="nn">mpl</span>
-<span class="kn">import</span> <span class="nn">pickle</span> <span class="k">as</span> <span class="nn">pickle</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">scipy.stats</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">st</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">scipy.signal</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">signal</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">mpl</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pickle</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pickle</span>
 <span class="n">mpl</span><span class="o">.</span><span class="n">rc</span><span class="p">(</span><span class="s1">&#39;font&#39;</span><span class="p">,</span><span class="n">size</span><span class="o">=</span><span class="mi">14</span><span class="p">,</span><span class="n">weight</span><span class="o">=</span><span class="s1">&#39;bold&#39;</span><span class="p">)</span> <span class="c1">#set default font size and weight for plots</span>
 </pre></div>
 </div>
@@ -584,7 +523,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x179cba800&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x17b598a60&gt;
 </pre></div>
 </div>
 <img alt="../../_images/9a8178e734754786b12c12e9ae6c19f433fb8fe7e7d68aa248f004ffbed94d14.png" src="../../_images/9a8178e734754786b12c12e9ae6c19f433fb8fe7e7d68aa248f004ffbed94d14.png" />
@@ -594,7 +533,7 @@ document.write(`
 <p>Although this tends to be the primary reason that we detrend time series, there may be reasons you may want to detrend. For example, you may want to test specific scientific hypotheses that are not associated with the long-term trend, e.g. you may want to examine the year-to-year relationship between two variables.</p>
 </section>
 <section id="example-2-filtering-out-the-seasonal-cycle">
-<h2>Example 2: Filtering out the Seasonal Cycle<a class="headerlink" href="#example-2-filtering-out-the-seasonal-cycle" title="Permalink to this heading">#</a></h2>
+<h2>Example 2: Filtering out the Seasonal Cycle<a class="headerlink" href="#example-2-filtering-out-the-seasonal-cycle" title="Link to this heading">#</a></h2>
 <p>One feature of many climate and geophysical variables that results in autocorrelation is the <strong>seasonal cycle</strong>. In the following example, we will explore different methods to remove the seasonal cycle in order to reduce the autocorrelation. Again, reducing the autocorrelation, may not be the only reason to do this, but it is often the primary reason.</p>
 <p>To look at this problem, we will load in some Arctic sea ice extent (SIE) data from a pre-industrial integration of a global climate model (GCM). I have chosen to use data from a <em>pre-industrial</em> integration in order to focus on the seasonal cycle rather than the long-term trend that is evident in historical (GCM) integrations. The file is <a class="reference external" href="https://github.com/kls2177/ccia_files/blob/master/SIE_Total.pickle?raw=true">here</a>.</p>
 <div class="cell docutils container">
@@ -652,7 +591,7 @@ document.write(`
 </div>
 </div>
 <section id="method-1-filtering-out-the-climatological-seasonal-cycle">
-<h3>Method 1: Filtering out the Climatological Seasonal Cycle<a class="headerlink" href="#method-1-filtering-out-the-climatological-seasonal-cycle" title="Permalink to this heading">#</a></h3>
+<h3>Method 1: Filtering out the Climatological Seasonal Cycle<a class="headerlink" href="#method-1-filtering-out-the-climatological-seasonal-cycle" title="Link to this heading">#</a></h3>
 <p>Previously, we have defined anomalies in the following way:</p>
 <div class="math notranslate nohighlight">
 \[
@@ -667,9 +606,10 @@ x_{ij}^\prime(t) = x_{ij}(t) - \overline{x_j}
 <p>where <span class="math notranslate nohighlight">\(i\)</span> is a year and <span class="math notranslate nohighlight">\(j\)</span> is the day of the year (for data with daily temporal resolution). Thus, <span class="math notranslate nohighlight">\(\overline{x_j}\)</span> represents the <em>climatology</em> or the time mean of the seasonal cycle. If we subtract this, then we should be left with all the variability that is not associated with this time mean seasonal cycle.</p>
 <p>Let’s take a closer look at the meaning of <span class="math notranslate nohighlight">\(\overline{x_j}\)</span> using our Arctic SIE data. <a class="reference internal" href="#anomaly"><span class="std std-ref">Figure 19</span></a> shows a section of the Arctic SIE time series with dots added showing values in the time series for all the January 1st’s. The black horizontal line shows the average of all the January 1st’s. Thus, value of the black line is equal to <span class="math notranslate nohighlight">\(\overline{x_j}\)</span>, where <span class="math notranslate nohighlight">\(j\)</span> = January 1st.</p>
 <figure class="align-default" id="anomaly">
-<a class="reference internal image-reference" href="../../_images/anomaly.png"><img alt="../../_images/anomaly.png" src="../../_images/anomaly.png" style="width: 634.0px; height: 403.0px;" /></a>
+<a class="reference internal image-reference" href="../../_images/anomaly.png"><img alt="../../_images/anomaly.png" src="../../_images/anomaly.png" style="width: 634.0px; height: 403.0px;" />
+</a>
 <figcaption>
-<p><span class="caption-number">Fig. 19 </span><span class="caption-text">Time series of Arctic sea ice extent from a global climate model pre-industrial integration. The dots represent January 1st and the horizonal black line represents the mean of all the January 1st’s.</span><a class="headerlink" href="#anomaly" title="Permalink to this image">#</a></p>
+<p><span class="caption-text">Time series of Arctic sea ice extent from a global climate model pre-industrial integration. The dots represent January 1st and the horizonal black line represents the mean of all the January 1st’s.</span><a class="headerlink" href="#anomaly" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 <p>The SIE data that we originally loaded is in a convenient 2-D format for calculating <span class="math notranslate nohighlight">\(\overline{x_j}\)</span>.</p>
@@ -740,7 +680,7 @@ x_{ij}^\prime(t) = x_{ij}(t) - \overline{x_j}
 <p>The above method for removing the seasonal cycle is the most common in the climate science literature, but may not always be appropriate, for example if the magnitude of the seasonal cycle consistently changes as a function of time.</p>
 </section>
 <section id="method-2-filtering-out-the-running-mean-seasonal-cycle">
-<h3>Method 2: Filtering out the Running-Mean Seasonal Cycle<a class="headerlink" href="#method-2-filtering-out-the-running-mean-seasonal-cycle" title="Permalink to this heading">#</a></h3>
+<h3>Method 2: Filtering out the Running-Mean Seasonal Cycle<a class="headerlink" href="#method-2-filtering-out-the-running-mean-seasonal-cycle" title="Link to this heading">#</a></h3>
 <p><strong>Running-mean</strong> filters are filters that <em>low-pass</em> filter the data by averaging over specific time interval of interest, <span class="math notranslate nohighlight">\(L\)</span>. Here is an example of a running-mean filter for <span class="math notranslate nohighlight">\(L\)</span> = 3:</p>
 <div class="math notranslate nohighlight">
 \[
@@ -845,12 +785,12 @@ y(t)_{band-pass}  = y(t)_{L\geq T_1} - y(t)_{L\geq T_2}
 \]</div>
 <p>where <span class="math notranslate nohighlight">\(T_1\)</span> <span class="math notranslate nohighlight">\(\leq\)</span> <span class="math notranslate nohighlight">\(T_2\)</span>.</p>
 <section id="variations-on-running-mean-filters">
-<h4>Variations on Running-Mean Filters<a class="headerlink" href="#variations-on-running-mean-filters" title="Permalink to this heading">#</a></h4>
+<h4>Variations on Running-Mean Filters<a class="headerlink" href="#variations-on-running-mean-filters" title="Link to this heading">#</a></h4>
 <p>Note that running-mean filters assume that each point in <span class="math notranslate nohighlight">\(L\)</span> is weighted equally; however, running-mean filters can be improved on by altering this assumption. For example, a <em>Gaussian</em> filter assumes that the points in <span class="math notranslate nohighlight">\(L\)</span> are weighted following a <em>Guassian</em> distribution.</p>
 </section>
 </section>
 <section id="method-3-filtering-using-local-regression">
-<h3>Method 3: Filtering using Local Regression<a class="headerlink" href="#method-3-filtering-using-local-regression" title="Permalink to this heading">#</a></h3>
+<h3>Method 3: Filtering using Local Regression<a class="headerlink" href="#method-3-filtering-using-local-regression" title="Link to this heading">#</a></h3>
 <p>The idea of <strong>Local Regression</strong> (e.g., methods such as <a class="reference external" href="https://en.wikipedia.org/wiki/Local_regression#Advantages">LOESS or LOWESS</a>) is that for a point <span class="math notranslate nohighlight">\(x\)</span> in a time series, the regression can be <em>locally</em> approximated by the value of a function in some specified parametric class (polynomial). The local approximation is obtained by fitting a regression function to the data points within a chosen “neighbourhood” of the point <span class="math notranslate nohighlight">\(x\)</span>.</p>
 <p>The biggest advantage of local regression techniques over other methods is that it does not require the specification of a universal function to fit to all of the data in the sample. The biggest disadvantage is that it requires fairly large, densely sampled data sets in order to produce good models and is computationally intensive.</p>
 <p>Smoothing out of low-fequency ENSO variability in the NASA GISTEMP time series is accomplished using the LOWESS technique (see <a class="reference internal" href="filt.html#gistemp"><span class="std std-ref">Figure 16</span></a>).</p>
@@ -858,7 +798,7 @@ y(t)_{band-pass}  = y(t)_{L\geq T_1} - y(t)_{L\geq T_2}
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># import LOWESS function</span>
-<span class="kn">import</span> <span class="nn">statsmodels.nonparametric.smoothers_lowess</span> <span class="k">as</span> <span class="nn">lowess</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">statsmodels.nonparametric.smoothers_lowess</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">lowess</span>
 </pre></div>
 </div>
 </div>
@@ -935,24 +875,6 @@ y(t)_{band-pass}  = y(t)_{L\geq T_1} - y(t)_{L\geq T_2}
                 <footer class="prev-next-footer d-print-none">
                   
 <div class="prev-next-area">
-    <a class="left-prev"
-       href="filt.html"
-       title="previous page">
-      <i class="fa-solid fa-angle-left"></i>
-      <div class="prev-next-info">
-        <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Time Series Analysis</p>
-      </div>
-    </a>
-    <a class="right-next"
-       href="Harmonics.html"
-       title="next page">
-      <div class="prev-next-info">
-        <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Filtering in the Time Domain: Part II</p>
-      </div>
-      <i class="fa-solid fa-angle-right"></i>
-    </a>
 </div>
                 </footer>
               

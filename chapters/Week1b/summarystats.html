@@ -1,13 +1,12 @@
 
-
 <!DOCTYPE html>
 
 
-<html lang="en" data-content_root="" >
+<html lang="en" data-content_root="../../" >
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>Summary Statistics: Part I &#8212; Climate and Geophysical Data Analysis</title>
   
@@ -29,39 +28,35 @@
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
-    <link rel="stylesheet" href="../../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
   <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
 <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
   <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
-    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
-    <script src="../../_static/jquery.js"></script>
-    <script src="../../_static/underscore.js"></script>
-    <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
-    <script src="../../_static/doctools.js"></script>
-    <script src="../../_static/clipboard.min.js"></script>
-    <script src="../../_static/copybutton.js"></script>
-    <script src="../../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script src="../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="../../_static/togglebutton.js"></script>
+    <script src="../../_static/togglebutton.js?v=4a39c7ea"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
-    <script src="../../_static/design-tabs.js"></script>
-    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
-const thebe_selector = ".thebe,.cell"
-const thebe_selector_input = "pre"
-const thebe_selector_output = ".output, .cell_output"
-</script>
-    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <script src="../../_static/design-tabs.js?v=36754332"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script type="application/vnd.jupyter.widget-state+json">{"state": {"032b7783727b4af2bcb54cbc50e66236": {"model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "model_name": "LayoutModel", "state": {}}, "034cc1aa86b249dfa89f09511d868fbb": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "model_name": "ButtonStyleModel", "state": {}}, "059346708c5447ab85d7e51ab27cbd6f": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "model_name": "RadioButtonsModel", "state": {"_options_labels": ["blue", "white", "red"], "index": 0, "layout": "IPY_MODEL_4125b500d6ec44419afa0d24b068e918", "style": "IPY_MODEL_74793884b3084c19a073cda068e76984"}}, "09cfdf9e46094b23a40166adef876b81": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "model_name": "DescriptionStyleModel", "state": {"description_width": ""}}, "0bfa3a7debb6472ebad3ac34300230e0": {"model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "model_name": "LayoutModel", "state": {}}, "123696e7014a4752a3d3265e33444bca": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "model_name": "ButtonModel", "state": {"description": "submit", "layout": "IPY_MODEL_c5b3d26a75324c00ae56f5abdfdf7ab4", "style": "IPY_MODEL_a7dbb1dd04b94b15992a5e02a1187d6b"}}, "15ce81380df04787a2c94b25544b9a47": {"model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "model_name": "LayoutModel", "state": {}}, "17058b82d834415cb17fc49719267f40": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "model_name": "ButtonStyleModel", "state": {}}, "1a95adb17dfc46e89834eda4c4524d3f": {"model_module": "@jupyter-widgets/output", "model_module_version": "1.0.0", "model_name": "OutputModel", "state": {"layout": "IPY_MODEL_b8cc324ed40940bcb86c32ee9a1c4025"}}, "1a9a233894fc43788fa67fa53b020696": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "model_name": "ButtonStyleModel", "state": {}}, "208a467bbf2346cfab5f92c9617c16be": {"model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "model_name": "LayoutModel", "state": {}}, "216aefeadb8d4073bd8670dd866219b3": {"model_module": "@jupyter-widgets/output", "model_module_version": "1.0.0", "model_name": "OutputModel", "state": {"layout": "IPY_MODEL_b34a08a560ee4229a2e28022e47e4a16", "outputs": [{"name": "stdout", "output_type": "stream", "text": "lalalalal\n"}]}}, "223d0c25078745c6ba225cb131bb7d6e": {"model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "model_name": "LayoutModel", "state": {}}, "29b1a7ecabe14412b8e92a8eb3eb410c": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "model_name": "VBoxModel", "state": {"children": ["IPY_MODEL_216aefeadb8d4073bd8670dd866219b3", "IPY_MODEL_934cf691e2a14b42a6a664c704a335f7", "IPY_MODEL_9af61e642b4644a49673a2731261c59f", "IPY_MODEL_fe2de36d5b714017bd0b4225ac7289ed"], "layout": "IPY_MODEL_6f111f04a4a248b7bc79150e8db99253"}}, "2b115a10b840468e8dd573f6048f5b8c": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "model_name": "VBoxModel", "state": {"children": ["IPY_MODEL_3a1a02c7efcd474386cfe4a439ab5419", "IPY_MODEL_d5f79112fc844dfdb04e2bde563d0940", "IPY_MODEL_123696e7014a4752a3d3265e33444bca", "IPY_MODEL_a888793c5506416bb914954fd6cd9db1"], "layout": "IPY_MODEL_0bfa3a7debb6472ebad3ac34300230e0"}}, "2b83431b2c7d4cc0ad36a18bbaea62af": {"model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "model_name": "LayoutModel", "state": {}}, "2f081605612d4bc8b346c90faad7fe6c": {"model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "model_name": "LayoutModel", "state": {}}, "2fc0a68526ad4476a58708e309452c4e": {"model_module": "@jupyter-widgets/output", "model_module_version": "1.0.0", "model_name": "OutputModel", "state": {"layout": "IPY_MODEL_95c460fed1b1461189c4dadb05d32b81"}}, "30521cd4acca492aada2a36450d8f7d4": {"model_module": "@jupyter-widgets/output", "model_module_version": "1.0.0", "model_name": "OutputModel", "state": {"layout": "IPY_MODEL_7899163b196445ab8c6165321483b6a1", "outputs": [{"name": "stdout", "output_type": "stream", "text": "blablabla\n"}]}}, "308dac6189304b4aa8f6dd17fc907864": {"model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "model_name": "LayoutModel", "state": {}}, "359a02db424841dda24c227f3efd6aa5": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "model_name": "DescriptionStyleModel", "state": {"description_width": ""}}, "3a1a02c7efcd474386cfe4a439ab5419": {"model_module": "@jupyter-widgets/output", "model_module_version": "1.0.0", "model_name": "OutputModel", "state": {"layout": "IPY_MODEL_be0477d59c8642c0a776921aa58737c4", "outputs": [{"name": "stdout", "output_type": "stream", "text": "blablabla\n"}]}}, "3a7306c9aaa644078cd402cab8962e07": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "model_name": "ButtonStyleModel", "state": {}}, "3d05dcddcc0b40f79b33a0a7b51b1645": {"model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "model_name": "LayoutModel", "state": {}}, "3dc61db399d9444b8234891f03d35c9b": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "model_name": "VBoxModel", "state": {"children": ["IPY_MODEL_f519100d1fa44cb19086be10194e5e2b", "IPY_MODEL_3ee1291e943d4006a84e95db9698dde7", "IPY_MODEL_63be7b93392840908f93e16635cfb142", "IPY_MODEL_be39ae1c65d6483b80ecb87e7d5dbb64"], "layout": "IPY_MODEL_7bffb111d12f4edb9007edc4d7ff0ff9"}}, "3ee1291e943d4006a84e95db9698dde7": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "model_name": "RadioButtonsModel", "state": {"_options_labels": ["apple", "banana", "pear"], "index": 0, "layout": "IPY_MODEL_41edb5c9e835411291250be421467583", "style": "IPY_MODEL_a42917138dbb42298d0e94d541a64c9d"}}, "3fbc71fe7bbc4937b9d766a8b7632070": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "model_name": "RadioButtonsModel", "state": {"_options_labels": ["apple", "banana", "pear"], "index": 2, "layout": "IPY_MODEL_50c0fc1483834e6d84b26ebcf7f2c2a7", "style": "IPY_MODEL_09cfdf9e46094b23a40166adef876b81"}}, "4125b500d6ec44419afa0d24b068e918": {"model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "model_name": "LayoutModel", "state": {}}, "41edb5c9e835411291250be421467583": {"model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "model_name": "LayoutModel", "state": {}}, "420310cabf1849f38979abda5c45ac62": {"model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "model_name": "LayoutModel", "state": {}}, "43c8499d59ad49369d47e59fb5de117a": {"model_module": "@jupyter-widgets/output", "model_module_version": "1.0.0", "model_name": "OutputModel", "state": {"layout": "IPY_MODEL_5d321c695cf64b0cb900a6f639b26545"}}, "46348571108245a2b4769f2abca05e00": {"model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "model_name": "LayoutModel", "state": {}}, "487fac56d48640ad85421ef8f52dfc50": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "model_name": "DescriptionStyleModel", "state": {"description_width": ""}}, "4cd7ea1591754421b76ff772eb03a1bd": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "model_name": "ButtonModel", "state": {"description": "submit", "layout": "IPY_MODEL_a0d0985a1a5146fda9900aa522a172b9", "style": "IPY_MODEL_7579c379f305413f937bf670c36eb93b"}}, "50c0fc1483834e6d84b26ebcf7f2c2a7": {"model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "model_name": "LayoutModel", "state": {}}, "53c91900b70744ca836286d311679101": {"model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "model_name": "LayoutModel", "state": {}}, "59e8195c1d7f4b9ba1c877451d609d4d": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "model_name": "VBoxModel", "state": {"children": ["IPY_MODEL_83c38fd8fb2d43eba1d94fd1ea816411", "IPY_MODEL_059346708c5447ab85d7e51ab27cbd6f", "IPY_MODEL_923817faed4340289ed5f2a3a54c5733", "IPY_MODEL_1a95adb17dfc46e89834eda4c4524d3f"], "layout": "IPY_MODEL_c6ad632696d84cb3a8bd8da4c07ae021"}}, "5c9a00a2739047a98413eccec889b479": {"model_module": "@jupyter-widgets/output", "model_module_version": "1.0.0", "model_name": "OutputModel", "state": {"layout": "IPY_MODEL_032b7783727b4af2bcb54cbc50e66236", "outputs": [{"name": "stdout", "output_type": "stream", "text": "\u001b[1;30;42mCorrect!\u001b[0m\n\n"}]}}, "5d321c695cf64b0cb900a6f639b26545": {"model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "model_name": "LayoutModel", "state": {}}, "63be7b93392840908f93e16635cfb142": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "model_name": "ButtonModel", "state": {"description": "submit", "layout": "IPY_MODEL_46348571108245a2b4769f2abca05e00", "style": "IPY_MODEL_034cc1aa86b249dfa89f09511d868fbb"}}, "65247580849043a4b187d4e150f83f45": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "model_name": "VBoxModel", "state": {"children": ["IPY_MODEL_80cfebcb539745cebe293f82acc4eb0c", "IPY_MODEL_80eb8c2bc95148d5bdd0221ad1f7173a", "IPY_MODEL_4cd7ea1591754421b76ff772eb03a1bd", "IPY_MODEL_43c8499d59ad49369d47e59fb5de117a"], "layout": "IPY_MODEL_9424dfb196ed42deb301888d2bc53d9b"}}, "693b2afed3454eb39f256df4b2e25d6e": {"model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "model_name": "LayoutModel", "state": {}}, "6a754aabd07f466a8b1c6fcf979ffc1e": {"model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "model_name": "LayoutModel", "state": {}}, "6f111f04a4a248b7bc79150e8db99253": {"model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "model_name": "LayoutModel", "state": {}}, "7185e062728c4a3b81d8f7df68a92371": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "model_name": "VBoxModel", "state": {"children": ["IPY_MODEL_bc6e0cbbcb54408fbd6121387b8f9378", "IPY_MODEL_e3577669503841b7b3a8c0723ee91f41", "IPY_MODEL_ddf2306bc7514471b1d564e318161e96", "IPY_MODEL_2fc0a68526ad4476a58708e309452c4e"], "layout": "IPY_MODEL_693b2afed3454eb39f256df4b2e25d6e"}}, "74793884b3084c19a073cda068e76984": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "model_name": "DescriptionStyleModel", "state": {"description_width": ""}}, "7579c379f305413f937bf670c36eb93b": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "model_name": "ButtonStyleModel", "state": {}}, "76eadd1e6fe440e49aa958e93af41892": {"model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "model_name": "LayoutModel", "state": {}}, "7899163b196445ab8c6165321483b6a1": {"model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "model_name": "LayoutModel", "state": {}}, "7bffb111d12f4edb9007edc4d7ff0ff9": {"model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "model_name": "LayoutModel", "state": {}}, "80cfebcb539745cebe293f82acc4eb0c": {"model_module": "@jupyter-widgets/output", "model_module_version": "1.0.0", "model_name": "OutputModel", "state": {"layout": "IPY_MODEL_aae6f95f601548fa990985e199b270ef", "outputs": [{"name": "stdout", "output_type": "stream", "text": "lalalalal\n"}]}}, "80eb8c2bc95148d5bdd0221ad1f7173a": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "model_name": "RadioButtonsModel", "state": {"_options_labels": ["cat", "dog", "mouse"], "index": 0, "layout": "IPY_MODEL_c1246ca0e82a4e7c880cc2dca9a4e0cd", "style": "IPY_MODEL_9a1923850bde4d41af25c300d0969f47"}}, "83c38fd8fb2d43eba1d94fd1ea816411": {"model_module": "@jupyter-widgets/output", "model_module_version": "1.0.0", "model_name": "OutputModel", "state": {"layout": "IPY_MODEL_208a467bbf2346cfab5f92c9617c16be", "outputs": [{"name": "stdout", "output_type": "stream", "text": "jajajajaj\n"}]}}, "923817faed4340289ed5f2a3a54c5733": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "model_name": "ButtonModel", "state": {"description": "submit", "layout": "IPY_MODEL_9bea7ccc926a4e91a47f06693247d3fa", "style": "IPY_MODEL_3a7306c9aaa644078cd402cab8962e07"}}, "934cf691e2a14b42a6a664c704a335f7": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "model_name": "RadioButtonsModel", "state": {"_options_labels": ["cat", "dog", "mouse"], "index": 0, "layout": "IPY_MODEL_223d0c25078745c6ba225cb131bb7d6e", "style": "IPY_MODEL_af5d6edba11f438289c0ca69a891c9e1"}}, "9424dfb196ed42deb301888d2bc53d9b": {"model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "model_name": "LayoutModel", "state": {}}, "94a6a0a102a74b5f82c0356829e5c617": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "model_name": "ButtonStyleModel", "state": {}}, "95c460fed1b1461189c4dadb05d32b81": {"model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "model_name": "LayoutModel", "state": {}}, "9a1923850bde4d41af25c300d0969f47": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "model_name": "DescriptionStyleModel", "state": {"description_width": ""}}, "9af61e642b4644a49673a2731261c59f": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "model_name": "ButtonModel", "state": {"description": "submit", "layout": "IPY_MODEL_2f081605612d4bc8b346c90faad7fe6c", "style": "IPY_MODEL_17058b82d834415cb17fc49719267f40"}}, "9bea7ccc926a4e91a47f06693247d3fa": {"model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "model_name": "LayoutModel", "state": {}}, "a0d0985a1a5146fda9900aa522a172b9": {"model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "model_name": "LayoutModel", "state": {}}, "a0db61c994f94581bc024b49f61675e8": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "model_name": "ButtonModel", "state": {"description": "submit", "layout": "IPY_MODEL_308dac6189304b4aa8f6dd17fc907864", "style": "IPY_MODEL_94a6a0a102a74b5f82c0356829e5c617"}}, "a42917138dbb42298d0e94d541a64c9d": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "model_name": "DescriptionStyleModel", "state": {"description_width": ""}}, "a7dbb1dd04b94b15992a5e02a1187d6b": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "model_name": "ButtonStyleModel", "state": {}}, "a888793c5506416bb914954fd6cd9db1": {"model_module": "@jupyter-widgets/output", "model_module_version": "1.0.0", "model_name": "OutputModel", "state": {"layout": "IPY_MODEL_420310cabf1849f38979abda5c45ac62", "outputs": [{"name": "stdout", "output_type": "stream", "text": "\u001b[1;30;42mCorrect\u001b[0m\n\n"}]}}, "aae6f95f601548fa990985e199b270ef": {"model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "model_name": "LayoutModel", "state": {}}, "af5d6edba11f438289c0ca69a891c9e1": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "model_name": "DescriptionStyleModel", "state": {"description_width": ""}}, "b34a08a560ee4229a2e28022e47e4a16": {"model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "model_name": "LayoutModel", "state": {}}, "b8cc324ed40940bcb86c32ee9a1c4025": {"model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "model_name": "LayoutModel", "state": {}}, "bc6e0cbbcb54408fbd6121387b8f9378": {"model_module": "@jupyter-widgets/output", "model_module_version": "1.0.0", "model_name": "OutputModel", "state": {"layout": "IPY_MODEL_c436bd5cffc54a63866136b308a67fda", "outputs": [{"name": "stdout", "output_type": "stream", "text": "jajajajaj\n"}]}}, "be0477d59c8642c0a776921aa58737c4": {"model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "model_name": "LayoutModel", "state": {}}, "be39ae1c65d6483b80ecb87e7d5dbb64": {"model_module": "@jupyter-widgets/output", "model_module_version": "1.0.0", "model_name": "OutputModel", "state": {"layout": "IPY_MODEL_fd6ede0def0e4db28b64a8b3cb6c7e06"}}, "c1246ca0e82a4e7c880cc2dca9a4e0cd": {"model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "model_name": "LayoutModel", "state": {}}, "c436bd5cffc54a63866136b308a67fda": {"model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "model_name": "LayoutModel", "state": {}}, "c5b3d26a75324c00ae56f5abdfdf7ab4": {"model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "model_name": "LayoutModel", "state": {}}, "c6ad632696d84cb3a8bd8da4c07ae021": {"model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "model_name": "LayoutModel", "state": {}}, "cc904d14c19649feb7f181b09e757b96": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "model_name": "VBoxModel", "state": {"children": ["IPY_MODEL_30521cd4acca492aada2a36450d8f7d4", "IPY_MODEL_3fbc71fe7bbc4937b9d766a8b7632070", "IPY_MODEL_a0db61c994f94581bc024b49f61675e8", "IPY_MODEL_5c9a00a2739047a98413eccec889b479"], "layout": "IPY_MODEL_76eadd1e6fe440e49aa958e93af41892"}}, "d5f79112fc844dfdb04e2bde563d0940": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "model_name": "RadioButtonsModel", "state": {"_options_labels": ["apple", "banana", "pear"], "index": 2, "layout": "IPY_MODEL_15ce81380df04787a2c94b25544b9a47", "style": "IPY_MODEL_487fac56d48640ad85421ef8f52dfc50"}}, "ddf2306bc7514471b1d564e318161e96": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "model_name": "ButtonModel", "state": {"description": "submit", "layout": "IPY_MODEL_2b83431b2c7d4cc0ad36a18bbaea62af", "style": "IPY_MODEL_1a9a233894fc43788fa67fa53b020696"}}, "e3577669503841b7b3a8c0723ee91f41": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "model_name": "RadioButtonsModel", "state": {"_options_labels": ["blue", "white", "red"], "index": 0, "layout": "IPY_MODEL_53c91900b70744ca836286d311679101", "style": "IPY_MODEL_359a02db424841dda24c227f3efd6aa5"}}, "f519100d1fa44cb19086be10194e5e2b": {"model_module": "@jupyter-widgets/output", "model_module_version": "1.0.0", "model_name": "OutputModel", "state": {"layout": "IPY_MODEL_3d05dcddcc0b40f79b33a0a7b51b1645", "outputs": [{"name": "stdout", "output_type": "stream", "text": "blablabla\n"}]}}, "fd6ede0def0e4db28b64a8b3cb6c7e06": {"model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "model_name": "LayoutModel", "state": {}}, "fe2de36d5b714017bd0b4225ac7289ed": {"model_module": "@jupyter-widgets/output", "model_module_version": "1.0.0", "model_name": "OutputModel", "state": {"layout": "IPY_MODEL_6a754aabd07f466a8b1c6fcf979ffc1e"}}}, "version_major": 2, "version_minor": 0}</script>
@@ -71,8 +66,6 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="canonical" href="https://kls2177.github.io/Climate-and-Geophysical-Data-Analysis/chapters/index.html/chapters/Week1b/summarystats.html" />
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="Example: Sensitivity of Standard Deviation to Sampling" href="Variance_Example.html" />
-    <link rel="prev" title="Descriptive Statistics" href="descriptivestats.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -135,6 +128,8 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
+        
+      
       <div class="bd-sidebar-primary bd-sidebar">
         
 
@@ -169,80 +164,24 @@ const thebe_selector_output = ".output, .cell_output"
   
   
 </a></div>
-        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
-        <ul class="current nav bd-sidenav">
+        <ul class="nav bd-sidenav">
 <li class="toctree-l1 has-children"><a class="reference internal" href="../introduction/intro.html">Introduction</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="../introduction/aboutthisbook.html">About this book</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../introduction/howtousethisbook.html">How to use this book</a></li>
 </ul>
 </details></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../Week1a/whatarestatsgoodfor.html">What are statistics good for?</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l2"><a class="reference internal" href="../Week1a/goodpractice.html">Statistics is the grammar of science…</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../Week1a/pitfalls.html">Lies, damned lies and statistics…</a></li>
-</ul>
-</details></li>
-<li class="toctree-l1 current active has-children"><a class="reference internal" href="descriptivestats.html">Descriptive Statistics</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
-<li class="toctree-l2 current active"><a class="current reference internal" href="#">Summary Statistics: Part I</a></li>
-<li class="toctree-l2"><a class="reference internal" href="Variance_Example.html">Example: Sensitivity of Standard Deviation to Sampling</a></li>
-<li class="toctree-l2"><a class="reference internal" href="what_is_pdf.html">What is a distribution?</a></li>
-<li class="toctree-l2"><a class="reference internal" href="summarystats2.html">Summary Statistics: Part II</a></li>
-</ul>
-</details></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../Week2/hypothesis_testing.html">Statistical Hypothesis Testing</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l2"><a class="reference internal" href="../Week2/probability.html">Basic Probability</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../Week2/normdist.html">The Standard Normal Distribution</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../Week2/ENSO.html">What is ENSO?</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../Week2/zstat.html">The <em>z</em>-Statistic</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../Week2/signal2noise.html">Signal-to-Noise</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../Week2/central_limit_theorem.html">The Central Limit Theorem</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../Week2/statistical_significance.html">Estimating Statistical Significance with a <em>z</em>-test</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../Week2/tstat.html">The <em>t</em>-Statistic</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../Week2/resampling.html">Resampling Techniques</a></li>
-</ul>
-</details></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../Week3/linreg.html">Linear Regression</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l2"><a class="reference internal" href="../Week3/basics_linreg.html">Introduction to Linear Regression</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../Week3/confidence_intervals.html">Confidence Intervals</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../Week3/goodness.html">Goodness of Fit</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../Week3/assumptions.html">Assumptions of Linear Regression</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../Week3/composites.html">Compositing</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../Week3/filtering.html">Filtering or Detrending using Regression</a></li>
-</ul>
-</details></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../Week4/corr.html">Correlation</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l2"><a class="reference internal" href="../Week4/corr_rev.html">Review of Correlation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../Week4/stat_corr.html">Statistical Significance of Correlation Coefficients</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../Week4/nonpar_corr.html">Non-parametric Correlations</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../Week4/autocorr.html">Autocorrelation</a></li>
-</ul>
-</details></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../Week5/persistence.html">Persistence in Time Series</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l2"><a class="reference internal" href="../Week5/autocorr_example.html">Autocorrelation in Climate and Geophysical Data</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../Week5/red_noise.html">Introduction to Red Noise</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../Week5/autocorr_implications.html">Example: Correlation with Memory</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../Week5/n_eff.html">Accounting for Autocorrelation: Effective Sample Size</a></li>
-</ul>
-</details></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../Week6/filt.html">Time Series Analysis</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l2"><a class="reference internal" href="../Week6/filtering_in_time.html">Filtering in the Time Domain: Part I</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../Week6/Harmonics.html">Filtering in the Time Domain: Part II</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../Week6/filtering_in_freq1.html">Filtering in the Frequency Domain: Discrete Fourier Transform</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../Week6/filtering_in_freq2.html">Fast Fourier Transform</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../Week6/filtering_in_freq3.html">Continuous Power Spectrum and the Significance of Spectral Peaks</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../Week6/leak.html">Spectral Leakage</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../Week6/convolution_filters_in_time.html">Convolution and Filtering in the Time Domain</a></li>
-</ul>
-</details></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../Week7/pca.html">Patterns in Multivariate Data</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l2"><a class="reference internal" href="../Week7/Intro_to_PCA.html">Introduction to Principal Component Analysis</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../Week7/linalg.html">Review of Linear Algebra</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../Week7/eig.html">Eigenanalysis</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../Week7/eofs.html">EOFs via Eigenanalysis</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../Week7/naoeof.html">EOFs with Real Data</a></li>
-</ul>
-</details></li>
-<li class="toctree-l1"><a class="reference internal" href="../Week8/epilogue.html">Epilogue</a></li>
 </ul>
 
     </div>
@@ -272,9 +211,9 @@ const thebe_selector_output = ".output, .cell_output"
   
     <div class="header-article-items__start">
       
-        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
   <span class="fa-solid fa-bars"></span>
-</label></div>
+</button></div>
       
     </div>
   
@@ -299,14 +238,14 @@ const thebe_selector_output = ".output, .cell_output"
       
       <li><a href="https://mybinder.org/v2/gh/kls2177/Climate-and-Geophysical-Data-Analysis/master?urlpath=tree/chapters/Week1b/summarystats.ipynb" target="_blank"
    class="btn btn-sm dropdown-item"
-   title="Launch onBinder"
+   title="Launch on Binder"
    data-bs-placement="left" data-bs-toggle="tooltip"
 >
   
 
 <span class="btn__icon-container">
   
-    <img src="../../_static/images/logo_binder.svg">
+    <img alt="Binder logo" src="../../_static/images/logo_binder.svg">
   </span>
 <span class="btn__text-container">Binder</span>
 </a>
@@ -417,9 +356,9 @@ document.write(`
   </button>
 `);
 </script>
-<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <span class="fa-solid fa-list"></span>
-</label>
+</button>
 </div></div>
       
     </div>
@@ -458,10 +397,10 @@ document.write(`
                 <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="summary-statistics-part-i">
-<h1>Summary Statistics: Part I<a class="headerlink" href="#summary-statistics-part-i" title="Permalink to this heading">#</a></h1>
+<h1>Summary Statistics: Part I<a class="headerlink" href="#summary-statistics-part-i" title="Link to this heading">#</a></h1>
 <p>To get started, we will review several summary statistics that will likely be familiar to you: mean, median, standard deviation, skewness and kurtosis.</p>
 <section id="first-a-few-definitions-and-a-bit-of-nomenclature">
-<h2>1. First, a few definitions and a bit of nomenclature…<a class="headerlink" href="#first-a-few-definitions-and-a-bit-of-nomenclature" title="Permalink to this heading">#</a></h2>
+<h2>1. First, a few definitions and a bit of nomenclature…<a class="headerlink" href="#first-a-few-definitions-and-a-bit-of-nomenclature" title="Link to this heading">#</a></h2>
 <p>Throughout the course, we will define <span class="math notranslate nohighlight">\(X\)</span> as a random variable (e.g. surface air temperature). The “population” of <span class="math notranslate nohighlight">\(X\)</span> represents all possible values of <span class="math notranslate nohighlight">\(X\)</span>. The true population mean and standard deviation of this variable are denoted as:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
@@ -480,10 +419,10 @@ s &amp;= \text{sample standard deviation}
 \end{split}\]</div>
 </section>
 <section id="moments">
-<h2>2. Moments<a class="headerlink" href="#moments" title="Permalink to this heading">#</a></h2>
+<h2>2. Moments<a class="headerlink" href="#moments" title="Link to this heading">#</a></h2>
 <p>Moments are quantitative parameters that we will use to describe a sample of <span class="math notranslate nohighlight">\(X\)</span>.</p>
 <section id="the-mean">
-<h3>2.1 The Mean<a class="headerlink" href="#the-mean" title="Permalink to this heading">#</a></h3>
+<h3>2.1 The Mean<a class="headerlink" href="#the-mean" title="Link to this heading">#</a></h3>
 <p>The first moment is the <strong>mean</strong>. The sample mean is defined as:</p>
 <div class="math notranslate nohighlight">
 \[  
@@ -498,7 +437,7 @@ s &amp;= \text{sample standard deviation}
 <p>The <strong>median</strong> is the value in the centre of a population or sample. This is a useful statistic when there are large outliers in the population/sample (e.g. house prices, salaries, rain fall rate, earthquake magnitude)</p>
 </section>
 <section id="variance-and-standard-deviation">
-<h3>2.2 Variance and Standard Deviation<a class="headerlink" href="#variance-and-standard-deviation" title="Permalink to this heading">#</a></h3>
+<h3>2.2 Variance and Standard Deviation<a class="headerlink" href="#variance-and-standard-deviation" title="Link to this heading">#</a></h3>
 <p>The second moment of a sample <span class="math notranslate nohighlight">\(X\)</span> is the <strong>variance</strong>. As you can probably guess, the variance of a sample of <span class="math notranslate nohighlight">\(X\)</span> describes the <em>variability</em> of <span class="math notranslate nohighlight">\(X\)</span>. The sample variance is defined as:</p>
 <div class="math notranslate nohighlight">
 \[  
@@ -554,24 +493,6 @@ s = \sqrt{\overline{x^{\prime 2}}}
                 <footer class="prev-next-footer d-print-none">
                   
 <div class="prev-next-area">
-    <a class="left-prev"
-       href="descriptivestats.html"
-       title="previous page">
-      <i class="fa-solid fa-angle-left"></i>
-      <div class="prev-next-info">
-        <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Descriptive Statistics</p>
-      </div>
-    </a>
-    <a class="right-next"
-       href="Variance_Example.html"
-       title="next page">
-      <div class="prev-next-info">
-        <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Example: Sensitivity of Standard Deviation to Sampling</p>
-      </div>
-      <i class="fa-solid fa-angle-right"></i>
-    </a>
 </div>
                 </footer>
               

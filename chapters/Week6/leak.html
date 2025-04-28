@@ -1,13 +1,12 @@
 
-
 <!DOCTYPE html>
 
 
-<html lang="en" data-content_root="" >
+<html lang="en" data-content_root="../../" >
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>Spectral Leakage &#8212; Climate and Geophysical Data Analysis</title>
   
@@ -29,47 +28,41 @@
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
-    <link rel="stylesheet" href="../../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
   <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
 <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
   <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
-    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
-    <script src="../../_static/jquery.js"></script>
-    <script src="../../_static/underscore.js"></script>
-    <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
-    <script src="../../_static/doctools.js"></script>
-    <script src="../../_static/clipboard.min.js"></script>
-    <script src="../../_static/copybutton.js"></script>
-    <script src="../../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script src="../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="../../_static/togglebutton.js"></script>
+    <script src="../../_static/togglebutton.js?v=4a39c7ea"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
-    <script src="../../_static/design-tabs.js"></script>
-    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
-const thebe_selector = ".thebe,.cell"
-const thebe_selector_input = "pre"
-const thebe_selector_output = ".output, .cell_output"
-</script>
-    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <script src="../../_static/design-tabs.js?v=36754332"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'chapters/Week6/leak';</script>
     <link rel="canonical" href="https://kls2177.github.io/Climate-and-Geophysical-Data-Analysis/chapters/index.html/chapters/Week6/leak.html" />
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="Convolution and Filtering in the Time Domain" href="convolution_filters_in_time.html" />
-    <link rel="prev" title="Continuous Power Spectrum and the Significance of Spectral Peaks" href="filtering_in_freq3.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -132,6 +125,8 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
+        
+      
       <div class="bd-sidebar-primary bd-sidebar">
         
 
@@ -166,80 +161,24 @@ const thebe_selector_output = ".output, .cell_output"
   
   
 </a></div>
-        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
-        <ul class="current nav bd-sidenav">
+        <ul class="nav bd-sidenav">
 <li class="toctree-l1 has-children"><a class="reference internal" href="../introduction/intro.html">Introduction</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="../introduction/aboutthisbook.html">About this book</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../introduction/howtousethisbook.html">How to use this book</a></li>
 </ul>
 </details></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../Week1a/whatarestatsgoodfor.html">What are statistics good for?</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l2"><a class="reference internal" href="../Week1a/goodpractice.html">Statistics is the grammar of science…</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../Week1a/pitfalls.html">Lies, damned lies and statistics…</a></li>
-</ul>
-</details></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../Week1b/descriptivestats.html">Descriptive Statistics</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l2"><a class="reference internal" href="../Week1b/summarystats.html">Summary Statistics: Part I</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../Week1b/Variance_Example.html">Example: Sensitivity of Standard Deviation to Sampling</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../Week1b/what_is_pdf.html">What is a distribution?</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../Week1b/summarystats2.html">Summary Statistics: Part II</a></li>
-</ul>
-</details></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../Week2/hypothesis_testing.html">Statistical Hypothesis Testing</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l2"><a class="reference internal" href="../Week2/probability.html">Basic Probability</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../Week2/normdist.html">The Standard Normal Distribution</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../Week2/ENSO.html">What is ENSO?</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../Week2/zstat.html">The <em>z</em>-Statistic</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../Week2/signal2noise.html">Signal-to-Noise</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../Week2/central_limit_theorem.html">The Central Limit Theorem</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../Week2/statistical_significance.html">Estimating Statistical Significance with a <em>z</em>-test</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../Week2/tstat.html">The <em>t</em>-Statistic</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../Week2/resampling.html">Resampling Techniques</a></li>
-</ul>
-</details></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../Week3/linreg.html">Linear Regression</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l2"><a class="reference internal" href="../Week3/basics_linreg.html">Introduction to Linear Regression</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../Week3/confidence_intervals.html">Confidence Intervals</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../Week3/goodness.html">Goodness of Fit</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../Week3/assumptions.html">Assumptions of Linear Regression</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../Week3/composites.html">Compositing</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../Week3/filtering.html">Filtering or Detrending using Regression</a></li>
-</ul>
-</details></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../Week4/corr.html">Correlation</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l2"><a class="reference internal" href="../Week4/corr_rev.html">Review of Correlation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../Week4/stat_corr.html">Statistical Significance of Correlation Coefficients</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../Week4/nonpar_corr.html">Non-parametric Correlations</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../Week4/autocorr.html">Autocorrelation</a></li>
-</ul>
-</details></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../Week5/persistence.html">Persistence in Time Series</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l2"><a class="reference internal" href="../Week5/autocorr_example.html">Autocorrelation in Climate and Geophysical Data</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../Week5/red_noise.html">Introduction to Red Noise</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../Week5/autocorr_implications.html">Example: Correlation with Memory</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../Week5/n_eff.html">Accounting for Autocorrelation: Effective Sample Size</a></li>
-</ul>
-</details></li>
-<li class="toctree-l1 current active has-children"><a class="reference internal" href="filt.html">Time Series Analysis</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="filtering_in_time.html">Filtering in the Time Domain: Part I</a></li>
-<li class="toctree-l2"><a class="reference internal" href="Harmonics.html">Filtering in the Time Domain: Part II</a></li>
-<li class="toctree-l2"><a class="reference internal" href="filtering_in_freq1.html">Filtering in the Frequency Domain: Discrete Fourier Transform</a></li>
-<li class="toctree-l2"><a class="reference internal" href="filtering_in_freq2.html">Fast Fourier Transform</a></li>
-<li class="toctree-l2"><a class="reference internal" href="filtering_in_freq3.html">Continuous Power Spectrum and the Significance of Spectral Peaks</a></li>
-<li class="toctree-l2 current active"><a class="current reference internal" href="#">Spectral Leakage</a></li>
-<li class="toctree-l2"><a class="reference internal" href="convolution_filters_in_time.html">Convolution and Filtering in the Time Domain</a></li>
-</ul>
-</details></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../Week7/pca.html">Patterns in Multivariate Data</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l2"><a class="reference internal" href="../Week7/Intro_to_PCA.html">Introduction to Principal Component Analysis</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../Week7/linalg.html">Review of Linear Algebra</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../Week7/eig.html">Eigenanalysis</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../Week7/eofs.html">EOFs via Eigenanalysis</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../Week7/naoeof.html">EOFs with Real Data</a></li>
-</ul>
-</details></li>
-<li class="toctree-l1"><a class="reference internal" href="../Week8/epilogue.html">Epilogue</a></li>
 </ul>
 
     </div>
@@ -269,9 +208,9 @@ const thebe_selector_output = ".output, .cell_output"
   
     <div class="header-article-items__start">
       
-        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
   <span class="fa-solid fa-bars"></span>
-</label></div>
+</button></div>
       
     </div>
   
@@ -296,14 +235,14 @@ const thebe_selector_output = ".output, .cell_output"
       
       <li><a href="https://mybinder.org/v2/gh/kls2177/Climate-and-Geophysical-Data-Analysis/master?urlpath=tree/chapters/Week6/leak.ipynb" target="_blank"
    class="btn btn-sm dropdown-item"
-   title="Launch onBinder"
+   title="Launch on Binder"
    data-bs-placement="left" data-bs-toggle="tooltip"
 >
   
 
 <span class="btn__icon-container">
   
-    <img src="../../_static/images/logo_binder.svg">
+    <img alt="Binder logo" src="../../_static/images/logo_binder.svg">
   </span>
 <span class="btn__text-container">Binder</span>
 </a>
@@ -414,9 +353,9 @@ document.write(`
   </button>
 `);
 </script>
-<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <span class="fa-solid fa-list"></span>
-</label>
+</button>
 </div></div>
       
     </div>
@@ -460,7 +399,7 @@ document.write(`
                 <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="spectral-leakage">
-<h1>Spectral Leakage<a class="headerlink" href="#spectral-leakage" title="Permalink to this heading">#</a></h1>
+<h1>Spectral Leakage<a class="headerlink" href="#spectral-leakage" title="Link to this heading">#</a></h1>
 <p>Two key problems arise when conducting spectral analysis of finite, discrete time series (not an infinite time series):</p>
 <ol class="arabic simple">
 <li><p><strong>Aliasing:</strong> we only resolve frequencies lower than the Nyquist frequency (<span class="math notranslate nohighlight">\(\frac{1}{2\Delta t}\)</span>), and frequencies higher than this get aliased to lower frequencies.</p></li>
@@ -468,13 +407,14 @@ document.write(`
 </ol>
 <p>In this section, we will address the second problem, <strong>spectral leakage</strong> and how to reduce it.</p>
 <section id="setting-up-the-problem">
-<h2>Setting up the problem<a class="headerlink" href="#setting-up-the-problem" title="Permalink to this heading">#</a></h2>
+<h2>Setting up the problem<a class="headerlink" href="#setting-up-the-problem" title="Link to this heading">#</a></h2>
 <p>Suppose we have a time series, <span class="math notranslate nohighlight">\(y(t)\)</span>, that is defined on -<span class="math notranslate nohighlight">\(\infty \leq t \leq \infty\)</span>.</p>
 <p>Another way to conceptualize this time series would be to write it as, <span class="math notranslate nohighlight">\(y(t)g(t)\)</span>, where <span class="math notranslate nohighlight">\(g(t)\)</span> is a function with a value of 1 for all <span class="math notranslate nohighlight">\(t\)</span>, -<span class="math notranslate nohighlight">\(\infty \leq t \leq \infty\)</span>, as illustrated in the left panel in <a class="reference internal" href="#window"><span class="std std-ref">Figure 23</span></a>.</p>
 <figure class="align-default" id="window">
-<a class="reference internal image-reference" href="../../_images/window.png"><img alt="../../_images/window.png" src="../../_images/window.png" style="width: 841.0px; height: 330.0px;" /></a>
+<a class="reference internal image-reference" href="../../_images/window.png"><img alt="../../_images/window.png" src="../../_images/window.png" style="width: 841.0px; height: 330.0px;" />
+</a>
 <figcaption>
-<p><span class="caption-number">Fig. 23 </span><span class="caption-text">Schematic comparing the window function of an infinite time series, with that of a finite time series</span><a class="headerlink" href="#window" title="Permalink to this image">#</a></p>
+<p><span class="caption-text">Schematic comparing the window function of an infinite time series, with that of a finite time series</span><a class="headerlink" href="#window" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 <p>But what we really have is a time series, <span class="math notranslate nohighlight">\(y(t)\)</span>, that is defined a time interval from 0 <span class="math notranslate nohighlight">\(\leq t \leq T\)</span>. Applying the same conceptualization as above, we can denote this time series, <span class="math notranslate nohighlight">\(y(t)g(t)\)</span>, where now, <span class="math notranslate nohighlight">\(g(t)\)</span> now has a value of 1 over the range 0 <span class="math notranslate nohighlight">\(\leq t \leq T\)</span> and a value of zero for all other times, as illustrated in the right panel in <a class="reference internal" href="#window"><span class="std std-ref">Figure 23</span></a>.</p>
@@ -482,10 +422,10 @@ document.write(`
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import packages</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="kn">import</span> <span class="nn">scipy.stats</span> <span class="k">as</span> <span class="nn">st</span>
-<span class="kn">import</span> <span class="nn">scipy.signal</span> <span class="k">as</span> <span class="nn">sig</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">scipy.stats</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">st</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">scipy.signal</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">sig</span>
 </pre></div>
 </div>
 </div>
@@ -644,7 +584,7 @@ document.write(`
 <p>What happened? Our Fourier Transform is not able to clearly isolate the sine wave frequency as the only frequency. This is the essense of spectral leakage and it is problematic because it can introduce frequencies in time series that are not actually there. In order to better understand how windowing can result in spectral leakage, we need learn a bit about <strong>convolution</strong>.</p>
 </section>
 <section id="convolution">
-<h2>Convolution<a class="headerlink" href="#convolution" title="Permalink to this heading">#</a></h2>
+<h2>Convolution<a class="headerlink" href="#convolution" title="Link to this heading">#</a></h2>
 <p>We can minimize spectral leakage by applying different <em>windows</em> to our data, i.e., by creating different functional forms for <span class="math notranslate nohighlight">\(g(t)\)</span>. To understand how applying different windows can help, we first need to define something called <strong>convolution</strong>.</p>
 <p>The convolution of two functions <span class="math notranslate nohighlight">\(y(t)\)</span> and <span class="math notranslate nohighlight">\(g(t)\)</span> is:</p>
 <div class="math notranslate nohighlight">
@@ -776,7 +716,7 @@ Y(\omega) = \int_{-\infty}^{\infty} y(t)e^{-i\omega t} \,dt
 <p>We see that we can recover the windowed discrete power spectrum of <code class="docutils literal notranslate"><span class="pre">y2</span></code> when we convolve the Fourier Transforms of the individual time series, <code class="docutils literal notranslate"><span class="pre">y1</span></code> and <code class="docutils literal notranslate"><span class="pre">bxcr</span></code>.</p>
 </section>
 <section id="response-functions">
-<h2>Response Functions<a class="headerlink" href="#response-functions" title="Permalink to this heading">#</a></h2>
+<h2>Response Functions<a class="headerlink" href="#response-functions" title="Link to this heading">#</a></h2>
 <p>The function <span class="math notranslate nohighlight">\(\mathcal{G}(\omega-\omega_0)\)</span> is called the response function of window <span class="math notranslate nohighlight">\(g(t)\)</span> that acts on the original time series (where <span class="math notranslate nohighlight">\(g(t)\)</span> is a window in time, not in frequency).</p>
 <p><em>Ideal Case (no window):</em></p>
 <p>In an ideal world, we would like our window <span class="math notranslate nohighlight">\(g(t)\)</span> to give us a response function of <span class="math notranslate nohighlight">\(\mathcal{G}(\omega-\omega_0)\)</span> such that,</p>
@@ -844,7 +784,7 @@ sinc(x) = \frac{\text{sin}(\pi x)}{\pi x}
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x177be3b80&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x177013550&gt;
 </pre></div>
 </div>
 <img alt="../../_images/9ef6ff0576db61c375ac32fe366c231f958ddf117a047cd15a8292cfec44a6d5.png" src="../../_images/9ef6ff0576db61c375ac32fe366c231f958ddf117a047cd15a8292cfec44a6d5.png" />
@@ -853,7 +793,7 @@ sinc(x) = \frac{\text{sin}(\pi x)}{\pi x}
 <p>Recall why we are looking at this: The Fourier Transform of a windowed time series corresponds to the convolution of the individual Fourier Transforms (convolution theorem!). Thus, the above plot shows the function that is being <em>convolved</em> with the pure periodic signal in our time series leading to spectral leakage. Remember that a convolution can be thought of as a sliding weighted average.</p>
 <p>So, what do you see? The ideal response function, as described above, should just be a step function, i.e. it should have a value of 1 at lag = 0 (in this plot, <span class="math notranslate nohighlight">\(\omega\)</span> = 0) and a value of 0 everywhere else. This is not what we see for the boxcar window. We do see a value of 1 at lag = 0, but we see many other non-zero values at higher lags. Notice the large negative side lobe and their rather slow, oscillatory decay. We also see that as <span class="math notranslate nohighlight">\(T\)</span> gets larger, the boxcar function approaches a step function, but never truly gets there.</p>
 <section id="characteristics-of-the-boxcar-window-response-function">
-<h3>Characteristics of the Boxcar Window Response Function:<a class="headerlink" href="#characteristics-of-the-boxcar-window-response-function" title="Permalink to this heading">#</a></h3>
+<h3>Characteristics of the Boxcar Window Response Function:<a class="headerlink" href="#characteristics-of-the-boxcar-window-response-function" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p><strong>smoothing:</strong> when the spectrum is calculated through a boxcar, the window acts to smooth and distort the true spectrum.</p></li>
 <li><p><strong>side lobes:</strong> note the side lobes, these can be a real problem as they add frequencies to your spectrum that may not have been present in your original data - the reason for the side lobe is that these are the higher frequency harmonics needed to try and fit the sharp corners of the boxcar window.</p></li>
@@ -863,7 +803,7 @@ sinc(x) = \frac{\text{sin}(\pi x)}{\pi x}
 </section>
 </section>
 <section id="alternative-windows-for-minimizing-spectral-leakage">
-<h2>Alternative Windows for Minimizing Spectral Leakage<a class="headerlink" href="#alternative-windows-for-minimizing-spectral-leakage" title="Permalink to this heading">#</a></h2>
+<h2>Alternative Windows for Minimizing Spectral Leakage<a class="headerlink" href="#alternative-windows-for-minimizing-spectral-leakage" title="Link to this heading">#</a></h2>
 <p>As we have seen, the boxcar window causes spectral leakage, thus, alternative <em>windows</em> have been developed in order to reduce this problem. Here, we will focus on one called the <strong>Hanning Window</strong>.</p>
 <p>The Hanning window is one of many windows that acts to taper the end of the time series, rather than have a sharp rectangular corner, like a boxcar window. The functional form of the Hanning window is:</p>
 <div class="math notranslate nohighlight">
@@ -872,9 +812,10 @@ h(t) = \frac{1}{2}\left(1-\text{cos}(\frac{2\pi t}{T})\right) \quad \text{when $
 \]</div>
 <p>Notice the smooth edges of the Hanning window in <a class="reference internal" href="#hann"><span class="std std-ref">Figure 24</span></a>.</p>
 <figure class="align-default" id="hann">
-<a class="reference internal image-reference" href="../../_images/Boxcar_Hanning_timedomain.png"><img alt="../../_images/Boxcar_Hanning_timedomain.png" src="../../_images/Boxcar_Hanning_timedomain.png" style="width: 691.2px; height: 345.6px;" /></a>
+<a class="reference internal image-reference" href="../../_images/Boxcar_Hanning_timedomain.png"><img alt="../../_images/Boxcar_Hanning_timedomain.png" src="../../_images/Boxcar_Hanning_timedomain.png" style="width: 691.2px; height: 345.6px;" />
+</a>
 <figcaption>
-<p><span class="caption-number">Fig. 24 </span><span class="caption-text">Schematic comparing the Boxcar window and Hanning window in the time domain.</span><a class="headerlink" href="#hann" title="Permalink to this image">#</a></p>
+<p><span class="caption-text">Schematic comparing the Boxcar window and Hanning window in the time domain.</span><a class="headerlink" href="#hann" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 <p>The response function of the Hanning window (i.e., the Fourier Transform) is as follows,</p>
@@ -912,14 +853,14 @@ h(t) = \frac{1}{2}\left(1-\text{cos}(\frac{2\pi t}{T})\right) \quad \text{when $
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x177cd33d0&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x177068be0&gt;
 </pre></div>
 </div>
 <img alt="../../_images/bc3045eb1c6a3360e04f8aa1dcefc84c253571c404688bc0154b38bf418ff26d.png" src="../../_images/bc3045eb1c6a3360e04f8aa1dcefc84c253571c404688bc0154b38bf418ff26d.png" />
 </div>
 </div>
 <section id="windows-and-degress-of-freedom">
-<h3>Windows and Degress of Freedom<a class="headerlink" href="#windows-and-degress-of-freedom" title="Permalink to this heading">#</a></h3>
+<h3>Windows and Degress of Freedom<a class="headerlink" href="#windows-and-degress-of-freedom" title="Link to this heading">#</a></h3>
 <p>Note that this additional smoothing isn’t considered in your degrees of freedom (D.O.F.) calculation, and thus, there is an additional factor added into the D.O.F. calculation to account for the smoothing by the window:</p>
 <div class="math notranslate nohighlight">
 \[
@@ -929,13 +870,14 @@ DOF = \frac{N}{M^*}f_w
 </section>
 </section>
 <section id="welch-s-overlapping-segment-analysis-method">
-<h2>Welch’s Overlapping Segment Analysis Method<a class="headerlink" href="#welch-s-overlapping-segment-analysis-method" title="Permalink to this heading">#</a></h2>
+<h2>Welch’s Overlapping Segment Analysis Method<a class="headerlink" href="#welch-s-overlapping-segment-analysis-method" title="Link to this heading">#</a></h2>
 <p>One of the problems with the Hanning window, is that if you have a short time series, you will end up using very little of the data at the edges of your time series due to the tapered window But, this data is just as important as the data in the center of the time series! This is not only a problem for short time series, but it can also, be a problem when you split your time series into smaller chunks to construct a continuous power spectrum and increase your degrees of freedom.</p>
 <p>For example, we might want to split our time series into 2 chunks (see <a class="reference internal" href="#wosa"><span class="std std-ref">Figure 25</span></a> below). To reduce tapering at the edges, often one will apply the window to one chunk of data, and include a 50% overlap with that data when calculating the second chunk of data. In this case, you will have more than 2 chunks (you will have 3 chunks). It turns out that even though it may feel like you are double counting data, you actually gain 2 degrees of freedom per chunk (including those overlapping) if you are using a Hanning window. That is, if you use a 50% overlap with a Hanning window you will have 3 x 2 x 1.2 = 7.2 degrees of freedom per spectral estimate!</p>
 <figure class="align-default" id="wosa">
-<a class="reference internal image-reference" href="../../_images/WOSA.png"><img alt="../../_images/WOSA.png" src="../../_images/WOSA.png" style="width: 832.0px; height: 167.0px;" /></a>
+<a class="reference internal image-reference" href="../../_images/WOSA.png"><img alt="../../_images/WOSA.png" src="../../_images/WOSA.png" style="width: 832.0px; height: 167.0px;" />
+</a>
 <figcaption>
-<p><span class="caption-number">Fig. 25 </span><span class="caption-text">Schematic of Welch’s Overlapping Segment Analysis (WOSA) Method for two chunks.</span><a class="headerlink" href="#wosa" title="Permalink to this image">#</a></p>
+<p><span class="caption-text">Schematic of Welch’s Overlapping Segment Analysis (WOSA) Method for two chunks.</span><a class="headerlink" href="#wosa" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 <p>Let’s take a look at the python function <code class="docutils literal notranslate"><span class="pre">scipy.sig.welch</span></code> that we have used previously, now that we know a bit more about it and its connection to the issue of spectral leakage. We will use cosine wave time series with a bit of white noise to test the <code class="docutils literal notranslate"><span class="pre">sig.welch</span></code> function.</p>
@@ -1008,7 +950,7 @@ DOF = \frac{N}{M^*}f_w
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/3be8c950907bda4299c155c95ae30f1e70d8c1b9e55f65eaf280f97dc6ed37cf.png" src="../../_images/3be8c950907bda4299c155c95ae30f1e70d8c1b9e55f65eaf280f97dc6ed37cf.png" />
+<img alt="../../_images/d7de302cb51aa168fe9a4ff22ee1b1cd870b65f772d44041e3c70a3cf1a2f727.png" src="../../_images/d7de302cb51aa168fe9a4ff22ee1b1cd870b65f772d44041e3c70a3cf1a2f727.png" />
 </div>
 </div>
 <p>You should notice that the spectral peak gets wider as we increase the number of chunks. This is because we are losing information as the time segments get shorter; however, the WOSA method is still able to identify the correct frequency for the peak and as we increase the number of chunks, the peak corresponding to the periodic frequency in our data emerges as the only significant one - reducing spectral leakage.</p>
@@ -1045,24 +987,6 @@ DOF = \frac{N}{M^*}f_w
                 <footer class="prev-next-footer d-print-none">
                   
 <div class="prev-next-area">
-    <a class="left-prev"
-       href="filtering_in_freq3.html"
-       title="previous page">
-      <i class="fa-solid fa-angle-left"></i>
-      <div class="prev-next-info">
-        <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Continuous Power Spectrum and the Significance of Spectral Peaks</p>
-      </div>
-    </a>
-    <a class="right-next"
-       href="convolution_filters_in_time.html"
-       title="next page">
-      <div class="prev-next-info">
-        <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Convolution and Filtering in the Time Domain</p>
-      </div>
-      <i class="fa-solid fa-angle-right"></i>
-    </a>
 </div>
                 </footer>
               
