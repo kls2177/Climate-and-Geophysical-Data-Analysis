@@ -63,6 +63,8 @@
     <link rel="canonical" href="https://kls2177.github.io/Climate-and-Geophysical-Data-Analysis/chapters/index.html/chapters/Week2/central_limit_theorem.html" />
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Estimating Statistical Significance with a z-test" href="statistical_significance.html" />
+    <link rel="prev" title="Signal-to-Noise" href="signal2noise.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -125,8 +127,6 @@
       
       
       
-        
-      
       <div class="bd-sidebar-primary bd-sidebar">
         
 
@@ -174,11 +174,78 @@
  </script></div>
         <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
-        <ul class="nav bd-sidenav">
+        <ul class="current nav bd-sidenav">
 <li class="toctree-l1 has-children"><a class="reference internal" href="../introduction/intro.html">Introduction</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="../introduction/aboutthisbook.html">About this book</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../introduction/howtousethisbook.html">How to use this book</a></li>
 </ul>
 </details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../Week1a/whatarestatsgoodfor.html">What are statistics good for?</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../Week1a/goodpractice.html">Statistics is the grammar of science…</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Week1a/pitfalls.html">Lies, damned lies and statistics…</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../Week1b/descriptivestats.html">Descriptive Statistics</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../Week1b/summarystats.html">Summary Statistics: Part I</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Week1b/Variance_Example.html">Example: Sensitivity of Standard Deviation to Sampling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Week1b/what_is_pdf.html">What is a distribution?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Week1b/summarystats2.html">Summary Statistics: Part II</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="hypothesis_testing.html">Statistical Hypothesis Testing</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="probability.html">Basic Probability</a></li>
+<li class="toctree-l2"><a class="reference internal" href="normdist.html">The Standard Normal Distribution</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ENSO.html">What is ENSO?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="zstat.html">The <em>z</em>-Statistic</a></li>
+<li class="toctree-l2"><a class="reference internal" href="signal2noise.html">Signal-to-Noise</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">The Central Limit Theorem</a></li>
+<li class="toctree-l2"><a class="reference internal" href="statistical_significance.html">Estimating Statistical Significance with a <em>z</em>-test</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tstat.html">The <em>t</em>-Statistic</a></li>
+<li class="toctree-l2"><a class="reference internal" href="resampling.html">Resampling Techniques</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../Week3/linreg.html">Linear Regression</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../Week3/basics_linreg.html">Introduction to Linear Regression</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Week3/confidence_intervals.html">Confidence Intervals</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Week3/goodness.html">Goodness of Fit</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Week3/assumptions.html">Assumptions of Linear Regression</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Week3/composites.html">Compositing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Week3/filtering.html">Filtering or Detrending using Regression</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../Week4/corr.html">Correlation</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../Week4/corr_rev.html">Review of Correlation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Week4/stat_corr.html">Statistical Significance of Correlation Coefficients</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Week4/nonpar_corr.html">Non-parametric Correlations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Week4/autocorr.html">Autocorrelation</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../Week5/persistence.html">Persistence in Time Series</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../Week5/autocorr_example.html">Autocorrelation in Climate and Geophysical Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Week5/red_noise.html">Introduction to Red Noise</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Week5/autocorr_implications.html">Example: Correlation with Memory</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Week5/n_eff.html">Accounting for Autocorrelation: Effective Sample Size</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../Week6/filt.html">Time Series Analysis</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../Week6/filtering_in_time.html">Filtering in the Time Domain: Part I</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Week6/Harmonics.html">Filtering in the Time Domain: Part II</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Week6/filtering_in_freq1.html">Filtering in the Frequency Domain: Discrete Fourier Transform</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Week6/filtering_in_freq2.html">Fast Fourier Transform</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Week6/filtering_in_freq3.html">Continuous Power Spectrum and the Significance of Spectral Peaks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Week6/leak.html">Spectral Leakage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Week6/convolution_filters_in_time.html">Convolution and Filtering in the Time Domain</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../Week7/pca.html">Patterns in Multivariate Data</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../Week7/Intro_to_PCA.html">Introduction to Principal Component Analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Week7/linalg.html">Review of Linear Algebra</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Week7/eig.html">Eigenanalysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Week7/eofs.html">EOFs via Eigenanalysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Week7/naoeof.html">EOFs with Real Data</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../Week8/epilogue.html">Epilogue</a></li>
 </ul>
 
     </div>
@@ -474,7 +541,7 @@ z = \frac{x - \mu}{\sigma}
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/2360e47e5c0a8b94c130574a20e3c3b90415017b34565ef1d9c119448c4f5ea3.png" src="../../_images/2360e47e5c0a8b94c130574a20e3c3b90415017b34565ef1d9c119448c4f5ea3.png" />
+<img alt="../../_images/3395001d779e779a74ed64d3cbd08dd5cf27dc4e83774de224b202057311f64b.png" src="../../_images/3395001d779e779a74ed64d3cbd08dd5cf27dc4e83774de224b202057311f64b.png" />
 </div>
 </div>
 <p>For our demonstration of the CLT, let’s start with the normal distribution.</p>
@@ -528,7 +595,7 @@ z = \frac{x - \mu}{\sigma}
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/e8b86310afb23824aea572f29af4ac4a26d8c147938508dde58fc9fb6a2e367a.png" src="../../_images/e8b86310afb23824aea572f29af4ac4a26d8c147938508dde58fc9fb6a2e367a.png" />
+<img alt="../../_images/07c707d4ac85c3eb037ada11ac9dde2636c350f08d5ee2ed136c5c4b9eaa9450.png" src="../../_images/07c707d4ac85c3eb037ada11ac9dde2636c350f08d5ee2ed136c5c4b9eaa9450.png" />
 </div>
 </div>
 <p>What happens as <span class="math notranslate nohighlight">\(N\)</span> increases?</p>
@@ -597,7 +664,7 @@ z = \frac{x - \mu}{\sigma}
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/c2d4764e44eaa42c24a068dfdc2b377e33df4c0d57a68f8c93b12cd2663f11e6.png" src="../../_images/c2d4764e44eaa42c24a068dfdc2b377e33df4c0d57a68f8c93b12cd2663f11e6.png" />
+<img alt="../../_images/1e07e7ec41bd51ec45315490cc93033063b2d780cfb53c5ffa859925eafde84f.png" src="../../_images/1e07e7ec41bd51ec45315490cc93033063b2d780cfb53c5ffa859925eafde84f.png" />
 </div>
 </div>
 <p>We have now convinced ourselves of the validity of the CLT with this simple demonstration. But you may be asking yourself, how big does our sample size <span class="math notranslate nohighlight">\(N\)</span> have to be for the CLT to apply, i.e., how large is “sufficiently large”? In practice, <span class="math notranslate nohighlight">\(N\)</span> <span class="math notranslate nohighlight">\(\geq\)</span> 30 is considered large enough. You can test this yourself by changing the values of <span class="math notranslate nohighlight">\(N\)</span> above.</p>
@@ -635,6 +702,24 @@ z = \frac{x - \mu}{\sigma}
                 <footer class="prev-next-footer d-print-none">
                   
 <div class="prev-next-area">
+    <a class="left-prev"
+       href="signal2noise.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Signal-to-Noise</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="statistical_significance.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Estimating Statistical Significance with a <em>z</em>-test</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
 </div>
                 </footer>
               
