@@ -497,8 +497,9 @@ y(t) &amp; = A \text{sin}(2\pi ft + \phi)\\
 <p><em>As a reminder:</em></p>
 <ul class="simple">
 <li><p>frequency, <span class="math notranslate nohighlight">\(f\)</span>: number of oscillations per time step</p></li>
-<li><p>period, <span class="math notranslate nohighlight">\(T\)</span>: number of time steps per oscillation, <span class="math notranslate nohighlight">\(\frac{1}{f}\)</span></p></li>
+<li><p>length of the domain, <span class="math notranslate nohighlight">\(T\)</span>: the total length of the time period of interest</p></li>
 <li><p>wavenumber, <span class="math notranslate nohighlight">\(k\)</span> (an integer): number of oscillations that fit inside the domain, <span class="math notranslate nohighlight">\(k\)</span> = <span class="math notranslate nohighlight">\(fT\)</span>.</p></li>
+<li><p>period, <span class="math notranslate nohighlight">\(T/k\)</span>: number of time steps per oscillation</p></li>
 </ul>
 </section>
 <section id="fourier-series">
@@ -537,14 +538,14 @@ y(t) = A_0 + \sum_{k=1}^{N/2} A_k\text{cos}(2\pi k \frac{t}{T}) +  \sum_{k=1}^{N
 </div>
 </div>
 </div>
-<p>We will start by picking a period, <span class="math notranslate nohighlight">\(T\)</span>, and a sampling rate, <span class="math notranslate nohighlight">\(\Delta t\)</span>.</p>
+<p>We will start by picking a domain, <span class="math notranslate nohighlight">\(T\)</span>, and a sampling rate, <span class="math notranslate nohighlight">\(\Delta t\)</span>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># harmonic parameters (period and sampling rate)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># harmonic parameters (domain and sampling rate)</span>
 <span class="n">T</span> <span class="o">=</span> <span class="mf">4.0</span>
 <span class="n">sampling_rate</span> <span class="o">=</span> <span class="mf">0.05</span>
 
-<span class="c1"># define time dimension based on period and sampling rate</span>
+<span class="c1"># define time dimension based on domain and sampling rate</span>
 <span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mf">0.</span><span class="p">,</span><span class="n">T</span><span class="o">+</span><span class="n">sampling_rate</span><span class="p">,</span><span class="n">sampling_rate</span><span class="p">)</span>
 
 <span class="c1"># length of time series</span>
@@ -588,7 +589,7 @@ y(t) = A_0 + \sum_{k=1}^{N/2} A_k\text{cos}(2\pi k \frac{t}{T}) +  \sum_{k=1}^{N
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x113bedf00&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x113a61f00&gt;
 </pre></div>
 </div>
 <img alt="../../_images/9faa2b9b0b22e645c61c1e0c3fef75c4bd59104659a06fcd3fb8baced294c24e.png" src="../../_images/9faa2b9b0b22e645c61c1e0c3fef75c4bd59104659a06fcd3fb8baced294c24e.png" />
@@ -604,7 +605,7 @@ y(t) = A_0 + \sum_{k=1}^{N/2} A_k\text{cos}(2\pi k \frac{t}{T}) +  \sum_{k=1}^{N
 <p>Let’s take a look what this means using python. First, let’s define our harmonic parameters.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># harmonic parameters (period and sampling rate)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># harmonic parameters (domain and sampling rate)</span>
 <span class="n">T</span> <span class="o">=</span> <span class="mf">10.</span> 
 <span class="n">sampling_rate</span> <span class="o">=</span> <span class="mf">0.01</span>
 
@@ -633,7 +634,7 @@ This means that the Nyquist frequency is 50.0
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># low frequency t used to demonstrate how sampling rate effects our ability to detect all frequencies</span>
 <span class="n">sampling_rate_low</span> <span class="o">=</span> <span class="mf">1.0</span>
 
-<span class="c1"># define time dimension based on period and sampling rate</span>
+<span class="c1"># define time dimension based on domain and sampling rate</span>
 <span class="n">tl</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">t</span><span class="p">),</span><span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">t</span><span class="p">)</span><span class="o">+</span><span class="n">sampling_rate_low</span><span class="p">,</span><span class="n">sampling_rate_low</span><span class="p">)</span> 
 
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The wavenumber corresponding to the Nyquist frequecy for the low-frequency sampling rate is&quot;</span><span class="p">,(</span><span class="nb">len</span><span class="p">(</span><span class="n">tl</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span>
