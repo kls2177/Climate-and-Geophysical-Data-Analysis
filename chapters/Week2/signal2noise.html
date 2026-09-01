@@ -200,6 +200,7 @@
 <li class="toctree-l2 current active"><a class="current reference internal" href="#">Signal-to-Noise</a></li>
 <li class="toctree-l2"><a class="reference internal" href="central_limit_theorem.html">The Central Limit Theorem</a></li>
 <li class="toctree-l2"><a class="reference internal" href="statistical_significance.html">Estimating Statistical Significance with a <em>z</em>-test</a></li>
+
 <li class="toctree-l2"><a class="reference internal" href="tstat.html">The <em>t</em>-Statistic</a></li>
 <li class="toctree-l2"><a class="reference internal" href="resampling.html">Resampling Techniques</a></li>
 </ul>
@@ -419,19 +420,20 @@ document.write(`
 <blockquote>
 <div><p>“What is the probability that the ENSO index in the winter of 1997-1998 was its value or greater?”</p>
 </div></blockquote>
+<p><em>Side Note: The 1997-1998 El Niño event was one of the largest in recent history</em></p>
 <p>However, in climate and geophysical sciences (and most other fields of science for that matter), we tend to be more interested in establishing the probability of the difference between a sample mean and an underlying population or the difference between two samples. In other words, we are interested in finding a signal in our data that is different from the noise.</p>
 <p>More generally, the <a class="reference external" href="https://365datascience.com/bayesian-vs-frequentist-approach/"><em>frequentist</em></a> approach to hypothesis testing involves testing a <em>null</em> hypothesis by comparing the sample data you observe in your laboratory experiment, field measurements, computer simulation, etc. with the predictions of a null hypothesis. You estimate what the probability would be of obtaining the observed results, or something more extreme, if the null hypothesis were true. If this estimated probability (the <span class="math notranslate nohighlight">\(p\)</span>-value) is small enough (below the significance value), then you conclude that it is unlikely that the null hypothesis is true; you <em>reject</em> the null hypothesis and <em>accept</em> an alternative hypothesis.</p>
 <p>Returning to our ENSO example, we instead might ask,</p>
 <blockquote>
-<div><p>“Was the ENSO index from 2003-2013 consistent with climatological behaviour?”</p>
+<div><p>“Was the ENSO index from 2010-2020 consistent with climatological behaviour?”</p>
 </div></blockquote>
 <p>The framing of the above question implies that the null hypothesis is:</p>
 <ul class="simple">
-<li><p>the ENSO index from 2003-2013 (the sample mean) is consistent with “climatological behaviour” (the population mean).</p></li>
+<li><p>the ENSO index from 2010-2020 (the sample mean) is consistent with “climatological behaviour” (the population mean).</p></li>
 </ul>
 <p>The alternative hypothesis is thus:</p>
 <ul class="simple">
-<li><p>the ENSO index from 2003-2013 (the sample mean) is not consistent with “climatological behaviour” (the population mean).</p></li>
+<li><p>the ENSO index from 2010-2020 (the sample mean) is not consistent with “climatological behaviour” (the population mean).</p></li>
 </ul>
 <section id="the-null-hypothesis">
 <h3>The Null Hypothesis<a class="headerlink" href="#the-null-hypothesis" title="Link to this heading">#</a></h3>

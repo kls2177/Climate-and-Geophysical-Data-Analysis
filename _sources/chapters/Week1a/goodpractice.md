@@ -7,11 +7,11 @@ For scientists, statistical principles underlie how we design our experiments an
 
 Statistical analysis also serves as a reality check for us. If the data does not support a particular hypothesis, then we may need to re-evaluate our experimental design, data collection protocol or our physical understanding of the phenomenon we are studying.
 
-Finally, in this new world of *Big Data*, we are relying more and more on statistical methods to help us extract signal from noise.
+Finally, in this new world of *Big Data*, we are relying more and more on statistical methods (and machine learning!) to help us extract signal from noise.
 
 ## Why are statistics so important?
 
-Although many students dislike taking statistics (I was one of them!), there is no escaping statistics in our everyday lives and even more so in our professional lives as scientists.
+Although many students dislike taking statistics courses (I was one of them!), there is no escaping statistics in our everyday lives and even more so in our professional lives as scientists.
 
 Statistics are used to support theoretical ideas with real data (e.g., climate change, clinical trials), to assess risk (e.g. insurance, disease prevention), to make predictions (e.g. politics, financial markets) and to facilitate decision-making more broadly.
 

@@ -198,6 +198,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../Week2/signal2noise.html">Signal-to-Noise</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../Week2/central_limit_theorem.html">The Central Limit Theorem</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../Week2/statistical_significance.html">Estimating Statistical Significance with a <em>z</em>-test</a></li>
+
 <li class="toctree-l2"><a class="reference internal" href="../Week2/tstat.html">The <em>t</em>-Statistic</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../Week2/resampling.html">Resampling Techniques</a></li>
 </ul>
@@ -566,62 +567,14 @@ document.write(`
 <p>…and then we substract it.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># reshape to compute anomaly (drop the last 10 months so that we have an integer number of years)</span>
-<span class="n">sst_n34_reshape</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">sst_n34</span><span class="p">[:</span><span class="o">-</span><span class="mi">10</span><span class="p">],(</span><span class="mi">166</span><span class="p">,</span><span class="mi">12</span><span class="p">))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># reshape to compute anomaly (drop the last 7 months so that we have an integer number of years)</span>
+<span class="n">sst_n34_reshape</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">sst_n34</span><span class="p">[:</span><span class="o">-</span><span class="mi">7</span><span class="p">],(</span><span class="mi">172</span><span class="p">,</span><span class="mi">12</span><span class="p">))</span>
 
 <span class="c1"># calculate monthly anomaly</span>
 <span class="n">sst_n34_anom</span> <span class="o">=</span> <span class="n">sst_n34_reshape</span> <span class="o">-</span> <span class="n">sst_n34_clim</span>
 
 <span class="c1"># reshape anomaly back to long time series</span>
-<span class="n">sst_n34_anom</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">sst_n34_anom</span><span class="p">,(</span><span class="mi">166</span><span class="o">*</span><span class="mi">12</span><span class="p">))</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">ValueError</span><span class="g g-Whitespace">                                </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">6</span><span class="p">],</span> <span class="n">line</span> <span class="mi">2</span>
-<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="c1"># reshape to compute anomaly (drop the last 10 months so that we have an integer number of years)</span>
-<span class="ne">----&gt; </span><span class="mi">2</span> <span class="n">sst_n34_reshape</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">sst_n34</span><span class="p">[:</span><span class="o">-</span><span class="mi">10</span><span class="p">],(</span><span class="mi">166</span><span class="p">,</span><span class="mi">12</span><span class="p">))</span>
-<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="c1"># calculate monthly anomaly</span>
-<span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="n">sst_n34_anom</span> <span class="o">=</span> <span class="n">sst_n34_reshape</span> <span class="o">-</span> <span class="n">sst_n34_clim</span>
-
-<span class="nn">File /opt/anaconda3/envs/ccia/lib/python3.10/site-packages/numpy/core/fromnumeric.py:285,</span> in <span class="ni">reshape</span><span class="nt">(a, newshape, order)</span>
-<span class="g g-Whitespace">    </span><span class="mi">200</span> <span class="nd">@array_function_dispatch</span><span class="p">(</span><span class="n">_reshape_dispatcher</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">201</span> <span class="k">def</span><span class="w"> </span><span class="nf">reshape</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">newshape</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="s1">&#39;C&#39;</span><span class="p">):</span>
-<span class="g g-Whitespace">    </span><span class="mi">202</span><span class="w">     </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="g g-Whitespace">    </span><span class="mi">203</span><span class="sd">     Gives a new shape to an array without changing its data.</span>
-<span class="g g-Whitespace">    </span><span class="mi">204</span><span class="sd"> </span>
-<span class="sd">   (...)</span>
-<span class="g g-Whitespace">    </span><span class="mi">283</span><span class="sd">            [5, 6]])</span>
-<span class="g g-Whitespace">    </span><span class="mi">284</span><span class="sd">     &quot;&quot;&quot;</span>
-<span class="ne">--&gt; </span><span class="mi">285</span>     <span class="k">return</span> <span class="n">_wrapfunc</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="s1">&#39;reshape&#39;</span><span class="p">,</span> <span class="n">newshape</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="n">order</span><span class="p">)</span>
-
-<span class="nn">File /opt/anaconda3/envs/ccia/lib/python3.10/site-packages/numpy/core/fromnumeric.py:59,</span> in <span class="ni">_wrapfunc</span><span class="nt">(obj, method, *args, **kwds)</span>
-<span class="g g-Whitespace">     </span><span class="mi">56</span>     <span class="k">return</span> <span class="n">_wrapit</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">method</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwds</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">58</span> <span class="k">try</span><span class="p">:</span>
-<span class="ne">---&gt; </span><span class="mi">59</span>     <span class="k">return</span> <span class="n">bound</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwds</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">60</span> <span class="k">except</span> <span class="ne">TypeError</span><span class="p">:</span>
-<span class="g g-Whitespace">     </span><span class="mi">61</span>     <span class="c1"># A TypeError occurs if the object does have such a method in its</span>
-<span class="g g-Whitespace">     </span><span class="mi">62</span>     <span class="c1"># class, but its signature is not identical to that of NumPy&#39;s. This</span>
-   <span class="p">(</span><span class="o">...</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">66</span>     <span class="c1"># Call _wrapit from within the except clause to ensure a potential</span>
-<span class="g g-Whitespace">     </span><span class="mi">67</span>     <span class="c1"># exception has a traceback chain.</span>
-<span class="g g-Whitespace">     </span><span class="mi">68</span>     <span class="k">return</span> <span class="n">_wrapit</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">method</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwds</span><span class="p">)</span>
-
-<span class="nn">File /opt/anaconda3/envs/ccia/lib/python3.10/site-packages/numpy/ma/core.py:4745,</span> in <span class="ni">MaskedArray.reshape</span><span class="nt">(self, *s, **kwargs)</span>
-<span class="g g-Whitespace">   </span><span class="mi">4687</span><span class="w"> </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="g g-Whitespace">   </span><span class="mi">4688</span><span class="sd"> Give a new shape to the array without changing its data.</span>
-<span class="g g-Whitespace">   </span><span class="mi">4689</span><span class="sd"> </span>
-<span class="sd">   (...)</span>
-<span class="g g-Whitespace">   </span><span class="mi">4742</span><span class="sd"> </span>
-<span class="g g-Whitespace">   </span><span class="mi">4743</span><span class="sd"> &quot;&quot;&quot;</span>
-<span class="g g-Whitespace">   </span><span class="mi">4744</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">order</span><span class="o">=</span><span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;order&#39;</span><span class="p">,</span> <span class="s1">&#39;C&#39;</span><span class="p">))</span>
-<span class="ne">-&gt; </span><span class="mi">4745</span> <span class="n">result</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">*</span><span class="n">s</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="bp">self</span><span class="p">))</span>
-<span class="g g-Whitespace">   </span><span class="mi">4746</span> <span class="n">result</span><span class="o">.</span><span class="n">_update_from</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">4747</span> <span class="n">mask</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_mask</span>
-
-<span class="ne">ValueError</span>: cannot reshape array of size 2061 into shape (166,12)
+<span class="n">sst_n34_anom</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">sst_n34_anom</span><span class="p">,(</span><span class="mi">172</span><span class="o">*</span><span class="mi">12</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
@@ -660,24 +613,24 @@ document.write(`
 <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">211</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">n34_index</span><span class="p">[</span><span class="mi">96</span><span class="o">*</span><span class="mi">12</span><span class="p">:])</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Niño3.4 Index&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">852</span><span class="p">,</span><span class="mi">10</span><span class="o">*</span><span class="mi">12</span><span class="p">),[</span><span class="s1">&#39;1950&#39;</span><span class="p">,</span><span class="s1">&#39;1960&#39;</span><span class="p">,</span><span class="s1">&#39;1970&#39;</span><span class="p">,</span><span class="s1">&#39;1980&#39;</span><span class="p">,</span><span class="s1">&#39;1990&#39;</span><span class="p">,</span><span class="s1">&#39;2000&#39;</span><span class="p">,</span><span class="s1">&#39;2010&#39;</span><span class="p">,</span><span class="s1">&#39;2020&#39;</span><span class="p">])</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">840</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;(a) Niño3.4 Index (1950-2019)&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">912</span><span class="p">,</span><span class="mi">10</span><span class="o">*</span><span class="mi">12</span><span class="p">),[</span><span class="s1">&#39;1950&#39;</span><span class="p">,</span><span class="s1">&#39;1960&#39;</span><span class="p">,</span><span class="s1">&#39;1970&#39;</span><span class="p">,</span><span class="s1">&#39;1980&#39;</span><span class="p">,</span><span class="s1">&#39;1990&#39;</span><span class="p">,</span><span class="s1">&#39;2000&#39;</span><span class="p">,</span><span class="s1">&#39;2010&#39;</span><span class="p">,</span><span class="s1">&#39;2020&#39;</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">912</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;(a) Niño3.4 Index (1950-2021)&quot;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
 
 <span class="c1"># Next we just plot the entire time series</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">212</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">n34_index</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Niño3.4 Index&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1992</span><span class="p">,</span><span class="mi">20</span><span class="o">*</span><span class="mi">12</span><span class="p">),[</span><span class="s1">&#39;1854&#39;</span><span class="p">,</span><span class="s1">&#39;1874&#39;</span><span class="p">,</span><span class="s1">&#39;1894&#39;</span><span class="p">,</span><span class="s1">&#39;1914&#39;</span><span class="p">,</span><span class="s1">&#39;1934&#39;</span><span class="p">,</span><span class="s1">&#39;1954&#39;</span><span class="p">,</span><span class="s1">&#39;1974&#39;</span><span class="p">,</span><span class="s1">&#39;1994&#39;</span><span class="p">,</span><span class="s1">&#39;2014&#39;</span><span class="p">])</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1992</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;(b) Niño3.4 Index (1854-2019)&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">2064</span><span class="p">,</span><span class="mi">20</span><span class="o">*</span><span class="mi">12</span><span class="p">),[</span><span class="s1">&#39;1854&#39;</span><span class="p">,</span><span class="s1">&#39;1874&#39;</span><span class="p">,</span><span class="s1">&#39;1894&#39;</span><span class="p">,</span><span class="s1">&#39;1914&#39;</span><span class="p">,</span><span class="s1">&#39;1934&#39;</span><span class="p">,</span><span class="s1">&#39;1954&#39;</span><span class="p">,</span><span class="s1">&#39;1974&#39;</span><span class="p">,</span><span class="s1">&#39;1994&#39;</span><span class="p">,</span><span class="s1">&#39;2014&#39;</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">2064</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;(b) Niño3.4 Index (1854-2021)&quot;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/17bb5ba522122c9a96f744a2f140d65b2ee98fb1507d14c9494b626f57607756.png" src="../../_images/17bb5ba522122c9a96f744a2f140d65b2ee98fb1507d14c9494b626f57607756.png" />
+<img alt="../../_images/7fae2aafcf797d48e38e0fd9083042ea46de6e080c3b019a57fa3ce17d96545f.png" src="../../_images/7fae2aafcf797d48e38e0fd9083042ea46de6e080c3b019a57fa3ce17d96545f.png" />
 </div>
 </div>
 </section>
@@ -688,8 +641,8 @@ document.write(`
 <p>Before we do the PCA, we will take a look at the spatial structure of the data. Let’s pick a larger region so that we can more easily see what is going on.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># extract a slightly larger spatial region in space (-30S-30N, 120E-300E) and a restricted time interval (1950-2019)</span>
-<span class="n">sst_pac</span> <span class="o">=</span> <span class="n">sst</span><span class="p">[</span><span class="mi">12</span><span class="o">*</span><span class="mi">96</span><span class="p">:</span><span class="o">-</span><span class="mi">10</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">29</span><span class="p">:</span><span class="mi">59</span><span class="p">,</span><span class="mi">60</span><span class="p">:</span><span class="mi">150</span><span class="p">]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># extract a slightly larger spatial region in space (-30S-30N, 120E-300E) and a restricted time interval (1950-2025)</span>
+<span class="n">sst_pac</span> <span class="o">=</span> <span class="n">sst</span><span class="p">[</span><span class="mi">12</span><span class="o">*</span><span class="mi">96</span><span class="p">:</span><span class="o">-</span><span class="mi">7</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">29</span><span class="p">:</span><span class="mi">59</span><span class="p">,</span><span class="mi">60</span><span class="p">:</span><span class="mi">150</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
@@ -717,10 +670,10 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.colorbar.Colorbar at 0x7ff5d44e7940&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.colorbar.Colorbar at 0x11775aef0&gt;
 </pre></div>
 </div>
-<img alt="../../_images/f59a3efb3b42167727bd65f46dee99bdfa45d489d728ecb6687a876ce18f9086.png" src="../../_images/f59a3efb3b42167727bd65f46dee99bdfa45d489d728ecb6687a876ce18f9086.png" />
+<img alt="../../_images/f8b018b784d1061bf79c8e8ed89e83680c8cbf48e9fd2ccc38701ede1f4ff055.png" src="../../_images/f8b018b784d1061bf79c8e8ed89e83680c8cbf48e9fd2ccc38701ede1f4ff055.png" />
 </div>
 </div>
 <p>Note that I haven’t labelled the x- and y-axes appropriately here. The x- and y-tick labels just show the number of elements. In subsequent sections, we will use a python package called <code class="docutils literal notranslate"><span class="pre">cartopy</span></code> to plot nice maps.</p>
@@ -728,11 +681,11 @@ document.write(`
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Just to compare, let&#39;s subtract the seasonal cycle</span>
-<span class="n">sst_pac_clim</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">sst_pac</span><span class="p">,(</span><span class="mi">70</span><span class="p">,</span><span class="mi">12</span><span class="p">,</span><span class="n">sst_pac</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="n">sst_pac</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">2</span><span class="p">]))</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
-<span class="n">ssta_pac_noseasons</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">sst_pac</span><span class="p">,(</span><span class="mi">70</span><span class="p">,</span><span class="mi">12</span><span class="p">,</span><span class="n">sst_pac</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="n">sst_pac</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">2</span><span class="p">]))</span> <span class="o">-</span> <span class="n">sst_pac_clim</span>
+<span class="n">sst_pac_clim</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">sst_pac</span><span class="p">,(</span><span class="mi">76</span><span class="p">,</span><span class="mi">12</span><span class="p">,</span><span class="n">sst_pac</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="n">sst_pac</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">2</span><span class="p">]))</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">ssta_pac_noseasons</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">sst_pac</span><span class="p">,(</span><span class="mi">76</span><span class="p">,</span><span class="mi">12</span><span class="p">,</span><span class="n">sst_pac</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="n">sst_pac</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">2</span><span class="p">]))</span> <span class="o">-</span> <span class="n">sst_pac_clim</span>
 
 <span class="c1"># reshape back to time series</span>
-<span class="n">ssta_pac_noseasons</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">ssta_pac_noseasons</span><span class="p">,(</span><span class="mi">70</span><span class="o">*</span><span class="mi">12</span><span class="p">,</span><span class="n">sst_pac</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="n">sst_pac</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">2</span><span class="p">]))</span>
+<span class="n">ssta_pac_noseasons</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">ssta_pac_noseasons</span><span class="p">,(</span><span class="mi">76</span><span class="o">*</span><span class="mi">12</span><span class="p">,</span><span class="n">sst_pac</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="n">sst_pac</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">2</span><span class="p">]))</span>
 </pre></div>
 </div>
 </div>
@@ -757,7 +710,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/f892ae788d55d7b766ca2790277cca9efddac5509dfc5d066047daa46d6722f3.png" src="../../_images/f892ae788d55d7b766ca2790277cca9efddac5509dfc5d066047daa46d6722f3.png" />
+<img alt="../../_images/dcac1d8d09af227d77d0c976e10809c97326e952f60ac37b4206ad293081cf44.png" src="../../_images/dcac1d8d09af227d77d0c976e10809c97326e952f60ac37b4206ad293081cf44.png" />
 </div>
 </div>
 <p>We see some similar features between the two plots, but we also see that the warm southern hemisphere and the cold northern hemisphere is reduced, suggesting that this part of the pattern is associated with the seasonal cycle.</p>
@@ -792,7 +745,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/6203b92fec09f22727e03b624370ac7f46f4aae93ca50025d07797dd58f9264b.png" src="../../_images/6203b92fec09f22727e03b624370ac7f46f4aae93ca50025d07797dd58f9264b.png" />
+<img alt="../../_images/3aadfe718506aed7d36f41375ecd7ad61184b7f0597b11207ca567f5d1c62599.png" src="../../_images/3aadfe718506aed7d36f41375ecd7ad61184b7f0597b11207ca567f5d1c62599.png" />
 </div>
 </div>
 <p>Notice that the patterns look quite different (I have also set different colorbar limits in the different panels). Panel (a) shows low values for standard deviation in the tropics while in panel (b) the largest vales of standard deviation are in the tropics.</p>
@@ -824,7 +777,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>7.739527224081797e-17 1.0
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>7.368591333808446e-17 0.9999999999999999
 </pre></div>
 </div>
 </div>
@@ -853,12 +806,7 @@ document.write(`
 <span class="expanded">Hide code cell output</span>
 </summary>
 <div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="o">&lt;</span><span class="n">ipython</span><span class="o">-</span><span class="nb">input</span><span class="o">-</span><span class="mi">1</span><span class="o">-</span><span class="mi">048</span><span class="n">a17e25bce</span><span class="o">&gt;</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
-<span class="ne">----&gt; </span><span class="mi">1</span> <span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
-
-<span class="ne">NameError</span>: name &#39;a&#39; is not defined
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(912, 30, 90)
 </pre></div>
 </div>
 </div>
@@ -901,7 +849,7 @@ document.write(`
 <span class="expanded">Hide code cell output</span>
 </summary>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(840, 2700)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(912, 2700)
 </pre></div>
 </div>
 </div>
@@ -993,15 +941,15 @@ document.write(`
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">sst_ts1</span><span class="p">,</span><span class="s1">&#39;r&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">clim</span><span class="p">(</span><span class="o">-</span><span class="mf">0.05</span><span class="p">,</span><span class="mf">0.05</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;PC 1&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">840</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">912</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(0.0, 840.0)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(0.0, 912.0)
 </pre></div>
 </div>
-<img alt="../../_images/c4ba3aa1745745637aae515ebe9d4b539fde1c5c68f31355e47cac8429c2849d.png" src="../../_images/c4ba3aa1745745637aae515ebe9d4b539fde1c5c68f31355e47cac8429c2849d.png" />
+<img alt="../../_images/9e4104b483c54a2deedea18578b24d9d7c8eca8225727409fc3adffcca609176.png" src="../../_images/9e4104b483c54a2deedea18578b24d9d7c8eca8225727409fc3adffcca609176.png" />
 </div>
 </div>
 <p>The plot of the time series clearly shows the seasonal cycle emerge from the data. In plot of the spatial pattern, red colours correspond to positive anomalies and blue colours correspond to negative anomalies. Thus, it looks like the spatial pattern is showing us summer in the southern hemisphere and winter in the northern hemisphere.</p>
@@ -1020,15 +968,15 @@ document.write(`
 <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">212</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">sst_ts2</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;PC 2&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">840</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">912</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(0.0, 840.0)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(0.0, 912.0)
 </pre></div>
 </div>
-<img alt="../../_images/14c966ac7f1108ab836361c1b466a71d8872b90e45bedb088ca64c982f783b7d.png" src="../../_images/14c966ac7f1108ab836361c1b466a71d8872b90e45bedb088ca64c982f783b7d.png" />
+<img alt="../../_images/97766491d9c092b2d4ca59b4c75a21a1228f7b11a92432c436bd57bc8c1ea8ae.png" src="../../_images/97766491d9c092b2d4ca59b4c75a21a1228f7b11a92432c436bd57bc8c1ea8ae.png" />
 </div>
 </div>
 <p>What do you see? Compare the time series here with that of the Niño3.4 Index we calculated at the beginning of the page. They should look fairly similar. Thus, the second pattern corresponds to the SST anomaly pattern associated with ENSO. In particular, the pattern is showing the El Niño pattern. This pattern should look somewhat similar to the standard deviation of the SST anomaly with the monthly climatology removed.</p>
@@ -1040,17 +988,17 @@ document.write(`
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># plot second PC time series and Niño3.4 Index</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span><span class="mi">4</span><span class="p">))</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">n34_index</span><span class="p">[</span><span class="mi">96</span><span class="o">*</span><span class="mi">12</span><span class="p">:],</span><span class="s1">&#39;r&#39;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;Niño3.4 Index&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">sst_ts2</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;2$^</span><span class="si">{nd}</span><span class="s1">$ PC Time Series&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">852</span><span class="p">,</span><span class="mi">10</span><span class="o">*</span><span class="mi">12</span><span class="p">),[</span><span class="s1">&#39;1950&#39;</span><span class="p">,</span><span class="s1">&#39;1960&#39;</span><span class="p">,</span><span class="s1">&#39;1970&#39;</span><span class="p">,</span><span class="s1">&#39;1980&#39;</span><span class="p">,</span><span class="s1">&#39;1990&#39;</span><span class="p">,</span><span class="s1">&#39;2000&#39;</span><span class="p">,</span><span class="s1">&#39;2010&#39;</span><span class="p">,</span><span class="s1">&#39;2020&#39;</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="o">-</span><span class="n">sst_ts2</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;2$^</span><span class="si">{nd}</span><span class="s1">$ PC Time Series&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">912</span><span class="p">,</span><span class="mi">10</span><span class="o">*</span><span class="mi">12</span><span class="p">),[</span><span class="s1">&#39;1950&#39;</span><span class="p">,</span><span class="s1">&#39;1960&#39;</span><span class="p">,</span><span class="s1">&#39;1970&#39;</span><span class="p">,</span><span class="s1">&#39;1980&#39;</span><span class="p">,</span><span class="s1">&#39;1990&#39;</span><span class="p">,</span><span class="s1">&#39;2000&#39;</span><span class="p">,</span><span class="s1">&#39;2010&#39;</span><span class="p">,</span><span class="s1">&#39;2020&#39;</span><span class="p">])</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Niño3.4 Index and 2nd PC Time Series(1950-2019)&quot;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">840</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">864</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/41cdf7f8147e6b45537899d41e1405c94a9352c316bc771e3482dfbaf2325caa.png" src="../../_images/41cdf7f8147e6b45537899d41e1405c94a9352c316bc771e3482dfbaf2325caa.png" />
+<img alt="../../_images/db16eb70feb78ddba01de6e6f5bb877311f517df8466ddccdbc1ae508b23f0f4.png" src="../../_images/db16eb70feb78ddba01de6e6f5bb877311f517df8466ddccdbc1ae508b23f0f4.png" />
 </div>
 </div>
 <p>They look pretty similar, although the Niño3.4 Index is smoother due to the 5-month running-mean that we applied.</p>

@@ -200,6 +200,7 @@
 <li class="toctree-l2"><a class="reference internal" href="signal2noise.html">Signal-to-Noise</a></li>
 <li class="toctree-l2"><a class="reference internal" href="central_limit_theorem.html">The Central Limit Theorem</a></li>
 <li class="toctree-l2"><a class="reference internal" href="statistical_significance.html">Estimating Statistical Significance with a <em>z</em>-test</a></li>
+
 <li class="toctree-l2"><a class="reference internal" href="tstat.html">The <em>t</em>-Statistic</a></li>
 <li class="toctree-l2 current active"><a class="current reference internal" href="#">Resampling Techniques</a></li>
 </ul>
@@ -458,9 +459,7 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="resampling-techniques">
 <h1>Resampling Techniques<a class="headerlink" href="#resampling-techniques" title="Link to this heading">#</a></h1>
-<p>Resampling techniques have not been as commonly discussed or used in scientific analysis because of the computational constraints. However, computer time is pretty cheap now, so, these techniques can be found more regularly in the peer reviewed literature.</p>
-<p>These are useful techniques to be aware of as they can be useful when we have small sample sizes but, the underlying distribution is <em>not</em> normal.</p>
-<p>These types of techniques are best understood by looking at examples.</p>
+<p>Resampling involves techniques that repeatedly draw new samples from an original dataset. These are useful techniques to be aware of as they can be useful when we have small sample sizes but, the underlying distribution is <em>not</em> normal. These types of techniques are best understood by looking at examples.</p>
 <section id="bootstrapping">
 <h2>Bootstrapping<a class="headerlink" href="#bootstrapping" title="Link to this heading">#</a></h2>
 <p>Let’s start with an example of a resampling technique called <strong>“bootstrap”</strong> resampling. Bootstrap resampling or <em>bootstrapping</em> is one of the most common resampling techniques and involves random resampling with replacement (this means that you can resample the same data more than once). There are many different ways to use bootstrapping, here are a couple:</p>
@@ -468,7 +467,7 @@ document.write(`
 <li><p><em>Bootstrapping for hypothesis testing</em> involves constructing a large number of resamples of the original dataset. These resamples should be of equal size to a specific sample of interest (which is itself drawn from the original dataset) and be drawn by random sampling with replacement from the original dataset. In this way, you can construct a sampling distribution and you never need to assume anything about the underlying distribution of the data as it is already built-in to the original dataset. This approach can be used for small sample sizes and is often done when you have a long observational climatology or climate model control integration to draw samples from.</p></li>
 <li><p><em>Bootstrapping for confidence intervals</em> involves resampling your specific sample to create a sampling distribution based on your specific sample data. From this sampling distribution you can compute confidence intervals.</p></li>
 </ul>
-<p>Let’s look at an example. For this example, we are going to examine a large-scale mode of atmospheric variability, the North Atlantic Oscillation (NAO). You can download your own copy of the NAO data file <a class="reference external" href="https://github.com/kls2177/ccia_files/blob/master/nao_timeseries.mat?raw=true">here</a>.</p>
+<p>Let’s look at an example. For this example, we are going to examine a large-scale mode of atmospheric variability in the Southern Hemisphere, the Southern Annular Mode (SAM). You can download your own copy of the SAM data file <a class="reference external" href="https://github.com/kls2177/ccia_files/blob/master/SAM_summer.csv?raw=true">here</a>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Load packages</span>
@@ -486,11 +485,12 @@ document.write(`
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Load data (we are loading a monthly time series of the North Atlantic Oscillation)</span>
-<span class="n">NAO</span> <span class="o">=</span> <span class="n">sio</span><span class="o">.</span><span class="n">loadmat</span><span class="p">(</span><span class="s1">&#39;nao_timeseries.mat&#39;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Load data (we are loading a summer season time series of the SAM for 1957-2025)</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;SAM_summer.csv&#39;</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;utf-8-sig&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">SAM</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">genfromtxt</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">delimiter</span><span class="o">=</span><span class="s1">&#39;,&#39;</span><span class="p">)</span>
 
-<span class="n">X</span> <span class="o">=</span> <span class="n">NAO</span><span class="p">[</span><span class="s1">&#39;NAO&#39;</span><span class="p">][:,</span><span class="mi">0</span><span class="p">]</span> <span class="c1"># grab January data only</span>
-<span class="n">TIME_NAO</span> <span class="o">=</span> <span class="n">NAO</span><span class="p">[</span><span class="s1">&#39;TIME_NAO&#39;</span><span class="p">][:,</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">SAM</span><span class="p">[:,</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">TIME_SAM</span> <span class="o">=</span> <span class="n">SAM</span><span class="p">[:,</span><span class="mi">0</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
@@ -499,77 +499,78 @@ document.write(`
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">TIME_NAO</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">TIME_SAM</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(63,)
-[1950 1951 1952 1953 1954 1955 1956 1957 1958 1959 1960 1961 1962 1963
- 1964 1965 1966 1967 1968 1969 1970 1971 1972 1973 1974 1975 1976 1977
- 1978 1979 1980 1981 1982 1983 1984 1985 1986 1987 1988 1989 1990 1991
- 1992 1993 1994 1995 1996 1997 1998 1999 2000 2001 2002 2003 2004 2005
- 2006 2007 2008 2009 2010 2011 2012]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(69,)
+[1957. 1958. 1959. 1960. 1961. 1962. 1963. 1964. 1965. 1966. 1967. 1968.
+ 1969. 1970. 1971. 1972. 1973. 1974. 1975. 1976. 1977. 1978. 1979. 1980.
+ 1981. 1982. 1983. 1984. 1985. 1986. 1987. 1988. 1989. 1990. 1991. 1992.
+ 1993. 1994. 1995. 1996. 1997. 1998. 1999. 2000. 2001. 2002. 2003. 2004.
+ 2005. 2006. 2007. 2008. 2009. 2010. 2011. 2012. 2013. 2014. 2015. 2016.
+ 2017. 2018. 2019. 2020. 2021. 2022. 2023. 2024. 2025.]
 </pre></div>
 </div>
 </div>
 </div>
-<p>So, we have 63 January’s from 1950-2012. Let’s plot the data to see what it looks like.</p>
+<p>So, we have 69 summer’s from 1957-2025. Let’s plot the data to see what it looks like.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plot time series</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">6</span><span class="p">))</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">TIME_NAO</span><span class="p">,</span><span class="n">X</span><span class="p">,</span><span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="n">linewidth</span> <span class="o">=</span> <span class="mf">1.5</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">TIME_SAM</span><span class="p">,</span><span class="n">X</span><span class="p">,</span><span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="n">linewidth</span> <span class="o">=</span> <span class="mf">1.5</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Year&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;NAO Index&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Time Series of NAO Index&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="o">-</span><span class="mf">2.4</span><span class="p">,</span><span class="mf">2.4</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="nb">min</span><span class="p">(</span><span class="n">TIME_NAO</span><span class="p">),</span> <span class="nb">max</span><span class="p">(</span><span class="n">TIME_NAO</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;SAM Index&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Time Series of SAM Index&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="nb">min</span><span class="p">(</span><span class="n">TIME_SAM</span><span class="p">),</span> <span class="nb">max</span><span class="p">(</span><span class="n">TIME_SAM</span><span class="p">))</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.lines.Line2D at 0x17bc97a00&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.lines.Line2D at 0x177c0ff10&gt;
 </pre></div>
 </div>
-<img alt="../../_images/3a6191838869a59997d8ad33b33be70878a8314e704735abf6ba4f6bbf7ec74e.png" src="../../_images/3a6191838869a59997d8ad33b33be70878a8314e704735abf6ba4f6bbf7ec74e.png" />
+<img alt="../../_images/629a19e8a114f3485b2b07ce50c47d3d209d38e0b58247dc6e562abcd955db35.png" src="../../_images/629a19e8a114f3485b2b07ce50c47d3d209d38e0b58247dc6e562abcd955db35.png" />
 </div>
 </div>
-<p>If you squint at the data, you might see that the NAO tends to be mostly negative from 1954-1971 and mostly positive from 1989-2006. Let’s compute the sample means for these two 18-year segments of the time series.</p>
+<p>You should be able to clearly see a upward trend in the data over this time period, which is related to the <a class="reference external" href="https://static1.squarespace.com/static/56c62f41cf80a157220c180f/t/56c630befd2119e304534cbf/1343036370028/thompson_etal-2011-natgeo.pdf">depletion of stratospheric ozone</a>. Let’s compute the sample means for the two halves of the time series, 1957-1990 and 1992-2025.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># mean 1954-1971</span>
-<span class="n">NAO1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">X</span><span class="p">[</span><span class="mi">4</span><span class="p">:</span><span class="mi">22</span><span class="p">])</span>
+<span class="n">SAM1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">X</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">35</span><span class="p">])</span>
 
 <span class="c1"># mean 1989-2006</span>
-<span class="n">NAO2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">X</span><span class="p">[</span><span class="mi">39</span><span class="p">:</span><span class="mi">57</span><span class="p">])</span>
+<span class="n">SAM2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">X</span><span class="p">[</span><span class="mi">36</span><span class="p">:])</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">NAO1</span><span class="p">,</span><span class="mi">3</span><span class="p">),</span><span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">NAO2</span><span class="p">,</span><span class="mi">3</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">SAM1</span><span class="p">,</span><span class="mi">3</span><span class="p">),</span><span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">SAM2</span><span class="p">,</span><span class="mi">3</span><span class="p">))</span>
 
-<span class="n">NAO_diff</span> <span class="o">=</span> <span class="n">NAO2</span> <span class="o">-</span> <span class="n">NAO1</span>
+<span class="n">SAM_diff</span> <span class="o">=</span> <span class="n">SAM2</span> <span class="o">-</span> <span class="n">SAM1</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The difference is&quot;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">NAO_diff</span><span class="p">,</span><span class="mi">3</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The difference is&quot;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">SAM_diff</span><span class="p">,</span><span class="mi">3</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-0.637 0.612
-The difference is 1.249
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-0.663 1.387
+The difference is 2.051
 </pre></div>
 </div>
 </div>
 </div>
-<p>We could use a <span class="math notranslate nohighlight">\(t\)</span>-test to test whether there is a significant difference in the NAO index between these two time periods, but instead let’s use bootstrapping.</p>
-<p>So, we are going to randomly resample our original NAO time series and grab a pair of 18-year samples (with replacement) and compute the difference.</p>
+<p>We could use a <span class="math notranslate nohighlight">\(t\)</span>-test to test whether there is a significant difference in the SAM index between these two time periods, but instead let’s use bootstrapping.</p>
+<p>So, we are going to randomly resample our original SAM time series and grab a pair of 33-year samples (with replacement) and compute the difference.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">N</span><span class="o">=</span><span class="mi">18</span>
-<span class="n">NAO_diff_bootstrap</span><span class="o">=</span><span class="p">[]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">N</span><span class="o">=</span><span class="mi">33</span>
+<span class="n">SAM_diff_bootstrap</span><span class="o">=</span><span class="p">[]</span>
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">100000</span><span class="p">):</span>
-    <span class="n">NAO1_tmp</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="n">N</span><span class="p">))</span>
-    <span class="n">NAO2_tmp</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="n">N</span><span class="p">))</span>
-    <span class="n">NAO_diff_bootstrap</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">NAO2_tmp</span> <span class="o">-</span> <span class="n">NAO1_tmp</span><span class="p">)</span>
+    <span class="n">SAM1_tmp</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="n">N</span><span class="p">))</span>
+    <span class="n">SAM2_tmp</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="n">N</span><span class="p">))</span>
+    <span class="n">SAM_diff_bootstrap</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">SAM2_tmp</span> <span class="o">-</span> <span class="n">SAM1_tmp</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -578,111 +579,86 @@ The difference is 1.249
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># create bins </span>
-<span class="n">bins</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">NAO_diff_bootstrap</span><span class="p">),</span><span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">NAO_diff_bootstrap</span><span class="p">),</span><span class="n">np</span><span class="o">.</span><span class="n">int</span><span class="p">((</span><span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">NAO_diff_bootstrap</span><span class="p">)</span><span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">NAO_diff_bootstrap</span><span class="p">))</span><span class="o">/</span><span class="mf">0.01</span><span class="p">))</span>
+<span class="n">bins</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">SAM_diff_bootstrap</span><span class="p">),</span><span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">SAM_diff_bootstrap</span><span class="p">),</span><span class="nb">int</span><span class="p">((</span><span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">SAM_diff_bootstrap</span><span class="p">)</span><span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">SAM_diff_bootstrap</span><span class="p">))</span><span class="o">/</span><span class="mf">0.01</span><span class="p">))</span>
 
 <span class="c1"># calculate the histogram</span>
-<span class="n">histNAO_diff</span><span class="p">,</span><span class="n">bins</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">histogram</span><span class="p">(</span><span class="n">NAO_diff_bootstrap</span><span class="p">,</span><span class="n">bins</span><span class="p">)</span>
+<span class="n">histSAM_diff</span><span class="p">,</span><span class="n">bins</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">histogram</span><span class="p">(</span><span class="n">SAM_diff_bootstrap</span><span class="p">,</span><span class="n">bins</span><span class="p">)</span>
 
 <span class="c1"># convert counts to frequency</span>
-<span class="n">freqNAO_diff</span> <span class="o">=</span> <span class="n">histNAO_diff</span><span class="o">/</span><span class="nb">len</span><span class="p">(</span><span class="n">NAO_diff_bootstrap</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">AttributeError</span><span class="g g-Whitespace">                            </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">7</span><span class="p">],</span> <span class="n">line</span> <span class="mi">2</span>
-<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="c1"># create bins </span>
-<span class="ne">----&gt; </span><span class="mi">2</span> <span class="n">bins</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">NAO_diff_bootstrap</span><span class="p">),</span><span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">NAO_diff_bootstrap</span><span class="p">),</span><span class="n">np</span><span class="o">.</span><span class="n">int</span><span class="p">((</span><span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">NAO_diff_bootstrap</span><span class="p">)</span><span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">NAO_diff_bootstrap</span><span class="p">))</span><span class="o">/</span><span class="mf">0.01</span><span class="p">))</span>
-<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="c1"># calculate the histogram</span>
-<span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="n">histNAO_diff</span><span class="p">,</span><span class="n">bins</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">histogram</span><span class="p">(</span><span class="n">NAO_diff_bootstrap</span><span class="p">,</span><span class="n">bins</span><span class="p">)</span>
-
-<span class="nn">File /opt/anaconda3/envs/ccia/lib/python3.10/site-packages/numpy/__init__.py:324,</span> in <span class="ni">__getattr__</span><span class="nt">(attr)</span>
-<span class="g g-Whitespace">    </span><span class="mi">319</span>     <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">320</span>         <span class="sa">f</span><span class="s2">&quot;In the future `np.</span><span class="si">{</span><span class="n">attr</span><span class="si">}</span><span class="s2">` will be defined as the &quot;</span>
-<span class="g g-Whitespace">    </span><span class="mi">321</span>         <span class="s2">&quot;corresponding NumPy scalar.&quot;</span><span class="p">,</span> <span class="ne">FutureWarning</span><span class="p">,</span> <span class="n">stacklevel</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">323</span> <span class="k">if</span> <span class="n">attr</span> <span class="ow">in</span> <span class="n">__former_attrs__</span><span class="p">:</span>
-<span class="ne">--&gt; </span><span class="mi">324</span>     <span class="k">raise</span> <span class="ne">AttributeError</span><span class="p">(</span><span class="n">__former_attrs__</span><span class="p">[</span><span class="n">attr</span><span class="p">])</span>
-<span class="g g-Whitespace">    </span><span class="mi">326</span> <span class="k">if</span> <span class="n">attr</span> <span class="o">==</span> <span class="s1">&#39;testing&#39;</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">327</span>     <span class="kn">import</span><span class="w"> </span><span class="nn">numpy.testing</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">testing</span>
-
-<span class="ne">AttributeError</span>: module &#39;numpy&#39; has no attribute &#39;int&#39;.
-<span class="err">`</span><span class="n">np</span><span class="o">.</span><span class="n">int</span><span class="err">`</span> <span class="n">was</span> <span class="n">a</span> <span class="n">deprecated</span> <span class="n">alias</span> <span class="k">for</span> <span class="n">the</span> <span class="n">builtin</span> <span class="err">`</span><span class="nb">int</span><span class="err">`</span><span class="o">.</span> <span class="n">To</span> <span class="n">avoid</span> <span class="n">this</span> <span class="n">error</span> <span class="ow">in</span> <span class="n">existing</span> <span class="n">code</span><span class="p">,</span> <span class="n">use</span> <span class="err">`</span><span class="nb">int</span><span class="err">`</span> <span class="n">by</span> <span class="n">itself</span><span class="o">.</span> <span class="n">Doing</span> <span class="n">this</span> <span class="n">will</span> <span class="ow">not</span> <span class="n">modify</span> <span class="nb">any</span> <span class="n">behavior</span> <span class="ow">and</span> <span class="ow">is</span> <span class="n">safe</span><span class="o">.</span> <span class="n">When</span> <span class="n">replacing</span> <span class="err">`</span><span class="n">np</span><span class="o">.</span><span class="n">int</span><span class="err">`</span><span class="p">,</span> <span class="n">you</span> <span class="n">may</span> <span class="n">wish</span> <span class="n">to</span> <span class="n">use</span> <span class="n">e</span><span class="o">.</span><span class="n">g</span><span class="o">.</span> <span class="err">`</span><span class="n">np</span><span class="o">.</span><span class="n">int64</span><span class="err">`</span> <span class="ow">or</span> <span class="err">`</span><span class="n">np</span><span class="o">.</span><span class="n">int32</span><span class="err">`</span> <span class="n">to</span> <span class="n">specify</span> <span class="n">the</span> <span class="n">precision</span><span class="o">.</span> <span class="n">If</span> <span class="n">you</span> <span class="n">wish</span> <span class="n">to</span> <span class="n">review</span> <span class="n">your</span> <span class="n">current</span> <span class="n">use</span><span class="p">,</span> <span class="n">check</span> <span class="n">the</span> <span class="n">release</span> <span class="n">note</span> <span class="n">link</span> <span class="k">for</span> <span class="n">additional</span> <span class="n">information</span><span class="o">.</span>
-<span class="n">The</span> <span class="n">aliases</span> <span class="n">was</span> <span class="n">originally</span> <span class="n">deprecated</span> <span class="ow">in</span> <span class="n">NumPy</span> <span class="mf">1.20</span><span class="p">;</span> <span class="k">for</span> <span class="n">more</span> <span class="n">details</span> <span class="ow">and</span> <span class="n">guidance</span> <span class="n">see</span> <span class="n">the</span> <span class="n">original</span> <span class="n">release</span> <span class="n">note</span> <span class="n">at</span><span class="p">:</span>
-    <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">numpy</span><span class="o">.</span><span class="n">org</span><span class="o">/</span><span class="n">devdocs</span><span class="o">/</span><span class="n">release</span><span class="o">/</span><span class="mf">1.20.0</span><span class="o">-</span><span class="n">notes</span><span class="o">.</span><span class="n">html</span><span class="c1">#deprecations</span>
+<span class="n">freqSAM_diff</span> <span class="o">=</span> <span class="n">histSAM_diff</span><span class="o">/</span><span class="nb">len</span><span class="p">(</span><span class="n">SAM_diff_bootstrap</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
-<p>… next, we plot it along with our observed NAO difference.</p>
+<p>… next, we plot it along with our observed SAM difference.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">6</span><span class="p">))</span>
 
 <span class="c1"># xbins for plotting</span>
-<span class="n">xbins</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">NAO_diff_bootstrap</span><span class="p">),</span><span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">NAO_diff_bootstrap</span><span class="p">),</span><span class="nb">len</span><span class="p">(</span><span class="n">histNAO_diff</span><span class="p">))</span>
+<span class="n">xbins</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">SAM_diff_bootstrap</span><span class="p">),</span><span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">SAM_diff_bootstrap</span><span class="p">),</span><span class="nb">len</span><span class="p">(</span><span class="n">histSAM_diff</span><span class="p">))</span>
 
 <span class="c1"># plot the distribution</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xbins</span><span class="p">,</span><span class="n">freqNAO_diff</span><span class="p">,</span><span class="s1">&#39;r&#39;</span><span class="p">,</span><span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">NAO_diff</span><span class="p">),</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s2">&quot;Observed NAO Difference&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xbins</span><span class="p">,</span><span class="n">freqSAM_diff</span><span class="p">,</span><span class="s1">&#39;deepskyblue&#39;</span><span class="p">,</span><span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">SAM_diff</span><span class="p">),</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s2">&quot;Observed SAM Difference&quot;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Frequency&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;NAO Difference&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;SAM Difference&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s1">&#39;upper left&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mf">0.015</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;PDF of Bootstrapped Sample NAO Differences&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;PDF of Bootstrapped Sample SAM Differences&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/f2142e7bbf89f9858853be8e17fb7c683e20fbd1296d03cfde8fa6491deef483.png" src="../../_images/f2142e7bbf89f9858853be8e17fb7c683e20fbd1296d03cfde8fa6491deef483.png" />
+<img alt="../../_images/ac7213f64a81f38976057acfefd05522006d66480716ad85642f82c602d7f1c9.png" src="../../_images/ac7213f64a81f38976057acfefd05522006d66480716ad85642f82c602d7f1c9.png" />
 </div>
 </div>
 <p>Now, we can clearly visualize that our observed difference is in the very tail of our bootstrapped sampling distribution, indicating that the probability of obtaining such a large difference is very low. How low? Let’s see.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># use st.percentileofscore() to find the probability of obtaining a value of NAO_diff or higher</span>
-<span class="mi">1</span><span class="o">-</span><span class="n">st</span><span class="o">.</span><span class="n">percentileofscore</span><span class="p">(</span><span class="n">NAO_diff_bootstrap</span><span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">NAO_diff</span><span class="p">))</span><span class="o">/</span><span class="mf">100.0</span>
+<span class="mi">1</span><span class="o">-</span><span class="n">st</span><span class="o">.</span><span class="n">percentileofscore</span><span class="p">(</span><span class="n">SAM_diff_bootstrap</span><span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">SAM_diff</span><span class="p">))</span><span class="o">/</span><span class="mf">100.0</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>5.999999999994898e-05
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2.999999999997449e-05
 </pre></div>
 </div>
 </div>
 </div>
-<p>Really low! This means that the difference between these two 18-year segments is quite anomalous. Note that here we are assuming that each year in our 18-year segments is independent, but in reality this is often not the case. We will discuss how to deal with this issue later in the course.</p>
+<p>Really low! This means that the difference between these two 33-year segments is quite anomalous. Note that here we are assuming that each year in our 33-year segments is independent, but in reality this is often not the case. We will discuss how to deal with this issue later in the course.</p>
 </section>
 <section id="jackknifing">
 <h2>Jackknifing<a class="headerlink" href="#jackknifing" title="Link to this heading">#</a></h2>
 <p><strong>Jackknife</strong> resampling is very similar to bootstrapping except that you systematically remove one value from your sample, and calculate the statistic, then put the value back into the sample and remove the next value, calculate the statistics…and on and on.</p>
-<p>Let’s take a look at an example of this using the NAO index data from above.</p>
+<p>Let’s take a look at an example of this using the SAM index data from above.</p>
 <p>Suppose we are interested in examining the trend in this data (we will talk about trends and regression analysis in more detail next week).</p>
 <p>We can use a simple linear fit to estimate the trend.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Compute Linear fit</span>
-<span class="n">trend</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">polyfit</span><span class="p">(</span><span class="n">TIME_NAO</span><span class="p">,</span><span class="n">X</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span> <span class="c1">#trend has two components: the slope and the intercept </span>
+<span class="n">trend</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">polyfit</span><span class="p">(</span><span class="n">TIME_SAM</span><span class="p">,</span><span class="n">X</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span> <span class="c1">#trend has two components: the slope and the intercept </span>
 
 <span class="c1"># Plot data with linear fit</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">6</span><span class="p">))</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">TIME_NAO</span><span class="p">,</span><span class="n">X</span><span class="p">,</span><span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="n">linewidth</span> <span class="o">=</span> <span class="mf">1.5</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">TIME_NAO</span><span class="p">,</span><span class="n">TIME_NAO</span><span class="o">*</span><span class="n">trend</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">+</span><span class="n">trend</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="s1">&#39;--&#39;</span><span class="p">,</span><span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="n">linewidth</span> <span class="o">=</span> <span class="mf">1.5</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">TIME_SAM</span><span class="p">,</span><span class="n">X</span><span class="p">,</span><span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="n">linewidth</span> <span class="o">=</span> <span class="mf">1.5</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">TIME_SAM</span><span class="p">,</span><span class="n">TIME_SAM</span><span class="o">*</span><span class="n">trend</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">+</span><span class="n">trend</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="s1">&#39;--&#39;</span><span class="p">,</span><span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="n">linewidth</span> <span class="o">=</span> <span class="mf">1.5</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Year&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;NAO Index&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Estimation of NAO best-fit with regression&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="o">-</span><span class="mf">2.4</span><span class="p">,</span><span class="mf">2.4</span><span class="p">);</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="nb">min</span><span class="p">(</span><span class="n">TIME_NAO</span><span class="p">),</span> <span class="nb">max</span><span class="p">(</span><span class="n">TIME_NAO</span><span class="p">));</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;SAM Index&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Estimation of SAM best-fit with regression&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="nb">min</span><span class="p">(</span><span class="n">TIME_SAM</span><span class="p">),</span> <span class="nb">max</span><span class="p">(</span><span class="n">TIME_SAM</span><span class="p">));</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.lines.Line2D at 0x7fc0619fb828&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.lines.Line2D at 0x178253ca0&gt;
 </pre></div>
 </div>
-<img alt="../../_images/d86a36342af157c76dfeb184c9508c1e8f0fbe3b2aff03beaf3cb4a689ce44fe.png" src="../../_images/d86a36342af157c76dfeb184c9508c1e8f0fbe3b2aff03beaf3cb4a689ce44fe.png" />
+<img alt="../../_images/c1fc2901d6ad75b7906f9d6ef41701f8ff6d77a1f41bf1421f918ee1ecf2907c.png" src="../../_images/c1fc2901d6ad75b7906f9d6ef41701f8ff6d77a1f41bf1421f918ee1ecf2907c.png" />
 </div>
 </div>
 <p><strong>How do we determine the 95% confidence levels on this trend line?</strong></p>
@@ -690,22 +666,22 @@ The difference is 1.249
 <p>Following the jackknife method, we will remove one data point from our time series at a time, recalculate the linear fit and repeat. We will get a distribution of possible trends from which we can find the 95% confidence bounds.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Initialize an array of size (63,2). The dimension of size 63 reflects the number of iterations</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Initialize an array of size (69,2). The dimension of size 69 reflects the number of iterations</span>
 <span class="c1"># and the dimension of size 2 reflects that we will store our slopes and intercepts.</span>
 <span class="n">M</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="nb">len</span><span class="p">(</span><span class="n">X</span><span class="p">),</span><span class="mi">2</span><span class="p">))</span>
 
 <span class="c1"># Initialize plot</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">6</span><span class="p">))</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Year&#39;</span><span class="p">);</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;NAO Index&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Estimation of NAO best-fit with regression&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;SAM Index&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Estimation of SAM best-fit with regression&#39;</span><span class="p">)</span>
 
 <span class="c1"># Loop over data points</span>
 <span class="k">for</span> <span class="n">j</span><span class="p">,</span> <span class="n">val</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">X</span><span class="p">):</span>
     
     <span class="c1"># Remove one data point</span>
     <span class="n">Xj</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="n">j</span><span class="p">)</span>
-    <span class="n">Tj</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="n">TIME_NAO</span><span class="p">,</span><span class="n">j</span><span class="p">)</span>
+    <span class="n">Tj</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="n">TIME_SAM</span><span class="p">,</span><span class="n">j</span><span class="p">)</span>
     
     <span class="c1"># Calculate the linear fit using np.polyfit()</span>
     <span class="n">trendj</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">polyfit</span><span class="p">(</span><span class="n">Tj</span><span class="p">,</span><span class="n">Xj</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span> 
@@ -718,27 +694,27 @@ The difference is 1.249
     <span class="k">if</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">X</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">:</span>
         
         <span class="c1"># Plot the data point we are removing</span>
-        <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">TIME_NAO</span><span class="p">[</span><span class="n">j</span><span class="p">],</span><span class="n">val</span><span class="p">,</span><span class="s1">&#39;.&#39;</span><span class="p">,</span><span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="n">markersize</span> <span class="o">=</span> <span class="mi">15</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">TIME_SAM</span><span class="p">[</span><span class="n">j</span><span class="p">],</span><span class="n">val</span><span class="p">,</span><span class="s1">&#39;.&#39;</span><span class="p">,</span><span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;mediumorchid&#39;</span><span class="p">,</span> <span class="n">markersize</span> <span class="o">=</span> <span class="mi">15</span><span class="p">)</span>
         
         <span class="c1"># Plot the trend line after the data point is removed</span>
         <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">Tj</span><span class="p">,</span><span class="n">Tj</span><span class="o">*</span><span class="n">trendj</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">trendj</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random_sample</span><span class="p">(</span><span class="n">size</span> <span class="o">=</span> <span class="mi">3</span><span class="p">))</span>
-        <span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="o">-</span><span class="mf">2.4</span><span class="p">,</span><span class="mf">2.4</span><span class="p">);</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">);</span>
         <span class="n">display</span><span class="o">.</span><span class="n">clear_output</span><span class="p">(</span><span class="n">wait</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
         <span class="n">display</span><span class="o">.</span><span class="n">display</span><span class="p">(</span><span class="n">plt</span><span class="o">.</span><span class="n">gcf</span><span class="p">())</span>
         <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mf">0.05</span><span class="p">)</span>
     <span class="k">else</span><span class="p">:</span>
-        <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">TIME_NAO</span><span class="p">[</span><span class="n">j</span><span class="p">],</span><span class="n">val</span><span class="p">,</span><span class="s1">&#39;.&#39;</span><span class="p">,</span><span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="n">markersize</span> <span class="o">=</span> <span class="mi">15</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">TIME_SAM</span><span class="p">[</span><span class="n">j</span><span class="p">],</span><span class="n">val</span><span class="p">,</span><span class="s1">&#39;.&#39;</span><span class="p">,</span><span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;mediumorchid&#39;</span><span class="p">,</span> <span class="n">markersize</span> <span class="o">=</span> <span class="mi">15</span><span class="p">)</span>
         <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">Tj</span><span class="p">,</span><span class="n">Tj</span><span class="o">*</span><span class="n">trendj</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">trendj</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random_sample</span><span class="p">(</span><span class="n">size</span> <span class="o">=</span> <span class="mi">3</span><span class="p">))</span>
         <span class="n">display</span><span class="o">.</span><span class="n">clear_output</span><span class="p">(</span><span class="n">wait</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/f674d81b51cb756a54afbfbf058607e3deb0c5afed68a4eb1d121b23b51b0183.png" src="../../_images/f674d81b51cb756a54afbfbf058607e3deb0c5afed68a4eb1d121b23b51b0183.png" />
+<img alt="../../_images/046106cad77fff9e93a0f9462c623c940bf3d3a2e0ebe5d3ac124d1d168f6778.png" src="../../_images/046106cad77fff9e93a0f9462c623c940bf3d3a2e0ebe5d3ac124d1d168f6778.png" />
 </div>
 </div>
 <p>As you can see we get a slightly different slope and y-intercept each time we remove a data point.</p>
-<p>We can now use stats.scoreofpercentile() to find the confidence bounds on the slope and y-intercept.</p>
+<p>We can now use <code class="docutils literal notranslate"><span class="pre">stats.scoreofpercentile()</span></code> to find the confidence bounds on the slope and y-intercept.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">slopes</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">squeeze</span><span class="p">(</span><span class="n">M</span><span class="p">[:,</span><span class="mi">0</span><span class="p">])</span>
@@ -760,8 +736,8 @@ The difference is 1.249
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CI&#39;s for slope: 0.016437903871028205 0.012843908503342119
-CI&#39;s for y-intercept: -25.381890617344915 -32.50697006559595
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CI&#39;s for slope: 0.05010386823819755 0.04446816245566715
+CI&#39;s for y-intercept: -88.18072497699862 -99.41553803176868
 </pre></div>
 </div>
 </div>
@@ -772,37 +748,37 @@ CI&#39;s for y-intercept: -25.381890617344915 -32.50697006559595
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plot histogram of slopes</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">18</span><span class="p">,</span><span class="mi">6</span><span class="p">))</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
-<span class="n">xint</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mf">.01</span><span class="p">,</span><span class="mf">.02</span><span class="p">,</span><span class="mf">.00025</span><span class="p">)</span>
+<span class="n">xint</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mf">.040</span><span class="p">,</span><span class="mf">.055</span><span class="p">,</span><span class="mf">.00025</span><span class="p">)</span>
 <span class="n">b</span><span class="p">,</span> <span class="n">bin_edges</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">histogram</span><span class="p">(</span><span class="n">slopes</span><span class="p">,</span><span class="n">xint</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">bin_edges</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span><span class="n">b</span><span class="o">/</span><span class="n">M</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">bin_edges</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span><span class="n">b</span><span class="o">/</span><span class="n">M</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;deepskyblue&#39;</span><span class="p">)</span>
 
 <span class="c1"># Plot 95% confidence intervals on slope</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">CI_upper_slope</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">CI_lower_slope</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">CI_upper_slope</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;mediumorchid&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">CI_lower_slope</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;mediumorchid&#39;</span><span class="p">)</span>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Slope&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Frequency&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Distribution of NAO slopes from jackknife&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Distribution of SAM slopes from jackknife&#39;</span><span class="p">)</span>
 
 <span class="c1"># Plot histogram of intercepts</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
-<span class="n">xint</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="mf">36.</span><span class="p">,</span><span class="o">-</span><span class="mf">22.</span><span class="p">,</span><span class="mf">.5</span><span class="p">)</span>
+<span class="n">xint</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="mf">102.5</span><span class="p">,</span><span class="o">-</span><span class="mf">85.</span><span class="p">,</span><span class="mf">.5</span><span class="p">)</span>
 <span class="n">y</span><span class="p">,</span> <span class="n">bin_edges</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">histogram</span><span class="p">(</span><span class="n">yints</span><span class="p">,</span><span class="n">xint</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">bin_edges</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span><span class="n">y</span><span class="o">/</span><span class="n">M</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">bin_edges</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span><span class="n">y</span><span class="o">/</span><span class="n">M</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;deepskyblue&#39;</span><span class="p">)</span>
 
 <span class="c1"># Plot 95% confidence intervals on slope</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">CI_upper_yint</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">CI_lower_yint</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">CI_upper_yint</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;mediumorchid&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">CI_lower_yint</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;mediumorchid&#39;</span><span class="p">)</span>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;y-intercept&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Frequency&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Distribution of NAO y-intercept from jackknife&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Distribution of SAM y-intercept from jackknife&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/9aa8133a1b113d15b7ededa0994871d32a18c5635437985a8e8485d318829f94.png" src="../../_images/9aa8133a1b113d15b7ededa0994871d32a18c5635437985a8e8485d318829f94.png" />
+<img alt="../../_images/cb6f4eeb2ee005b9e85ebd2d4e082df1bb0e0a578df1290565d16508da7bd1aa.png" src="../../_images/cb6f4eeb2ee005b9e85ebd2d4e082df1bb0e0a578df1290565d16508da7bd1aa.png" />
 </div>
 </div>
 </section>

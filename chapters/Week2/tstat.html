@@ -200,6 +200,7 @@
 <li class="toctree-l2"><a class="reference internal" href="signal2noise.html">Signal-to-Noise</a></li>
 <li class="toctree-l2"><a class="reference internal" href="central_limit_theorem.html">The Central Limit Theorem</a></li>
 <li class="toctree-l2"><a class="reference internal" href="statistical_significance.html">Estimating Statistical Significance with a <em>z</em>-test</a></li>
+
 <li class="toctree-l2 current active"><a class="current reference internal" href="#">The <em>t</em>-Statistic</a></li>
 <li class="toctree-l2"><a class="reference internal" href="resampling.html">Resampling Techniques</a></li>
 </ul>
@@ -513,13 +514,13 @@ z &amp;= \frac{\overline{x} - \mu}{\frac{\sigma}{\sqrt{N}}}
 <span class="c1"># Plot z and t</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">6</span><span class="p">))</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">z</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;z&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">t</span><span class="p">,</span><span class="n">linestyle</span> <span class="o">=</span> <span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;t ($\nu$ =&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">dof</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;)&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">t</span><span class="p">,</span><span class="n">linestyle</span> <span class="o">=</span> <span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;deepskyblue&#39;</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;t ($\nu$ =&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">dof</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;)&quot;</span><span class="p">)</span>
 
 <span class="c1"># Plot 95% confidence intervals</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">z95_neg</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">t95_neg</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">t95_neg</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;deepskyblue&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">z95_pos</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">t95_pos</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">t95_pos</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;deepskyblue&#39;</span><span class="p">)</span>
 
 <span class="c1">#  Make the plot look nice!</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;z and Students-t Probability Density Functions&#39;</span><span class="p">)</span>
@@ -533,10 +534,10 @@ z &amp;= \frac{\overline{x} - \mu}{\frac{\sigma}{\sqrt{N}}}
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.lines.Line2D at 0x177c17eb0&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.lines.Line2D at 0x1771f7eb0&gt;
 </pre></div>
 </div>
-<img alt="../../_images/6f7bd216c251504a1038cc6c79d067100743720c709e36ed20c683cd575dc568.png" src="../../_images/6f7bd216c251504a1038cc6c79d067100743720c709e36ed20c683cd575dc568.png" />
+<img alt="../../_images/1b0048516ced1c0fd3d0339a18cd1a11cc79571a0a1141785200b2d0c05b0c45.png" src="../../_images/1b0048516ced1c0fd3d0339a18cd1a11cc79571a0a1141785200b2d0c05b0c45.png" />
 </div>
 </div>
 <p>What happens as you change the dof?</p>
@@ -644,10 +645,10 @@ t &amp;= \frac{\overline{x} - \mu}{\frac{s}{\sqrt{N}}} \\
 </section>
 <section id="comparison-of-the-z-and-t-statistic">
 <h2>Comparison of the <em>z</em>- and <em>t</em>-Statistic<a class="headerlink" href="#comparison-of-the-z-and-t-statistic" title="Link to this heading">#</a></h2>
-<p>Let’s take a look at an example and compare the results we get if we use the <span class="math notranslate nohighlight">\(z\)</span>- versus <span class="math notranslate nohighlight">\(t\)</span>-statistic.</p>
+<p>Let’s take a look at another example and compare the results we get if we use the <span class="math notranslate nohighlight">\(z\)</span>- versus the <span class="math notranslate nohighlight">\(t\)</span>-statistic.</p>
 <div class="tip admonition">
 <p class="admonition-title">Question #6</p>
-<p>You have 5 years of monthly-mean temperature data derived from the MSU4 satellite (upper stratosphere). The mean temperature along 60°N during January is -60°C and the standard deviation is 8°C. What are the 95% confidence limits on the true population mean?</p>
+<p>You have 5 years of monthly-mean temperature data derived from the Microwave Sounding Unit (MSU4) satellite (lower stratosphere). The mean temperature along 60°N during January is -60°C and the standard deviation is 8°C. What are the 95% confidence limits on the true population mean?</p>
 </div>
 <p><strong>The <em>z</em>-Statistic:</strong></p>
 <p>The critical value <span class="math notranslate nohighlight">\(z_c\)</span> = <span class="math notranslate nohighlight">\(\pm\)</span> 1.96 for 95% confidence. Here, we must assume that the standard deviation provided represents the population standard deviation. Thus, the population mean <span class="math notranslate nohighlight">\(\mu\)</span> is expected to lie within:</p>

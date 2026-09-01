@@ -200,6 +200,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../Week2/signal2noise.html">Signal-to-Noise</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../Week2/central_limit_theorem.html">The Central Limit Theorem</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../Week2/statistical_significance.html">Estimating Statistical Significance with a <em>z</em>-test</a></li>
+
 <li class="toctree-l2"><a class="reference internal" href="../Week2/tstat.html">The <em>t</em>-Statistic</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../Week2/resampling.html">Resampling Techniques</a></li>
 </ul>
@@ -449,7 +450,7 @@ document.write(`
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#principal-component-time-series-change-of-basis">Principal Component Time Series = Change of Basis</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#summary-of-finding-eofs-pcs">Summary of finding EOFs/PCs</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#steps-for-computing-eofs-pcs">Steps for Computing EOFs/PCs</a></li>
 </ul>
             </nav>
         </div>
@@ -478,10 +479,10 @@ document.write(`
 <p>The goal of EOF analysis is to decompose <strong>X</strong> into a set of spatial patterns, i.e, orthogonal eigenvectors, <span class="math notranslate nohighlight">\(\mathbf{e_i}\)</span>’s, that explain the most variance of <strong>X</strong>. In other words, we want to maximize the resemblance of <span class="math notranslate nohighlight">\(\mathbf{e_1}\)</span> (dimension <span class="math notranslate nohighlight">\([N x 1]\)</span>, the spatial dimension) to the data, that is, find the <span class="math notranslate nohighlight">\(\mathbf{e_1}\)</span> that explains the most variance.</p>
 <p><a class="reference internal" href="#eofs"><span class="std std-ref">Figure 26</span></a> provides a visualization of what we are trying to accomplish. <strong>X</strong> is a data matrix consisting of sea-level pressure (SLP) in mb at <span class="math notranslate nohighlight">\(N\)</span> points in space and <span class="math notranslate nohighlight">\(M\)</span> points in time.</p>
 <figure class="align-default" id="eofs">
-<a class="reference internal image-reference" href="../../_images/eofs.png"><img alt="../../_images/eofs.png" src="../../_images/eofs.png" style="width: 703.0px; height: 549.0px;" />
+<a class="reference internal image-reference" href="../../_images/eofs_rev.png"><img alt="../../_images/eofs_rev.png" src="../../_images/eofs_rev.png" style="width: 455.5px; height: 233.0px;" />
 </a>
 <figcaption>
-<p><span class="caption-number">Fig. 26 </span><span class="caption-text">Visualizing EOF/PC spatial patterns using daily sea-level pressure (mb) anomalies. <strong>X</strong> is the data matrix and <span class="math notranslate nohighlight">\(\mathbf{e_1}\)</span> is the eigenvector that explains the largest fraction of the variability in <strong>X</strong>.</span><a class="headerlink" href="#eofs" title="Link to this image">#</a></p>
+<p><span class="caption-number">Fig. 26 </span><span class="caption-text">Visualizing EOF/PC spatial patterns using monthly SST (<span class="math notranslate nohighlight">\(^{\circ}\)</span>C) anomalies. <strong>X</strong> is the data matrix and <span class="math notranslate nohighlight">\(\mathbf{e_1}\)</span> is the eigenvector that explains the largest fraction of the variability in <strong>X</strong>.</span><a class="headerlink" href="#eofs" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 <p>The first eigenvector, <span class="math notranslate nohighlight">\(\mathbf{e_1}\)</span>, shows the pattern that explains the most variance in <strong>X</strong>. Note that just like the unit eigenvectors of 2-D or 3-D space, where <span class="math notranslate nohighlight">\(\mathbf{e_1} = (1,0)\)</span> and <span class="math notranslate nohighlight">\(\mathbf{e_1} = (-1,0)\)</span> are both legitimate eigenvectors, <span class="math notranslate nohighlight">\(\mathbf{e_1}\)</span> describing the variance of <strong>X</strong> can look like the pattern in <a class="reference internal" href="#eofs"><span class="std std-ref">Figure 26</span></a> or it can look like -1 <em>x</em> this pattern.</p>
@@ -526,7 +527,7 @@ document.write(`
 <h3>Key Points:<a class="headerlink" href="#key-points" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p>The 1st eigenvector corresponds to the vector that explains the most variance in <strong>X</strong> and has the largest eigenvalue</p></li>
-<li><p>The 2nd eigenvector corresponds to the vector that explains the second most variance in <strong>X</strong> and has the 2nd largest eigenvalue</p></li>
+<li><p>The 2nd eigenvector corresponds to the vector that explains the second most variance in <strong>X</strong> and has the 2nd largest eigenvalue, etc.</p></li>
 <li><p>The eigenanalysis of the covariance matrix transforms <strong>C</strong> into a different coordinate system where the “new” matrix is diagonal (<span class="math notranslate nohighlight">\(\mathbf{\Lambda}\)</span>).</p></li>
 <li><p>In this new coordinate space, all of the variance is along the diagonal since the different vectors are orthogonal. Thus, the fraction of variance explained by the <span class="math notranslate nohighlight">\(j\)</span>th eigenvector is the corresponding eigenvalue <span class="math notranslate nohighlight">\(\lambda_j\)</span> divided by the sum of all of the eigenvalues, that is <span class="math notranslate nohighlight">\(\frac{\lambda_j}{\sum_i \lambda_i}\)</span></p></li>
 <li><p>Typically, EOFs are ordered by their corresponding <span class="math notranslate nohighlight">\(\lambda\)</span>, such that EOF 1 explains the largest variance (largest <span class="math notranslate nohighlight">\(\lambda\)</span>) and the last EOF (typically the <span class="math notranslate nohighlight">\(N\)</span>th EOF) has the smallest.</p></li>
@@ -556,8 +557,8 @@ document.write(`
 \mathbf{X} = \mathbf{ZE^T}
 \]</div>
 </section>
-<section id="summary-of-finding-eofs-pcs">
-<h2>Summary of finding EOFs/PCs<a class="headerlink" href="#summary-of-finding-eofs-pcs" title="Link to this heading">#</a></h2>
+<section id="steps-for-computing-eofs-pcs">
+<h2>Steps for Computing EOFs/PCs<a class="headerlink" href="#steps-for-computing-eofs-pcs" title="Link to this heading">#</a></h2>
 <p>For a data matrix <strong>X</strong> with size <span class="math notranslate nohighlight">\([M x N]\)</span> where the rows denote different times and the columns different spatial locations, we can find the EOFs/PCs using the following steps:</p>
 <ul class="simple">
 <li><p>subtract the mean values along the sampling/time dimension of <strong>X</strong></p></li>
@@ -641,7 +642,7 @@ document.write(`
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#principal-component-time-series-change-of-basis">Principal Component Time Series = Change of Basis</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#summary-of-finding-eofs-pcs">Summary of finding EOFs/PCs</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#steps-for-computing-eofs-pcs">Steps for Computing EOFs/PCs</a></li>
 </ul>
   </nav></div>
 

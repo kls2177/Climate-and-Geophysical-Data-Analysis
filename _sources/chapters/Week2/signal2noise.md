@@ -11,19 +11,21 @@ For instance, using the ENSO example, we have looked at how we use the $z$-score
 
 > "What is the probability that the ENSO index in the winter of 1997-1998 was its value or greater?"
 
+*Side Note: The 1997-1998 El Niño event was one of the largest in recent history*
+
 However, in climate and geophysical sciences (and most other fields of science for that matter), we tend to be more interested in establishing the probability of the difference between a sample mean and an underlying population or the difference between two samples. In other words, we are interested in finding a signal in our data that is different from the noise.
 
 More generally, the [*frequentist*][freq] approach to hypothesis testing involves testing a *null* hypothesis by comparing the sample data you observe in your laboratory experiment, field measurements, computer simulation, etc. with the predictions of a null hypothesis. You estimate what the probability would be of obtaining the observed results, or something more extreme, if the null hypothesis were true. If this estimated probability (the $p$-value) is small enough (below the significance value), then you conclude that it is unlikely that the null hypothesis is true; you *reject* the null hypothesis and *accept* an alternative hypothesis.
 
 Returning to our ENSO example, we instead might ask,
 
-> “Was the ENSO index from 2003-2013 consistent with climatological behaviour?”
+> “Was the ENSO index from 2010-2020 consistent with climatological behaviour?”
 
 The framing of the above question implies that the null hypothesis is:
-- the ENSO index from 2003-2013 (the sample mean) is consistent with "climatological behaviour" (the population mean).
+- the ENSO index from 2010-2020 (the sample mean) is consistent with "climatological behaviour" (the population mean).
 
 The alternative hypothesis is thus:
-- the ENSO index from 2003-2013 (the sample mean) is not consistent with "climatological behaviour" (the population mean).
+- the ENSO index from 2010-2020 (the sample mean) is not consistent with "climatological behaviour" (the population mean).
 
 ### The Null Hypothesis
 

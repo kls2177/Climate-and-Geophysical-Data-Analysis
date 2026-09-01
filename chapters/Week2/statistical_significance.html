@@ -200,6 +200,7 @@
 <li class="toctree-l2"><a class="reference internal" href="signal2noise.html">Signal-to-Noise</a></li>
 <li class="toctree-l2"><a class="reference internal" href="central_limit_theorem.html">The Central Limit Theorem</a></li>
 <li class="toctree-l2 current active"><a class="current reference internal" href="#">Estimating Statistical Significance with a <em>z</em>-test</a></li>
+
 <li class="toctree-l2"><a class="reference internal" href="tstat.html">The <em>t</em>-Statistic</a></li>
 <li class="toctree-l2"><a class="reference internal" href="resampling.html">Resampling Techniques</a></li>
 </ul>
@@ -443,6 +444,8 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Estimating Statistical Significance with a <em>z</em>-test</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#this-is-a-very-small-value-indicating-that-this-is-a-very-rare-event-we-can-conclude-that-the-sample-mean-enso-index-for-2010-2020-is-different-from-the-population-mean">This is a <em>very</em> small value, indicating that this is a very rare event. We can conclude that the sample mean ENSO index for 2010-2020 is different from the population mean.</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hypothesis-testing-revisited">Hypothesis Testing Revisited</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#terminology">Terminology</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#five-simple-steps">Five Simple Steps</a></li>
@@ -451,6 +454,9 @@ document.write(`
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#confidence-intervals">Confidence Intervals</a></li>
 </ul>
+</li>
+</ul>
+
             </nav>
         </div>
     </div>
@@ -497,7 +503,7 @@ z = \frac{(\overline{x_1} - \overline{x_2}) - \Delta_{1,2}}{\sqrt{\frac{\sigma_1
 <p>Let’s revisit our ENSO example to apply the above to real data. First, we will look at an example using the <span class="math notranslate nohighlight">\(z\)</span>-statistic for a single value of our ENSO index and then we will look at an example using the <span class="math notranslate nohighlight">\(z\)</span>-statistic for a sample of our ENSO index.</p>
 <div class="tip admonition">
 <p class="admonition-title">Question #1</p>
-<p>What is the probability that December 2013 had an ENSO index of -0.50 or less? Assume that the ENSO index is standard normal.</p>
+<p>What is the probability that December 2020 had an ENSO index of -0.50 or less? Assume that the ENSO index is standard normal.</p>
 </div>
 <p>To answer this, we will simply use our <span class="math notranslate nohighlight">\(z\)</span>-table as we did two sections ago.</p>
 <div class="cell docutils container">
@@ -517,10 +523,10 @@ z = \frac{(\overline{x_1} - \overline{x_2}) - \Delta_{1,2}}{\sqrt{\frac{\sigma_1
 </div>
 </div>
 </div>
-<p>Thus, there is a ~31% likelihood that the December 2013 ENSO index could have a value of -0.5 or less.</p>
+<p>Thus, there is a ~31% likelihood that the December 2020 ENSO index could have a value of -0.5 or less.</p>
 <div class="tip admonition">
 <p class="admonition-title">Question #2</p>
-<p>What is the probability that the average 2003-2013 monthly ENSO index was -0.50 or less (assuming that ENSO dynamics have not changed)? Assume that the ENSO index is standard normal.</p>
+<p>What is the probability that the average 2010-2020 monthly ENSO index was -0.50 or less (assuming that ENSO dynamics have not changed)? Assume that the ENSO index is standard normal.</p>
 </div>
 <p>Before we answer this, let’s reframe the question in terms of a null and alternative hypothesis. What is our null hypothesis? In this case our null hypothesis would be that the sample mean ENSO index of -0.5 is the same as the population mean, which is zero in this case (ENSO is standard normal). The alternative hypothesis is that the sample mean and population mean are different.</p>
 <p>We will use the <span class="math notranslate nohighlight">\(z\)</span>-statistic to answer this question, in other words, we will perform a <strong>z-test</strong>.</p>
@@ -559,7 +565,9 @@ z &amp;= \frac{\overline{x} - \mu}{\frac{\sigma}{\sqrt{N}}}\\
 </div>
 </div>
 </div>
-<p>This is a <em>very</em> small value, indicating that this is a very rare event. We can conclude that the sample mean ENSO index for 2003-2013 is different from the population mean.</p>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="this-is-a-very-small-value-indicating-that-this-is-a-very-rare-event-we-can-conclude-that-the-sample-mean-enso-index-for-2010-2020-is-different-from-the-population-mean">
+<h1>This is a <em>very</em> small value, indicating that this is a very rare event. We can conclude that the sample mean ENSO index for 2010-2020 is different from the population mean.<a class="headerlink" href="#this-is-a-very-small-value-indicating-that-this-is-a-very-rare-event-we-can-conclude-that-the-sample-mean-enso-index-for-2010-2020-is-different-from-the-population-mean" title="Link to this heading">#</a></h1>
 <p>In statistical hypothesis testing, we typically use a threshold probability for which we reject the null hypothesis. The threshold is often 5%, e.g. if there is less than a 5% chance that the sample mean and the population mean are the same, then we reject the null hypothesis and we say “the sample mean is <em>significantly</em> different from the population mean”</p>
 <section id="hypothesis-testing-revisited">
 <h2>Hypothesis Testing Revisited<a class="headerlink" href="#hypothesis-testing-revisited" title="Link to this heading">#</a></h2>
@@ -662,7 +670,7 @@ z &amp;= \frac{\overline{x} - \mu}{\frac{\sigma}{\sqrt{N}}}\\
 <p>We can also use the <span class="math notranslate nohighlight">\(z\)</span>-statistic to determine confidence intervals on the true population mean, <span class="math notranslate nohighlight">\(\mu\)</span>. Here is an example:</p>
 <div class="tip admonition">
 <p class="admonition-title">Question #4</p>
-<p>Say we have surface air temperatures for 30 winters with a mean of 10°C and a standard deviation of 5°C. What is the 95% confidence interval on the true population mean? You may assume that the temperatures are normally distributed.</p>
+<p>Say we have surface air temperatures for 30 winters in Vancouver with a mean of 10°C and a standard deviation of 5°C. What is the 95% confidence interval on the true population mean? You may assume that the temperatures are normally distributed.</p>
 </div>
 <p>In this question, we are told to estimate the 95% confidence intervals. This means we should consider the 95% confidence level, i.e. the 5% significance level.</p>
 <p>To estimate the 95% confidence intervals on <span class="math notranslate nohighlight">\(\mu\)</span>, we can simply rearrange the equation for <span class="math notranslate nohighlight">\(z\)</span> as follows,</p>
@@ -777,6 +785,8 @@ z &amp;= \frac{\overline{x} - \mu}{\frac{\sigma}{\sqrt{N}}} \\
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Estimating Statistical Significance with a <em>z</em>-test</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#this-is-a-very-small-value-indicating-that-this-is-a-very-rare-event-we-can-conclude-that-the-sample-mean-enso-index-for-2010-2020-is-different-from-the-population-mean">This is a <em>very</em> small value, indicating that this is a very rare event. We can conclude that the sample mean ENSO index for 2010-2020 is different from the population mean.</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hypothesis-testing-revisited">Hypothesis Testing Revisited</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#terminology">Terminology</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#five-simple-steps">Five Simple Steps</a></li>
@@ -785,6 +795,9 @@ z &amp;= \frac{\overline{x} - \mu}{\frac{\sigma}{\sqrt{N}}} \\
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#confidence-intervals">Confidence Intervals</a></li>
 </ul>
+</li>
+</ul>
+
   </nav></div>
 
 </div></div>

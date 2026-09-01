@@ -2,12 +2,12 @@
 *-[unknown][quote]*
 
 As we have seen, statistics are an invaluable way to support hypotheses, inform scientific experimental design and extract signal from noisy data. Yet, statistics can often be misused. Here is what statistics are not good for:
-- Replacing good scientific thinking
+- Replacing sound scientific thinking
   - statistics cannot “prove” anything and all statistical tests have a chance of being wrong.
-- Fishing for a desired result
-  - performing statistical analysis means carefully considering the right tools to use for each unique situation.
+- "Fishing" for a desired result
+  - performing statistical analysis means carefully considering the right methods to use for each unique situation and recognizing when the data do not support a preferred hypothesis.
 - Making-up for a lack of data
-  - statistical analysis cannot replace sufficient, high-quality data.
+  - sophisticated statistical analysis cannot replace sufficient, high-quality data.
 
 
 ## A Few Common Pitfalls
@@ -51,7 +51,7 @@ Stop global warming, become a pirate! [image source here][pirateurl]
 ```
 
 ### Plots that mislead
-- be mindful that we humans make quantitative assumptions based on how data is presented. Be objective in your data presentation. [Read more about how the choice of colour is so important, especially for those with red-green colour-blindness][jet].
+- be mindful that we humans make quantitative assumptions based on how data is presented. Colour choice, aspect ratios, axis ranges can influence how we interpret an image. Be objective in your data presentation. [Read more about how the choice of colour is so important, especially for those with red-green colour-blindness][jet].
 
 
 
