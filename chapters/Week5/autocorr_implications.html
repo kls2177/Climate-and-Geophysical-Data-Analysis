@@ -514,10 +514,18 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/var/folders/m0/hylw02j53db4s63gklflxs800000gn/T/ipykernel_66854/3642251305.py:15: DeprecationWarning: Conversion of an array with ndim &gt; 0 to a scalar is deprecated, and will error in future. Ensure you extract a single element from your array before performing this operation. (Deprecated NumPy 1.25.)
+  x[0] = np.random.normal(0.,1.,size=1)
+/var/folders/m0/hylw02j53db4s63gklflxs800000gn/T/ipykernel_66854/3642251305.py:20: DeprecationWarning: Conversion of an array with ndim &gt; 0 to a scalar is deprecated, and will error in future. Ensure you extract a single element from your array before performing this operation. (Deprecated NumPy 1.25.)
+  x[it+1] = a*x[it] + b*np.random.normal(size=1)
+/var/folders/m0/hylw02j53db4s63gklflxs800000gn/T/ipykernel_66854/3642251305.py:26: UserWarning: Ignoring specified arguments in this call because figure with num: 1 already exists
+  plt.figure(1,figsize=(12,6))
+</pre></div>
+</div>
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0.5, 1.0, &#39;Autocorrelation of a Red Noise Time Series&#39;)
 </pre></div>
 </div>
-<img alt="../../_images/3694a79ee192b5d1e1828b09f49865d158a4b6705d17d08e2135c12c296cdb42.png" src="../../_images/3694a79ee192b5d1e1828b09f49865d158a4b6705d17d08e2135c12c296cdb42.png" />
+<img alt="../../_images/37a5c4ef815b5c3f3091223dfa92dce8c08a997e0282f9c25095bca1554c41eb.png" src="../../_images/37a5c4ef815b5c3f3091223dfa92dce8c08a997e0282f9c25095bca1554c41eb.png" />
 </div>
 </div>
 <p>We see that we get autocorrelation functions with more or less persistence depending on the magnitude of <span class="math notranslate nohighlight">\(a\)</span>.</p>
@@ -533,7 +541,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[-0.00171245  0.40899885  0.69683014  0.89673472]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[0.0064568  0.39958361 0.68615182 0.9053224 ]
 </pre></div>
 </div>
 </div>
@@ -574,6 +582,16 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/var/folders/m0/hylw02j53db4s63gklflxs800000gn/T/ipykernel_66854/3933168249.py:18: DeprecationWarning: Conversion of an array with ndim &gt; 0 to a scalar is deprecated, and will error in future. Ensure you extract a single element from your array before performing this operation. (Deprecated NumPy 1.25.)
+  x[0] = np.random.normal(size=1)
+/var/folders/m0/hylw02j53db4s63gklflxs800000gn/T/ipykernel_66854/3933168249.py:19: DeprecationWarning: Conversion of an array with ndim &gt; 0 to a scalar is deprecated, and will error in future. Ensure you extract a single element from your array before performing this operation. (Deprecated NumPy 1.25.)
+  y[0] = np.random.normal(size=1)
+/var/folders/m0/hylw02j53db4s63gklflxs800000gn/T/ipykernel_66854/3933168249.py:23: DeprecationWarning: Conversion of an array with ndim &gt; 0 to a scalar is deprecated, and will error in future. Ensure you extract a single element from your array before performing this operation. (Deprecated NumPy 1.25.)
+  x[it+1] = a*x[it] + b*np.random.normal(size=1) #  add white noise
+/var/folders/m0/hylw02j53db4s63gklflxs800000gn/T/ipykernel_66854/3933168249.py:24: DeprecationWarning: Conversion of an array with ndim &gt; 0 to a scalar is deprecated, and will error in future. Ensure you extract a single element from your array before performing this operation. (Deprecated NumPy 1.25.)
+  y[it+1] = a*y[it] + b*np.random.normal(size=1) #  add different time series of white noise
+</pre></div>
+</div>
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
 <span class="ne">KeyboardInterrupt</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
 <span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">5</span><span class="p">],</span> <span class="n">line</span> <span class="mi">24</span>

@@ -520,7 +520,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/503f26333d20195e6c32d3aa174f51a78372813e9f5934716c908fbbd1643898.png" src="../../_images/503f26333d20195e6c32d3aa174f51a78372813e9f5934716c908fbbd1643898.png" />
+<img alt="../../_images/46b005a4fd9f824b7f5638783416563490ef09c7ea8fe40f0ab8cbda6ec32c9e.png" src="../../_images/46b005a4fd9f824b7f5638783416563490ef09c7ea8fe40f0ab8cbda6ec32c9e.png" />
 </div>
 </div>
 <p>We see a clear pattern of warmer SSTs near the equator and cooler SSTs in the mid- to high-latitudes. The continents are not plotted as these grid points have missing values represented by “NaNs” (not-a-number).</p>
@@ -574,6 +574,54 @@ document.write(`
 
 <span class="c1"># reshape anomaly back to long time series</span>
 <span class="n">sst_n34_anom</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">sst_n34_anom</span><span class="p">,(</span><span class="mi">166</span><span class="o">*</span><span class="mi">12</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">ValueError</span><span class="g g-Whitespace">                                </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">6</span><span class="p">],</span> <span class="n">line</span> <span class="mi">2</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="c1"># reshape to compute anomaly (drop the last 10 months so that we have an integer number of years)</span>
+<span class="ne">----&gt; </span><span class="mi">2</span> <span class="n">sst_n34_reshape</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">sst_n34</span><span class="p">[:</span><span class="o">-</span><span class="mi">10</span><span class="p">],(</span><span class="mi">166</span><span class="p">,</span><span class="mi">12</span><span class="p">))</span>
+<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="c1"># calculate monthly anomaly</span>
+<span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="n">sst_n34_anom</span> <span class="o">=</span> <span class="n">sst_n34_reshape</span> <span class="o">-</span> <span class="n">sst_n34_clim</span>
+
+<span class="nn">File /opt/anaconda3/envs/ccia/lib/python3.10/site-packages/numpy/core/fromnumeric.py:285,</span> in <span class="ni">reshape</span><span class="nt">(a, newshape, order)</span>
+<span class="g g-Whitespace">    </span><span class="mi">200</span> <span class="nd">@array_function_dispatch</span><span class="p">(</span><span class="n">_reshape_dispatcher</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">201</span> <span class="k">def</span><span class="w"> </span><span class="nf">reshape</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">newshape</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="s1">&#39;C&#39;</span><span class="p">):</span>
+<span class="g g-Whitespace">    </span><span class="mi">202</span><span class="w">     </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="g g-Whitespace">    </span><span class="mi">203</span><span class="sd">     Gives a new shape to an array without changing its data.</span>
+<span class="g g-Whitespace">    </span><span class="mi">204</span><span class="sd"> </span>
+<span class="sd">   (...)</span>
+<span class="g g-Whitespace">    </span><span class="mi">283</span><span class="sd">            [5, 6]])</span>
+<span class="g g-Whitespace">    </span><span class="mi">284</span><span class="sd">     &quot;&quot;&quot;</span>
+<span class="ne">--&gt; </span><span class="mi">285</span>     <span class="k">return</span> <span class="n">_wrapfunc</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="s1">&#39;reshape&#39;</span><span class="p">,</span> <span class="n">newshape</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="n">order</span><span class="p">)</span>
+
+<span class="nn">File /opt/anaconda3/envs/ccia/lib/python3.10/site-packages/numpy/core/fromnumeric.py:59,</span> in <span class="ni">_wrapfunc</span><span class="nt">(obj, method, *args, **kwds)</span>
+<span class="g g-Whitespace">     </span><span class="mi">56</span>     <span class="k">return</span> <span class="n">_wrapit</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">method</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwds</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">58</span> <span class="k">try</span><span class="p">:</span>
+<span class="ne">---&gt; </span><span class="mi">59</span>     <span class="k">return</span> <span class="n">bound</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwds</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">60</span> <span class="k">except</span> <span class="ne">TypeError</span><span class="p">:</span>
+<span class="g g-Whitespace">     </span><span class="mi">61</span>     <span class="c1"># A TypeError occurs if the object does have such a method in its</span>
+<span class="g g-Whitespace">     </span><span class="mi">62</span>     <span class="c1"># class, but its signature is not identical to that of NumPy&#39;s. This</span>
+   <span class="p">(</span><span class="o">...</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">66</span>     <span class="c1"># Call _wrapit from within the except clause to ensure a potential</span>
+<span class="g g-Whitespace">     </span><span class="mi">67</span>     <span class="c1"># exception has a traceback chain.</span>
+<span class="g g-Whitespace">     </span><span class="mi">68</span>     <span class="k">return</span> <span class="n">_wrapit</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">method</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwds</span><span class="p">)</span>
+
+<span class="nn">File /opt/anaconda3/envs/ccia/lib/python3.10/site-packages/numpy/ma/core.py:4745,</span> in <span class="ni">MaskedArray.reshape</span><span class="nt">(self, *s, **kwargs)</span>
+<span class="g g-Whitespace">   </span><span class="mi">4687</span><span class="w"> </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="g g-Whitespace">   </span><span class="mi">4688</span><span class="sd"> Give a new shape to the array without changing its data.</span>
+<span class="g g-Whitespace">   </span><span class="mi">4689</span><span class="sd"> </span>
+<span class="sd">   (...)</span>
+<span class="g g-Whitespace">   </span><span class="mi">4742</span><span class="sd"> </span>
+<span class="g g-Whitespace">   </span><span class="mi">4743</span><span class="sd"> &quot;&quot;&quot;</span>
+<span class="g g-Whitespace">   </span><span class="mi">4744</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">order</span><span class="o">=</span><span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;order&#39;</span><span class="p">,</span> <span class="s1">&#39;C&#39;</span><span class="p">))</span>
+<span class="ne">-&gt; </span><span class="mi">4745</span> <span class="n">result</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">*</span><span class="n">s</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="bp">self</span><span class="p">))</span>
+<span class="g g-Whitespace">   </span><span class="mi">4746</span> <span class="n">result</span><span class="o">.</span><span class="n">_update_from</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">4747</span> <span class="n">mask</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_mask</span>
+
+<span class="ne">ValueError</span>: cannot reshape array of size 2061 into shape (166,12)
 </pre></div>
 </div>
 </div>

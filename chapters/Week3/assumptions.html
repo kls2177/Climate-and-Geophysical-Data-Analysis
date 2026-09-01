@@ -584,7 +584,7 @@ F = \frac{\frac{Q_1}{(N_1 - 1)}}{\frac{Q_2}{(N_2 -1)}}
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0.5, 1.0, &#39;Scatter Plot: Residuals vs. NINO3.4&#39;)
 </pre></div>
 </div>
-<img alt="../../_images/5c497c897530210b9b10bd33b387bcc2aa2facf673a4fad8efdff92b4e3e0cd1.png" src="../../_images/5c497c897530210b9b10bd33b387bcc2aa2facf673a4fad8efdff92b4e3e0cd1.png" />
+<img alt="../../_images/2293008c2c4378cbaf3129d6f9f63a59ed9d76fb9cdefc9dcc4fa193712a65e4.png" src="../../_images/2293008c2c4378cbaf3129d6f9f63a59ed9d76fb9cdefc9dcc4fa193712a65e4.png" />
 </div>
 </div>
 <p>It’s a bit hard to tell from this plot. Let’s try the Goldfeld-Quandt test. To use this test we need to import a new python package: <code class="docutils literal notranslate"><span class="pre">statsmodels</span></code>.</p>
@@ -655,7 +655,7 @@ F = \frac{\frac{Q_1}{(N_1 - 1)}}{\frac{Q_2}{(N_2 -1)}}
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0.5, 1.0, &#39;Autocorrelation of the Residuals&#39;)
 </pre></div>
 </div>
-<img alt="../../_images/5e933bbac736a339140e4ed171ca45740809fe4cc47faa8d54cd8ecc17636179.png" src="../../_images/5e933bbac736a339140e4ed171ca45740809fe4cc47faa8d54cd8ecc17636179.png" />
+<img alt="../../_images/bd14b0e0dd88bcf8aec8861ac08660e1007a586b68aae4a9da1f1cf13ab40130.png" src="../../_images/bd14b0e0dd88bcf8aec8861ac08660e1007a586b68aae4a9da1f1cf13ab40130.png" />
 </div>
 </div>
 <p>Looks like we have no autocorrelation in our residuals. We can also determine if our residuals are autocorrelated using the <strong>Durbin-Watson</strong> test. But, I always recommend using plots, like the one above, to support statistical tests.</p>
@@ -716,7 +716,7 @@ F = \frac{\frac{Q_1}{(N_1 - 1)}}{\frac{Q_2}{(N_2 -1)}}
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/f4b8bfac07993ecdbbbde7c4f201c9bffea07b3cbc7b95e10eeb754a40fe35a5.png" src="../../_images/f4b8bfac07993ecdbbbde7c4f201c9bffea07b3cbc7b95e10eeb754a40fe35a5.png" />
+<img alt="../../_images/2b5c962e9b5e33a5b86ad74e6c5eecb174a0d51971e27718abe781a0ce33a09e.png" src="../../_images/2b5c962e9b5e33a5b86ad74e6c5eecb174a0d51971e27718abe781a0ce33a09e.png" />
 </div>
 </div>
 <p>It looks like our residuals are somewhat negatively skewed. It’s possible that this distribution deviates sufficiently from a normal distribution. We can perform a more quantitative test to confirm this suspicion. There are a few different options, but we with use the <code class="docutils literal notranslate"><span class="pre">stats.normaltest()</span></code> function which is a test that examines both the skewness and kurtosis of a distribution to assess normality.</p>
@@ -753,7 +753,7 @@ F = \frac{\frac{Q_1}{(N_1 - 1)}}{\frac{Q_2}{(N_2 -1)}}
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/a0ed2b2a181bc873432536e9b4c63add1d5ee919f678c4011701923731734b73.png" src="../../_images/a0ed2b2a181bc873432536e9b4c63add1d5ee919f678c4011701923731734b73.png" />
+<img alt="../../_images/a9baee939abea0433e325734d311120de17f386f25064afa125e1293e2e46249.png" src="../../_images/a9baee939abea0433e325734d311120de17f386f25064afa125e1293e2e46249.png" />
 </div>
 </div>
 <p>One possible transformation is to take the square-root of precipitation and see if that helps.</p>
@@ -770,7 +770,7 @@ F = \frac{\frac{Q_1}{(N_1 - 1)}}{\frac{Q_2}{(N_2 -1)}}
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/afd33e79a0689bf0b5ae2c1c8a0daf12d09bc96abaee2da56f730ebd35d971a3.png" src="../../_images/afd33e79a0689bf0b5ae2c1c8a0daf12d09bc96abaee2da56f730ebd35d971a3.png" />
+<img alt="../../_images/faa21806239ba038eac8058e3f48c987c88254d32653fd5a335bcc3856395499.png" src="../../_images/faa21806239ba038eac8058e3f48c987c88254d32653fd5a335bcc3856395499.png" />
 </div>
 </div>
 <p>Now, it looks a bit better. If we are using our regression model to make a prediction (rather than using it to support our undersanding of physical relationships), we want our model to be as good as possible and to satisfy all the conditions outlined above. So, let’s see if the residuals pass the normal test if we change our regression model slightly to use the square-root of precipition instead.</p>

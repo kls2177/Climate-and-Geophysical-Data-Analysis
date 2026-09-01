@@ -523,10 +523,10 @@ y(t)_{filtered} &amp;= (g * y)(t)\\
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x17b737340&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x17b7be710&gt;
 </pre></div>
 </div>
-<img alt="../../_images/095b2bec130acbbd034a2f2678c472ab7a12a24efa91f945bfb220c728f97430.png" src="../../_images/095b2bec130acbbd034a2f2678c472ab7a12a24efa91f945bfb220c728f97430.png" />
+<img alt="../../_images/ab4d222eb08e0d749dd238589f1a2ab4ed59bf263eb0dfe4f71732af6da45e5b.png" src="../../_images/ab4d222eb08e0d749dd238589f1a2ab4ed59bf263eb0dfe4f71732af6da45e5b.png" />
 </div>
 </div>
 <p><em>Running-Mean Filter</em>:</p>
@@ -576,10 +576,10 @@ y(t)_{filtered} &amp;= (g * y)(t)\\
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x17b942980&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x17bca6e60&gt;
 </pre></div>
 </div>
-<img alt="../../_images/249ccc6c12c7f1cfb8c63fa276ca1158d0207a9fd6df980054df42782e11f304.png" src="../../_images/249ccc6c12c7f1cfb8c63fa276ca1158d0207a9fd6df980054df42782e11f304.png" />
+<img alt="../../_images/4b80ce1e16017a207fce04f5ce1a8d642dd1ca5d506ef552e41a18788414d58f.png" src="../../_images/4b80ce1e16017a207fce04f5ce1a8d642dd1ca5d506ef552e41a18788414d58f.png" />
 </div>
 </div>
 <p>So, what this response function illustrates is that a time series filtered using a running-mean filter will exactly filter out the 12-month frequency and retain the lower frequencies, but these will be smoothed out. The filter does not maintain all the power contained in these low frequencies because the response function decays from a value of 1 to 0 over the lower frequency range. In addition, a time series filtered using a running-mean filter will have some high frequencies removed (note that the response function is 0 for 6-months, 4-months, 3-months, etc.) but it still contain other high frequencies due to the oscillatory side lobes. Thus, the running-mean filter is not a pure low-pass filter.</p>

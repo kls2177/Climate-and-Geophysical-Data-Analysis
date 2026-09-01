@@ -536,7 +536,7 @@ document.write(`
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0.5, 1.0, &#39;Seasonal TLT Time Series (1980-2019)&#39;)
 </pre></div>
 </div>
-<img alt="../../_images/eee1b9698a7b0f94eef391a9f7ffc5542cce2f376399ee7d84014df7ecfcbbe7.png" src="../../_images/eee1b9698a7b0f94eef391a9f7ffc5542cce2f376399ee7d84014df7ecfcbbe7.png" />
+<img alt="../../_images/844833b34f514992c9a8570f9142e4b823c4bb34d0f5aedb1e05f2f13a097fec.png" src="../../_images/844833b34f514992c9a8570f9142e4b823c4bb34d0f5aedb1e05f2f13a097fec.png" />
 </div>
 </div>
 <p>As we saw, this trend introduces high autocorrelation at non-zero lags. How would you filter out this trend? We have done this before. Think about it before you reveal the code below.</p>
@@ -590,10 +590,10 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x17c1e1b10&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x17a247190&gt;
 </pre></div>
 </div>
-<img alt="../../_images/9a8178e734754786b12c12e9ae6c19f433fb8fe7e7d68aa248f004ffbed94d14.png" src="../../_images/9a8178e734754786b12c12e9ae6c19f433fb8fe7e7d68aa248f004ffbed94d14.png" />
+<img alt="../../_images/bb9a4fd8ed22c505e9eae769b91df5cfb8c25512b6a700481ada52fda1e7ee63.png" src="../../_images/bb9a4fd8ed22c505e9eae769b91df5cfb8c25512b6a700481ada52fda1e7ee63.png" />
 </div>
 </div>
 <p>In this example, we see how filtering out the long-term trend, i.e. detrending, helps to address (although not fully) the issue of autocorrelated time series.</p>
@@ -654,7 +654,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/2f3a748669a4ba37d30b4826ff4604047794bdccdc478ddb5fd5fbaa3b7adeea.png" src="../../_images/2f3a748669a4ba37d30b4826ff4604047794bdccdc478ddb5fd5fbaa3b7adeea.png" />
+<img alt="../../_images/b2ec25773e470d5628685747c8a925bc86f66c7f6af499dbb4e7db91558b7a91.png" src="../../_images/b2ec25773e470d5628685747c8a925bc86f66c7f6af499dbb4e7db91558b7a91.png" />
 </div>
 </div>
 <section id="method-1-filtering-out-the-climatological-seasonal-cycle">
@@ -712,7 +712,7 @@ x_{ij}^\prime(t) = x_{ij}(t) - \overline{x_j}
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/3fb715eb90eb6ea8381278a35319156f2e1a10b0e03cd21da0992c33e21a0220.png" src="../../_images/3fb715eb90eb6ea8381278a35319156f2e1a10b0e03cd21da0992c33e21a0220.png" />
+<img alt="../../_images/401bcec36158b1063112ea94e7feb5684129977a85cf4e9baf67154c2f850d20.png" src="../../_images/401bcec36158b1063112ea94e7feb5684129977a85cf4e9baf67154c2f850d20.png" />
 </div>
 </div>
 <p>Now, to calculate the anomaly, i.e., to remove the climatological seasonal cycle, we simply subtract the climatology from the total, as in the equation above.</p>
@@ -740,7 +740,7 @@ x_{ij}^\prime(t) = x_{ij}(t) - \overline{x_j}
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/1480db7a4e426e31321b418453f36b582a1e5588f80ef44f8388edb79aa6b564.png" src="../../_images/1480db7a4e426e31321b418453f36b582a1e5588f80ef44f8388edb79aa6b564.png" />
+<img alt="../../_images/ff6eeda50799e51d4f83aa05277b8c1903877f963436349434a86b56c520b7cd.png" src="../../_images/ff6eeda50799e51d4f83aa05277b8c1903877f963436349434a86b56c520b7cd.png" />
 </div>
 </div>
 <p>Note that the magnitude of the anomalies is quite small compared to the magnitude of the seasonal cycle. The data looks noisier and does not exhibit a seasonal cycle, but does show some decadal fluctuations. Thus, by removing the seasonal cycle using this method we have <strong>band-pass filtered</strong> the time series, leaving behind variability at both higher and lower frequencies than the seasonal cycle.</p>
@@ -834,7 +834,7 @@ y(t) = \frac{1}{5}x(t - 2) + \frac{1}{5}x(t - 1) + \frac{1}{5}x(t) + \frac{1}{5}
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/f6b5c628ac355da5c8e493786112c379cf4fa3bcfb0a9d5a4baee86ad4b92634.png" src="../../_images/f6b5c628ac355da5c8e493786112c379cf4fa3bcfb0a9d5a4baee86ad4b92634.png" />
+<img alt="../../_images/aab1c7d469161fbae5ceb382497d363521b89c8c536e22dbd69a395f23be2c77.png" src="../../_images/aab1c7d469161fbae5ceb382497d363521b89c8c536e22dbd69a395f23be2c77.png" />
 </div>
 </div>
 <p>We can clearly see that the seasonal cycle has been smoothed out of the SIE time series in panels (a) and (b). In fact variability at frequencies equal to and also higher than <span class="math notranslate nohighlight">\(L\)</span> = 365 days has been smoothed out. The running-mean filtered time series displays variability primarily at lower frequencies.</p>
@@ -904,7 +904,7 @@ y(t)_{band-pass}  = y(t)_{L\geq T_1} - y(t)_{L\geq T_2}
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/0135c8d7c669f8b6bfe9280f409db1fb4d4e5ccfbd4926ef4b2fa5b7d3ac50ae.png" src="../../_images/0135c8d7c669f8b6bfe9280f409db1fb4d4e5ccfbd4926ef4b2fa5b7d3ac50ae.png" />
+<img alt="../../_images/e605d6d68b6197ef575f59ad434b911cc89a9c06950b9988297a47503c6899b7.png" src="../../_images/e605d6d68b6197ef575f59ad434b911cc89a9c06950b9988297a47503c6899b7.png" />
 </div>
 </div>
 <p>In order to remove the seasonal cyle using LOWESS smoothing, we generated a <em>very</em> smooth time series. The choice of method often depends on the variability that you would like to retain in your filtered time series.</p>

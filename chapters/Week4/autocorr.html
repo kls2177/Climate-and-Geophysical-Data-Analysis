@@ -521,7 +521,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/827bdd7b98f168ea0fed3316e92c3aa6f309111d6b15809210dcae58627bdbb5.png" src="../../_images/827bdd7b98f168ea0fed3316e92c3aa6f309111d6b15809210dcae58627bdbb5.png" />
+<img alt="../../_images/b97ab5006d5c0c8181b429710f8f402cd73ecdaeba73cc46623d87f8cd4fa5af.png" src="../../_images/b97ab5006d5c0c8181b429710f8f402cd73ecdaeba73cc46623d87f8cd4fa5af.png" />
 </div>
 </div>
 </section>
@@ -565,7 +565,7 @@ document.write(`
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0.5, 1.0, &#39;Autocorrelation of Independent Random Normal Data&#39;)
 </pre></div>
 </div>
-<img alt="../../_images/b42de85b45b196c21a3be4c096808552c8500f8ed450efcf435bd2f78658021b.png" src="../../_images/b42de85b45b196c21a3be4c096808552c8500f8ed450efcf435bd2f78658021b.png" />
+<img alt="../../_images/63f6bf9596912f6328899f3dc49f9422a37e53af7f3d372669fbbd27727a9102.png" src="../../_images/63f6bf9596912f6328899f3dc49f9422a37e53af7f3d372669fbbd27727a9102.png" />
 </div>
 </div>
 <p>Let’s consider something different: the time series of a sine wave. This time series has a fixed periodicity. What do you think the autocorrelation function for a sine wave looks like?</p>
@@ -590,7 +590,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/2313324b4dd692119fb3f179555866bf7019bdde21c093a7b9c15ff47640ac6a.png" src="../../_images/2313324b4dd692119fb3f179555866bf7019bdde21c093a7b9c15ff47640ac6a.png" />
+<img alt="../../_images/3102ac7b1fdcc92ee21a1bd91c33f28961a7034a19aa929bc146a815a089c884.png" src="../../_images/3102ac7b1fdcc92ee21a1bd91c33f28961a7034a19aa929bc146a815a089c884.png" />
 </div>
 </div>
 <p>We will use the same function to calculate the autocorrelation function, but this time we also need to divide by the variance of the sine wave to convert to autocorrelation.</p>
@@ -626,7 +626,7 @@ document.write(`
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0.5, 1.0, &#39;Autocorrelation of Sine Wave&#39;)
 </pre></div>
 </div>
-<img alt="../../_images/f531b6c8b6005d4b1be518fb2c99c14f31a5e7faa014195e0e4f78ab8ab6a824.png" src="../../_images/f531b6c8b6005d4b1be518fb2c99c14f31a5e7faa014195e0e4f78ab8ab6a824.png" />
+<img alt="../../_images/67200a52ea88006721dda29aef412e537bd5c7ec756323bf133dfc7a625b2762.png" src="../../_images/67200a52ea88006721dda29aef412e537bd5c7ec756323bf133dfc7a625b2762.png" />
 </div>
 </div>
 <p>We can clearly see the periodicity in the autocorrelation function.</p>
@@ -696,7 +696,7 @@ document.write(`
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0.5, 1.0, &#39;Autocorrelation of Sine Wave&#39;)
 </pre></div>
 </div>
-<img alt="../../_images/3d918240ccae704c12b3c64bbfc9c1b01e3bd69bc8e22962db39b6d290e44136.png" src="../../_images/3d918240ccae704c12b3c64bbfc9c1b01e3bd69bc8e22962db39b6d290e44136.png" />
+<img alt="../../_images/c6e6f1bd3350c6737a7114f60c1c17de0282474e9d5f1e27be9167d9356d158e.png" src="../../_images/c6e6f1bd3350c6737a7114f60c1c17de0282474e9d5f1e27be9167d9356d158e.png" />
 </div>
 </div>
 <p>Finally, let’s take a look at the autocorrelation function of a time series with a linear trend. The linear trend in the data implies dependence between adjacent data points.</p>
@@ -721,7 +721,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/88ffc16cc974e301f90733e6e9428f51c8973b29503da8263ee7bf7e33447945.png" src="../../_images/88ffc16cc974e301f90733e6e9428f51c8973b29503da8263ee7bf7e33447945.png" />
+<img alt="../../_images/75d28a3366f9d22ce79065094d1dbd00f6b45d8f7cf5d16bb7bfb16890af3de1.png" src="../../_images/75d28a3366f9d22ce79065094d1dbd00f6b45d8f7cf5d16bb7bfb16890af3de1.png" />
 </div>
 </div>
 <p>This time we need to adjust the input to our <code class="docutils literal notranslate"><span class="pre">np.correlate()</span></code> function even more. The function assumes that the data already has the mean removed. In the previous two examples, the mean was zero, so we did not have to worry about subtracting the mean. In this case the mean is non-zero, so we need to subtract the mean.</p>
@@ -754,7 +754,7 @@ document.write(`
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0.5, 1.0, &#39;Autocorrelation of Linear Trend&#39;)
 </pre></div>
 </div>
-<img alt="../../_images/f7cbbe8cfe38a4be96289393e2f2632ea8854671f0db787f28bedc44aadca0ba.png" src="../../_images/f7cbbe8cfe38a4be96289393e2f2632ea8854671f0db787f28bedc44aadca0ba.png" />
+<img alt="../../_images/d314d12b2e7d4bc3ca66cabd4cf3f7b6f0eaa9c39d0c4c17f68a233d8a9fb769.png" src="../../_images/d314d12b2e7d4bc3ca66cabd4cf3f7b6f0eaa9c39d0c4c17f68a233d8a9fb769.png" />
 </div>
 </div>
 <p>The trend in the time series is evident in large autocorrelation values at non-zero lags (i.e., data points in the time series are not independent) and the gradual decay of the autocorrelation function as <span class="math notranslate nohighlight">\(\tau\)</span> increases.</p>

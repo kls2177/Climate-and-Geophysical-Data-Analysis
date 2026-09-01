@@ -523,7 +523,7 @@ y(t) = \frac{1}{2\pi}\int_{-\infty}^{\infty} Y(\omega)e^{i\omega t} \,d\omega
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0.5, 1.0, &#39;Anomalous SLP at 33N, 170E&#39;)
 </pre></div>
 </div>
-<img alt="../../_images/a917ac31415801f4ae6bda66fd2bf501f0083989f8f8f975450419ed9e3645f4.png" src="../../_images/a917ac31415801f4ae6bda66fd2bf501f0083989f8f8f975450419ed9e3645f4.png" />
+<img alt="../../_images/679aae3d78cc4b07f420d9773de1008e9b5c1d434cb543b8295b31635e174c58.png" src="../../_images/679aae3d78cc4b07f420d9773de1008e9b5c1d434cb543b8295b31635e174c58.png" />
 </div>
 </div>
 <p>We will now use the FFT function in numpy to calculate the Discrete Fourier Transform of the climatological SLP anomaly, <code class="docutils literal notranslate"><span class="pre">ps_anom</span></code>.</p>
@@ -611,7 +611,7 @@ y(t) = \frac{1}{2\pi}\int_{-\infty}^{\infty} Y(\omega)e^{i\omega t} \,d\omega
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(-5.0, 370.0)
 </pre></div>
 </div>
-<img alt="../../_images/a90578248fd2ec84fd201dec122313f5c64890b117211986c3fc1f13c7f49387.png" src="../../_images/a90578248fd2ec84fd201dec122313f5c64890b117211986c3fc1f13c7f49387.png" />
+<img alt="../../_images/0389e997fe901b31ea98aaa375fba44f2d383eeadf63cfa333218afcc953d881.png" src="../../_images/0389e997fe901b31ea98aaa375fba44f2d383eeadf63cfa333218afcc953d881.png" />
 </div>
 </div>
 <p>What do we get?</p>
@@ -639,7 +639,7 @@ y(t) = \frac{1}{2\pi}\int_{-\infty}^{\infty} Y(\omega)e^{i\omega t} \,d\omega
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0.5, 1.0, &#39;Normalized Discrete Power Spectrum&#39;)
 </pre></div>
 </div>
-<img alt="../../_images/6df22606ecfb3fe051247b2adbffeef4d14d5ea1a06d09153f5a69b95a382818.png" src="../../_images/6df22606ecfb3fe051247b2adbffeef4d14d5ea1a06d09153f5a69b95a382818.png" />
+<img alt="../../_images/761fc3092df5efc62a5bdb4027cea38b7e6c44dc908080140bae820770aaa7ee.png" src="../../_images/761fc3092df5efc62a5bdb4027cea38b7e6c44dc908080140bae820770aaa7ee.png" />
 </div>
 </div>
 <p>We see that the most power is contained in the 1-2 cycles per year range, i.e. the annual cycle and the semi-annual cycle.</p>
@@ -667,10 +667,10 @@ y(t) = \frac{1}{2\pi}\int_{-\infty}^{\infty} Y(\omega)e^{i\omega t} \,d\omega
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x177cb4250&gt;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x17a4f74c0&gt;]
 </pre></div>
 </div>
-<img alt="../../_images/0672f69779da80f03e8510f78861e794ec6760fc975fbd097b6c953983164019.png" src="../../_images/0672f69779da80f03e8510f78861e794ec6760fc975fbd097b6c953983164019.png" />
+<img alt="../../_images/9d12886d6070c157a611dc929dacff8f6da9f4b8f1d36bf0a903f9cbc5f467f8.png" src="../../_images/9d12886d6070c157a611dc929dacff8f6da9f4b8f1d36bf0a903f9cbc5f467f8.png" />
 </div>
 </div>
 <p>In essence, we want to retain the power at the lowest frequencies, but set the power of the higher frequencies to zero. No problem - we can do this manually in python.</p>
@@ -733,10 +733,10 @@ y(t) = \frac{1}{2\pi}\int_{-\infty}^{\infty} Y(\omega)e^{i\omega t} \,d\omega
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x177cd5e10&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x17a58b730&gt;
 </pre></div>
 </div>
-<img alt="../../_images/177c40cc3a7e2ab841fd2f1634eed12e0545ae34a57493c232d97ef7e4248a5c.png" src="../../_images/177c40cc3a7e2ab841fd2f1634eed12e0545ae34a57493c232d97ef7e4248a5c.png" />
+<img alt="../../_images/e6d4be68824a8efaeaea73fe63218fa85aeb7b8143113849cbfe5bf83b9cf0ec.png" src="../../_images/e6d4be68824a8efaeaea73fe63218fa85aeb7b8143113849cbfe5bf83b9cf0ec.png" />
 </div>
 </div>
 <p>As you can see, converting to the frequency domain allows for greater specificity in terms of how we filter time series data. We can plot the power spectrum, identify and isolate frequencies that contain varying degrees of power and then use the inverse fourier transform to convert back to the time domain.</p>

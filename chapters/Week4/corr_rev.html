@@ -518,7 +518,7 @@ r &amp; = \pm\sqrt{r^2}\\
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-0.009561526823633124
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-0.00952363602385728
 </pre></div>
 </div>
 </div>
@@ -561,7 +561,7 @@ r &amp; = \pm\sqrt{r^2}\\
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/01bef4174fffe59721c8a0d01d1a0d755e0a5c3273854d25c73aaef1546ceaf3.png" src="../../_images/01bef4174fffe59721c8a0d01d1a0d755e0a5c3273854d25c73aaef1546ceaf3.png" />
+<img alt="../../_images/94452c68659fbc4ad43b003c2970bc3d8c321b500b51fa4f382401831436526b.png" src="../../_images/94452c68659fbc4ad43b003c2970bc3d8c321b500b51fa4f382401831436526b.png" />
 </div>
 </div>
 <p>So, we see that we get a distribution of sampling correlation coefficients that looks quite <em>normal</em>.</p>
@@ -604,6 +604,14 @@ r &amp; = \pm\sqrt{r^2}\\
 </div>
 </div>
 </details>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/var/folders/m0/hylw02j53db4s63gklflxs800000gn/T/ipykernel_66832/3801573073.py:16: DeprecationWarning: Conversion of an array with ndim &gt; 0 to a scalar is deprecated, and will error in future. Ensure you extract a single element from your array before performing this operation. (Deprecated NumPy 1.25.)
+  x[0,ia] = np.random.normal(0.,1.,size=1)
+/var/folders/m0/hylw02j53db4s63gklflxs800000gn/T/ipykernel_66832/3801573073.py:21: DeprecationWarning: Conversion of an array with ndim &gt; 0 to a scalar is deprecated, and will error in future. Ensure you extract a single element from your array before performing this operation. (Deprecated NumPy 1.25.)
+  x[it+1,ia] = a*x[it,ia] + b*np.random.normal(size=1) #this is equivalent to the red noise equation above
+</pre></div>
+</div>
+</div>
 </div>
 <p>In order to generate distributions of the <strong>sampling</strong> correlation coefficients, we will add a bit of noise to the time series to represent the variability that we would likely see in nature.</p>
 <p>Next, we will compute the correlation between samples of these noisy time series 50,000 times to obtain distributions of the sampling correlation coefficient for each value of the population correlation (0.1,0.4,0.7 and 0.9). I have hidden the code again - the <em>key message</em> is in the histograms below.</p>
@@ -638,29 +646,64 @@ r &amp; = \pm\sqrt{r^2}\\
 <span class="g g-Whitespace">     </span><span class="mi">11</span>     <span class="n">start</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">9000</span><span class="p">)</span>
 <span class="ne">---&gt; </span><span class="mi">12</span>     <span class="n">r</span><span class="p">[</span><span class="n">j</span><span class="p">,</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">st</span><span class="o">.</span><span class="n">pearsonr</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="n">start</span><span class="p">:</span><span class="n">start</span><span class="o">+</span><span class="n">N</span><span class="p">,</span><span class="n">j</span><span class="p">]</span><span class="o">+</span><span class="n">noise</span><span class="p">,</span> <span class="n">x</span><span class="p">[</span><span class="n">start</span><span class="o">+</span><span class="mi">1</span><span class="p">:</span><span class="n">start</span><span class="o">+</span><span class="n">N</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="n">j</span><span class="p">]</span><span class="o">+</span><span class="n">noise</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
 
-<span class="nn">File /opt/anaconda3/envs/ccia/lib/python3.10/site-packages/scipy/stats/_stats_py.py:4782,</span> in <span class="ni">pearsonr</span><span class="nt">(x, y, alternative, method)</span>
-<span class="g g-Whitespace">   </span><span class="mi">4778</span>     <span class="n">result</span> <span class="o">=</span> <span class="n">PearsonRResult</span><span class="p">(</span><span class="n">statistic</span><span class="o">=</span><span class="n">r</span><span class="p">,</span> <span class="n">pvalue</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="n">n</span><span class="p">,</span>
-<span class="g g-Whitespace">   </span><span class="mi">4779</span>                             <span class="n">alternative</span><span class="o">=</span><span class="n">alternative</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">y</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">4780</span>     <span class="k">return</span> <span class="n">result</span>
-<span class="ne">-&gt; </span><span class="mi">4782</span> <span class="n">xmean</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">dtype</span><span class="o">=</span><span class="n">dtype</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">4783</span> <span class="n">ymean</span> <span class="o">=</span> <span class="n">y</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">dtype</span><span class="o">=</span><span class="n">dtype</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">4785</span> <span class="c1"># By using `astype(dtype)`, we ensure that the intermediate calculations</span>
-<span class="g g-Whitespace">   </span><span class="mi">4786</span> <span class="c1"># use at least 64 bit floating point.</span>
+<span class="nn">File /opt/anaconda3/envs/ccia/lib/python3.10/site-packages/scipy/stats/_stats_py.py:4814,</span> in <span class="ni">pearsonr</span><span class="nt">(x, y, alternative, method)</span>
+<span class="g g-Whitespace">   </span><span class="mi">4811</span> <span class="c1"># As explained in the docstring, the distribution of `r` under the null</span>
+<span class="g g-Whitespace">   </span><span class="mi">4812</span> <span class="c1"># hypothesis is the beta distribution on (-1, 1) with a = b = n/2 - 1.</span>
+<span class="g g-Whitespace">   </span><span class="mi">4813</span> <span class="n">ab</span> <span class="o">=</span> <span class="n">n</span><span class="o">/</span><span class="mi">2</span> <span class="o">-</span> <span class="mi">1</span>
+<span class="ne">-&gt; </span><span class="mi">4814</span> <span class="n">dist</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">beta</span><span class="p">(</span><span class="n">ab</span><span class="p">,</span> <span class="n">ab</span><span class="p">,</span> <span class="n">loc</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">4815</span> <span class="n">pvalue</span> <span class="o">=</span> <span class="n">_get_pvalue</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">dist</span><span class="p">,</span> <span class="n">alternative</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">4817</span> <span class="k">return</span> <span class="n">PearsonRResult</span><span class="p">(</span><span class="n">statistic</span><span class="o">=</span><span class="n">r</span><span class="p">,</span> <span class="n">pvalue</span><span class="o">=</span><span class="n">pvalue</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="n">n</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">4818</span>                       <span class="n">alternative</span><span class="o">=</span><span class="n">alternative</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">y</span><span class="p">)</span>
 
-<span class="nn">File /opt/anaconda3/envs/ccia/lib/python3.10/site-packages/numpy/core/_methods.py:168,</span> in <span class="ni">_mean</span><span class="nt">(a, axis, dtype, out, keepdims, where)</span>
-<span class="g g-Whitespace">    </span><span class="mi">164</span> <span class="n">arr</span> <span class="o">=</span> <span class="n">asanyarray</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">166</span> <span class="n">is_float16_result</span> <span class="o">=</span> <span class="kc">False</span>
-<span class="ne">--&gt; </span><span class="mi">168</span> <span class="n">rcount</span> <span class="o">=</span> <span class="n">_count_reduce_items</span><span class="p">(</span><span class="n">arr</span><span class="p">,</span> <span class="n">axis</span><span class="p">,</span> <span class="n">keepdims</span><span class="o">=</span><span class="n">keepdims</span><span class="p">,</span> <span class="n">where</span><span class="o">=</span><span class="n">where</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">169</span> <span class="k">if</span> <span class="n">rcount</span> <span class="o">==</span> <span class="mi">0</span> <span class="k">if</span> <span class="n">where</span> <span class="ow">is</span> <span class="kc">True</span> <span class="k">else</span> <span class="n">umr_any</span><span class="p">(</span><span class="n">rcount</span> <span class="o">==</span> <span class="mi">0</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-<span class="g g-Whitespace">    </span><span class="mi">170</span>     <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="s2">&quot;Mean of empty slice.&quot;</span><span class="p">,</span> <span class="ne">RuntimeWarning</span><span class="p">,</span> <span class="n">stacklevel</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="nn">File /opt/anaconda3/envs/ccia/lib/python3.10/site-packages/scipy/stats/_distn_infrastructure.py:851,</span> in <span class="ni">rv_generic.__call__</span><span class="nt">(self, *args, **kwds)</span>
+<span class="g g-Whitespace">    </span><span class="mi">850</span> <span class="k">def</span><span class="w"> </span><span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwds</span><span class="p">):</span>
+<span class="ne">--&gt; </span><span class="mi">851</span>     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">freeze</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwds</span><span class="p">)</span>
 
-<span class="nn">File /opt/anaconda3/envs/ccia/lib/python3.10/site-packages/numpy/core/_methods.py:71,</span> in <span class="ni">_count_reduce_items</span><span class="nt">(arr, axis, keepdims, where)</span>
-<span class="g g-Whitespace">     </span><span class="mi">68</span> <span class="k">if</span> <span class="n">where</span> <span class="ow">is</span> <span class="kc">True</span><span class="p">:</span>
-<span class="g g-Whitespace">     </span><span class="mi">69</span>     <span class="c1"># no boolean mask given, calculate items according to axis</span>
-<span class="g g-Whitespace">     </span><span class="mi">70</span>     <span class="k">if</span> <span class="n">axis</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-<span class="ne">---&gt; </span><span class="mi">71</span>         <span class="n">axis</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">arr</span><span class="o">.</span><span class="n">ndim</span><span class="p">))</span>
-<span class="g g-Whitespace">     </span><span class="mi">72</span>     <span class="k">elif</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">axis</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">):</span>
-<span class="g g-Whitespace">     </span><span class="mi">73</span>         <span class="n">axis</span> <span class="o">=</span> <span class="p">(</span><span class="n">axis</span><span class="p">,)</span>
+<span class="nn">File /opt/anaconda3/envs/ccia/lib/python3.10/site-packages/scipy/stats/_distn_infrastructure.py:846,</span> in <span class="ni">rv_generic.freeze</span><span class="nt">(self, *args, **kwds)</span>
+<span class="g g-Whitespace">    </span><span class="mi">831</span><span class="w"> </span><span class="sd">&quot;&quot;&quot;Freeze the distribution for the given arguments.</span>
+<span class="g g-Whitespace">    </span><span class="mi">832</span><span class="sd"> </span>
+<span class="g g-Whitespace">    </span><span class="mi">833</span><span class="sd"> Parameters</span>
+<span class="sd">   (...)</span>
+<span class="g g-Whitespace">    </span><span class="mi">843</span><span class="sd"> </span>
+<span class="g g-Whitespace">    </span><span class="mi">844</span><span class="sd"> &quot;&quot;&quot;</span>
+<span class="g g-Whitespace">    </span><span class="mi">845</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">rv_continuous</span><span class="p">):</span>
+<span class="ne">--&gt; </span><span class="mi">846</span>     <span class="k">return</span> <span class="n">rv_continuous_frozen</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwds</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">847</span> <span class="k">else</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">848</span>     <span class="k">return</span> <span class="n">rv_discrete_frozen</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwds</span><span class="p">)</span>
+
+<span class="nn">File /opt/anaconda3/envs/ccia/lib/python3.10/site-packages/scipy/stats/_distn_infrastructure.py:465,</span> in <span class="ni">rv_frozen.__init__</span><span class="nt">(self, dist, *args, **kwds)</span>
+<span class="g g-Whitespace">    </span><span class="mi">462</span> <span class="bp">self</span><span class="o">.</span><span class="n">kwds</span> <span class="o">=</span> <span class="n">kwds</span>
+<span class="g g-Whitespace">    </span><span class="mi">464</span> <span class="c1"># create a new instance</span>
+<span class="ne">--&gt; </span><span class="mi">465</span> <span class="bp">self</span><span class="o">.</span><span class="n">dist</span> <span class="o">=</span> <span class="n">dist</span><span class="o">.</span><span class="vm">__class__</span><span class="p">(</span><span class="o">**</span><span class="n">dist</span><span class="o">.</span><span class="n">_updated_ctor_param</span><span class="p">())</span>
+<span class="g g-Whitespace">    </span><span class="mi">467</span> <span class="n">shapes</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">dist</span><span class="o">.</span><span class="n">_parse_args</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwds</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">468</span> <span class="bp">self</span><span class="o">.</span><span class="n">a</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">b</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">dist</span><span class="o">.</span><span class="n">_get_support</span><span class="p">(</span><span class="o">*</span><span class="n">shapes</span><span class="p">)</span>
+
+<span class="nn">File /opt/anaconda3/envs/ccia/lib/python3.10/site-packages/scipy/stats/_distn_infrastructure.py:1850,</span> in <span class="ni">rv_continuous.__init__</span><span class="nt">(self, momtype, a, b, xtol, badvalue, name, longname, shapes, seed)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1848</span> <span class="k">else</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">1849</span>     <span class="n">dct</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">distcont</span><span class="p">)</span>
+<span class="ne">-&gt; </span><span class="mi">1850</span>     <span class="bp">self</span><span class="o">.</span><span class="n">_construct_doc</span><span class="p">(</span><span class="n">docdict</span><span class="p">,</span> <span class="n">dct</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">))</span>
+
+<span class="nn">File /opt/anaconda3/envs/ccia/lib/python3.10/site-packages/scipy/stats/_distn_infrastructure.py:812,</span> in <span class="ni">rv_generic._construct_doc</span><span class="nt">(self, docdict, shapes_vals)</span>
+<span class="g g-Whitespace">    </span><span class="mi">810</span>     <span class="bp">self</span><span class="o">.</span><span class="vm">__doc__</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__doc__</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%(shapes)s</span><span class="s2">, &quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">811</span> <span class="k">try</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">812</span>     <span class="bp">self</span><span class="o">.</span><span class="vm">__doc__</span> <span class="o">=</span> <span class="n">doccer</span><span class="o">.</span><span class="n">docformat</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="vm">__doc__</span><span class="p">,</span> <span class="n">tempdict</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">813</span> <span class="k">except</span> <span class="ne">TypeError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">814</span>     <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;Unable to construct docstring for &quot;</span>
+<span class="g g-Whitespace">    </span><span class="mi">815</span>                     <span class="sa">f</span><span class="s2">&quot;distribution </span><span class="se">\&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="se">\&quot;</span><span class="s2">: </span><span class="si">{</span><span class="nb">repr</span><span class="p">(</span><span class="n">e</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span> <span class="kn">from</span><span class="w"> </span><span class="nn">e</span>
+
+<span class="nn">File /opt/anaconda3/envs/ccia/lib/python3.10/site-packages/scipy/_lib/doccer.py:56,</span> in <span class="ni">docformat</span><span class="nt">(docstring, docdict)</span>
+<span class="g g-Whitespace">     </span><span class="mi">54</span>     <span class="n">icount</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="g g-Whitespace">     </span><span class="mi">55</span> <span class="k">else</span><span class="p">:</span>
+<span class="ne">---&gt; </span><span class="mi">56</span>     <span class="n">icount</span> <span class="o">=</span> <span class="n">indentcount_lines</span><span class="p">(</span><span class="n">lines</span><span class="p">[</span><span class="mi">1</span><span class="p">:])</span>
+<span class="g g-Whitespace">     </span><span class="mi">57</span> <span class="n">indent</span> <span class="o">=</span> <span class="s1">&#39; &#39;</span> <span class="o">*</span> <span class="n">icount</span>
+<span class="g g-Whitespace">     </span><span class="mi">58</span> <span class="c1"># Insert this indent to dictionary docstrings</span>
+
+<span class="nn">File /opt/anaconda3/envs/ccia/lib/python3.10/site-packages/scipy/_lib/doccer.py:198,</span> in <span class="ni">indentcount_lines</span><span class="nt">(lines)</span>
+<span class="g g-Whitespace">    </span><span class="mi">196</span> <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">lines</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">197</span>     <span class="n">stripped</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">lstrip</span><span class="p">()</span>
+<span class="ne">--&gt; </span><span class="mi">198</span>     <span class="k">if</span> <span class="n">stripped</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">199</span>         <span class="n">indentno</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">indentno</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">line</span><span class="p">)</span> <span class="o">-</span> <span class="nb">len</span><span class="p">(</span><span class="n">stripped</span><span class="p">))</span>
+<span class="g g-Whitespace">    </span><span class="mi">200</span> <span class="k">if</span> <span class="n">indentno</span> <span class="o">==</span> <span class="n">sys</span><span class="o">.</span><span class="n">maxsize</span><span class="p">:</span>
 
 <span class="ne">KeyboardInterrupt</span>: 
 </pre></div>

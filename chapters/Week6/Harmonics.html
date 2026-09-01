@@ -589,10 +589,10 @@ y(t) = A_0 + \sum_{k=1}^{N/2} A_k\text{cos}(2\pi k \frac{t}{T}) +  \sum_{k=1}^{N
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x113a61f00&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x1160a9ba0&gt;
 </pre></div>
 </div>
-<img alt="../../_images/9faa2b9b0b22e645c61c1e0c3fef75c4bd59104659a06fcd3fb8baced294c24e.png" src="../../_images/9faa2b9b0b22e645c61c1e0c3fef75c4bd59104659a06fcd3fb8baced294c24e.png" />
+<img alt="../../_images/c8a561da92983d3d4d41eab884c3979fc3d652dae2639e80bdb9a972e3f7f85b.png" src="../../_images/c8a561da92983d3d4d41eab884c3979fc3d652dae2639e80bdb9a972e3f7f85b.png" />
 </div>
 </div>
 <p>What happens when <span class="math notranslate nohighlight">\(k\)</span> = <span class="math notranslate nohighlight">\(N\)</span>/2, the Nyquist frequency? The sine wave component becomes zero at all times.</p>
@@ -680,7 +680,7 @@ This means that the Nyquist frequency for the low-frequency sampling rate is 0.5
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/bfd19b17c0b4dfe130490e338e24425da4f222121eec7045bc65edd6fe1ca7ee.png" src="../../_images/bfd19b17c0b4dfe130490e338e24425da4f222121eec7045bc65edd6fe1ca7ee.png" />
+<img alt="../../_images/9abf0ec8c63b0c647979352932fe84eb07da00a244616bc83cf4c069184cec19.png" src="../../_images/9abf0ec8c63b0c647979352932fe84eb07da00a244616bc83cf4c069184cec19.png" />
 </div>
 </div>
 <p>What happens when <span class="math notranslate nohighlight">\(k\)</span> becomes larger than the Nyquist wavenumber, 5? In other words, what happens if we have higher frequencies in our data? In this case, they will get <em>aliased</em> onto lower frequencies (e.g. when <span class="math notranslate nohighlight">\(k\)</span> = 7 in the above example). This can be a problem when there is a large amount of variance in frequencies higher than the Nyquist frequency. We will revisit the concept of aliasing in the next section.</p>
@@ -758,7 +758,7 @@ This means that the Nyquist frequency for the low-frequency sampling rate is 0.5
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/346adeeedcd797a2de36bc82456dab1ccc216e4034f43942bf72506a63c04db4.png" src="../../_images/346adeeedcd797a2de36bc82456dab1ccc216e4034f43942bf72506a63c04db4.png" />
+<img alt="../../_images/bb588fdb388b462396f7fb65561b50fa2aba6223a949daca5046fc8ddcd67e3f.png" src="../../_images/bb588fdb388b462396f7fb65561b50fa2aba6223a949daca5046fc8ddcd67e3f.png" />
 </div>
 </div>
 <p>We can now simply substract this harmonic fit from the original time series to filter out the seasonal cycle.</p>
@@ -784,7 +784,7 @@ This means that the Nyquist frequency for the low-frequency sampling rate is 0.5
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/9d50dfb3cd679074b01e21b5ff8eb41660b7b365df52bab2312ab4e22285e7ef.png" src="../../_images/9d50dfb3cd679074b01e21b5ff8eb41660b7b365df52bab2312ab4e22285e7ef.png" />
+<img alt="../../_images/fb74bf5795fbe7b28997a8ec7763684c43e274e80036b2705f5c2c3d1d4ab370.png" src="../../_images/fb74bf5795fbe7b28997a8ec7763684c43e274e80036b2705f5c2c3d1d4ab370.png" />
 </div>
 </div>
 <p>Note, that the harmonics are fit to the time series with the long-term mean removed (this is the <code class="docutils literal notranslate"><span class="pre">numpolyterms</span> <span class="pre">=</span> <span class="pre">0</span></code> parameter). Thus, when we subtract the seasonal cycle, we get an anomaly that fluctuates around the long-term mean.</p>

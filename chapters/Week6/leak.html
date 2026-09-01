@@ -537,7 +537,7 @@ document.write(`
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0.5, 1.0, &#39;Sine Wave&#39;)
 </pre></div>
 </div>
-<img alt="../../_images/37079a06ce638f8825622b9b7fcff7f723a8f22e0229c80fef40509df8d3262b.png" src="../../_images/37079a06ce638f8825622b9b7fcff7f723a8f22e0229c80fef40509df8d3262b.png" />
+<img alt="../../_images/f61371e907ed0355b71ec09d786ac0b6cc1a61716dab680af2fb45ecf394c757.png" src="../../_images/f61371e907ed0355b71ec09d786ac0b6cc1a61716dab680af2fb45ecf394c757.png" />
 </div>
 </div>
 <p>Here, we have 4 complete cycles of our sine wave. Now, let’s compute the discrete power spectrum of this sine wave.</p>
@@ -570,7 +570,7 @@ document.write(`
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0.5, 1.0, &#39;Discrete Power Spectrum for Un-windowed Sine Wave&#39;)
 </pre></div>
 </div>
-<img alt="../../_images/b274566a395941823456a15745feda8b628df1213a3d16579f5b8d41f5325855.png" src="../../_images/b274566a395941823456a15745feda8b628df1213a3d16579f5b8d41f5325855.png" />
+<img alt="../../_images/6bd6e20a7ef1a9082e6cb44db84a1a7bce1fdd519e7016855715c85e692124ad.png" src="../../_images/6bd6e20a7ef1a9082e6cb44db84a1a7bce1fdd519e7016855715c85e692124ad.png" />
 </div>
 </div>
 <p>We get a single spectral peak corresponding to the frequency of our sine wave.</p>
@@ -613,7 +613,7 @@ document.write(`
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0.5, 1.0, &#39;Also a Windowed Sine Wave&#39;)
 </pre></div>
 </div>
-<img alt="../../_images/a03d3d331c66bfc07925c7b6ebadb9134e1f89fee53157923e0c839fb0348386.png" src="../../_images/a03d3d331c66bfc07925c7b6ebadb9134e1f89fee53157923e0c839fb0348386.png" />
+<img alt="../../_images/ae4cf1200b6f280d414d05388345cc45efdc4d750308ba71d0207aa799650ae9.png" src="../../_images/ae4cf1200b6f280d414d05388345cc45efdc4d750308ba71d0207aa799650ae9.png" />
 </div>
 </div>
 <p>To demonstrate what spectral leakage is, we will now compute the discrete power spectrum of the windowed sine wave to see what happens.</p>
@@ -645,7 +645,7 @@ document.write(`
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0.5, 1.0, &#39;Discrete Power Spectrum for Windowed Sine Wave&#39;)
 </pre></div>
 </div>
-<img alt="../../_images/6ec1ac3511eff05cd3675b992fa02413299ce105155abd05c1e58bc5b4461893.png" src="../../_images/6ec1ac3511eff05cd3675b992fa02413299ce105155abd05c1e58bc5b4461893.png" />
+<img alt="../../_images/b6387a3e85a02dc859bd0233ceb5acf6b48be263e24cbade4f3ff5831e2fe866.png" src="../../_images/b6387a3e85a02dc859bd0233ceb5acf6b48be263e24cbade4f3ff5831e2fe866.png" />
 </div>
 </div>
 <p>What happened? Our Fourier Transform is not able to clearly isolate the sine wave frequency as the only frequency. This is the essense of spectral leakage and it is problematic because it can introduce frequencies in time series that are not actually there. In order to better understand how windowing can result in spectral leakage, we need learn a bit about <strong>convolution</strong>.</p>
@@ -746,7 +746,7 @@ Y(\omega) = \int_{-\infty}^{\infty} y(t)e^{-i\omega t} \,dt
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0.5, 1.0, &#39;Discrete Power Spectrum for Boxcar Function&#39;)
 </pre></div>
 </div>
-<img alt="../../_images/72e0e97fc0327318e11a46c3be2ba41d9b5c59bc1dbd38c23ca09b2fabb09c96.png" src="../../_images/72e0e97fc0327318e11a46c3be2ba41d9b5c59bc1dbd38c23ca09b2fabb09c96.png" />
+<img alt="../../_images/e63e3750af94970843ddc6a4feef77d1a2c404fcb3b64c728fd3f788ca1e9664.png" src="../../_images/e63e3750af94970843ddc6a4feef77d1a2c404fcb3b64c728fd3f788ca1e9664.png" />
 </div>
 </div>
 <p>We can test the convolution theorem, by convolving the two individual Fourier Transforms of <code class="docutils literal notranslate"><span class="pre">y1</span></code> and <code class="docutils literal notranslate"><span class="pre">bxcr</span></code> and see if we get the Fourier Transform of their product, <code class="docutils literal notranslate"><span class="pre">y2</span></code>. Note, that the <a class="reference external" href="http://greenteapress.com/thinkdsp/html/thinkdsp009.html">most efficient way to do this convolution in python and to avoid issues with zero-padding using the <code class="docutils literal notranslate"><span class="pre">np.convolve</span></code> function, etc.</a> is to apply the <a class="reference external" href="https://en.wikipedia.org/wiki/Convolution_theorem#Convolution_theorem_for_inverse_Fourier_transform">convolution Theorem for the Inverse Fourier Transform</a>.</p>
@@ -777,7 +777,7 @@ Y(\omega) = \int_{-\infty}^{\infty} y(t)e^{-i\omega t} \,dt
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0.5, 1.0, &#39;Discrete Power Spectrum for Boxcar Function&#39;)
 </pre></div>
 </div>
-<img alt="../../_images/167c755a9044a919436a7477123647252b350e618a760f8650d4ea2a1a32bbe7.png" src="../../_images/167c755a9044a919436a7477123647252b350e618a760f8650d4ea2a1a32bbe7.png" />
+<img alt="../../_images/f1b38147f450c374cd41b7bf14871ddde56804aca0bb25c74c41e40e7842f4a7.png" src="../../_images/f1b38147f450c374cd41b7bf14871ddde56804aca0bb25c74c41e40e7842f4a7.png" />
 </div>
 </div>
 <p>We see that we can recover the windowed discrete power spectrum of <code class="docutils literal notranslate"><span class="pre">y2</span></code> when we convolve the Fourier Transforms of the individual time series, <code class="docutils literal notranslate"><span class="pre">y1</span></code> and <code class="docutils literal notranslate"><span class="pre">bxcr</span></code>.</p>
@@ -851,10 +851,10 @@ sinc(x) = \frac{\text{sin}(\pi x)}{\pi x}
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x17c1c49a0&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x178945930&gt;
 </pre></div>
 </div>
-<img alt="../../_images/9ef6ff0576db61c375ac32fe366c231f958ddf117a047cd15a8292cfec44a6d5.png" src="../../_images/9ef6ff0576db61c375ac32fe366c231f958ddf117a047cd15a8292cfec44a6d5.png" />
+<img alt="../../_images/2fe6c0d7a577d3f97d01a954de525e8505afc50027d6cd410dbca6d430f03ed3.png" src="../../_images/2fe6c0d7a577d3f97d01a954de525e8505afc50027d6cd410dbca6d430f03ed3.png" />
 </div>
 </div>
 <p>Recall why we are looking at this: The Fourier Transform of a windowed time series corresponds to the convolution of the individual Fourier Transforms (convolution theorem!). Thus, the above plot shows the function that is being <em>convolved</em> with the pure periodic signal in our time series leading to spectral leakage. Remember that a convolution can be thought of as a sliding weighted average.</p>
@@ -920,10 +920,10 @@ h(t) = \frac{1}{2}\left(1-\text{cos}(\frac{2\pi t}{T})\right) \quad \text{when $
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x17c2fe7a0&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x178de2dd0&gt;
 </pre></div>
 </div>
-<img alt="../../_images/bc3045eb1c6a3360e04f8aa1dcefc84c253571c404688bc0154b38bf418ff26d.png" src="../../_images/bc3045eb1c6a3360e04f8aa1dcefc84c253571c404688bc0154b38bf418ff26d.png" />
+<img alt="../../_images/6d93d07344c9a9388e06ec82296e291c0bd97c8b8d163b9ce8b4e5e42015ce56.png" src="../../_images/6d93d07344c9a9388e06ec82296e291c0bd97c8b8d163b9ce8b4e5e42015ce56.png" />
 </div>
 </div>
 <section id="windows-and-degress-of-freedom">
@@ -1017,7 +1017,7 @@ DOF = \frac{N}{M^*}f_w
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/23761c5f7cab8a6107799fe90db0d185b7d3c135ab849bbbf021ceb25a4e9c89.png" src="../../_images/23761c5f7cab8a6107799fe90db0d185b7d3c135ab849bbbf021ceb25a4e9c89.png" />
+<img alt="../../_images/904560c1cd377cba7090187fe877f7af7c30e281acc381b88b111cb03bc14c56.png" src="../../_images/904560c1cd377cba7090187fe877f7af7c30e281acc381b88b111cb03bc14c56.png" />
 </div>
 </div>
 <p>You should notice that the spectral peak gets wider as we increase the number of chunks. This is because we are losing information as the time segments get shorter; however, the WOSA method is still able to identify the correct frequency for the peak and as we increase the number of chunks, the peak corresponding to the periodic frequency in our data emerges as the only significant one - reducing spectral leakage.</p>

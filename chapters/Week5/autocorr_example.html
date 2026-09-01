@@ -578,7 +578,7 @@ document.write(`
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0.5, 1.0, &#39;Seasonal TLT Time Series (1980-2019)&#39;)
 </pre></div>
 </div>
-<img alt="../../_images/eee1b9698a7b0f94eef391a9f7ffc5542cce2f376399ee7d84014df7ecfcbbe7.png" src="../../_images/eee1b9698a7b0f94eef391a9f7ffc5542cce2f376399ee7d84014df7ecfcbbe7.png" />
+<img alt="../../_images/844833b34f514992c9a8570f9142e4b823c4bb34d0f5aedb1e05f2f13a097fec.png" src="../../_images/844833b34f514992c9a8570f9142e4b823c4bb34d0f5aedb1e05f2f13a097fec.png" />
 </div>
 </div>
 <p>Let’s determine if the trend is significantly different from zero, i.e. whether we have a positive trend. Recall that we can use the <code class="docutils literal notranslate"><span class="pre">st.linregress()</span></code> to get the standard error of the slope, which we can use to calculate the 95% confidence interval on the slope.</p>
@@ -640,7 +640,7 @@ document.write(`
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0.5, 0, &#39;Lag&#39;)
 </pre></div>
 </div>
-<img alt="../../_images/976797b9280fb6a2e20f3618a2b5517f24853af268070834cfff8025c7e7f720.png" src="../../_images/976797b9280fb6a2e20f3618a2b5517f24853af268070834cfff8025c7e7f720.png" />
+<img alt="../../_images/ce4f2b466381f489933503212d70f204740283280b92e85175df021863c87964.png" src="../../_images/ce4f2b466381f489933503212d70f204740283280b92e85175df021863c87964.png" />
 </div>
 </div>
 <p>What do you see? We clearly have high autocorrelation at non-zero lags. This autocorrelation in the temperatures ends up in our residuals:</p>
@@ -684,10 +684,10 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x176c4e020&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x179cdbf10&gt;
 </pre></div>
 </div>
-<img alt="../../_images/9bc48eb5ce0f18249275be83bba879ac7d46066eb96faf24b04d794f966db98e.png" src="../../_images/9bc48eb5ce0f18249275be83bba879ac7d46066eb96faf24b04d794f966db98e.png" />
+<img alt="../../_images/db2279c900a8bced6aa9a0d1212cd02c0bb2568276c1b775eb9b25239eb5a184.png" src="../../_images/db2279c900a8bced6aa9a0d1212cd02c0bb2568276c1b775eb9b25239eb5a184.png" />
 </div>
 </div>
 <p>We can definitely see that removing the trend in the data (<code class="docutils literal notranslate"><span class="pre">T_seasons</span> <span class="pre">-</span> <span class="pre">T_hat</span></code>) has weakened the autocorrelation at non-zero lags. However, the autocorrelation function is clearly not zero - some autocorrelation remains.</p>
