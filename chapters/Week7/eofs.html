@@ -243,6 +243,10 @@
 <li class="toctree-l2"><a class="reference internal" href="linalg.html">Review of Linear Algebra</a></li>
 <li class="toctree-l2"><a class="reference internal" href="eig.html">Eigenanalysis</a></li>
 <li class="toctree-l2 current active"><a class="current reference internal" href="#">EOFs via Eigenanalysis</a></li>
+
+
+
+
 <li class="toctree-l2"><a class="reference internal" href="naoeof.html">EOFs with Real Data</a></li>
 </ul>
 </details></li>
@@ -444,14 +448,16 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#setting-up-the-problem">Setting up the Problem…</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#maximizing-the-resemblance-of-mathbf-e-1-onto-x-eigenanalysis-of-c">Maximizing the resemblance of <span class="math notranslate nohighlight">\(\mathbf{e_1}\)</span> onto <strong>X</strong> = Eigenanalysis of <strong>C</strong>!</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#key-points">Key Points:</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">EOFs via Eigenanalysis</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#setting-up-the-problem">Setting up the Problem…</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#maximizing-the-resemblance-of-mathbf-e-1-onto-x-eigenanalysis-of-c">Maximizing the resemblance of <span class="math notranslate nohighlight">\(\mathbf{e_1}\)</span> onto <strong>X</strong> = Eigenanalysis of <strong>C</strong>!</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#key-points">Key Points:</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#principal-component-time-series-change-of-basis">Principal Component Time Series = Change of Basis</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#steps-for-computing-eofs-pcs">Steps for Computing EOFs/PCs</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#principal-component-time-series-change-of-basis">Principal Component Time Series = Change of Basis</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#steps-for-computing-eofs-pcs">Steps for Computing EOFs/PCs</a></li>
 </ul>
+
             </nav>
         </div>
     </div>
@@ -462,7 +468,7 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="eofs-via-eigenanalysis">
+  <section id="eofs-via-eigenanalysis">
 <h1>EOFs via Eigenanalysis<a class="headerlink" href="#eofs-via-eigenanalysis" title="Link to this heading">#</a></h1>
 <p>In this section, we will discuss why an eigenanalysis of the covariance matrix (PCA or empirical orthogonal functions (EOFs) analysis) is a sensible approach to identifying patterns of variability in climate and geophysical data. There are many other approaches, but in this course, we will restrict ourselfves to PCA.</p>
 <p>First, a few notes on terminology:</p>
@@ -473,13 +479,14 @@ document.write(`
 <li><p>PCA is the more generally used term, and just implies converting a matrix into sets of linearly uncorrelated variables, called principle components.</p></li>
 <li><p>EOF analysis normally refers to finding the principle components that maximize the variance explained (i.e., a subset of all PC’s)</p></li>
 </ul>
+</section>
 <section id="setting-up-the-problem">
-<h2>Setting up the Problem…<a class="headerlink" href="#setting-up-the-problem" title="Link to this heading">#</a></h2>
+<h1>Setting up the Problem…<a class="headerlink" href="#setting-up-the-problem" title="Link to this heading">#</a></h1>
 <p>Say we have a data matrix <strong>X</strong> which is <span class="math notranslate nohighlight">\([M x N]\)</span>. For now, let the rows denote different times and the columns different spatial locations (although this is not required for the actual application).</p>
 <p>The goal of EOF analysis is to decompose <strong>X</strong> into a set of spatial patterns, i.e, orthogonal eigenvectors, <span class="math notranslate nohighlight">\(\mathbf{e_i}\)</span>’s, that explain the most variance of <strong>X</strong>. In other words, we want to maximize the resemblance of <span class="math notranslate nohighlight">\(\mathbf{e_1}\)</span> (dimension <span class="math notranslate nohighlight">\([N x 1]\)</span>, the spatial dimension) to the data, that is, find the <span class="math notranslate nohighlight">\(\mathbf{e_1}\)</span> that explains the most variance.</p>
 <p><a class="reference internal" href="#eofs"><span class="std std-ref">Figure 26</span></a> provides a visualization of what we are trying to accomplish. <strong>X</strong> is a data matrix consisting of sea-level pressure (SLP) in mb at <span class="math notranslate nohighlight">\(N\)</span> points in space and <span class="math notranslate nohighlight">\(M\)</span> points in time.</p>
 <figure class="align-default" id="eofs">
-<a class="reference internal image-reference" href="../../_images/eofs_rev.png"><img alt="../../_images/eofs_rev.png" src="../../_images/eofs_rev.png" style="width: 455.5px; height: 233.0px;" />
+<a class="reference internal image-reference" href="../../_images/eofs_rev.png"><img alt="../../_images/eofs_rev.png" src="../../_images/eofs_rev.png" style="width: 683.25px; height: 349.5px;" />
 </a>
 <figcaption>
 <p><span class="caption-number">Fig. 26 </span><span class="caption-text">Visualizing EOF/PC spatial patterns using monthly SST (<span class="math notranslate nohighlight">\(^{\circ}\)</span>C) anomalies. <strong>X</strong> is the data matrix and <span class="math notranslate nohighlight">\(\mathbf{e_1}\)</span> is the eigenvector that explains the largest fraction of the variability in <strong>X</strong>.</span><a class="headerlink" href="#eofs" title="Link to this image">#</a></p>
@@ -488,7 +495,7 @@ document.write(`
 <p>The first eigenvector, <span class="math notranslate nohighlight">\(\mathbf{e_1}\)</span>, shows the pattern that explains the most variance in <strong>X</strong>. Note that just like the unit eigenvectors of 2-D or 3-D space, where <span class="math notranslate nohighlight">\(\mathbf{e_1} = (1,0)\)</span> and <span class="math notranslate nohighlight">\(\mathbf{e_1} = (-1,0)\)</span> are both legitimate eigenvectors, <span class="math notranslate nohighlight">\(\mathbf{e_1}\)</span> describing the variance of <strong>X</strong> can look like the pattern in <a class="reference internal" href="#eofs"><span class="std std-ref">Figure 26</span></a> or it can look like -1 <em>x</em> this pattern.</p>
 </section>
 <section id="maximizing-the-resemblance-of-mathbf-e-1-onto-x-eigenanalysis-of-c">
-<h2>Maximizing the resemblance of <span class="math notranslate nohighlight">\(\mathbf{e_1}\)</span> onto <strong>X</strong> = Eigenanalysis of <strong>C</strong>!<a class="headerlink" href="#maximizing-the-resemblance-of-mathbf-e-1-onto-x-eigenanalysis-of-c" title="Link to this heading">#</a></h2>
+<h1>Maximizing the resemblance of <span class="math notranslate nohighlight">\(\mathbf{e_1}\)</span> onto <strong>X</strong> = Eigenanalysis of <strong>C</strong>!<a class="headerlink" href="#maximizing-the-resemblance-of-mathbf-e-1-onto-x-eigenanalysis-of-c" title="Link to this heading">#</a></h1>
 <p>The resemblance of the <span class="math notranslate nohighlight">\(\mathbf{e_1}\)</span> to the data, <strong>X</strong>, is measured by the <em>inner product</em> of <span class="math notranslate nohighlight">\(\mathbf{e_1}\)</span> with <strong>X</strong> (this is also called the <em>projection</em> of <span class="math notranslate nohighlight">\(\mathbf{e_1}\)</span> onto <strong>X</strong>).</p>
 <p>If we want to maximize this resemblance, there are a few steps that we should take:</p>
 <ol class="arabic simple">
@@ -524,7 +531,7 @@ document.write(`
 \]</div>
 <p>Thus, <span class="math notranslate nohighlight">\(\mathbf{e_1}\)</span> must be an eigenvector of <strong>C</strong> with corresponding eigenvalue <span class="math notranslate nohighlight">\(\lambda_1\)</span>! Hence, we can find <span class="math notranslate nohighlight">\(\mathbf{e_1}\)</span> by “eigenanalyzing” <strong>C</strong>.</p>
 <section id="key-points">
-<h3>Key Points:<a class="headerlink" href="#key-points" title="Link to this heading">#</a></h3>
+<h2>Key Points:<a class="headerlink" href="#key-points" title="Link to this heading">#</a></h2>
 <ul class="simple">
 <li><p>The 1st eigenvector corresponds to the vector that explains the most variance in <strong>X</strong> and has the largest eigenvalue</p></li>
 <li><p>The 2nd eigenvector corresponds to the vector that explains the second most variance in <strong>X</strong> and has the 2nd largest eigenvalue, etc.</p></li>
@@ -536,7 +543,7 @@ document.write(`
 </section>
 </section>
 <section id="principal-component-time-series-change-of-basis">
-<h2>Principal Component Time Series = Change of Basis<a class="headerlink" href="#principal-component-time-series-change-of-basis" title="Link to this heading">#</a></h2>
+<h1>Principal Component Time Series = Change of Basis<a class="headerlink" href="#principal-component-time-series-change-of-basis" title="Link to this heading">#</a></h1>
 <p>So, we have seen that if <strong>X</strong> is <span class="math notranslate nohighlight">\([M x N]\)</span> where the rows denote different times and the columns different spatial locations, the eigenvectors correspond to the patterns describing the variability. But, as we saw in the Introduction to PCA, we can also generate corresponding principal component time series. How do we go about generating these time series?</p>
 <p>The principal component time series, <strong>Z</strong>, are equivalent to mapping <strong>X</strong> into the new vector space spanned by the eigenvectors. We can do this by performing a linear transformation of <strong>X</strong>:</p>
 <div class="math notranslate nohighlight">
@@ -558,7 +565,7 @@ document.write(`
 \]</div>
 </section>
 <section id="steps-for-computing-eofs-pcs">
-<h2>Steps for Computing EOFs/PCs<a class="headerlink" href="#steps-for-computing-eofs-pcs" title="Link to this heading">#</a></h2>
+<h1>Steps for Computing EOFs/PCs<a class="headerlink" href="#steps-for-computing-eofs-pcs" title="Link to this heading">#</a></h1>
 <p>For a data matrix <strong>X</strong> with size <span class="math notranslate nohighlight">\([M x N]\)</span> where the rows denote different times and the columns different spatial locations, we can find the EOFs/PCs using the following steps:</p>
 <ul class="simple">
 <li><p>subtract the mean values along the sampling/time dimension of <strong>X</strong></p></li>
@@ -569,7 +576,6 @@ document.write(`
 <li><p>the fraction of variance explained by the <span class="math notranslate nohighlight">\(j\)</span>th EOF/PC pair is <span class="math notranslate nohighlight">\(\frac{\lambda_j}{\sum_i \lambda_i}\)</span></p></li>
 </ul>
 <p>In the next section, we will take a look at an example and go through the above procedure step-by-step.</p>
-</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -636,14 +642,16 @@ document.write(`
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#setting-up-the-problem">Setting up the Problem…</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#maximizing-the-resemblance-of-mathbf-e-1-onto-x-eigenanalysis-of-c">Maximizing the resemblance of <span class="math notranslate nohighlight">\(\mathbf{e_1}\)</span> onto <strong>X</strong> = Eigenanalysis of <strong>C</strong>!</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#key-points">Key Points:</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">EOFs via Eigenanalysis</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#setting-up-the-problem">Setting up the Problem…</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#maximizing-the-resemblance-of-mathbf-e-1-onto-x-eigenanalysis-of-c">Maximizing the resemblance of <span class="math notranslate nohighlight">\(\mathbf{e_1}\)</span> onto <strong>X</strong> = Eigenanalysis of <strong>C</strong>!</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#key-points">Key Points:</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#principal-component-time-series-change-of-basis">Principal Component Time Series = Change of Basis</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#steps-for-computing-eofs-pcs">Steps for Computing EOFs/PCs</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#principal-component-time-series-change-of-basis">Principal Component Time Series = Change of Basis</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#steps-for-computing-eofs-pcs">Steps for Computing EOFs/PCs</a></li>
 </ul>
+
   </nav></div>
 
 </div></div>
